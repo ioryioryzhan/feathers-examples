@@ -31,6 +31,8 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private var _clipContentToggle:ToggleSwitch;
 		private var _useVirtualLayoutLabel:Label;
 		private var _useVirtualLayoutToggle:ToggleSwitch;
+		private var _hasElasticEdgesLabel:Label;
+		private var _hasElasticEdgesToggle:ToggleSwitch;
 		
 		private var _minX:Number;
 		
@@ -116,6 +118,14 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._useVirtualLayoutToggle.onChange.add(useVirtualLayoutToggle_onChange);
 			this.addChild(this._useVirtualLayoutToggle);
 			
+			this._hasElasticEdgesLabel = new Label();
+			this._hasElasticEdgesLabel.text = "hasElasticEdges";
+			this.addChild(this._hasElasticEdgesLabel);
+			this._hasElasticEdgesToggle = new ToggleSwitch();
+			this._hasElasticEdgesToggle.isSelected = true;
+			this._hasElasticEdgesToggle.onChange.add(hasElasticEdgesToggle_onChange);
+			this.addChild(this._hasElasticEdgesToggle);
+			
 			// handles the back hardware key on android
 			this.backButtonHandler = this.onBackButton;
 		}
@@ -168,6 +178,13 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._useVirtualLayoutLabel.x = this._useVirtualLayoutToggle.x - this._useVirtualLayoutLabel.width - spacingX;
 			this._useVirtualLayoutLabel.y = this._useVirtualLayoutToggle.y + (this._useVirtualLayoutToggle.height - this._useVirtualLayoutLabel.height) / 2;
 			
+			this._hasElasticEdgesToggle.validate();
+			this._hasElasticEdgesToggle.x = this.stage.stageWidth - this._useVirtualLayoutToggle.width - margin;
+			this._hasElasticEdgesToggle.y = this._useVirtualLayoutToggle.y + this._useVirtualLayoutToggle.height + spacing;
+			this._hasElasticEdgesLabel.validate();
+			this._hasElasticEdgesLabel.x = this._hasElasticEdgesToggle.x - this._hasElasticEdgesLabel.width - spacingX;
+			this._hasElasticEdgesLabel.y = this._hasElasticEdgesToggle.y + (this._hasElasticEdgesToggle.height - this._hasElasticEdgesLabel.height) / 2;
+			
 			this._minX = Math.min(this._widthLabel.x, this._heightLabel.x, this._isSelectableLabel.x,
 				this._clipContentLabel.x, this._useVirtualLayoutLabel.x) - spacingX;
 			this._widthSlider.maximum = this._minX;
@@ -211,6 +228,11 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private function useVirtualLayoutToggle_onChange(toggle:ToggleSwitch):void
 		{
 			this._list.useVirtualLayout = this._useVirtualLayoutToggle.isSelected;
+		}
+		
+		private function hasElasticEdgesToggle_onChange(toggle:ToggleSwitch):void
+		{
+			this._list.setScrollerProperty("hasElasticEdges", this._hasElasticEdgesToggle.isSelected);
 		}
 	}
 }
