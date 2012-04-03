@@ -6,6 +6,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.display.Image;
 	import org.josht.starling.display.Scale9Image;
 	import org.josht.starling.foxhole.controls.Button;
+	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
@@ -77,6 +78,7 @@ package org.josht.starling.foxhole.themes
 			this._fontSize = Math.max(8, roundToNearest(24 * this._scale, 8));
 			
 			this.setInitializerForClass(Label, labelInitializer);
+			this.setInitializerForClass(FPSDisplay, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Slider, sliderInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);

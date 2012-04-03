@@ -8,6 +8,7 @@ package org.josht.starling.foxhole.kitchenSink
 	import org.josht.starling.display.ScreenNavigator;
 	import org.josht.starling.display.ScreenNavigatorItem;
 	import org.josht.starling.display.transitions.ScreenSlidingStackTransitionManager;
+	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.kitchenSink.screens.ButtonScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ListScreen;
@@ -107,10 +108,10 @@ package org.josht.starling.foxhole.kitchenSink
 			this._transitionManager.duration = 0.4;
 			this._transitionManager.ease = Cubic.easeOut;
 			
-			/*import fr.kouma.starling.utils.Stats;
-			var stats:Stats = new Stats();//null, false);
-			this.stage.addChild(stats);
-			stats.y = this.stage.stageHeight - stats.height;*/
+			const fps:FPSDisplay = new FPSDisplay();
+			this.stage.addChild(fps);
+			fps.validate();
+			fps.y = this.stage.stageHeight - fps.height;
 		}
 	}
 }
