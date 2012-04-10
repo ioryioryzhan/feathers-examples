@@ -222,7 +222,7 @@ package org.josht.starling.foxhole.themes
 		{
 			list.listProperties =
 			{
-				//verticalAlign: List.VERTICAL_ALIGN_BOTTOM,
+				verticalAlign: List.VERTICAL_ALIGN_BOTTOM,
 				clipContent: true
 			}
 			
@@ -230,7 +230,6 @@ package org.josht.starling.foxhole.themes
 			defaultIcon.scaleX = defaultIcon.scaleY = this._scale;
 			list.buttonProperties =
 			{
-				width: 264 * this._scale,
 				gap: Number.POSITIVE_INFINITY, //fill as completely as possible
 				horizontalAlign: Button.HORIZONTAL_ALIGN_LEFT,
 				iconPosition: Button.ICON_POSITION_RIGHT,
