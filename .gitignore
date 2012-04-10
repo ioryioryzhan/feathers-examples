@@ -13,3 +13,5 @@ signing/
 bin-debug/
 bin-release/
 .metadata/
+*.iml
+.idea/
