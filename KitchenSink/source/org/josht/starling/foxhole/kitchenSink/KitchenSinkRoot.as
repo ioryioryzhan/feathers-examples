@@ -2,7 +2,6 @@ package org.josht.starling.foxhole.kitchenSink
 {
 	import com.gskinner.motion.easing.Cubic;
 	
-	import flash.system.Capabilities;
 	import flash.ui.Mouse;
 	
 	import org.josht.starling.display.ScreenNavigator;

@@ -29,8 +29,6 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private var _isSelectableToggle:ToggleSwitch;
 		private var _clipContentLabel:Label;
 		private var _clipContentToggle:ToggleSwitch;
-		private var _useVirtualLayoutLabel:Label;
-		private var _useVirtualLayoutToggle:ToggleSwitch;
 		private var _hasElasticEdgesLabel:Label;
 		private var _hasElasticEdgesToggle:ToggleSwitch;
 		
@@ -64,8 +62,8 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			
 			this._list = new List();
 			this._list.dataProvider = new ListCollection(items);
-			this._list.typicalItem = "Item 000";
-			this._list.height = 250 * this.dpiScale;
+			this._list.typicalItem = "Item 1000";
+			this._list.height = 350 * this.dpiScale;
 			this._list.clipContent = true;
 			this.addChildAt(this._list, 0);
 			
@@ -109,14 +107,6 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._clipContentToggle.isSelected = this._list.clipContent;
 			this._clipContentToggle.onChange.add(clipContentToggle_onChange);
 			this.addChild(this._clipContentToggle);
-			
-			this._useVirtualLayoutLabel = new Label();
-			this._useVirtualLayoutLabel.text = "useVirtualLayout";
-			this.addChild(this._useVirtualLayoutLabel);
-			this._useVirtualLayoutToggle = new ToggleSwitch();
-			this._useVirtualLayoutToggle.isSelected = this._list.useVirtualLayout;
-			this._useVirtualLayoutToggle.onChange.add(useVirtualLayoutToggle_onChange);
-			this.addChild(this._useVirtualLayoutToggle);
 			
 			this._hasElasticEdgesLabel = new Label();
 			this._hasElasticEdgesLabel.text = "hasElasticEdges";
@@ -171,22 +161,15 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._clipContentLabel.x = this._clipContentToggle.x - this._clipContentLabel.width - spacingX;
 			this._clipContentLabel.y = this._clipContentToggle.y + (this._clipContentToggle.height - this._clipContentLabel.height) / 2;
 			
-			this._useVirtualLayoutToggle.validate();
-			this._useVirtualLayoutToggle.x = this.stage.stageWidth - this._useVirtualLayoutToggle.width - margin;
-			this._useVirtualLayoutToggle.y = this._clipContentToggle.y + this._clipContentToggle.height + spacing;
-			this._useVirtualLayoutLabel.validate();
-			this._useVirtualLayoutLabel.x = this._useVirtualLayoutToggle.x - this._useVirtualLayoutLabel.width - spacingX;
-			this._useVirtualLayoutLabel.y = this._useVirtualLayoutToggle.y + (this._useVirtualLayoutToggle.height - this._useVirtualLayoutLabel.height) / 2;
-			
 			this._hasElasticEdgesToggle.validate();
-			this._hasElasticEdgesToggle.x = this.stage.stageWidth - this._useVirtualLayoutToggle.width - margin;
-			this._hasElasticEdgesToggle.y = this._useVirtualLayoutToggle.y + this._useVirtualLayoutToggle.height + spacing;
+			this._hasElasticEdgesToggle.x = this.stage.stageWidth - this._clipContentToggle.width - margin;
+			this._hasElasticEdgesToggle.y = this._clipContentToggle.y + this._clipContentToggle.height + spacing;
 			this._hasElasticEdgesLabel.validate();
 			this._hasElasticEdgesLabel.x = this._hasElasticEdgesToggle.x - this._hasElasticEdgesLabel.width - spacingX;
 			this._hasElasticEdgesLabel.y = this._hasElasticEdgesToggle.y + (this._hasElasticEdgesToggle.height - this._hasElasticEdgesLabel.height) / 2;
 			
 			this._minX = Math.min(this._widthLabel.x, this._heightLabel.x, this._isSelectableLabel.x,
-				this._clipContentLabel.x, this._useVirtualLayoutLabel.x) - spacingX;
+				this._clipContentLabel.x, this._hasElasticEdgesLabel.x) - spacingX;
 			this._widthSlider.maximum = this._minX;
 			this._list.validate();
 			this._list.x = (this._minX - this._list.width) / 2;
@@ -223,11 +206,6 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private function clipContentToggle_onChange(toggle:ToggleSwitch):void
 		{
 			this._list.clipContent = this._clipContentToggle.isSelected;
-		}
-		
-		private function useVirtualLayoutToggle_onChange(toggle:ToggleSwitch):void
-		{
-			this._list.useVirtualLayout = this._useVirtualLayoutToggle.isSelected;
 		}
 		
 		private function hasElasticEdgesToggle_onChange(toggle:ToggleSwitch):void

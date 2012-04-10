@@ -86,6 +86,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._horizontalAlignLabel.text = "horizontalAlign";
 			this.addChild(this._horizontalAlignLabel);
 			this._horizontalAlignPicker = new PickerList();
+			this._horizontalAlignPicker.typicalItem = Button.HORIZONTAL_ALIGN_CENTER;
 			this._horizontalAlignPicker.dataProvider = new ListCollection(new <String>
 			[
 				Button.HORIZONTAL_ALIGN_LEFT,
@@ -100,6 +101,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._verticalAlignLabel.text = "verticalAlign";
 			this.addChild(this._verticalAlignLabel);
 			this._verticalAlignPicker = new PickerList();
+			this._verticalAlignPicker.typicalItem = Button.VERTICAL_ALIGN_BOTTOM;
 			this._verticalAlignPicker.dataProvider = new ListCollection(new <String>
 			[
 				Button.VERTICAL_ALIGN_TOP,
@@ -122,6 +124,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._iconPositionLabel.text = "icon";
 			this.addChild(this._iconPositionLabel);
 			this._iconPositionPicker = new PickerList();
+			this._iconPositionPicker.typicalItem = Button.ICON_POSITION_RIGHT_BASELINE;
 			this._iconPositionPicker.dataProvider = new ListCollection(new <String>
 			[
 				Button.ICON_POSITION_TOP,

@@ -46,6 +46,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			items.fixed = true;
 			
 			this._list = new PickerList();
+			this._list.typicalItem = "Item 1000";
 			this._list.dataProvider = new ListCollection(items);
 			this.addChildAt(this._list, 0);
 			

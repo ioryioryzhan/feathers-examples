@@ -60,6 +60,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._directionLabel.text = "direction";
 			this.addChild(this._directionLabel);
 			this._directionPicker = new PickerList();
+			this._directionPicker.typicalItem = Slider.DIRECTION_HORIZONTAL;
 			this._directionPicker.dataProvider = new ListCollection(new <String>
 			[
 				Slider.DIRECTION_HORIZONTAL,
