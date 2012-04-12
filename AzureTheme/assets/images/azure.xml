@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:fe5fbbaaf59820f5ed4402e7890a0fa7$ -->
+<!-- $TexturePacker:SmartUpdate:f44595e2f72117f0c6da105ab115e89e$ -->
 <TextureAtlas imagePath="azure.png">
     <SubTexture name="button-disabled-skin" x="187" y="325" width="32" height="88"/>
     <SubTexture name="button-down-skin" x="167" y="417" width="32" height="88"/>
