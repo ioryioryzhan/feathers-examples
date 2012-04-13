@@ -117,7 +117,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._iconPositionLabel.text = "icon";
 			this.addChild(this._iconPositionLabel);
 			this._iconPositionPicker = new PickerList();
-			//this._iconPositionPicker.typicalItem = Button.ICON_POSITION_RIGHT_BASELINE;
+			this._iconPositionPicker.typicalItem = Button.ICON_POSITION_RIGHT_BASELINE;
 			this._iconPositionPicker.dataProvider = new ListCollection(new <String>
 			[
 				Button.ICON_POSITION_TOP,
