@@ -4,12 +4,15 @@ package org.josht.starling.foxhole.kitchenSink.screens
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.List;
+	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.data.ListCollection;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
-	
+
+	import starling.display.DisplayObject;
+
 	public class ListScreen extends Screen
 	{
 		public function ListScreen()
@@ -18,7 +21,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		}
 		
 		private var _backButton:Button;
-		private var _title:Label;
+		private var _header:ScreenHeader;
 		private var _list:List;
 		
 		private var _widthLabel:Label;
@@ -43,15 +46,6 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		
 		override protected function initialize():void
 		{
-			this._title = new Label();
-			this._title.text = "List";
-			this.addChild(this._title);
-			
-			this._backButton = new Button();
-			this._backButton.label = "Back";
-			this._backButton.onRelease.add(backButton_onRelease);
-			this.addChild(this._backButton);
-			
 			var items:Vector.<String> = new <String>[];
 			for(var i:int = 0; i < 150; i++)
 			{
@@ -115,6 +109,18 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._hasElasticEdgesToggle.isSelected = true;
 			this._hasElasticEdgesToggle.onChange.add(hasElasticEdgesToggle_onChange);
 			this.addChild(this._hasElasticEdgesToggle);
+
+			this._backButton = new Button();
+			this._backButton.label = "Back";
+			this._backButton.onRelease.add(backButton_onRelease);
+
+			this._header = new ScreenHeader();
+			this._header.title = "List";
+			this.addChild(this._header);
+			this._header.leftItems = new <DisplayObject>
+			[
+				this._backButton
+			];
 			
 			// handles the back hardware key on android
 			this.backButtonHandler = this.onBackButton;
@@ -125,16 +131,13 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
 			const spacing:Number = this.originalHeight * 0.02 * this.dpiScale;
 			const spacingX:Number = this.originalHeight * 0.02 * this.dpiScale;
-			
-			this._backButton.x = this._backButton.y = margin;
-			
-			this._title.validate();
-			this._title.x = this.stage.stageWidth - this._title.width - margin;
-			this._title.y = margin;
+
+			this._header.width = this.stage.stageWidth;
+			this._header.validate();
 			
 			this._widthSlider.validate();
 			this._widthSlider.x = this.stage.stageWidth - this._widthSlider.width - margin;
-			this._widthSlider.y = this._title.y + this._title.height + spacing;
+			this._widthSlider.y = this._header.y + this._header.height + spacing;
 			this._widthLabel.validate();
 			this._widthLabel.x = this._widthSlider.x - this._widthLabel.width - spacingX;
 			this._widthLabel.y = this._widthSlider.y + (this._widthSlider.height - this._widthLabel.height) / 2;

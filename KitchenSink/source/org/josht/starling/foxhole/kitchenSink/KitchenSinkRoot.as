@@ -1,9 +1,9 @@
 package org.josht.starling.foxhole.kitchenSink
 {
 	import com.gskinner.motion.easing.Cubic;
-	
+
 	import flash.ui.Mouse;
-	
+
 	import org.josht.starling.display.ScreenNavigator;
 	import org.josht.starling.display.ScreenNavigatorItem;
 	import org.josht.starling.display.transitions.ScreenSlidingStackTransitionManager;
@@ -16,10 +16,10 @@ package org.josht.starling.foxhole.kitchenSink
 	import org.josht.starling.foxhole.kitchenSink.screens.SliderScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ToggleSwitchScreen;
 	import org.josht.starling.foxhole.themes.MinimalTheme;
-	
+
 	import starling.display.Sprite;
 	import starling.events.Event;
-	
+
 	public class KitchenSinkRoot extends Sprite
 	{
 		private static const MAIN_MENU:String = "mainMenu";

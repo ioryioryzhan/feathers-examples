@@ -2,16 +2,17 @@ package org.josht.starling.foxhole.kitchenSink.screens
 {
 	import org.josht.starling.display.Screen;
 	import org.josht.starling.foxhole.controls.Button;
-	import org.josht.starling.foxhole.controls.HSlider;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.PickerList;
+	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
-	import org.josht.starling.foxhole.controls.VSlider;
 	import org.josht.starling.foxhole.data.ListCollection;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
-	
+
+	import starling.display.DisplayObject;
+
 	public class SliderScreen extends Screen
 	{
 		public function SliderScreen()
@@ -20,7 +21,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		}
 		
 		private var _backButton:Button;
-		private var _title:Label;
+		private var _header:ScreenHeader;
 		private var _slider:Slider;
 		private var _valueLabel:Label;
 		private var _directionPicker:PickerList;
@@ -39,15 +40,6 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		
 		override protected function initialize():void
 		{
-			this._title = new Label();
-			this._title.text = "Slider";
-			this.addChild(this._title);
-			
-			this._backButton = new Button();
-			this._backButton.label = "Back";
-			this._backButton.onRelease.add(backButton_onRelease);
-			this.addChild(this._backButton);
-			
 			this._slider = new Slider();
 			this._slider.minimum = 0;
 			this._slider.maximum = 100;
@@ -92,6 +84,18 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._valueLabel = new Label();
 			this._valueLabel.text = this._slider.value.toString();
 			this.addChild(this._valueLabel);
+
+			this._backButton = new Button();
+			this._backButton.label = "Back";
+			this._backButton.onRelease.add(backButton_onRelease);
+
+			this._header = new ScreenHeader();
+			this._header.title = "Slider";
+			this.addChild(this._header);
+			this._header.leftItems = new <DisplayObject>
+			[
+				this._backButton
+			];
 			
 			// handles the back hardware key on android
 			this.backButtonHandler = this.onBackButton;
@@ -102,16 +106,13 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
 			const spacingX:Number = this.originalHeight * 0.02 * this.dpiScale;
 			const spacingY:Number = this.originalHeight * 0.02 * this.dpiScale;
-			
-			this._backButton.x = this._backButton.y = margin;
-			
-			this._title.validate();
-			this._title.x = this.stage.stageWidth - this._title.width - margin;
-			this._title.y = margin;
+
+			this._header.width = this.stage.stageWidth;
+			this._header.validate();
 			
 			this._directionPicker.validate();
 			this._directionPicker.x = this.stage.stageWidth - this._directionPicker.width - margin;
-			this._directionPicker.y = this._title.y + this._title.height + spacingY;
+			this._directionPicker.y = this._header.y + this._header.height + spacingY;
 			this._directionLabel.validate();
 			this._directionLabel.x = this._directionPicker.x - this._directionLabel.width - spacingX;
 			this._directionLabel.y = this._directionPicker.y + (this._directionPicker.height - this._directionLabel.height) / 2;

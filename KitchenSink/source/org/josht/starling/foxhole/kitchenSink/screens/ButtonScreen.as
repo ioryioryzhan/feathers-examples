@@ -5,13 +5,15 @@ package org.josht.starling.foxhole.kitchenSink.screens
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.PickerList;
+	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.data.ListCollection;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
-	
+
+	import starling.display.DisplayObject;
 	import starling.textures.Texture;
-	
+
 	public class ButtonScreen extends Screen
 	{
 		[Embed(source="/../assets/images/skull.png")]
@@ -24,10 +26,10 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		{
 			super();
 		}
-		
+
+		private var _header:ScreenHeader;
 		private var _backButton:Button;
 		private var _button:Button;
-		private var _title:Label;
 		private var _toggleLabel:Label;
 		private var _toggleToggle:ToggleSwitch;
 		private var _horizontalAlignLabel:Label;
@@ -56,15 +58,6 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			
 			this._selectedIcon = new Image(Texture.fromBitmap(new SKULL_SELECTED_ICON()));
 			this._selectedIcon.scaleX = this._selectedIcon.scaleY = this.dpiScale;
-			
-			this._title = new Label();
-			this._title.text = "Button";
-			this.addChild(this._title);
-			
-			this._backButton = new Button();
-			this._backButton.label = "Back";
-			this._backButton.onRelease.add(backButton_onRelease);
-			this.addChild(this._backButton);
 			
 			this._button = new Button();
 			this._button.label = "Click Me";
@@ -124,7 +117,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._iconPositionLabel.text = "icon";
 			this.addChild(this._iconPositionLabel);
 			this._iconPositionPicker = new PickerList();
-			this._iconPositionPicker.typicalItem = Button.ICON_POSITION_RIGHT_BASELINE;
+			//this._iconPositionPicker.typicalItem = Button.ICON_POSITION_RIGHT_BASELINE;
 			this._iconPositionPicker.dataProvider = new ListCollection(new <String>
 			[
 				Button.ICON_POSITION_TOP,
@@ -137,6 +130,18 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._iconPositionPicker.selectedItem = this._button.iconPosition;
 			this._iconPositionPicker.onChange.add(iconPositionPicker_onChange);
 			this.addChild(this._iconPositionPicker);
+
+			this._backButton = new Button();
+			this._backButton.label = "Back";
+			this._backButton.onRelease.add(backButton_onRelease);
+
+			this._header = new ScreenHeader();
+			this._header.title = "Button";
+			this.addChild(this._header);
+			this._header.leftItems = new <DisplayObject>
+			[
+				this._backButton
+			];
 			
 			// handles the back hardware key on android
 			this.backButtonHandler = this.onBackButton;
@@ -147,16 +152,13 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
 			const spacingX:Number = this.originalHeight * 0.02 * this.dpiScale;
 			const spacingY:Number = this.originalHeight * 0.02 * this.dpiScale;
-			
-			this._backButton.x = this._backButton.y = margin;
-			
-			this._title.validate();
-			this._title.x = this.stage.stageWidth - this._title.width - margin;
-			this._title.y = margin;
+
+			this._header.width = this.stage.stageWidth;
+			this._header.validate();
 			
 			this._toggleToggle.validate();
 			this._toggleToggle.x = this.stage.stageWidth - this._toggleToggle.width - margin;
-			this._toggleToggle.y = this._title.y + this._title.height + spacingY;
+			this._toggleToggle.y = this._header.y + this._header.height + spacingY;
 			this._toggleLabel.validate();
 			this._toggleLabel.x = this._toggleToggle.x - this._toggleLabel.width - spacingX;
 			this._toggleLabel.y = this._toggleToggle.y + (this._toggleToggle.height - this._toggleLabel.height) / 2;
