@@ -32,7 +32,6 @@
 			<arg line="--source-path+='${signals.root}'"/>
 			<arg line="--source-path+='${gtween.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
-			<arg line="--source-path+='${stats.root}'"/>
 			<arg line="--source-path+='${foxhole.root}'"/>
 			<arg line="--source-path+='${theme.root}'"/>
 			<arg line="source/KitchenSinkWeb.as"/>
@@ -49,7 +48,6 @@
 			<arg line="--source-path+='${signals.root}'"/>
 			<arg line="--source-path+='${gtween.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
-			<arg line="--source-path+='${stats.root}'"/>
 			<arg line="--source-path+='${foxhole.root}'"/>
 			<arg line="--source-path+='${theme.root}'"/>
 			<arg line="source/KitchenSink.as"/>
