@@ -89,7 +89,7 @@ package org.josht.starling.foxhole.displayObjects.screens
 
 			this.layoutButtons();
 			this._maxWidth = this.stage.stageWidth - this._rightButton.width - this._image.x;
-			this._maxHeight = this.stage.stageHeight - this._bottomButton.height - this._image.y;
+			this._maxHeight = this.stage.stageHeight - this._bottomButton.height - this._image.y - this._header.height;
 		}
 
 		private function layoutButtons():void
