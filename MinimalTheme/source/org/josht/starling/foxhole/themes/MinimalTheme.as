@@ -32,7 +32,13 @@ package org.josht.starling.foxhole.themes
 		[Embed(source="/../assets/images/minimal.xml",mimeType="application/octet-stream")]
 		private static const ATLAS_XML:Class;
 		
-		private static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE, false), XML(new ATLAS_XML()));
+		private static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
+
+		private static const TOOLBAR_BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-up-skin");
+
+		private static const TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-down-skin");
+
+		private static const TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-selected-skin");
 		
 		private static const BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-up-skin");
 		
@@ -53,6 +59,8 @@ package org.josht.starling.foxhole.themes
 		private static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down");
 		
 		private static const LIST_ITEM_SELECTED_TEXTURE:Texture = ATLAS.getTexture("list-item-selected");
+
+		private static const HEADER_SKIN_TEXTURE:Texture = ATLAS.getTexture("header-skin");
 		
 		[Embed(source="/../assets/fonts/pf_ronda_seven.fnt",mimeType="application/octet-stream")]
 		private static const ATLAS_FONT_XML:Class;
@@ -60,6 +68,8 @@ package org.josht.starling.foxhole.themes
 		private static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("pf_ronda_seven_0"), XML(new ATLAS_FONT_XML()));
 		
 		private static const SCALE_9_GRID:Rectangle = new Rectangle(9, 9, 2, 2);
+
+		private static const TOOLBAR_SCALE_9_GRID:Rectangle = new Rectangle(25, 25, 2, 2);
 		
 		public function MinimalTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
@@ -97,41 +107,76 @@ package org.josht.starling.foxhole.themes
 		
 		private function buttonInitializer(button:Button):void
 		{
-			const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID);
-			defaultSkin.width = 88 * this._scale;
-			defaultSkin.height = 88 * this._scale;
-			defaultSkin.textureScale = this._scale;
-			button.defaultSkin = defaultSkin;
-			
-			const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, SCALE_9_GRID);
-			downSkin.width = 88 * this._scale;
-			downSkin.height = 88 * this._scale;
-			downSkin.textureScale = this._scale;
-			button.downSkin = downSkin;
-			
-			const defaultSelectedSkin:Scale9Image = new Scale9Image(BUTTON_SELECTED_SKIN_TEXTURE, SCALE_9_GRID);
-			defaultSelectedSkin.width = 88 * this._scale;
-			defaultSelectedSkin.height = 88 * this._scale;
-			defaultSelectedSkin.textureScale = this._scale;
-			button.defaultSelectedSkin = defaultSelectedSkin;
-			
-			button.selectedDownSkin = downSkin;
-			
-			button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x666666);
-			button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x333333);
-			
-			button.contentPadding = 16 * this._scale;
-			button.gap = 12 * this._scale;
+			if(button.name == "foxhole-header-item")
+			{
+				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID);
+				toolbarDefaultSkin.width = 88 * this._scale;
+				toolbarDefaultSkin.height = 88 * this._scale;
+				toolbarDefaultSkin.textureScale = this._scale;
+				button.defaultSkin = toolbarDefaultSkin;
+
+				const toolbarDownSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID);
+				toolbarDownSkin.width = 88 * this._scale;
+				toolbarDownSkin.height = 88 * this._scale;
+				toolbarDownSkin.textureScale = this._scale;
+				button.downSkin = toolbarDownSkin;
+
+				const toolbarDefaultSelectedSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID);
+				toolbarDefaultSelectedSkin.width = 88 * this._scale;
+				toolbarDefaultSelectedSkin.height = 88 * this._scale;
+				toolbarDefaultSelectedSkin.textureScale = this._scale;
+				button.defaultSelectedSkin = toolbarDefaultSelectedSkin;
+
+				button.selectedDownSkin = toolbarDownSkin;
+
+				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x666666);
+				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x333333);
+
+				button.contentPadding = 28 * this._scale;
+				button.gap = 12 * this._scale;
+				button.minWidth = 88 * this._scale;
+				button.minHeight = 88 * this._scale;
+			}
+			else
+			{
+				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID);
+				defaultSkin.width = 88 * this._scale;
+				defaultSkin.height = 88 * this._scale;
+				defaultSkin.textureScale = this._scale;
+				button.defaultSkin = defaultSkin;
+
+				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, SCALE_9_GRID);
+				downSkin.width = 88 * this._scale;
+				downSkin.height = 88 * this._scale;
+				downSkin.textureScale = this._scale;
+				button.downSkin = downSkin;
+
+				const defaultSelectedSkin:Scale9Image = new Scale9Image(BUTTON_SELECTED_SKIN_TEXTURE, SCALE_9_GRID);
+				defaultSelectedSkin.width = 88 * this._scale;
+				defaultSelectedSkin.height = 88 * this._scale;
+				defaultSelectedSkin.textureScale = this._scale;
+				button.defaultSelectedSkin = defaultSelectedSkin;
+
+				button.selectedDownSkin = downSkin;
+
+				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x666666);
+				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x333333);
+
+				button.contentPadding = 16 * this._scale;
+				button.gap = 12 * this._scale;
+				button.minWidth = 88 * this._scale;
+				button.minHeight = 88 * this._scale;
+			}
 		}
 		
 		private function sliderInitializer(slider:Slider):void
 		{
 			const thumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID);
+			thumbDefaultSkin.width = 88 * this._scale;
+			thumbDefaultSkin.height = 88 * this._scale;
 			thumbDefaultSkin.textureScale = this._scale;
 			slider.thumbProperties =
 			{
-				width: 88 * this._scale,
-				height: 88 * this._scale,
 				defaultSkin: thumbDefaultSkin,
 				upSkin: null,
 				downSkin: null,
@@ -141,6 +186,16 @@ package org.josht.starling.foxhole.themes
 			};
 			
 			const trackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID);
+			if(slider.direction == Slider.DIRECTION_HORIZONTAL)
+			{
+				trackDefaultSkin.width = 264 * this._scale;
+				trackDefaultSkin.height = 88 * this._scale;
+			}
+			else
+			{
+				trackDefaultSkin.width = 88 * this._scale;
+				trackDefaultSkin.height = 264 * this._scale;
+			}
 			trackDefaultSkin.textureScale = this._scale;
 			slider.trackProperties = 
 			{
@@ -149,27 +204,16 @@ package org.josht.starling.foxhole.themes
 				defaultSelectedSkin: null,
 				selectedDownSkin: null
 			};
-			
-			if(slider.direction == Slider.DIRECTION_HORIZONTAL)
-			{
-				slider.trackProperties.width = 264 * this._scale;
-				slider.trackProperties.height = 88 * this._scale;
-			}
-			else
-			{
-				slider.trackProperties.width = 88 * this._scale;
-				slider.trackProperties.height = 264 * this._scale;
-			}
 		}
 		
 		private function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
 		{
 			const thumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID);
+			thumbDefaultSkin.width = 88 * this._scale;
+			thumbDefaultSkin.height = 88 * this._scale;
 			thumbDefaultSkin.textureScale = this._scale;
 			toggleSwitch.thumbProperties =
 			{
-				width: 88 * this._scale,
-				height: 88 * this._scale,
 				defaultSkin: thumbDefaultSkin,
 				upSkin: null,
 				downSkin: null,
@@ -241,7 +285,9 @@ package org.josht.starling.foxhole.themes
 
 		private function screenHeaderInitializer(header:ScreenHeader):void
 		{
-			const backgroundSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID);
+			header.minWidth = 88 * this._scale;
+			header.minHeight = 88 * this._scale;
+			const backgroundSkin:Scale9Image = new Scale9Image(HEADER_SKIN_TEXTURE, SCALE_9_GRID);
 			backgroundSkin.width = 88 * this._scale;
 			backgroundSkin.height = 88 * this._scale;
 			backgroundSkin.textureScale = this._scale;
