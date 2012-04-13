@@ -56,6 +56,7 @@ package org.josht.starling.foxhole.displayObjects.screens
 			this.addChild(this._header);
 
 			this._image = new TiledImage(Texture.fromBitmap(new TILE_TEXTURE(), false));
+			this._image.textureScale = this.dpiScale;
 			this._image.clipContent = true;
 			this._minWidth = this._image.width;
 			this._minHeight = this._image.height;

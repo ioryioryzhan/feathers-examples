@@ -55,6 +55,7 @@ package org.josht.starling.foxhole.displayObjects.screens
 			this.addChild(this._header);
 
 			this._image = new Scale9Image(Texture.fromBitmap(new SCALE_9_TEXTURE(), false), new Rectangle(20, 20, 20, 20));
+			this._image.textureScale = this.dpiScale;
 			this._minWidth = this._image.width;
 			this._minHeight = this._image.height;
 			this.addChild(this._image);
