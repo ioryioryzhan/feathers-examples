@@ -31,7 +31,7 @@ package org.josht.starling.foxhole.themes
 		[Embed(source="/../assets/images/azure.xml",mimeType="application/octet-stream")]
 		private static const ATLAS_XML:Class;
 
-		private static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE, false), XML(new ATLAS_XML()));
+		private static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
 
 		private static const BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-up-skin");
 
@@ -161,6 +161,8 @@ package org.josht.starling.foxhole.themes
 
 				button.contentPadding = 16 * this._scale;
 				button.gap = 12 * this._scale;
+				button.minWidth = 88 * this._scale;
+				button.minHeight = 88 * this._scale;
 			}
 
 			if(button.name == "foxhole-pickerlist-button")
@@ -221,6 +223,9 @@ package org.josht.starling.foxhole.themes
 			renderer.defaultSelectedSkin = downSkin;
 
 			renderer.contentPadding = 20 * this._scale;
+			renderer.minWidth = 88 * this._scale;
+			renderer.minHeight = 88 * this._scale;
+
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 
 			renderer.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
@@ -238,10 +243,12 @@ package org.josht.starling.foxhole.themes
 		private function screenHeaderInitializer(header:ScreenHeader):void
 		{
 			const backgroundSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
+			backgroundSkin.width = 88 * this._scale;
 			backgroundSkin.height = 88 * this._scale;
 			header.backgroundSkin = backgroundSkin;
 			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			header.contentPadding = 8 * this._scale;
+			header.minHeight = 88 * this._scale;
 		}
 
 	}
