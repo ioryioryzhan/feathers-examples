@@ -9,6 +9,13 @@ Demonstrates each of the UI controls in Foxhole, with live previews of many of t
 * [Web Demo](http://flashtoolbox.com/foxhole-starling/examples/kitchen-sink/)
 * [Source Code](https://github.com/joshtynjala/foxhole-starling-examples/tree/master/KitchenSink)
 
+## Display Object Explorer
+
+Demonstrates the resizing behavior of `Scale9Image`, `Scale3Image`, and `TiledImage` classes.
+
+* [Web Demo](http://flashtoolbox.com/foxhole-starling/examples/display-object-explorer/)
+* [Source Code](https://github.com/joshtynjala/foxhole-starling-examples/tree/master/DisplayObjectExplorer)
+
 # Foxhole for Starling Themes
 
 The following themes demonstrate how Foxhole for Starling UI controls may be skinned.
