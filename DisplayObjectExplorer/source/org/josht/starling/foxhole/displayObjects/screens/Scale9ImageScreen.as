@@ -4,6 +4,8 @@ package org.josht.starling.foxhole.displayObjects.screens
 	import flash.geom.Rectangle;
 
 	import org.josht.starling.display.Image;
+
+	import org.josht.starling.display.Image;
 	import org.josht.starling.display.Scale9Image;
 	import org.josht.starling.display.Screen;
 	import org.josht.starling.foxhole.controls.Button;
@@ -63,13 +65,17 @@ package org.josht.starling.foxhole.displayObjects.screens
 			this._rightButton = new Button();
 			this._rightButton.addEventListener(TouchEvent.TOUCH, rightButton_touchHandler);
 			this.addChild(this._rightButton);
-			this._rightButton.defaultSkin = new Image(Texture.fromBitmap(new VERTICAL_GRIP(), false));
+			const rightSkin:Image = new Image(Texture.fromBitmap(new VERTICAL_GRIP(), false));
+			rightSkin.scaleX = rightSkin.scaleY = this.dpiScale;
+			this._rightButton.defaultSkin = rightSkin;
 			this._rightButton.upSkin = this._rightButton.downSkin = null;
 
 			this._bottomButton = new Button();
 			this._bottomButton.addEventListener(TouchEvent.TOUCH, bottomButton_touchHandler);
 			this.addChild(this._bottomButton);
-			this._bottomButton.defaultSkin = new Image(Texture.fromBitmap(new HORIZONTAL_GRIP(), false));
+			const bottomSkin:Image = new Image(Texture.fromBitmap(new HORIZONTAL_GRIP(), false));
+			bottomSkin.scaleX = bottomSkin.scaleY = this.dpiScale;
+			this._bottomButton.defaultSkin = bottomSkin;
 			this._bottomButton.upSkin = this._bottomButton.downSkin = null;
 		}
 
