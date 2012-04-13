@@ -11,6 +11,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
+	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.SimpleItemRenderer;
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
@@ -96,6 +97,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
 			this.setInitializerForClass(SimpleItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
+			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 		}
 
 		private function labelInitializer(label:Label):void
@@ -232,5 +234,15 @@ package org.josht.starling.foxhole.themes
 				clipContent: true
 			}
 		}
+
+		private function screenHeaderInitializer(header:ScreenHeader):void
+		{
+			const backgroundSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
+			backgroundSkin.height = 88 * this._scale;
+			header.backgroundSkin = backgroundSkin;
+			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			header.contentPadding = 8 * this._scale;
+		}
+
 	}
 }
