@@ -124,34 +124,28 @@ package org.josht.starling.foxhole.themes
 			}
 			else if(button.name == "foxhole-slider-track")
 			{
-				const sliderTrackDefaultSkin:Scale3Image = new Scale3Image(SLIDER_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND);
-				sliderTrackDefaultSkin.textureScale = this._scale;
+				const sliderTrackDefaultSkin:Scale3Image = new Scale3Image(SLIDER_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				button.defaultSkin = sliderTrackDefaultSkin;
-				const sliderTrackDownSkin:Scale3Image = new Scale3Image(SLIDER_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND);
-				sliderTrackDownSkin.textureScale = this._scale;
+				const sliderTrackDownSkin:Scale3Image = new Scale3Image(SLIDER_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				button.downSkin = sliderTrackDownSkin;
-				const sliderTrackDisabledSkin:Scale3Image = new Scale3Image(SLIDER_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND);
-				sliderTrackDisabledSkin.textureScale = this._scale;
+				const sliderTrackDisabledSkin:Scale3Image = new Scale3Image(SLIDER_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				button.disabledSkin = sliderTrackDisabledSkin;
 			}
 			else
 			{
-				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, BUTTON_SCALE_9_GRID);
+				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
 				defaultSkin.width = 88 * this._scale;
 				defaultSkin.height = 88 * this._scale;
-				defaultSkin.textureScale = this._scale;
 				button.defaultSkin = defaultSkin;
 
-				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, BUTTON_SCALE_9_GRID);
+				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
 				downSkin.width = 88 * this._scale;
 				downSkin.height = 88 * this._scale;
-				downSkin.textureScale = this._scale;
 				button.downSkin = downSkin;
 
-				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, BUTTON_SCALE_9_GRID);
+				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
 				disabledSkin.width = 88 * this._scale;
 				disabledSkin.height = 88 * this._scale;
-				disabledSkin.textureScale = this._scale;
 				button.defaultSelectedSkin = disabledSkin;
 
 				button.defaultSelectedSkin = downSkin;
@@ -192,14 +186,12 @@ package org.josht.starling.foxhole.themes
 
 		private function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
 		{
-			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_LEFT_TEXTURE, INSET_LEFT_SCALE_9_GRID);
-			onSkin.textureScale = this._scale;
+			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_LEFT_TEXTURE, INSET_LEFT_SCALE_9_GRID, this._scale);
 			onSkin.width = 132 * this._scale;
 			onSkin.height = 88 * this._scale;
 			toggleSwitch.onSkin = onSkin;
 
-			const offSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_RIGHT_TEXTURE, INSET_RIGHT_SCALE_9_GRID);
-			offSkin.textureScale = this._scale;
+			const offSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_RIGHT_TEXTURE, INSET_RIGHT_SCALE_9_GRID, this._scale);
 			offSkin.width = 132 * this._scale;
 			offSkin.height = 88 * this._scale;
 			toggleSwitch.offSkin = offSkin;
