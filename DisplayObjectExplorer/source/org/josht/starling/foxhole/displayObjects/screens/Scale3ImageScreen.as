@@ -5,6 +5,7 @@ package org.josht.starling.foxhole.displayObjects.screens
 
 	import org.josht.starling.display.Image;
 	import org.josht.starling.display.Scale3Image;
+	import org.josht.starling.display.Scale3Image;
 	import org.josht.starling.display.Screen;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
@@ -54,8 +55,7 @@ package org.josht.starling.foxhole.displayObjects.screens
 			this._header.title = "Scale 3 Image";
 			this.addChild(this._header);
 
-			this._image = new Scale3Image(Texture.fromBitmap(new SCALE_3_TEXTURE(), false), 30, 40);
-			this._image.textureScale = this.dpiScale;
+			this._image = new Scale3Image(Texture.fromBitmap(new SCALE_3_TEXTURE(), false), 30, 40, Scale3Image.DIRECTION_HORIZONTAL, this.dpiScale);
 			this._minWidth = this._image.width;
 			this._minHeight = this._image.height;
 			this.addChild(this._image);
