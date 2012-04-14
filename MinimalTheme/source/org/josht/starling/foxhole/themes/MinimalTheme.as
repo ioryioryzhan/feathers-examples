@@ -2,7 +2,7 @@ package org.josht.starling.foxhole.themes
 {
 	import flash.geom.Rectangle;
 	import flash.system.Capabilities;
-	
+
 	import org.josht.starling.display.Image;
 	import org.josht.starling.display.Scale9Image;
 	import org.josht.starling.foxhole.controls.Button;
@@ -18,12 +18,12 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
 	import org.josht.starling.text.BitmapFont;
 	import org.josht.utils.math.roundToNearest;
-	
+
 	import starling.display.DisplayObject;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 	import starling.textures.TextureSmoothing;
-	
+
 	public class MinimalTheme extends AddedWatcher
 	{
 		[Embed(source="/../assets/images/minimal.png")]
@@ -109,22 +109,19 @@ package org.josht.starling.foxhole.themes
 		{
 			if(button.name == "foxhole-header-item")
 			{
-				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID);
+				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID, this._scale);
 				toolbarDefaultSkin.width = 88 * this._scale;
 				toolbarDefaultSkin.height = 88 * this._scale;
-				toolbarDefaultSkin.textureScale = this._scale;
 				button.defaultSkin = toolbarDefaultSkin;
 
-				const toolbarDownSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID);
+				const toolbarDownSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID, this._scale);
 				toolbarDownSkin.width = 88 * this._scale;
 				toolbarDownSkin.height = 88 * this._scale;
-				toolbarDownSkin.textureScale = this._scale;
 				button.downSkin = toolbarDownSkin;
 
-				const toolbarDefaultSelectedSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID);
+				const toolbarDefaultSelectedSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID, this._scale);
 				toolbarDefaultSelectedSkin.width = 88 * this._scale;
 				toolbarDefaultSelectedSkin.height = 88 * this._scale;
-				toolbarDefaultSelectedSkin.textureScale = this._scale;
 				button.defaultSelectedSkin = toolbarDefaultSelectedSkin;
 
 				button.selectedDownSkin = toolbarDownSkin;
@@ -139,22 +136,19 @@ package org.josht.starling.foxhole.themes
 			}
 			else
 			{
-				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID);
+				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 				defaultSkin.width = 88 * this._scale;
 				defaultSkin.height = 88 * this._scale;
-				defaultSkin.textureScale = this._scale;
 				button.defaultSkin = defaultSkin;
 
-				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, SCALE_9_GRID);
+				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 				downSkin.width = 88 * this._scale;
 				downSkin.height = 88 * this._scale;
-				downSkin.textureScale = this._scale;
 				button.downSkin = downSkin;
 
-				const defaultSelectedSkin:Scale9Image = new Scale9Image(BUTTON_SELECTED_SKIN_TEXTURE, SCALE_9_GRID);
+				const defaultSelectedSkin:Scale9Image = new Scale9Image(BUTTON_SELECTED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 				defaultSelectedSkin.width = 88 * this._scale;
 				defaultSelectedSkin.height = 88 * this._scale;
-				defaultSelectedSkin.textureScale = this._scale;
 				button.defaultSelectedSkin = defaultSelectedSkin;
 
 				button.selectedDownSkin = downSkin;
@@ -171,10 +165,9 @@ package org.josht.starling.foxhole.themes
 		
 		private function sliderInitializer(slider:Slider):void
 		{
-			const thumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID);
+			const thumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			thumbDefaultSkin.width = 88 * this._scale;
 			thumbDefaultSkin.height = 88 * this._scale;
-			thumbDefaultSkin.textureScale = this._scale;
 			slider.thumbProperties =
 			{
 				defaultSkin: thumbDefaultSkin,
@@ -185,7 +178,7 @@ package org.josht.starling.foxhole.themes
 				selectedDownSkin: null
 			};
 			
-			const trackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID);
+			const trackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			if(slider.direction == Slider.DIRECTION_HORIZONTAL)
 			{
 				trackDefaultSkin.width = 264 * this._scale;
@@ -196,7 +189,6 @@ package org.josht.starling.foxhole.themes
 				trackDefaultSkin.width = 88 * this._scale;
 				trackDefaultSkin.height = 264 * this._scale;
 			}
-			trackDefaultSkin.textureScale = this._scale;
 			slider.trackProperties = 
 			{
 				defaultSkin: trackDefaultSkin,
@@ -208,10 +200,9 @@ package org.josht.starling.foxhole.themes
 		
 		private function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
 		{
-			const thumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID);
+			const thumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			thumbDefaultSkin.width = 88 * this._scale;
 			thumbDefaultSkin.height = 88 * this._scale;
-			thumbDefaultSkin.textureScale = this._scale;
 			toggleSwitch.thumbProperties =
 			{
 				defaultSkin: thumbDefaultSkin,
@@ -222,14 +213,12 @@ package org.josht.starling.foxhole.themes
 				selectedDownSkin: null
 			};
 			
-			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID);
-			onSkin.textureScale = this._scale;
+			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			onSkin.width = 132 * this._scale;
 			onSkin.height = 88 * this._scale;
 			toggleSwitch.onSkin = onSkin;
 			
-			const offSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SIMPLE_SKIN_TEXTURE, SCALE_9_GRID);
-			offSkin.textureScale = this._scale;
+			const offSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SIMPLE_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			offSkin.width = 132 * this._scale;
 			offSkin.height = 88 * this._scale;
 			toggleSwitch.offSkin = offSkin;
@@ -287,10 +276,9 @@ package org.josht.starling.foxhole.themes
 		{
 			header.minWidth = 88 * this._scale;
 			header.minHeight = 88 * this._scale;
-			const backgroundSkin:Scale9Image = new Scale9Image(HEADER_SKIN_TEXTURE, SCALE_9_GRID);
+			const backgroundSkin:Scale9Image = new Scale9Image(HEADER_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			backgroundSkin.width = 88 * this._scale;
 			backgroundSkin.height = 88 * this._scale;
-			backgroundSkin.textureScale = this._scale;
 			header.backgroundSkin = backgroundSkin;
 			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x666666);
 		}
