@@ -13,6 +13,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 
 	import starling.display.DisplayObject;
 	import starling.textures.Texture;
+	import starling.textures.TextureSmoothing;
 
 	public class ButtonScreen extends Screen
 	{
@@ -54,9 +55,11 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		override protected function initialize():void
 		{
 			this._icon = new Image(Texture.fromBitmap(new SKULL_ICON()));
+			this._icon.smoothing = TextureSmoothing.NONE;
 			this._icon.scaleX = this._icon.scaleY = this.dpiScale;
 			
 			this._selectedIcon = new Image(Texture.fromBitmap(new SKULL_SELECTED_ICON()));
+			this._selectedIcon.smoothing = TextureSmoothing.NONE;
 			this._selectedIcon.scaleX = this._selectedIcon.scaleY = this.dpiScale;
 			
 			this._button = new Button();
