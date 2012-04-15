@@ -20,6 +20,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.utils.math.roundToNearest;
 
 	import starling.display.DisplayObject;
+	import starling.events.Event;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 	import starling.textures.TextureSmoothing;
@@ -45,6 +46,12 @@ package org.josht.starling.foxhole.themes
 		private static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
 		
 		private static const BUTTON_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-selected-skin");
+
+		private static const TAB_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-up-skin");
+
+		private static const TAB_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-down-skin");
+
+		private static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
 		
 		private static const THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("thumb-skin");
 		
@@ -70,10 +77,22 @@ package org.josht.starling.foxhole.themes
 		private static const SCALE_9_GRID:Rectangle = new Rectangle(9, 9, 2, 2);
 
 		private static const TOOLBAR_SCALE_9_GRID:Rectangle = new Rectangle(25, 25, 2, 2);
+
+		private static const BACKGROUND_COLOR:uint = 0xf3f3f3;
+		private static const PRIMARY_TEXT_COLOR:uint = 0x666666;
+		private static const SELECTED_TEXT_COLOR:uint = 0x333333;
 		
 		public function MinimalTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
 			super(root);
+			if(root.stage)
+			{
+				root.stage.color = BACKGROUND_COLOR;
+			}
+			else
+			{
+				root.addEventListener(Event.ADDED_TO_STAGE, root_addedToStageHandler);
+			}
 			this.initialize(scaleToDPI);
 		}
 		
@@ -100,7 +119,7 @@ package org.josht.starling.foxhole.themes
 		
 		private function labelInitializer(label:Label):void
 		{
-			label.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x666666);
+			label.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			//since it's a pixel font, we don't want to smooth it.
 			label.smoothing = TextureSmoothing.NONE;
 		}
@@ -126,9 +145,35 @@ package org.josht.starling.foxhole.themes
 
 				button.selectedDownSkin = toolbarDownSkin;
 
-				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x666666);
-				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x333333);
+				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 
+				button.contentPadding = 28 * this._scale;
+				button.gap = 12 * this._scale;
+				button.minWidth = 88 * this._scale;
+				button.minHeight = 88 * this._scale;
+			}
+			else if(button.name == "foxhole-tabbar-tab")
+			{
+				const tabDefaultSkin:Scale9Image = new Scale9Image(TAB_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				tabDefaultSkin.width = 88 * this._scale;
+				tabDefaultSkin.height = 88 * this._scale;
+				button.defaultSkin = tabDefaultSkin;
+
+				const tabDownSkin:Scale9Image = new Scale9Image(TAB_DOWN_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID, this._scale);
+				tabDownSkin.width = 88 * this._scale;
+				tabDownSkin.height = 88 * this._scale;
+				button.downSkin = tabDownSkin;
+
+				const tabDefaultSelectedSkin:Scale9Image = new Scale9Image(TAB_SELECTED_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID, this._scale);
+				tabDefaultSelectedSkin.width = 88 * this._scale;
+				tabDefaultSelectedSkin.height = 88 * this._scale;
+				button.defaultSelectedSkin = tabDefaultSelectedSkin;
+
+				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+
+				button.iconPosition = Button.ICON_POSITION_TOP;
 				button.contentPadding = 28 * this._scale;
 				button.gap = 12 * this._scale;
 				button.minWidth = 88 * this._scale;
@@ -153,8 +198,8 @@ package org.josht.starling.foxhole.themes
 
 				button.selectedDownSkin = downSkin;
 
-				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x666666);
-				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x333333);
+				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 
 				button.contentPadding = 16 * this._scale;
 				button.gap = 12 * this._scale;
@@ -223,8 +268,8 @@ package org.josht.starling.foxhole.themes
 			offSkin.height = 88 * this._scale;
 			toggleSwitch.offSkin = offSkin;
 			
-			toggleSwitch.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x666666);
-			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x333333);
+			toggleSwitch.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 		}
 		
 		private function itemRendererInitializer(renderer:SimpleItemRenderer):void
@@ -280,7 +325,12 @@ package org.josht.starling.foxhole.themes
 			backgroundSkin.width = 88 * this._scale;
 			backgroundSkin.height = 88 * this._scale;
 			header.backgroundSkin = backgroundSkin;
-			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, 0x666666);
+			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+		}
+
+		private function root_addedToStageHandler(event:Event):void
+		{
+			DisplayObject(event.currentTarget).stage.color = BACKGROUND_COLOR;
 		}
 	}
 }

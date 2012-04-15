@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:4c96a958bd8d9e327a68e675b8fdf1e6$ -->
 <TextureAtlas imagePath="minimal.png">
-    <SubTexture name="button-down-skin" x="423" y="3" width="16" height="16"/>
-    <SubTexture name="button-selected-skin" x="403" y="3" width="16" height="16"/>
-    <SubTexture name="button-up-skin" x="383" y="3" width="16" height="16"/>
-    <SubTexture name="drop-down-arrow" x="443" y="19" width="12" height="7"/>
-    <SubTexture name="header-skin" x="363" y="3" width="16" height="16"/>
-    <SubTexture name="inset-background-simple-skin" x="343" y="3" width="16" height="16"/>
-    <SubTexture name="inset-background-skin" x="323" y="3" width="16" height="16"/>
-    <SubTexture name="list-item-down" x="19" y="25" width="4" height="4"/>
-    <SubTexture name="list-item-selected" x="11" y="25" width="4" height="4"/>
-    <SubTexture name="list-item-up" x="3" y="25" width="4" height="4"/>
-    <SubTexture name="pf_ronda_seven_0" x="3" y="3" width="256" height="18" frameX="0" frameY="0" frameWidth="256" frameHeight="32"/>
-    <SubTexture name="thumb-skin" x="443" y="3" width="12" height="12" frameX="-4" frameY="-4" frameWidth="16" frameHeight="16"/>
-    <SubTexture name="toolbar-button-down-skin" x="303" y="3" width="16" height="16" frameX="-16" frameY="-16" frameWidth="48" frameHeight="46"/>
-    <SubTexture name="toolbar-button-selected-skin" x="283" y="3" width="16" height="16" frameX="-16" frameY="-16" frameWidth="48" frameHeight="46"/>
-    <SubTexture name="toolbar-button-up-skin" x="263" y="3" width="16" height="16" frameX="-16" frameY="-16" frameWidth="48" frameHeight="46"/>
+  <SubTexture name="button-down-skin" x="187" y="45" width="16" height="16"/>
+  <SubTexture name="button-selected-skin" x="187" y="25" width="16" height="16"/>
+  <SubTexture name="button-up-skin" x="167" y="45" width="16" height="16"/>
+  <SubTexture name="drop-down-arrow" x="3" y="53" width="12" height="7"/>
+  <SubTexture name="header-skin" x="167" y="25" width="16" height="16"/>
+  <SubTexture name="inset-background-simple-skin" x="147" y="45" width="16" height="16"/>
+  <SubTexture name="inset-background-skin" x="147" y="25" width="16" height="16"/>
+  <SubTexture name="list-item-down" x="35" y="53" width="4" height="4"/>
+  <SubTexture name="list-item-selected" x="27" y="53" width="4" height="4"/>
+  <SubTexture name="list-item-up" x="19" y="53" width="4" height="4"/>
+  <SubTexture name="pf_ronda_seven_0" x="107" y="3" width="256" height="18" frameX="0" frameY="0" frameWidth="256" frameHeight="32"/>
+  <SubTexture name="tab-down-skin" x="3" y="3" width="48" height="46"/>
+  <SubTexture name="tab-selected-skin" x="55" y="3" width="48" height="46"/>
+  <SubTexture name="tab-up-skin" x="127" y="45" width="16" height="16"/>
+  <SubTexture name="thumb-skin" x="207" y="25" width="12" height="12" frameX="-4" frameY="-4" frameWidth="16" frameHeight="16"/>
+  <SubTexture name="toolbar-button-down-skin" x="127" y="25" width="16" height="16" frameX="-16" frameY="-16" frameWidth="48" frameHeight="46"/>
+  <SubTexture name="toolbar-button-selected-skin" x="107" y="45" width="16" height="16" frameX="-16" frameY="-16" frameWidth="48" frameHeight="46"/>
+  <SubTexture name="toolbar-button-up-skin" x="107" y="25" width="16" height="16" frameX="-16" frameY="-16" frameWidth="48" frameHeight="46"/>
 </TextureAtlas>
