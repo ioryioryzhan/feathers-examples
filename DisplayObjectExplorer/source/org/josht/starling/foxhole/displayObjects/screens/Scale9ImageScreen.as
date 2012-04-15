@@ -1,22 +1,16 @@
 package org.josht.starling.foxhole.displayObjects.screens
 {
-	import flash.geom.Point;
 	import flash.geom.Rectangle;
-
-	import org.josht.starling.display.Image;
 
 	import org.josht.starling.display.Image;
 	import org.josht.starling.display.Scale9Image;
 	import org.josht.starling.display.Screen;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
-	import org.osflash.signals.Signal;
 
-	import starling.events.Event;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-
 	import starling.textures.Texture;
 
 	public class Scale9ImageScreen extends Screen

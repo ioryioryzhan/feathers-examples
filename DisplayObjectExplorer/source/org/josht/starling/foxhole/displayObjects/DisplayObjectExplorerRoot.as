@@ -40,6 +40,7 @@ package org.josht.starling.foxhole.displayObjects
 
 		private function layout(w:Number, h:Number):void
 		{
+			this._tabBar.width = w;
 			this._tabBar.x = (w - this._tabBar.width) / 2;
 			this._tabBar.y = h - this._tabBar.height;
 		}
