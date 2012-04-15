@@ -20,6 +20,9 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.text.BitmapFont;
 
 	import starling.display.DisplayObject;
+
+	import starling.display.DisplayObject;
+	import starling.events.Event;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 
@@ -38,6 +41,12 @@ package org.josht.starling.foxhole.themes
 		private static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
 
 		private static const BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-disabled-skin");
+
+		private static const TOOLBAR_BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-up-skin");
+
+		private static const TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-down-skin");
+
+		private static const TOOLBAR_BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-disabled-skin");
 
 		private static const SLIDER_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-track-up-skin");
 
@@ -61,23 +70,37 @@ package org.josht.starling.foxhole.themes
 
 		private static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down-skin");
 
+		private static const TOOLBAR_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-background-skin");
+
+		private static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
+
 		[Embed(source="/../assets/fonts/lato30.fnt",mimeType="application/octet-stream")]
 		private static const ATLAS_FONT_XML:Class;
 
 		private static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("lato30_0"), XML(new ATLAS_FONT_XML()));
 
 		private static const BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 15, 71);
+		private static const TOOLBAR_BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(22, 22, 15, 71);
 		private static const INSET_LEFT_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 8, 16);
 		private static const INSET_RIGHT_SCALE_9_GRID:Rectangle = new Rectangle(0, 8, 8, 16);
 		private static const SLIDER_FIRST:Number = 16;
 		private static const SLIDER_SECOND:Number = 15;
-		
+
+		private static const BACKGROUND_COLOR:uint = 0x13171a;
 		private static const PRIMARY_TEXT_COLOR:uint = 0xe5e5e5;
 		private static const SELECTED_TEXT_COLOR:uint = 0xffffff;
 
 		public function AzureTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
 			super(root);
+			if(root.stage)
+			{
+				root.stage.color = BACKGROUND_COLOR;
+			}
+			else
+			{
+				root.addEventListener(Event.ADDED_TO_STAGE, root_addedToStageHandler);
+			}
 			this.initialize(scaleToDPI);
 		}
 
@@ -111,7 +134,51 @@ package org.josht.starling.foxhole.themes
 
 		private function buttonInitializer(button:Button):void
 		{
-			if(button.name == "foxhole-slider-thumb")
+			if(button.name == "foxhole-tabbar-tab")
+			{
+				const tabDefaultSkin:Image = new Image(TOOLBAR_BACKGROUND_SKIN_TEXTURE);
+				tabDefaultSkin.width = 88 * this._scale;
+				tabDefaultSkin.height = 88 * this._scale;
+				button.defaultSkin = tabDefaultSkin;
+				const tabDefaultSelectedSkin:Image = new Image(TAB_SELECTED_SKIN_TEXTURE);
+				tabDefaultSelectedSkin.width = 88 * this._scale;
+				tabDefaultSelectedSkin.height = 88 * this._scale;
+				button.defaultSelectedSkin = tabDefaultSelectedSkin;
+				button.downSkin = tabDefaultSelectedSkin;
+
+				button.minWidth = 88 * this._scale;
+				button.minHeight = 88 * this._scale;
+				button.contentPadding = 16 * this._scale;
+				button.gap = 12 * this._scale;
+				button.iconPosition = Button.ICON_POSITION_TOP;
+
+				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			}
+			else if(button.name == "foxhole-header-item")
+			{
+				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURE, TOOLBAR_BUTTON_SCALE_9_GRID, this._scale);
+				toolbarDefaultSkin.width = 88 * this._scale;
+				toolbarDefaultSkin.height = 88 * this._scale;
+				button.defaultSkin = toolbarDefaultSkin;
+
+				const toolbarDownSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE, TOOLBAR_BUTTON_SCALE_9_GRID, this._scale);
+				toolbarDownSkin.width = 88 * this._scale;
+				toolbarDownSkin.height = 88 * this._scale;
+				button.downSkin = toolbarDownSkin;
+
+				button.defaultSelectedSkin = toolbarDownSkin;
+				button.selectedDownSkin = toolbarDownSkin;
+
+				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+
+				button.contentPadding = 30 * this._scale;
+				button.gap = 12 * this._scale;
+				button.minWidth = 88 * this._scale;
+				button.minHeight = 88 * this._scale;
+			}
+			else if(button.name == "foxhole-slider-thumb")
 			{
 				const sliderThumbDefaultSkin:Image = new Image(SLIDER_THUMB_UP_SKIN_TEXTURE);
 				sliderThumbDefaultSkin.width = 88 * this._scale;
@@ -234,13 +301,18 @@ package org.josht.starling.foxhole.themes
 
 		private function screenHeaderInitializer(header:ScreenHeader):void
 		{
-			const backgroundSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
+			const backgroundSkin:Image = new Image(TOOLBAR_BACKGROUND_SKIN_TEXTURE);
 			backgroundSkin.width = 88 * this._scale;
 			backgroundSkin.height = 88 * this._scale;
 			header.backgroundSkin = backgroundSkin;
 			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			header.contentPadding = 8 * this._scale;
 			header.minHeight = 88 * this._scale;
+		}
+
+		private function root_addedToStageHandler(event:Event):void
+		{
+			DisplayObject(event.currentTarget).stage.color = BACKGROUND_COLOR;
 		}
 
 	}
