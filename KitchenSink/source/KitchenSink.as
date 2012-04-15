@@ -14,7 +14,7 @@ package
 	
 	import starling.core.Starling;
 	
-	[SWF(width="960",height="640",frameRate="60",backgroundColor="#f3f3f3")]
+	[SWF(width="960",height="640",frameRate="60",backgroundColor="#ffffff")]
 	public class KitchenSink extends Sprite
 	{
 		public function KitchenSink()
