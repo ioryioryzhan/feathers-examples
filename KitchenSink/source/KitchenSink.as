@@ -42,9 +42,11 @@ package
 			Starling.handleLostContext = true;
 			Starling.multitouchEnabled = true;
 			this._starling = new Starling(KitchenSinkRoot, this.stage);
+			this._starling.enableErrorChecking = false;
 			this._starling.start();
 			
 			this.stage.addEventListener(Event.RESIZE, stage_resizeHandler, false, 0, true);
+			this.stage.addEventListener(Event.DEACTIVATE, stage_deactivateHandler, false, 0, true);
 		}
 		
 		private function stage_resizeHandler(event:Event):void
@@ -56,5 +58,18 @@ package
 			this._starling.stage.stageWidth = this.stage.stageWidth;
 			this._starling.stage.stageHeight = this.stage.stageHeight;
 		}
+
+		private function stage_deactivateHandler(event:Event):void
+		{
+			this._starling.stop();
+			this.stage.addEventListener(Event.ACTIVATE, stage_activateHandler, false, 0, true);
+		}
+
+		private function stage_activateHandler(event:Event):void
+		{
+			this.stage.removeEventListener(Event.ACTIVATE, stage_activateHandler);
+			this._starling.start();
+		}
+
 	}
 }
