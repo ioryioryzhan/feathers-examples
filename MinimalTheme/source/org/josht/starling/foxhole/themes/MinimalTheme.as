@@ -19,6 +19,8 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.text.BitmapFont;
 	import org.josht.utils.math.roundToNearest;
 
+	import starling.core.Starling;
+
 	import starling.display.DisplayObject;
 	import starling.events.Event;
 	import starling.textures.Texture;
@@ -85,6 +87,7 @@ package org.josht.starling.foxhole.themes
 		public function MinimalTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
 			super(root);
+			Starling.current.nativeStage.color = BACKGROUND_COLOR;
 			if(root.stage)
 			{
 				root.stage.color = BACKGROUND_COLOR;

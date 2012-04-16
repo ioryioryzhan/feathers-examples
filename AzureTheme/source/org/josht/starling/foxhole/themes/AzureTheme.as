@@ -19,6 +19,8 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
 	import org.josht.starling.text.BitmapFont;
 
+	import starling.core.Starling;
+
 	import starling.display.DisplayObject;
 
 	import starling.display.DisplayObject;
@@ -93,6 +95,7 @@ package org.josht.starling.foxhole.themes
 		public function AzureTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
 			super(root);
+			Starling.current.nativeStage.color = BACKGROUND_COLOR;
 			if(root.stage)
 			{
 				root.stage.color = BACKGROUND_COLOR;
