@@ -86,18 +86,23 @@ package org.josht.starling.foxhole.displayObjects.screens
 			this._image.x = 30 * this.dpiScale;
 			this._image.y = this._header.height + 30 * this.dpiScale;
 
-			this.layoutButtons();
+			this._rightButton.validate();
+			this._bottomButton.validate();
+
 			this._maxWidth = this.stage.stageWidth - this._rightButton.width - this._image.x;
 			this._maxHeight = this.stage.stageHeight - this._bottomButton.height - this._image.y - this._header.height;
+
+			this._image.width = Math.max(this._minWidth, Math.min(this._maxWidth, this._image.width));
+			this._image.height = Math.max(this._minHeight, Math.min(this._maxHeight, this._image.height));
+
+			this.layoutButtons();
 		}
 
 		private function layoutButtons():void
 		{
-			this._rightButton.validate();
 			this._rightButton.x = this._image.x + this._image.width;
 			this._rightButton.y = this._image.y + (this._image.height - this._rightButton.height) / 2;
 
-			this._bottomButton.validate();
 			this._bottomButton.x = this._image.x + (this._image.width - this._bottomButton.width) / 2;
 			this._bottomButton.y = this._image.y + this._image.height;
 		}
