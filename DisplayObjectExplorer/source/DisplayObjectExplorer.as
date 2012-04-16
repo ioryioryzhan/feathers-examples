@@ -45,18 +45,23 @@ package
 			this._starling.enableErrorChecking = false;
 			this._starling.start();
 
-			this.stage.addEventListener(Event.RESIZE, stage_resizeHandler, false, 0, true);
+			this.stage.addEventListener(Event.RESIZE, stage_resizeHandler, false, int.MAX_VALUE, true);
 			this.stage.addEventListener(Event.DEACTIVATE, stage_deactivateHandler, false, 0, true);
 		}
 
 		private function stage_resizeHandler(event:Event):void
 		{
+			this._starling.stage.stageWidth = this.stage.stageWidth;
+			this._starling.stage.stageHeight = this.stage.stageHeight;
+
 			const viewPort:Rectangle = this._starling.viewPort;
 			viewPort.width = this.stage.stageWidth;
 			viewPort.height = this.stage.stageHeight;
-			this._starling.viewPort = viewPort;
-			this._starling.stage.stageWidth = this.stage.stageWidth;
-			this._starling.stage.stageHeight = this.stage.stageHeight;
+			try
+			{
+				this._starling.viewPort = viewPort;
+			}
+			catch(error:Error) {}
 		}
 
 		private function stage_deactivateHandler(event:Event):void
