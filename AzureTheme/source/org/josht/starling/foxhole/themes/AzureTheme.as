@@ -14,6 +14,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.SimpleItemRenderer;
 	import org.josht.starling.foxhole.controls.Slider;
+	import org.josht.starling.foxhole.controls.TextInput;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
@@ -61,6 +62,10 @@ package org.josht.starling.foxhole.themes
 		private static const SLIDER_THUMB_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-down-skin");
 
 		private static const SLIDER_THUMB_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-disabled-skin");
+
+		private static const INSET_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-skin");
+
+		private static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-disabled-skin");
 
 		private static const INSET_BACKGROUND_LEFT_TEXTURE:Texture = ATLAS.getTexture("inset-left");
 
@@ -124,6 +129,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(SimpleItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
+			this.setInitializerForClass(TextInput, textInputInitializer);
 		}
 
 		private function labelInitializer(label:Label):void
@@ -169,6 +175,11 @@ package org.josht.starling.foxhole.themes
 				toolbarDownSkin.width = 88 * this._scale;
 				toolbarDownSkin.height = 88 * this._scale;
 				button.downSkin = toolbarDownSkin;
+
+				const toolbarDisabledSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_DISABLED_SKIN_TEXTURE, TOOLBAR_BUTTON_SCALE_9_GRID, this._scale);
+				toolbarDisabledSkin.width = 88 * this._scale;
+				toolbarDisabledSkin.height = 88 * this._scale;
+				button.disabledSkin = toolbarDisabledSkin;
 
 				button.defaultSelectedSkin = toolbarDownSkin;
 				button.selectedDownSkin = toolbarDownSkin;
@@ -311,6 +322,29 @@ package org.josht.starling.foxhole.themes
 			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			header.contentPadding = 0;
 			header.minHeight = 88 * this._scale;
+		}
+
+		private function textInputInitializer(input:TextInput):void
+		{
+			input.minWidth = 88 * this._scale;
+			input.minHeight = 88 * this._scale;
+			input.contentPadding = 22 * this._scale;
+			input.stageTextProperties =
+			{
+				fontFamily: "Helvetica",
+				fontSize: 36 * this._scale,
+				color: 0xffffff
+			};
+
+			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+			backgroundSkin.width = 264 * this._scale;
+			backgroundSkin.height = 88 * this._scale;
+			input.backgroundSkin = backgroundSkin;
+
+			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+			backgroundDisabledSkin.width = 264 * this._scale;
+			backgroundDisabledSkin.height = 88 * this._scale;
+			input.backgroundDisabledSkin = backgroundDisabledSkin;
 		}
 
 		private function root_addedToStageHandler(event:Event):void
