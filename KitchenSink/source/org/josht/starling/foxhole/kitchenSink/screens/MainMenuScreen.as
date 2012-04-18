@@ -14,7 +14,8 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			"Slider",
 			"Toggle Switch",
 			"List",
-			"Picker List"
+			"Picker List",
+			"Text Input"
 		];
 		
 		public function MainMenuScreen()
@@ -56,13 +57,20 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		{
 			return this._onPickerList;
 		}
+
+		private var _onTextInput:Signal = new Signal(MainMenuScreen);
+
+		public function get onTextInput():ISignal
+		{
+			return this._onTextInput;
+		}
 		
 		private var _header:ScreenHeader;
 		private var _buttons:Vector.<Button> = new <Button>[];
 		
 		override protected function initialize():void
 		{
-			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onSlider, this._onToggleSwitch, this._onList, this._onPickerList];
+			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onSlider, this._onToggleSwitch, this._onList, this._onPickerList, this._onTextInput];
 			const buttonCount:int = LABELS.length;
 			for(var i:int = 0; i < buttonCount; i++)
 			{
@@ -82,21 +90,40 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		
 		override protected function layout():void
 		{
+			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
+			const spacingX:Number = this.originalHeight * 0.02 * this.dpiScale;
 			const spacingY:Number = this.originalHeight * 0.02 * this.dpiScale;
 
 			this._header.width = this.stage.stageWidth;
 			this._header.validate();
-			
+
+			const contentMaxWidth:Number = this.stage.stageWidth - 2 * margin;
+			const buttonWidth:Number = 220 * this.dpiScale;
+			var horizontalButtonCount:int = 1;
+			var horizontalButtonCombinedWidth:Number = buttonWidth;
+			while((horizontalButtonCombinedWidth + buttonWidth + spacingX) < contentMaxWidth)
+			{
+				horizontalButtonCombinedWidth += buttonWidth + spacingX;
+				horizontalButtonCount++;
+			}
+			const startX:Number = (this.stage.stageWidth - horizontalButtonCombinedWidth) / 2;
+
+			var positionX:Number = startX;
 			var positionY:Number = this._header.y + this._header.height + spacingY;
 			const buttonCount:int = this._buttons.length;
 			for(var i:int = 0; i < buttonCount; i++)
 			{
 				var button:Button = this._buttons[i];
-				button.width = 440 * this.dpiScale;
+				button.width = buttonWidth;
 				button.height = 88 * this.dpiScale;
-				button.x = (this.stage.stageWidth - button.width) / 2;
+				button.x = positionX;
 				button.y = positionY;
-				positionY += button.height + spacingY;
+				positionX += buttonWidth + spacingX;
+				if(positionX + buttonWidth >= contentMaxWidth)
+				{
+					positionX = startX;
+					positionY += button.height + spacingY;
+				}
 			}
 		}
 		
