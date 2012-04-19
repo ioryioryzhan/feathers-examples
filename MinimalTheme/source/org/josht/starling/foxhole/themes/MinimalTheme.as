@@ -13,6 +13,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.SimpleItemRenderer;
 	import org.josht.starling.foxhole.controls.Slider;
+	import org.josht.starling.foxhole.controls.TextInput;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
@@ -46,6 +47,8 @@ package org.josht.starling.foxhole.themes
 		private static const BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-up-skin");
 		
 		private static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
+
+		private static const BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-disabled-skin");
 		
 		private static const BUTTON_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-selected-skin");
 
@@ -58,6 +61,8 @@ package org.josht.starling.foxhole.themes
 		private static const THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("thumb-skin");
 		
 		private static const INSET_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-skin");
+
+		private static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-disabled-skin");
 		
 		private static const INSET_BACKGROUND_SIMPLE_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-simple-skin");
 		
@@ -83,6 +88,7 @@ package org.josht.starling.foxhole.themes
 		private static const BACKGROUND_COLOR:uint = 0xf3f3f3;
 		private static const PRIMARY_TEXT_COLOR:uint = 0x666666;
 		private static const SELECTED_TEXT_COLOR:uint = 0x333333;
+		private static const INSET_TEXT_COLOR:uint = 0x333333;
 		
 		public function MinimalTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
@@ -118,6 +124,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(SimpleItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
+			this.setInitializerForClass(TextInput, textInputInitializer);
 		}
 		
 		private function labelInitializer(label:Label):void
@@ -193,6 +200,11 @@ package org.josht.starling.foxhole.themes
 				downSkin.width = 88 * this._scale;
 				downSkin.height = 88 * this._scale;
 				button.downSkin = downSkin;
+
+				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				disabledSkin.width = 88 * this._scale;
+				disabledSkin.height = 88 * this._scale;
+				button.disabledSkin = disabledSkin;
 
 				const defaultSelectedSkin:Scale9Image = new Scale9Image(BUTTON_SELECTED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 				defaultSelectedSkin.width = 88 * this._scale;
@@ -329,6 +341,29 @@ package org.josht.starling.foxhole.themes
 			backgroundSkin.height = 88 * this._scale;
 			header.backgroundSkin = backgroundSkin;
 			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+		}
+
+		private function textInputInitializer(input:TextInput):void
+		{
+			input.minWidth = 88 * this._scale;
+			input.minHeight = 88 * this._scale;
+			input.contentPadding = 22 * this._scale;
+			input.stageTextProperties =
+			{
+				fontFamily: "Helvetica",
+				fontSize: 36 * this._scale,
+				color: INSET_TEXT_COLOR
+			};
+
+			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			backgroundSkin.width = 264 * this._scale;
+			backgroundSkin.height = 88 * this._scale;
+			input.backgroundSkin = backgroundSkin;
+
+			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			backgroundDisabledSkin.width = 264 * this._scale;
+			backgroundDisabledSkin.height = 88 * this._scale;
+			input.backgroundDisabledSkin = backgroundDisabledSkin;
 		}
 
 		private function root_addedToStageHandler(event:Event):void
