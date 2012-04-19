@@ -4,8 +4,8 @@ package org.josht.starling.foxhole.displayObjects
 
 	import flash.ui.Mouse;
 
-	import org.josht.starling.display.ScreenNavigator;
-	import org.josht.starling.display.ScreenNavigatorItem;
+	import org.josht.starling.foxhole.controls.ScreenNavigator;
+	import org.josht.starling.foxhole.controls.ScreenNavigatorItem;
 	import org.josht.starling.foxhole.controls.TabBar;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.data.ListCollection;

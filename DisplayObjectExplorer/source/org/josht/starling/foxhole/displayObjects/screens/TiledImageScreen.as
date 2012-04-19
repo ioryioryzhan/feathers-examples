@@ -5,7 +5,7 @@ package org.josht.starling.foxhole.displayObjects.screens
 
 	import org.josht.starling.display.Image;
 	import org.josht.starling.display.Scale9Image;
-	import org.josht.starling.display.Screen;
+	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.display.TiledImage;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
@@ -78,9 +78,9 @@ package org.josht.starling.foxhole.displayObjects.screens
 			this._bottomButton.upSkin = this._bottomButton.downSkin = null;
 		}
 
-		override protected function layout():void
+		override protected function draw():void
 		{
-			this._header.width = this.stage.stageWidth;
+			this._header.width = this.actualWidth;
 			this._header.validate();
 
 			this._image.x = 30 * this.dpiScale;
@@ -89,8 +89,8 @@ package org.josht.starling.foxhole.displayObjects.screens
 			this._rightButton.validate();
 			this._bottomButton.validate();
 
-			this._maxWidth = this.stage.stageWidth - this._rightButton.width - this._image.x;
-			this._maxHeight = this.stage.stageHeight - this._bottomButton.height - this._image.y - this._header.height;
+			this._maxWidth = this.actualWidth - this._rightButton.width - this._image.x;
+			this._maxHeight = this.actualHeight - this._bottomButton.height - this._image.y - this._header.height;
 
 			this._image.width = Math.max(this._minWidth, Math.min(this._maxWidth, this._image.width));
 			this._image.height = Math.max(this._minHeight, Math.min(this._maxHeight, this._image.height));
