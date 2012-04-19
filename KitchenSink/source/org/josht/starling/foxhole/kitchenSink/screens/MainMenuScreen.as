@@ -1,6 +1,6 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
-	import org.josht.starling.display.Screen;
+	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.osflash.signals.ISignal;
@@ -88,16 +88,16 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this.addChild(this._header);
 		}
 		
-		override protected function layout():void
+		override protected function draw():void
 		{
 			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
 			const spacingX:Number = this.originalHeight * 0.02 * this.dpiScale;
 			const spacingY:Number = this.originalHeight * 0.02 * this.dpiScale;
 
-			this._header.width = this.stage.stageWidth;
+			this._header.width = this.actualWidth;
 			this._header.validate();
 
-			const contentMaxWidth:Number = this.stage.stageWidth - 2 * margin;
+			const contentMaxWidth:Number = this.actualWidth - 2 * margin;
 			const buttonWidth:Number = 220 * this.dpiScale;
 			var horizontalButtonCount:int = 1;
 			var horizontalButtonCombinedWidth:Number = buttonWidth;
@@ -106,7 +106,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 				horizontalButtonCombinedWidth += buttonWidth + spacingX;
 				horizontalButtonCount++;
 			}
-			const startX:Number = (this.stage.stageWidth - horizontalButtonCombinedWidth) / 2;
+			const startX:Number = (this.actualWidth - horizontalButtonCombinedWidth) / 2;
 
 			var positionX:Number = startX;
 			var positionY:Number = this._header.y + this._header.height + spacingY;

@@ -1,6 +1,6 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
-	import org.josht.starling.display.Screen;
+	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
@@ -56,18 +56,18 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this.backButtonHandler = this.onBackButton;
 		}
 		
-		override protected function layout():void
+		override protected function draw():void
 		{
 			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
 			const spacingX:Number = this.originalWidth * 0.02 * this.dpiScale;
 			const spacingY:Number = this.originalWidth * 0.02 * this.dpiScale;
 
-			this._header.width = this.stage.stageWidth;
+			this._header.width = this.actualWidth;
 			this._header.validate();
 			
 			this._toggleSwitch.validate(); //auto-size the slider
-			this._toggleSwitch.x = (this.stage.stageWidth - this._toggleSwitch.width) / 2;
-			this._toggleSwitch.y = (this.stage.stageHeight - this._toggleSwitch.height) / 2;
+			this._toggleSwitch.x = (this.actualWidth - this._toggleSwitch.width) / 2;
+			this._toggleSwitch.y = (this.actualHeight - this._toggleSwitch.height) / 2;
 			this._valueLabel.validate();
 			this._valueLabel.x = this._toggleSwitch.x + this._toggleSwitch.width + spacingX;
 			this._valueLabel.y = this._toggleSwitch.y + (this._toggleSwitch.height - this._valueLabel.height) / 2;

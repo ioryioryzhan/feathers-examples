@@ -1,6 +1,6 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
-	import org.josht.starling.display.Screen;
+	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.PickerList;
@@ -101,31 +101,31 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this.backButtonHandler = this.onBackButton;
 		}
 		
-		override protected function layout():void
+		override protected function draw():void
 		{
 			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
 			const spacingX:Number = this.originalHeight * 0.02 * this.dpiScale;
 			const spacingY:Number = this.originalHeight * 0.02 * this.dpiScale;
 
-			this._header.width = this.stage.stageWidth;
+			this._header.width = this.actualWidth;
 			this._header.validate();
 			
 			this._directionPicker.validate();
-			this._directionPicker.x = this.stage.stageWidth - this._directionPicker.width - margin;
+			this._directionPicker.x = this.actualWidth - this._directionPicker.width - margin;
 			this._directionPicker.y = this._header.y + this._header.height + spacingY;
 			this._directionLabel.validate();
 			this._directionLabel.x = this._directionPicker.x - this._directionLabel.width - spacingX;
 			this._directionLabel.y = this._directionPicker.y + (this._directionPicker.height - this._directionLabel.height) / 2;
 			
 			this._liveDraggingToggle.validate();
-			this._liveDraggingToggle.x = this.stage.stageWidth - this._liveDraggingToggle.width - margin;
+			this._liveDraggingToggle.x = this.actualWidth - this._liveDraggingToggle.width - margin;
 			this._liveDraggingToggle.y = this._directionPicker.y + this._directionPicker.height + spacingY;
 			this._liveDraggingLabel.validate();
 			this._liveDraggingLabel.x = this._liveDraggingToggle.x - this._liveDraggingLabel.width - spacingX;
 			this._liveDraggingLabel.y = this._liveDraggingToggle.y + (this._liveDraggingToggle.height - this._liveDraggingLabel.height) / 2;
 			
 			this._stepSlider.validate();
-			this._stepSlider.x = this.stage.stageWidth - this._stepSlider.width - margin;
+			this._stepSlider.x = this.actualWidth - this._stepSlider.width - margin;
 			this._stepSlider.y = this._liveDraggingToggle.y + this._liveDraggingToggle.height + spacingY;
 			this._stepLabel.validate();
 			this._stepLabel.x = this._stepSlider.x - this._stepLabel.width - spacingX;
@@ -134,7 +134,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			var minX:Number = Math.min(this._directionLabel.x, this._liveDraggingLabel.x, this._stepLabel.x) - spacingX;
 			this._slider.validate(); //auto-size the slider
 			this._slider.x = (minX - this._slider.width) / 2;
-			this._slider.y = (this.stage.stageHeight - this._slider.height) / 2;
+			this._slider.y = (this.actualHeight - this._slider.height) / 2;
 			this._valueLabel.validate();
 			this._valueLabel.x = this._slider.x + this._slider.width + spacingX;
 			this._valueLabel.y = this._slider.y + (this._slider.height - this._valueLabel.height) / 2;
@@ -156,7 +156,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			const temp:Number = this._slider.width;
 			this._slider.width = this._slider.height;
 			this._slider.height = temp;
-			this.layout();
+			this.invalidate(INVALIDATION_FLAG_DATA);
 		}
 		
 		private function liveDraggingToggle_onChange(toggle:ToggleSwitch):void

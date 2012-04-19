@@ -1,6 +1,6 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
-	import org.josht.starling.display.Screen;
+	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.List;
@@ -69,7 +69,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this.addChild(this._widthLabel);
 			this._widthSlider = new Slider();
 			this._widthSlider.minimum = this._list.width;
-			this._widthSlider.maximum = this.stage.stageWidth;
+			this._widthSlider.maximum = this.actualWidth;
 			this._widthSlider.step = 1;
 			this._widthSlider.value = this._list.width;
 			this._widthSlider.onChange.add(widthSlider_onChange);
@@ -80,7 +80,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this.addChild(this._heightLabel);
 			this._heightSlider = new Slider();
 			this._heightSlider.minimum = this._list.height;
-			this._heightSlider.maximum = this.stage.stageHeight;
+			this._heightSlider.maximum = this.actualHeight;
 			this._heightSlider.step = 1;
 			this._heightSlider.value = this._list.height;
 			this._heightSlider.onChange.add(heightSlider_onChange);
@@ -126,46 +126,46 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this.backButtonHandler = this.onBackButton;
 		}
 		
-		override protected function layout():void
+		override protected function draw():void
 		{
 			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
 			const spacing:Number = this.originalHeight * 0.02 * this.dpiScale;
 			const spacingX:Number = this.originalHeight * 0.02 * this.dpiScale;
 
-			this._header.width = this.stage.stageWidth;
+			this._header.width = this.actualWidth;
 			this._header.validate();
 			
 			this._widthSlider.validate();
-			this._widthSlider.x = this.stage.stageWidth - this._widthSlider.width - margin;
+			this._widthSlider.x = this.actualWidth - this._widthSlider.width - margin;
 			this._widthSlider.y = this._header.y + this._header.height + spacing;
 			this._widthLabel.validate();
 			this._widthLabel.x = this._widthSlider.x - this._widthLabel.width - spacingX;
 			this._widthLabel.y = this._widthSlider.y + (this._widthSlider.height - this._widthLabel.height) / 2;
 			
-			this._heightSlider.maximum = this.stage.stageHeight;
+			this._heightSlider.maximum = this.actualHeight;
 			this._heightSlider.validate();
-			this._heightSlider.x = this.stage.stageWidth - this._heightSlider.width - margin;
+			this._heightSlider.x = this.actualWidth - this._heightSlider.width - margin;
 			this._heightSlider.y = this._widthSlider.y + this._widthSlider.height + spacing;
 			this._heightLabel.validate();
 			this._heightLabel.x = this._heightSlider.x - this._heightLabel.width - spacingX;
 			this._heightLabel.y = this._heightSlider.y + (this._heightSlider.height - this._heightLabel.height) / 2;
 			
 			this._isSelectableToggle.validate();
-			this._isSelectableToggle.x = this.stage.stageWidth - this._isSelectableToggle.width - margin;
+			this._isSelectableToggle.x = this.actualWidth - this._isSelectableToggle.width - margin;
 			this._isSelectableToggle.y = this._heightSlider.y + this._heightSlider.height + spacing;
 			this._isSelectableLabel.validate();
 			this._isSelectableLabel.x = this._isSelectableToggle.x - this._isSelectableLabel.width - spacingX;
 			this._isSelectableLabel.y = this._isSelectableToggle.y + (this._isSelectableToggle.height - this._isSelectableLabel.height) / 2;
 			
 			this._clipContentToggle.validate();
-			this._clipContentToggle.x = this.stage.stageWidth - this._clipContentToggle.width - margin;
+			this._clipContentToggle.x = this.actualWidth - this._clipContentToggle.width - margin;
 			this._clipContentToggle.y = this._isSelectableToggle.y + this._isSelectableToggle.height + spacing;
 			this._clipContentLabel.validate();
 			this._clipContentLabel.x = this._clipContentToggle.x - this._clipContentLabel.width - spacingX;
 			this._clipContentLabel.y = this._clipContentToggle.y + (this._clipContentToggle.height - this._clipContentLabel.height) / 2;
 			
 			this._hasElasticEdgesToggle.validate();
-			this._hasElasticEdgesToggle.x = this.stage.stageWidth - this._clipContentToggle.width - margin;
+			this._hasElasticEdgesToggle.x = this.actualWidth - this._clipContentToggle.width - margin;
 			this._hasElasticEdgesToggle.y = this._clipContentToggle.y + this._clipContentToggle.height + spacing;
 			this._hasElasticEdgesLabel.validate();
 			this._hasElasticEdgesLabel.x = this._hasElasticEdgesToggle.x - this._hasElasticEdgesLabel.width - spacingX;
@@ -176,7 +176,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._widthSlider.maximum = this._minX;
 			this._list.validate();
 			this._list.x = (this._minX - this._list.width) / 2;
-			this._list.y = (this.stage.stageHeight - this._list.height) / 2;
+			this._list.y = (this.actualHeight - this._list.height) / 2;
 		}
 		
 		private function onBackButton():void
@@ -198,7 +198,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private function heightSlider_onChange(slider:Slider):void
 		{
 			this._list.height = this._heightSlider.value;
-			this._list.y = (this.stage.stageHeight - this._list.height) / 2;
+			this._list.y = (this.actualHeight - this._list.height) / 2;
 		}
 		
 		private function isSelectableToggle_onChange(toggle:ToggleSwitch):void

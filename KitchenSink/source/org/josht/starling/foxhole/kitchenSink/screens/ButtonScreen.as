@@ -1,7 +1,7 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
 	import org.josht.starling.display.Image;
-	import org.josht.starling.display.Screen;
+	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.PickerList;
@@ -150,45 +150,45 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this.backButtonHandler = this.onBackButton;
 		}
 		
-		override protected function layout():void
+		override protected function draw():void
 		{
 			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
 			const spacingX:Number = this.originalHeight * 0.02 * this.dpiScale;
 			const spacingY:Number = this.originalHeight * 0.02 * this.dpiScale;
 
-			this._header.width = this.stage.stageWidth;
+			this._header.width = this.actualWidth;
 			this._header.validate();
 			
 			this._toggleToggle.validate();
-			this._toggleToggle.x = this.stage.stageWidth - this._toggleToggle.width - margin;
+			this._toggleToggle.x = this.actualWidth - this._toggleToggle.width - margin;
 			this._toggleToggle.y = this._header.y + this._header.height + spacingY;
 			this._toggleLabel.validate();
 			this._toggleLabel.x = this._toggleToggle.x - this._toggleLabel.width - spacingX;
 			this._toggleLabel.y = this._toggleToggle.y + (this._toggleToggle.height - this._toggleLabel.height) / 2;
 			
 			this._horizontalAlignPicker.validate();
-			this._horizontalAlignPicker.x = this.stage.stageWidth - this._horizontalAlignPicker.width - margin;
+			this._horizontalAlignPicker.x = this.actualWidth - this._horizontalAlignPicker.width - margin;
 			this._horizontalAlignPicker.y = this._toggleToggle.y + this._toggleToggle.height + spacingY;
 			this._horizontalAlignLabel.validate();
 			this._horizontalAlignLabel.x = this._horizontalAlignPicker.x - this._horizontalAlignLabel.width - spacingX;
 			this._horizontalAlignLabel.y = this._horizontalAlignPicker.y + (this._horizontalAlignPicker.height - this._horizontalAlignLabel.height) / 2;
 			
 			this._verticalAlignPicker.validate();
-			this._verticalAlignPicker.x = this.stage.stageWidth - this._verticalAlignPicker.width - margin;
+			this._verticalAlignPicker.x = this.actualWidth - this._verticalAlignPicker.width - margin;
 			this._verticalAlignPicker.y = this._horizontalAlignPicker.y + this._horizontalAlignPicker.height + spacingY;
 			this._verticalAlignLabel.validate();
 			this._verticalAlignLabel.x = this._verticalAlignPicker.x - this._verticalAlignLabel.width - spacingX;
 			this._verticalAlignLabel.y = this._verticalAlignPicker.y + (this._verticalAlignPicker.height - this._verticalAlignLabel.height) / 2;
 			
 			this._iconToggle.validate();
-			this._iconToggle.x = this.stage.stageWidth - this._iconToggle.width - margin;
+			this._iconToggle.x = this.actualWidth - this._iconToggle.width - margin;
 			this._iconToggle.y = this._verticalAlignPicker.y + this._verticalAlignPicker.height + spacingY;
 			this._iconLabel.validate();
 			this._iconLabel.x = this._iconToggle.x - this._iconLabel.width - spacingX;
 			this._iconLabel.y = this._iconToggle.y + (this._iconToggle.height - this._iconLabel.height) / 2;
 			
 			this._iconPositionPicker.validate();
-			this._iconPositionPicker.x = this.stage.stageWidth - this._iconPositionPicker.width - margin;
+			this._iconPositionPicker.x = this.actualWidth - this._iconPositionPicker.width - margin;
 			this._iconPositionPicker.y = this._iconToggle.y + this._iconToggle.height + spacingY;
 			this._iconPositionLabel.validate();
 			this._iconPositionLabel.x = this._iconPositionPicker.x - this._iconPositionLabel.width - spacingX;
@@ -197,7 +197,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			var minX:Number = Math.min(this._toggleLabel.x, this._horizontalAlignLabel.x, this._verticalAlignLabel.x, this._iconLabel.x, this._iconPositionLabel.x) - spacingX;
 			this._button.validate();
 			this._button.x = (minX - this._button.width) / 2;
-			this._button.y = (this.stage.stageHeight - this._button.height) / 2;
+			this._button.y = (this.actualHeight - this._button.height) / 2;
 		}
 		
 		private function onBackButton():void

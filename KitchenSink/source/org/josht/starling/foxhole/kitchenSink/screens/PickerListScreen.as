@@ -1,6 +1,6 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
-	import org.josht.starling.display.Screen;
+	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
@@ -59,17 +59,17 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this.backButtonHandler = this.onBackButton;
 		}
 		
-		override protected function layout():void
+		override protected function draw():void
 		{
 			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
 			const spacingY:Number = this.originalHeight * 0.02 * this.dpiScale;
 
-			this._header.width = this.stage.stageWidth;
+			this._header.width = this.actualWidth;
 			this._header.validate();
 			
 			this._list.validate();
-			this._list.x = (this.stage.stageWidth - this._list.width) / 2;
-			this._list.y = (this.stage.stageHeight - this._list.height) / 2;
+			this._list.x = (this.actualWidth - this._list.width) / 2;
+			this._list.y = (this.actualHeight - this._list.height) / 2;
 		}
 		
 		private function onBackButton():void
