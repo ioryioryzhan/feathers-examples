@@ -14,6 +14,7 @@ package org.josht.starling.foxhole.kitchenSink
 	import org.josht.starling.foxhole.kitchenSink.screens.MainMenuScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.PickerListScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.SliderScreen;
+	import org.josht.starling.foxhole.kitchenSink.screens.TextInputScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ToggleSwitchScreen;
 	import org.josht.starling.foxhole.themes.MinimalTheme;
 
@@ -28,7 +29,8 @@ package org.josht.starling.foxhole.kitchenSink
 		private static const TOGGLE_SWITCH:String = "toggleSwitch";
 		private static const LIST:String = "list";
 		private static const PICKER_LIST:String = "pickerList";
-		
+		private static const TEXT_INPUT:String = "textInput";
+
 		private static const ORIGINAL_DPI:int = Mouse.supportsCursor ? 72 : 326;
 		
 		public function KitchenSinkRoot()
@@ -55,7 +57,8 @@ package org.josht.starling.foxhole.kitchenSink
 				onSlider: SLIDER,
 				onToggleSwitch: TOGGLE_SWITCH,
 				onList: LIST,
-				onPickerList: PICKER_LIST
+				onPickerList: PICKER_LIST,
+				onTextInput: TEXT_INPUT
 			},
 			{
 				originalDPI: ORIGINAL_DPI
@@ -94,6 +97,14 @@ package org.josht.starling.foxhole.kitchenSink
 			}));
 			
 			this._navigator.addScreen(PICKER_LIST, new ScreenNavigatorItem(PickerListScreen,
+			{
+				onBack: MAIN_MENU
+			},
+			{
+				originalDPI: ORIGINAL_DPI
+			}));
+
+			this._navigator.addScreen(TEXT_INPUT, new ScreenNavigatorItem(TextInputScreen,
 			{
 				onBack: MAIN_MENU
 			},
