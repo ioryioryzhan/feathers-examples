@@ -68,8 +68,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._widthLabel.text = "width";
 			this.addChild(this._widthLabel);
 			this._widthSlider = new Slider();
-			this._widthSlider.minimum = this._list.width;
-			this._widthSlider.maximum = this.actualWidth;
+			this._widthSlider.minimum = this._widthSlider.maximum = this._list.width;
 			this._widthSlider.step = 1;
 			this._widthSlider.value = this._list.width;
 			this._widthSlider.onChange.add(widthSlider_onChange);
@@ -79,8 +78,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._heightLabel.text = "height";
 			this.addChild(this._heightLabel);
 			this._heightSlider = new Slider();
-			this._heightSlider.minimum = this._list.height;
-			this._heightSlider.maximum = this.actualHeight;
+			this._heightSlider.minimum = this._heightSlider.maximum = this._list.height;
 			this._heightSlider.step = 1;
 			this._heightSlider.value = this._list.height;
 			this._heightSlider.onChange.add(heightSlider_onChange);
@@ -134,14 +132,16 @@ package org.josht.starling.foxhole.kitchenSink.screens
 
 			this._header.width = this.actualWidth;
 			this._header.validate();
-			
+
+			this._widthSlider.maximum = this.actualWidth;
 			this._widthSlider.validate();
 			this._widthSlider.x = this.actualWidth - this._widthSlider.width - margin;
 			this._widthSlider.y = this._header.y + this._header.height + spacing;
 			this._widthLabel.validate();
 			this._widthLabel.x = this._widthSlider.x - this._widthLabel.width - spacingX;
 			this._widthLabel.y = this._widthSlider.y + (this._widthSlider.height - this._widthLabel.height) / 2;
-			
+
+			this._heightSlider.maximum = this.actualHeight;
 			this._heightSlider.maximum = this.actualHeight;
 			this._heightSlider.validate();
 			this._heightSlider.x = this.actualWidth - this._heightSlider.width - margin;
