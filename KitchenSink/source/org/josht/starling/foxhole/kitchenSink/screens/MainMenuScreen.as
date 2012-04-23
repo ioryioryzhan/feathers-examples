@@ -98,6 +98,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._header.validate();
 
 			const contentMaxWidth:Number = this.actualWidth - 2 * margin;
+			const buttonCount:int = this._buttons.length;
 			const buttonWidth:Number = 220 * this.dpiScale;
 			var horizontalButtonCount:int = 1;
 			var horizontalButtonCombinedWidth:Number = buttonWidth;
@@ -105,12 +106,15 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			{
 				horizontalButtonCombinedWidth += buttonWidth + spacingX;
 				horizontalButtonCount++;
+				if(horizontalButtonCount == buttonCount)
+				{
+					break;
+				}
 			}
 			const startX:Number = (this.actualWidth - horizontalButtonCombinedWidth) / 2;
 
 			var positionX:Number = startX;
 			var positionY:Number = this._header.y + this._header.height + spacingY;
-			const buttonCount:int = this._buttons.length;
 			for(var i:int = 0; i < buttonCount; i++)
 			{
 				var button:Button = this._buttons[i];
