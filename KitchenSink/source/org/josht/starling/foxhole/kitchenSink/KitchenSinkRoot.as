@@ -4,19 +4,20 @@ package org.josht.starling.foxhole.kitchenSink
 
 	import flash.ui.Mouse;
 
+	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.ScreenNavigator;
 	import org.josht.starling.foxhole.controls.ScreenNavigatorItem;
-	import org.josht.starling.foxhole.transitions.ScreenSlidingStackTransitionManager;
-	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.kitchenSink.screens.ButtonScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ListScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.MainMenuScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.PickerListScreen;
+	import org.josht.starling.foxhole.kitchenSink.screens.ProgressBarScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.SliderScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.TextInputScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ToggleSwitchScreen;
 	import org.josht.starling.foxhole.themes.MinimalTheme;
+	import org.josht.starling.foxhole.transitions.ScreenSlidingStackTransitionManager;
 
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -25,11 +26,12 @@ package org.josht.starling.foxhole.kitchenSink
 	{
 		private static const MAIN_MENU:String = "mainMenu";
 		private static const BUTTON:String = "button";
-		private static const SLIDER:String = "slider";
-		private static const TOGGLE_SWITCH:String = "toggleSwitch";
 		private static const LIST:String = "list";
 		private static const PICKER_LIST:String = "pickerList";
+		private static const PROGRESS_BAR:String = "progressBar";
+		private static const SLIDER:String = "slider";
 		private static const TEXT_INPUT:String = "textInput";
+		private static const TOGGLE_SWITCH:String = "toggleSwitch";
 
 		private static const ORIGINAL_DPI:int = Mouse.supportsCursor ? 72 : 326;
 		
@@ -54,11 +56,12 @@ package org.josht.starling.foxhole.kitchenSink
 			this._navigator.addScreen(MAIN_MENU, new ScreenNavigatorItem(MainMenuScreen,
 			{
 				onButton: BUTTON,
-				onSlider: SLIDER,
-				onToggleSwitch: TOGGLE_SWITCH,
 				onList: LIST,
 				onPickerList: PICKER_LIST,
-				onTextInput: TEXT_INPUT
+				onProgressBar: PROGRESS_BAR,
+				onSlider: SLIDER,
+				onTextInput: TEXT_INPUT,
+				onToggleSwitch: TOGGLE_SWITCH
 			},
 			{
 				originalDPI: ORIGINAL_DPI
@@ -105,6 +108,14 @@ package org.josht.starling.foxhole.kitchenSink
 			}));
 
 			this._navigator.addScreen(TEXT_INPUT, new ScreenNavigatorItem(TextInputScreen,
+			{
+				onBack: MAIN_MENU
+			},
+			{
+				originalDPI: ORIGINAL_DPI
+			}));
+
+			this._navigator.addScreen(PROGRESS_BAR, new ScreenNavigatorItem(ProgressBarScreen,
 			{
 				onBack: MAIN_MENU
 			},
