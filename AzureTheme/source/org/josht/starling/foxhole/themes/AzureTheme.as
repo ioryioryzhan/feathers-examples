@@ -11,6 +11,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
+	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.SimpleItemRenderer;
 	import org.josht.starling.foxhole.controls.Slider;
@@ -21,6 +22,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.text.BitmapFont;
 
 	import starling.core.Starling;
+	import starling.display.BlendMode;
 
 	import starling.display.DisplayObject;
 
@@ -130,6 +132,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
+			this.setInitializerForClass(ProgressBar, progressBarInitializer);
 		}
 
 		private function labelInitializer(label:Label):void
@@ -286,11 +289,13 @@ package org.josht.starling.foxhole.themes
 			const defaultSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
 			defaultSkin.width = 88 * this._scale;
 			defaultSkin.height = 88 * this._scale;
+			defaultSkin.blendMode = BlendMode.NONE;
 			renderer.defaultSkin = defaultSkin;
 
 			const downSkin:Image = new Image(LIST_ITEM_DOWN_TEXTURE);
 			downSkin.width = 88 * this._scale;
 			downSkin.height = 88 * this._scale;
+			downSkin.blendMode = BlendMode.NONE;
 			renderer.downSkin = downSkin;
 
 			renderer.defaultSelectedSkin = downSkin;
@@ -318,6 +323,7 @@ package org.josht.starling.foxhole.themes
 			const backgroundSkin:Image = new Image(TOOLBAR_BACKGROUND_SKIN_TEXTURE);
 			backgroundSkin.width = 88 * this._scale;
 			backgroundSkin.height = 88 * this._scale;
+			backgroundSkin.blendMode = BlendMode.NONE;
 			header.backgroundSkin = backgroundSkin;
 			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			header.contentPadding = 0;
@@ -345,6 +351,31 @@ package org.josht.starling.foxhole.themes
 			backgroundDisabledSkin.width = 264 * this._scale;
 			backgroundDisabledSkin.height = 88 * this._scale;
 			input.backgroundDisabledSkin = backgroundDisabledSkin;
+		}
+
+		private function progressBarInitializer(progress:ProgressBar):void
+		{
+			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 44) * this._scale;
+			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 44 : 264) * this._scale;
+			progress.backgroundSkin = backgroundSkin;
+
+			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 44) * this._scale;
+			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 44 : 264) * this._scale;
+			progress.backgroundDisabledSkin = backgroundDisabledSkin;
+
+			const fillSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+			fillSkin.width = 16 * this._scale;
+			fillSkin.height = 16 * this._scale;
+			progress.fillSkin = fillSkin;
+
+			const fillDisabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+			fillDisabledSkin.width = 16 * this._scale;
+			fillDisabledSkin.height = 16 * this._scale;
+			progress.fillDisabledSkin = fillDisabledSkin;
+
+			progress.contentPadding = 2 * this._scale;
 		}
 
 		private function root_addedToStageHandler(event:Event):void

@@ -10,6 +10,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
+	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.SimpleItemRenderer;
 	import org.josht.starling.foxhole.controls.Slider;
@@ -126,6 +127,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
+			this.setInitializerForClass(ProgressBar, progressBarInitializer)
 		}
 		
 		private function labelInitializer(label:Label):void
@@ -137,7 +139,7 @@ package org.josht.starling.foxhole.themes
 		
 		private function buttonInitializer(button:Button):void
 		{
-			if(button.name == "foxhole-header-item")
+			if(button.nameList.contains("foxhole-header-item"))
 			{
 				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID, this._scale);
 				toolbarDefaultSkin.width = 88 * this._scale;
@@ -164,7 +166,7 @@ package org.josht.starling.foxhole.themes
 				button.minWidth = 88 * this._scale;
 				button.minHeight = 88 * this._scale;
 			}
-			else if(button.name == "foxhole-tabbar-tab")
+			else if(button.nameList.contains("foxhole-tabbar-tab"))
 			{
 				const tabDefaultSkin:Scale9Image = new Scale9Image(TAB_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 				tabDefaultSkin.width = 88 * this._scale;
@@ -379,6 +381,33 @@ package org.josht.starling.foxhole.themes
 			backgroundDisabledSkin.width = 264 * this._scale;
 			backgroundDisabledSkin.height = 88 * this._scale;
 			input.backgroundDisabledSkin = backgroundDisabledSkin;
+		}
+
+		private function progressBarInitializer(progress:ProgressBar):void
+		{
+			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 88) * this._scale;
+			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 88 : 264) * this._scale;
+			backgroundSkin.blendMode = BlendMode.NONE;
+			progress.backgroundSkin = backgroundSkin;
+
+			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 88) * this._scale;
+			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 88 : 264) * this._scale;
+			backgroundDisabledSkin.blendMode = BlendMode.NONE;
+			progress.backgroundDisabledSkin = backgroundDisabledSkin;
+
+			const fillSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			fillSkin.width = 12 * this._scale;
+			fillSkin.height = 12 * this._scale;
+			fillSkin.blendMode = BlendMode.NONE;
+			progress.fillSkin = fillSkin;
+
+			const fillDisabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			fillDisabledSkin.width = 12 * this._scale;
+			fillDisabledSkin.height = 12 * this._scale;
+			fillDisabledSkin.blendMode = BlendMode.NONE;
+			progress.fillDisabledSkin = fillDisabledSkin;
 		}
 
 		private function root_addedToStageHandler(event:Event):void
