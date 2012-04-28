@@ -31,7 +31,7 @@ package org.josht.starling.foxhole.themes
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 
-	public class AzureTheme extends AddedWatcher
+	public class AzureTheme extends AddedWatcher implements IFoxholeTheme
 	{
 		[Embed(source="/../assets/images/azure.png")]
 		private static const ATLAS_IMAGE:Class;
@@ -99,6 +99,8 @@ package org.josht.starling.foxhole.themes
 		private static const PRIMARY_TEXT_COLOR:uint = 0xe5e5e5;
 		private static const SELECTED_TEXT_COLOR:uint = 0xffffff;
 
+		private static const ORIGINAL_DPI:int = 326;
+
 		public function AzureTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
 			super(root);
@@ -114,12 +116,20 @@ package org.josht.starling.foxhole.themes
 			this.initialize(scaleToDPI);
 		}
 
+		private var _originalDPI:int;
+
+		public function get originalDPI():int
+		{
+			return this._originalDPI;
+		}
+
 		private var _scale:Number;
 		private var _fontSize:int;
 
 		private function initialize(scaleToDPI:Boolean):void
 		{
-			this._scale = scaleToDPI ? (Capabilities.screenDPI / 326) : 1;
+			this._originalDPI = scaleToDPI ? ORIGINAL_DPI : Capabilities.screenDPI;
+			this._scale = Capabilities.screenDPI / this._originalDPI;
 
 			this._fontSize = 30 * this._scale;
 
@@ -356,13 +366,13 @@ package org.josht.starling.foxhole.themes
 		private function progressBarInitializer(progress:ProgressBar):void
 		{
 			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
-			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 44) * this._scale;
-			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 44 : 264) * this._scale;
+			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 24) * this._scale;
+			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 24 : 264) * this._scale;
 			progress.backgroundSkin = backgroundSkin;
 
 			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
-			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 44) * this._scale;
-			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 44 : 264) * this._scale;
+			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 24) * this._scale;
+			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 24 : 264) * this._scale;
 			progress.backgroundDisabledSkin = backgroundDisabledSkin;
 
 			const fillSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);

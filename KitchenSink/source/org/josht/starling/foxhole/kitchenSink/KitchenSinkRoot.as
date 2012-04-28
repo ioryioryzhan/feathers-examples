@@ -16,11 +16,13 @@ package org.josht.starling.foxhole.kitchenSink
 	import org.josht.starling.foxhole.kitchenSink.screens.SliderScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.TextInputScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ToggleSwitchScreen;
+	import org.josht.starling.foxhole.themes.IFoxholeTheme;
 	import org.josht.starling.foxhole.themes.MinimalTheme;
 	import org.josht.starling.foxhole.transitions.ScreenSlidingStackTransitionManager;
 
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.ResizeEvent;
 
 	public class KitchenSinkRoot extends Sprite
 	{
@@ -32,8 +34,6 @@ package org.josht.starling.foxhole.kitchenSink
 		private static const SLIDER:String = "slider";
 		private static const TEXT_INPUT:String = "textInput";
 		private static const TOGGLE_SWITCH:String = "toggleSwitch";
-
-		private static const ORIGINAL_DPI:int = Mouse.supportsCursor ? 72 : 326;
 		
 		public function KitchenSinkRoot()
 		{
@@ -41,14 +41,20 @@ package org.josht.starling.foxhole.kitchenSink
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 		
-		private var _addedWatcher:AddedWatcher;
+		private var _theme:IFoxholeTheme;
 		private var _navigator:ScreenNavigator;
 		private var _transitionManager:ScreenSlidingStackTransitionManager;
+		private var _fps:FPSDisplay;
 		
 		private function addedToStageHandler(event:Event):void
 		{
+			//this is supposed to be an example mobile app, but it is also shown
+			//as a preview in Flash Player on the web. we're making a special
+			//case to pretend that the web SWF is running in the theme's "ideal"
+			//DPI. official themes usually target an iPhone Retina display.
 			const isDesktop:Boolean = Mouse.supportsCursor;
-			this._addedWatcher = new MinimalTheme(this.stage, !isDesktop);
+			this._theme = new MinimalTheme(this.stage, !isDesktop);
+			const originalThemeDPI:int = this._theme.originalDPI;
 			
 			this._navigator = new ScreenNavigator();
 			this.addChild(this._navigator);
@@ -64,7 +70,9 @@ package org.josht.starling.foxhole.kitchenSink
 				onToggleSwitch: TOGGLE_SWITCH
 			},
 			{
-				originalDPI: ORIGINAL_DPI
+				//the screens can use the theme's original DPI to scale other
+				//content by the same amount with the dpiScale property.
+				originalDPI: originalThemeDPI
 			}));
 			
 			this._navigator.addScreen(BUTTON, new ScreenNavigatorItem(ButtonScreen,
@@ -72,7 +80,7 @@ package org.josht.starling.foxhole.kitchenSink
 				onBack: MAIN_MENU
 			},
 			{
-				originalDPI: ORIGINAL_DPI
+				originalDPI: originalThemeDPI
 			}));
 			
 			this._navigator.addScreen(SLIDER, new ScreenNavigatorItem(SliderScreen,
@@ -80,7 +88,7 @@ package org.josht.starling.foxhole.kitchenSink
 				onBack: MAIN_MENU
 			},
 			{
-				originalDPI: ORIGINAL_DPI
+				originalDPI: originalThemeDPI
 			}));
 			
 			this._navigator.addScreen(TOGGLE_SWITCH, new ScreenNavigatorItem(ToggleSwitchScreen,
@@ -88,7 +96,7 @@ package org.josht.starling.foxhole.kitchenSink
 				onBack: MAIN_MENU
 			},
 			{
-				originalDPI: ORIGINAL_DPI
+				originalDPI: originalThemeDPI
 			}));
 			
 			this._navigator.addScreen(LIST, new ScreenNavigatorItem(ListScreen,
@@ -96,7 +104,7 @@ package org.josht.starling.foxhole.kitchenSink
 				onBack: MAIN_MENU
 			},
 			{
-				originalDPI: ORIGINAL_DPI
+				originalDPI: originalThemeDPI
 			}));
 			
 			this._navigator.addScreen(PICKER_LIST, new ScreenNavigatorItem(PickerListScreen,
@@ -104,7 +112,7 @@ package org.josht.starling.foxhole.kitchenSink
 				onBack: MAIN_MENU
 			},
 			{
-				originalDPI: ORIGINAL_DPI
+				originalDPI: originalThemeDPI
 			}));
 
 			this._navigator.addScreen(TEXT_INPUT, new ScreenNavigatorItem(TextInputScreen,
@@ -112,7 +120,7 @@ package org.josht.starling.foxhole.kitchenSink
 				onBack: MAIN_MENU
 			},
 			{
-				originalDPI: ORIGINAL_DPI
+				originalDPI: originalThemeDPI
 			}));
 
 			this._navigator.addScreen(PROGRESS_BAR, new ScreenNavigatorItem(ProgressBarScreen,
@@ -120,7 +128,7 @@ package org.josht.starling.foxhole.kitchenSink
 				onBack: MAIN_MENU
 			},
 			{
-				originalDPI: ORIGINAL_DPI
+				originalDPI: originalThemeDPI
 			}));
 			
 			this._navigator.showScreen(MAIN_MENU);
@@ -129,10 +137,17 @@ package org.josht.starling.foxhole.kitchenSink
 			this._transitionManager.duration = 0.4;
 			this._transitionManager.ease = Cubic.easeOut;
 			
-			const fps:FPSDisplay = new FPSDisplay();
-			this.stage.addChild(fps);
-			fps.validate();
-			fps.y = this.stage.stageHeight - fps.height;
+			this._fps = new FPSDisplay();
+			this.stage.addChild(this._fps);
+			this._fps.validate();
+			this._fps.y = this.stage.stageHeight - this._fps.height;
+			this.stage.addEventListener(ResizeEvent.RESIZE, stage_resizeHandler);
+		}
+
+		private function stage_resizeHandler(event:ResizeEvent):void
+		{
+			this._fps.validate();
+			this._fps.y = this.stage.stageHeight - this._fps.height;
 		}
 	}
 }

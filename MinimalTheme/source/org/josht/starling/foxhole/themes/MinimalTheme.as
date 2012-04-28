@@ -30,7 +30,7 @@ package org.josht.starling.foxhole.themes
 	import starling.textures.TextureAtlas;
 	import starling.textures.TextureSmoothing;
 
-	public class MinimalTheme extends AddedWatcher
+	public class MinimalTheme extends AddedWatcher implements IFoxholeTheme
 	{
 		[Embed(source="/../assets/images/minimal.png")]
 		private static const ATLAS_IMAGE:Class;
@@ -91,6 +91,8 @@ package org.josht.starling.foxhole.themes
 		private static const PRIMARY_TEXT_COLOR:uint = 0x666666;
 		private static const SELECTED_TEXT_COLOR:uint = 0x333333;
 		private static const INSET_TEXT_COLOR:uint = 0x333333;
+
+		private static const ORIGINAL_DPI:int = 326;
 		
 		public function MinimalTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
@@ -106,13 +108,21 @@ package org.josht.starling.foxhole.themes
 			}
 			this.initialize(scaleToDPI);
 		}
+
+		private var _originalDPI:int;
+
+		public function get originalDPI():int
+		{
+			return this._originalDPI;
+		}
 		
 		private var _scale:Number;
 		private var _fontSize:int;
 		
 		private function initialize(scaleToDPI:Boolean):void
 		{
-			this._scale = scaleToDPI ? (Capabilities.screenDPI / 326) : 1;
+			this._originalDPI = scaleToDPI ? ORIGINAL_DPI : Capabilities.screenDPI;
+			this._scale = Capabilities.screenDPI / this._originalDPI;
 			
 			//since it's a pixel font, we want a multiple of the original size,
 			//which, in this case, is 8.
@@ -386,14 +396,14 @@ package org.josht.starling.foxhole.themes
 		private function progressBarInitializer(progress:ProgressBar):void
 		{
 			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 88) * this._scale;
-			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 88 : 264) * this._scale;
+			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 22) * this._scale;
+			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 22 : 264) * this._scale;
 			backgroundSkin.blendMode = BlendMode.NONE;
 			progress.backgroundSkin = backgroundSkin;
 
 			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 88) * this._scale;
-			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 88 : 264) * this._scale;
+			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 22) * this._scale;
+			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 22 : 264) * this._scale;
 			backgroundDisabledSkin.blendMode = BlendMode.NONE;
 			progress.backgroundDisabledSkin = backgroundDisabledSkin;
 

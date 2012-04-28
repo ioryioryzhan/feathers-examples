@@ -13,6 +13,7 @@ package org.josht.starling.foxhole.displayObjects
 	import org.josht.starling.foxhole.displayObjects.screens.Scale9ImageScreen;
 	import org.josht.starling.foxhole.displayObjects.screens.TiledImageScreen;
 	import org.josht.starling.foxhole.themes.AzureTheme;
+	import org.josht.starling.foxhole.themes.IFoxholeTheme;
 	import org.josht.starling.foxhole.transitions.TabBarSlideTransitionManager;
 
 	import starling.display.DisplayObject;
@@ -26,14 +27,12 @@ package org.josht.starling.foxhole.displayObjects
 		private static const SCALE_3_IMAGE:String = "scale3Image";
 		private static const TILED_IMAGE:String = "tiledImage";
 
-		private static const ORIGINAL_DPI:int = Mouse.supportsCursor ? 72 : 326;
-
 		public function DisplayObjectExplorerRoot()
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 
-		private var _addedWatcher:AddedWatcher;
+		private var _theme:IFoxholeTheme;
 		private var _navigator:ScreenNavigator;
 		private var _tabBar:TabBar;
 		private var _transitionManager:TabBarSlideTransitionManager;
@@ -49,7 +48,11 @@ package org.josht.starling.foxhole.displayObjects
 		{
 			this.stage.addEventListener(ResizeEvent.RESIZE, stage_resizeHandler);
 			const isDesktop:Boolean = Mouse.supportsCursor;
-			this._addedWatcher = new AzureTheme(this.stage, !isDesktop);
+			this._theme = new AzureTheme(this.stage, !isDesktop);
+
+			//the screens can use the theme's original DPI to scale other
+			//content by the same amount with the dpiScale property.
+			const originalThemeDPI:int = this._theme.originalDPI;
 
 			this._navigator = new ScreenNavigator();
 			this._navigator.onChange.add(navigator_onChange);
@@ -60,21 +63,21 @@ package org.josht.starling.foxhole.displayObjects
 				onTest: SCALE_3_IMAGE
 			},
 			{
-				originalDPI: ORIGINAL_DPI
+				originalDPI: originalThemeDPI
 			}));
 
 			this._navigator.addScreen(SCALE_3_IMAGE, new ScreenNavigatorItem(Scale3ImageScreen,
 			{
 			},
 			{
-				originalDPI: ORIGINAL_DPI
+				originalDPI: originalThemeDPI
 			}));
 
 			this._navigator.addScreen(TILED_IMAGE, new ScreenNavigatorItem(TiledImageScreen,
 			{
 			},
 			{
-				originalDPI: ORIGINAL_DPI
+				originalDPI: originalThemeDPI
 			}));
 
 			this._tabBar = new TabBar();
