@@ -7,7 +7,6 @@ package org.josht.starling.foxhole.kitchenSink
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.ScreenNavigator;
 	import org.josht.starling.foxhole.controls.ScreenNavigatorItem;
-	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.kitchenSink.screens.ButtonScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ListScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.MainMenuScreen;
