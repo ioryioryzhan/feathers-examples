@@ -53,11 +53,17 @@ package org.josht.starling.foxhole.themes
 
 		private static const TOOLBAR_BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-disabled-skin");
 
-		private static const SLIDER_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-track-up-skin");
+		private static const SLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-minimum-track-up-skin");
 
-		private static const SLIDER_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-track-down-skin");
+		private static const SLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-minimum-track-down-skin");
 
-		private static const SLIDER_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-track-disabled-skin");
+		private static const SLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-minimum-track-disabled-skin");
+
+		private static const SLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-maximum-track-up-skin");
+
+		private static const SLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-maximum-track-down-skin");
+
+		private static const SLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-maximum-track-disabled-skin");
 
 		private static const SLIDER_THUMB_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-up-skin");
 
@@ -103,7 +109,7 @@ package org.josht.starling.foxhole.themes
 		private static const INSET_LEFT_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 8, 16);
 		private static const INSET_RIGHT_SCALE_9_GRID:Rectangle = new Rectangle(0, 8, 8, 16);
 		private static const SLIDER_FIRST:Number = 16;
-		private static const SLIDER_SECOND:Number = 15;
+		private static const SLIDER_SECOND:Number = 8;
 
 		private static const BACKGROUND_COLOR:uint = 0x13171a;
 		private static const PRIMARY_TEXT_COLOR:uint = 0xe5e5e5;
@@ -226,14 +232,23 @@ package org.josht.starling.foxhole.themes
 				const sliderThumbDisabledSkin:Image = new Image(SLIDER_THUMB_DISABLED_SKIN_TEXTURE);
 				button.disabledSkin = sliderThumbDisabledSkin;
 			}
-			else if(button.name == "foxhole-slider-track")
+			else if(button.name == "foxhole-slider-minimum-track")
 			{
-				const sliderTrackDefaultSkin:Scale3Image = new Scale3Image(SLIDER_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				button.defaultSkin = sliderTrackDefaultSkin;
-				const sliderTrackDownSkin:Scale3Image = new Scale3Image(SLIDER_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				button.downSkin = sliderTrackDownSkin;
-				const sliderTrackDisabledSkin:Scale3Image = new Scale3Image(SLIDER_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				button.disabledSkin = sliderTrackDisabledSkin;
+				const sliderMinimumTrackDefaultSkin:Scale3Image = new Scale3Image(SLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				button.defaultSkin = sliderMinimumTrackDefaultSkin;
+				const sliderMinimumTrackDownSkin:Scale3Image = new Scale3Image(SLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				button.downSkin = sliderMinimumTrackDownSkin;
+				const sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(SLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				button.disabledSkin = sliderMinimumTrackDisabledSkin;
+			}
+			else if(button.name == "foxhole-slider-maximum-track")
+			{
+				const sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(SLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				button.defaultSkin = sliderMaximumTrackDefaultSkin;
+				const sliderMaximumTrackDownSkin:Scale3Image = new Scale3Image(SLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				button.downSkin = sliderMaximumTrackDownSkin;
+				const sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(SLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				button.disabledSkin = sliderMaximumTrackDisabledSkin;
 			}
 			else
 			{
@@ -278,13 +293,17 @@ package org.josht.starling.foxhole.themes
 		{
 			if(slider.direction == Slider.DIRECTION_HORIZONTAL)
 			{
-				slider.setTrackProperty("width", 264 * this._scale);
-				slider.setTrackProperty("height", 88 * this._scale);
+				slider.setMinimumTrackProperty("width", 132 * this._scale);
+				slider.setMinimumTrackProperty("height", 88 * this._scale);
+				slider.setMaximumTrackProperty("width", 132 * this._scale);
+				slider.setMaximumTrackProperty("height", 88 * this._scale);
 			}
 			else
 			{
-				slider.setTrackProperty("width", 88 * this._scale);
-				slider.setTrackProperty("height", 264 * this._scale);
+				slider.setMinimumTrackProperty("width", 88 * this._scale);
+				slider.setMinimumTrackProperty("height", 264 * this._scale);
+				slider.setMaximumTrackProperty("width", 88 * this._scale);
+				slider.setMaximumTrackProperty("height", 264 * this._scale);
 			}
 		}
 

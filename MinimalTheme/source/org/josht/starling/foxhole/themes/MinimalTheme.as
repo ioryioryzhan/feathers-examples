@@ -149,7 +149,37 @@ package org.josht.starling.foxhole.themes
 		
 		private function buttonInitializer(button:Button):void
 		{
-			if(button.nameList.contains("foxhole-header-item"))
+			if(button.nameList.contains("foxhole-slider-thumb"))
+			{
+				const sliderThumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				sliderThumbDefaultSkin.width = 88 * this._scale;
+				sliderThumbDefaultSkin.height = 88 * this._scale;
+				button.defaultSkin = sliderThumbDefaultSkin;
+			}
+			else if(button.nameList.contains("foxhole-slider-minimum-track"))
+			{
+				const minimumTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				minimumTrackDefaultSkin.width = 132 * this._scale;
+				minimumTrackDefaultSkin.height = 88 * this._scale;
+				minimumTrackDefaultSkin.blendMode = BlendMode.NONE;
+				button.defaultSkin = minimumTrackDefaultSkin;
+			}
+			else if(button.nameList.contains("foxhole-slider-maximum-track"))
+			{
+				const maximumTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SIMPLE_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				maximumTrackDefaultSkin.width = 132 * this._scale;
+				maximumTrackDefaultSkin.height = 88 * this._scale;
+				maximumTrackDefaultSkin.blendMode = BlendMode.NONE;
+				button.defaultSkin = maximumTrackDefaultSkin;
+			}
+			else if(button.nameList.contains("foxhole-toggle-switch-thumb"))
+			{
+				const toggleSwitchThumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				toggleSwitchThumbDefaultSkin.width = 88 * this._scale;
+				toggleSwitchThumbDefaultSkin.height = 88 * this._scale;
+				button.defaultSkin = toggleSwitchThumbDefaultSkin;
+			}
+			else if(button.nameList.contains("foxhole-header-item"))
 			{
 				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID, this._scale);
 				toolbarDefaultSkin.width = 88 * this._scale;
@@ -242,58 +272,27 @@ package org.josht.starling.foxhole.themes
 				button.minHeight = 88 * this._scale;
 			}
 		}
-		
+
 		private function sliderInitializer(slider:Slider):void
 		{
-			const thumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-			thumbDefaultSkin.width = 88 * this._scale;
-			thumbDefaultSkin.height = 88 * this._scale;
-			slider.thumbProperties =
-			{
-				defaultSkin: thumbDefaultSkin,
-				upSkin: null,
-				downSkin: null,
-				defaultSelectedSkin: null,
-				selectedUpSkin: null,
-				selectedDownSkin: null
-			};
-			
-			const trackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-			trackDefaultSkin.blendMode = BlendMode.NONE;
 			if(slider.direction == Slider.DIRECTION_HORIZONTAL)
 			{
-				trackDefaultSkin.width = 264 * this._scale;
-				trackDefaultSkin.height = 88 * this._scale;
+				slider.setMinimumTrackProperty("width", 132 * this._scale);
+				slider.setMinimumTrackProperty("height", 88 * this._scale);
+				slider.setMaximumTrackProperty("width", 132 * this._scale);
+				slider.setMaximumTrackProperty("height", 88 * this._scale);
 			}
 			else
 			{
-				trackDefaultSkin.width = 88 * this._scale;
-				trackDefaultSkin.height = 264 * this._scale;
+				slider.setMinimumTrackProperty("width", 88 * this._scale);
+				slider.setMinimumTrackProperty("height", 132 * this._scale);
+				slider.setMaximumTrackProperty("width", 88 * this._scale);
+				slider.setMaximumTrackProperty("height", 132 * this._scale);
 			}
-			slider.trackProperties = 
-			{
-				defaultSkin: trackDefaultSkin,
-				downSkin: null,
-				defaultSelectedSkin: null,
-				selectedDownSkin: null
-			};
 		}
 		
 		private function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
 		{
-			const thumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-			thumbDefaultSkin.width = 88 * this._scale;
-			thumbDefaultSkin.height = 88 * this._scale;
-			toggleSwitch.thumbProperties =
-			{
-				defaultSkin: thumbDefaultSkin,
-				upSkin: null,
-				downSkin: null,
-				defaultSelectedSkin: null,
-				selectedUpSkin: null,
-				selectedDownSkin: null
-			};
-			
 			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			onSkin.width = 132 * this._scale;
 			onSkin.height = 88 * this._scale;
