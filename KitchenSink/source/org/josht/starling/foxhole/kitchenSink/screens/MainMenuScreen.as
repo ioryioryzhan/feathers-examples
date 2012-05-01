@@ -107,7 +107,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 
 			const contentMaxWidth:Number = this.actualWidth - 2 * margin;
 			const buttonCount:int = this._buttons.length;
-			const buttonWidth:Number = 220 * this.dpiScale;
+			const buttonWidth:Number = 270 * this.dpiScale;
 			var horizontalButtonCount:int = 1;
 			var horizontalButtonCombinedWidth:Number = buttonWidth;
 			while((horizontalButtonCombinedWidth + buttonWidth + spacingX) < contentMaxWidth)
