@@ -106,8 +106,8 @@ package org.josht.starling.foxhole.themes
 		private static const PROGRESS_BAR_SCALE_3_SECOND_REGION:Number = 12;
 		private static const BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 15, 71);
 		private static const TOOLBAR_BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(22, 22, 15, 71);
-		private static const INSET_LEFT_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 8, 16);
-		private static const INSET_RIGHT_SCALE_9_GRID:Rectangle = new Rectangle(0, 8, 8, 16);
+		private static const INSET_LEFT_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 8, 71);
+		private static const INSET_RIGHT_SCALE_9_GRID:Rectangle = new Rectangle(0, 8, 8, 71);
 		private static const SLIDER_FIRST:Number = 16;
 		private static const SLIDER_SECOND:Number = 8;
 
@@ -305,6 +305,7 @@ package org.josht.starling.foxhole.themes
 				slider.setMaximumTrackProperty("width", 88 * this._scale);
 				slider.setMaximumTrackProperty("height", 264 * this._scale);
 			}
+			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_STRETCH;
 		}
 
 		private function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
@@ -312,12 +313,14 @@ package org.josht.starling.foxhole.themes
 			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_LEFT_TEXTURE, INSET_LEFT_SCALE_9_GRID, this._scale);
 			onSkin.width = 132 * this._scale;
 			onSkin.height = 88 * this._scale;
-			toggleSwitch.onSkin = onSkin;
+			toggleSwitch.onTrackSkin = onSkin;
 
 			const offSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_RIGHT_TEXTURE, INSET_RIGHT_SCALE_9_GRID, this._scale);
 			offSkin.width = 132 * this._scale;
 			offSkin.height = 88 * this._scale;
-			toggleSwitch.offSkin = offSkin;
+			toggleSwitch.offTrackSkin = offSkin;
+
+			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_STRETCH;
 
 			toggleSwitch.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
