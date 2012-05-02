@@ -269,13 +269,13 @@ package org.josht.starling.foxhole.themes
 			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_STRETCH;
 			if(slider.direction == Slider.DIRECTION_VERTICAL)
 			{
-				var minimumTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				var minimumTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SIMPLE_VERTICAL_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 				minimumTrackDefaultSkin.width = 88 * this._scale;
 				minimumTrackDefaultSkin.height = 176 * this._scale;
 				minimumTrackDefaultSkin.blendMode = BlendMode.NONE;
 				slider.setMinimumTrackProperty("defaultSkin", minimumTrackDefaultSkin);
 
-				var maximumTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SIMPLE_VERTICAL_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				var maximumTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 				maximumTrackDefaultSkin.width = 88 * this._scale;
 				maximumTrackDefaultSkin.height = 176 * this._scale;
 				maximumTrackDefaultSkin.blendMode = BlendMode.NONE;
