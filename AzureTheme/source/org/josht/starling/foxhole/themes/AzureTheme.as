@@ -172,7 +172,7 @@ package org.josht.starling.foxhole.themes
 
 		private function buttonInitializer(button:Button):void
 		{
-			if(button.name == "foxhole-tabbar-tab")
+			if(button.nameList.contains("foxhole-tabbar-tab"))
 			{
 				const tabDefaultSkin:Image = new Image(TOOLBAR_BACKGROUND_SKIN_TEXTURE);
 				tabDefaultSkin.width = 88 * this._scale;
@@ -193,7 +193,7 @@ package org.josht.starling.foxhole.themes
 				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 			}
-			else if(button.name == "foxhole-header-item")
+			else if(button.nameList.contains("foxhole-header-item"))
 			{
 				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURE, TOOLBAR_BUTTON_SCALE_9_GRID, this._scale);
 				toolbarDefaultSkin.width = 88 * this._scale;
@@ -221,7 +221,7 @@ package org.josht.starling.foxhole.themes
 				button.minWidth = 88 * this._scale;
 				button.minHeight = 88 * this._scale;
 			}
-			else if(button.name == "foxhole-slider-thumb")
+			else if(button.nameList.contains("foxhole-slider-thumb"))
 			{
 				const sliderThumbDefaultSkin:Image = new Image(SLIDER_THUMB_UP_SKIN_TEXTURE);
 				sliderThumbDefaultSkin.width = 88 * this._scale;
@@ -232,23 +232,9 @@ package org.josht.starling.foxhole.themes
 				const sliderThumbDisabledSkin:Image = new Image(SLIDER_THUMB_DISABLED_SKIN_TEXTURE);
 				button.disabledSkin = sliderThumbDisabledSkin;
 			}
-			else if(button.name == "foxhole-slider-minimum-track")
+			else if(button.nameList.contains("foxhole-slider-minimum-track") || button.nameList.contains("foxhole-slider-maximum-track"))
 			{
-				const sliderMinimumTrackDefaultSkin:Scale3Image = new Scale3Image(SLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				button.defaultSkin = sliderMinimumTrackDefaultSkin;
-				const sliderMinimumTrackDownSkin:Scale3Image = new Scale3Image(SLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				button.downSkin = sliderMinimumTrackDownSkin;
-				const sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(SLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				button.disabledSkin = sliderMinimumTrackDisabledSkin;
-			}
-			else if(button.name == "foxhole-slider-maximum-track")
-			{
-				const sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(SLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				button.defaultSkin = sliderMaximumTrackDefaultSkin;
-				const sliderMaximumTrackDownSkin:Scale3Image = new Scale3Image(SLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				button.downSkin = sliderMaximumTrackDownSkin;
-				const sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(SLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				button.disabledSkin = sliderMaximumTrackDisabledSkin;
+				//do nothing. we're skinning them based on slider direction
 			}
 			else
 			{
@@ -278,7 +264,9 @@ package org.josht.starling.foxhole.themes
 				button.minHeight = 88 * this._scale;
 			}
 
-			if(button.name == "foxhole-pickerlist-button")
+			//styles for the pickerlist button come from above, and then we're
+			//adding a little bit extra.
+			if(button.nameList.contains("foxhole-pickerlist-button"))
 			{
 				const pickerListButtonDefaultIcon:Image = new Image(PICKER_ICON_TEXTURE);
 				pickerListButtonDefaultIcon.scaleX = pickerListButtonDefaultIcon.scaleY = this._scale;
@@ -291,21 +279,40 @@ package org.josht.starling.foxhole.themes
 
 		private function sliderInitializer(slider:Slider):void
 		{
-			if(slider.direction == Slider.DIRECTION_HORIZONTAL)
-			{
-				slider.setMinimumTrackProperty("width", 132 * this._scale);
-				slider.setMinimumTrackProperty("height", 88 * this._scale);
-				slider.setMaximumTrackProperty("width", 132 * this._scale);
-				slider.setMaximumTrackProperty("height", 88 * this._scale);
-			}
-			else
-			{
-				slider.setMinimumTrackProperty("width", 88 * this._scale);
-				slider.setMinimumTrackProperty("height", 264 * this._scale);
-				slider.setMaximumTrackProperty("width", 88 * this._scale);
-				slider.setMaximumTrackProperty("height", 264 * this._scale);
-			}
 			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_STRETCH;
+			if(slider.direction == Slider.DIRECTION_VERTICAL)
+			{
+				throw new Error("Skin not available yet.");
+			}
+			else //horizontal
+			{
+				var sliderMinimumTrackDefaultSkin:Scale3Image = new Scale3Image(SLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMinimumTrackDefaultSkin.width = 220 * this._scale;
+				sliderMinimumTrackDefaultSkin.height = 88 * this._scale;
+				var sliderMinimumTrackDownSkin:Scale3Image = new Scale3Image(SLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMinimumTrackDefaultSkin.width = 220 * this._scale;
+				sliderMinimumTrackDefaultSkin.height = 88 * this._scale;
+				var sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(SLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMinimumTrackDefaultSkin.width = 220 * this._scale;
+				sliderMinimumTrackDefaultSkin.height = 88 * this._scale;
+				slider.setMinimumTrackProperty("defaultSkin", sliderMinimumTrackDefaultSkin);
+				slider.setMinimumTrackProperty("downSkin", sliderMinimumTrackDownSkin);
+				slider.setMinimumTrackProperty("disabledSkin", sliderMinimumTrackDisabledSkin);
+
+				var sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(SLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMaximumTrackDefaultSkin.width = 220 * this._scale;
+				sliderMaximumTrackDefaultSkin.height = 88 * this._scale;
+				var sliderMaximumTrackDownSkin:Scale3Image = new Scale3Image(SLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMaximumTrackDownSkin.width = 220 * this._scale;
+				sliderMaximumTrackDownSkin.height = 88 * this._scale;
+				var sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(SLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMaximumTrackDisabledSkin.width = 220 * this._scale;
+				sliderMaximumTrackDisabledSkin.height = 88 * this._scale;
+
+				slider.setMaximumTrackProperty("defaultSkin", sliderMaximumTrackDefaultSkin);
+				slider.setMaximumTrackProperty("downSkin", sliderMaximumTrackDownSkin);
+				slider.setMaximumTrackProperty("disabledSkin", sliderMaximumTrackDisabledSkin);
+			}
 		}
 
 		private function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
