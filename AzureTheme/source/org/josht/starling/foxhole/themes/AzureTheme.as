@@ -19,15 +19,12 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
-	import org.josht.starling.text.BitmapFont;
 
 	import starling.core.Starling;
 	import starling.display.BlendMode;
-
-	import starling.display.DisplayObject;
-
 	import starling.display.DisplayObject;
 	import starling.events.Event;
+	import starling.text.BitmapFont;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 
@@ -322,26 +319,26 @@ package org.josht.starling.foxhole.themes
 			}
 			else //horizontal
 			{
-				var sliderMinimumTrackDefaultSkin:Scale3Image = new Scale3Image(HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMinimumTrackDefaultSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMinimumTrackDefaultSkin.width = 220 * this._scale;
 				sliderMinimumTrackDefaultSkin.height = 88 * this._scale;
-				var sliderMinimumTrackDownSkin:Scale3Image = new Scale3Image(HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMinimumTrackDownSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMinimumTrackDefaultSkin.width = 220 * this._scale;
 				sliderMinimumTrackDefaultSkin.height = 88 * this._scale;
-				var sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMinimumTrackDisabledSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMinimumTrackDefaultSkin.width = 220 * this._scale;
 				sliderMinimumTrackDefaultSkin.height = 88 * this._scale;
 				slider.setMinimumTrackProperty("defaultSkin", sliderMinimumTrackDefaultSkin);
 				slider.setMinimumTrackProperty("downSkin", sliderMinimumTrackDownSkin);
 				slider.setMinimumTrackProperty("disabledSkin", sliderMinimumTrackDisabledSkin);
 
-				var sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMaximumTrackDefaultSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMaximumTrackDefaultSkin.width = 220 * this._scale;
 				sliderMaximumTrackDefaultSkin.height = 88 * this._scale;
-				var sliderMaximumTrackDownSkin:Scale3Image = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMaximumTrackDownSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMaximumTrackDownSkin.width = 220 * this._scale;
 				sliderMaximumTrackDownSkin.height = 88 * this._scale;
-				var sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMaximumTrackDisabledSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMaximumTrackDisabledSkin.width = 220 * this._scale;
 				sliderMaximumTrackDisabledSkin.height = 88 * this._scale;
 				slider.setMaximumTrackProperty("defaultSkin", sliderMaximumTrackDefaultSkin);
