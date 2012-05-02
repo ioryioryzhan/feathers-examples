@@ -53,17 +53,29 @@ package org.josht.starling.foxhole.themes
 
 		private static const TOOLBAR_BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-disabled-skin");
 
-		private static const SLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-minimum-track-up-skin");
+		private static const HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-up-skin");
 
-		private static const SLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-minimum-track-down-skin");
+		private static const HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-down-skin");
 
-		private static const SLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-minimum-track-disabled-skin");
+		private static const HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-disabled-skin");
 
-		private static const SLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-maximum-track-up-skin");
+		private static const HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-up-skin");
 
-		private static const SLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-maximum-track-down-skin");
+		private static const HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-down-skin");
 
-		private static const SLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-maximum-track-disabled-skin");
+		private static const HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-disabled-skin");
+
+		private static const VSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-up-skin");
+
+		private static const VSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-down-skin");
+
+		private static const VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-disabled-skin");
+
+		private static const VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-up-skin");
+
+		private static const VSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-down-skin");
+
+		private static const VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-disabled-skin");
 
 		private static const SLIDER_THUMB_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-up-skin");
 
@@ -282,33 +294,56 @@ package org.josht.starling.foxhole.themes
 			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_STRETCH;
 			if(slider.direction == Slider.DIRECTION_VERTICAL)
 			{
-				throw new Error("Skin not available yet.");
+				var sliderMinimumTrackDefaultSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
+				sliderMinimumTrackDefaultSkin.width = 88 * this._scale;
+				sliderMinimumTrackDefaultSkin.height = 220 * this._scale;
+				var sliderMinimumTrackDownSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
+				sliderMinimumTrackDefaultSkin.width = 88 * this._scale;
+				sliderMinimumTrackDefaultSkin.height = 220 * this._scale;
+				var sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
+				sliderMinimumTrackDefaultSkin.width = 88 * this._scale;
+				sliderMinimumTrackDefaultSkin.height = 220 * this._scale;
+				slider.setMinimumTrackProperty("defaultSkin", sliderMinimumTrackDefaultSkin);
+				slider.setMinimumTrackProperty("downSkin", sliderMinimumTrackDownSkin);
+				slider.setMinimumTrackProperty("disabledSkin", sliderMinimumTrackDisabledSkin);
+
+				var sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
+				sliderMaximumTrackDefaultSkin.width = 88 * this._scale;
+				sliderMaximumTrackDefaultSkin.height = 220 * this._scale;
+				var sliderMaximumTrackDownSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
+				sliderMaximumTrackDownSkin.width = 88 * this._scale;
+				sliderMaximumTrackDownSkin.height = 220 * this._scale;
+				var sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
+				sliderMaximumTrackDisabledSkin.width = 88 * this._scale;
+				sliderMaximumTrackDisabledSkin.height = 220 * this._scale;
+				slider.setMaximumTrackProperty("defaultSkin", sliderMaximumTrackDefaultSkin);
+				slider.setMaximumTrackProperty("downSkin", sliderMaximumTrackDownSkin);
+				slider.setMaximumTrackProperty("disabledSkin", sliderMaximumTrackDisabledSkin);
 			}
 			else //horizontal
 			{
-				var sliderMinimumTrackDefaultSkin:Scale3Image = new Scale3Image(SLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				var sliderMinimumTrackDefaultSkin:Scale3Image = new Scale3Image(HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMinimumTrackDefaultSkin.width = 220 * this._scale;
 				sliderMinimumTrackDefaultSkin.height = 88 * this._scale;
-				var sliderMinimumTrackDownSkin:Scale3Image = new Scale3Image(SLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				var sliderMinimumTrackDownSkin:Scale3Image = new Scale3Image(HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMinimumTrackDefaultSkin.width = 220 * this._scale;
 				sliderMinimumTrackDefaultSkin.height = 88 * this._scale;
-				var sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(SLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				var sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMinimumTrackDefaultSkin.width = 220 * this._scale;
 				sliderMinimumTrackDefaultSkin.height = 88 * this._scale;
 				slider.setMinimumTrackProperty("defaultSkin", sliderMinimumTrackDefaultSkin);
 				slider.setMinimumTrackProperty("downSkin", sliderMinimumTrackDownSkin);
 				slider.setMinimumTrackProperty("disabledSkin", sliderMinimumTrackDisabledSkin);
 
-				var sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(SLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				var sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMaximumTrackDefaultSkin.width = 220 * this._scale;
 				sliderMaximumTrackDefaultSkin.height = 88 * this._scale;
-				var sliderMaximumTrackDownSkin:Scale3Image = new Scale3Image(SLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				var sliderMaximumTrackDownSkin:Scale3Image = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMaximumTrackDownSkin.width = 220 * this._scale;
 				sliderMaximumTrackDownSkin.height = 88 * this._scale;
-				var sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(SLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				var sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMaximumTrackDisabledSkin.width = 220 * this._scale;
 				sliderMaximumTrackDisabledSkin.height = 88 * this._scale;
-
 				slider.setMaximumTrackProperty("defaultSkin", sliderMaximumTrackDefaultSkin);
 				slider.setMaximumTrackProperty("downSkin", sliderMaximumTrackDownSkin);
 				slider.setMaximumTrackProperty("disabledSkin", sliderMaximumTrackDisabledSkin);
