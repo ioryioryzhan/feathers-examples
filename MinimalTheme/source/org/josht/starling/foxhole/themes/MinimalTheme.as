@@ -66,7 +66,9 @@ package org.josht.starling.foxhole.themes
 
 		private static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-disabled-skin");
 		
-		private static const INSET_BACKGROUND_SIMPLE_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-simple-skin");
+		private static const INSET_BACKGROUND_SIMPLE_HORIZONTAL_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-simple-horizontal-skin");
+
+		private static const INSET_BACKGROUND_SIMPLE_VERTICAL_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-simple-vertical-skin");
 		
 		private static const DROP_DOWN_ARROW_TEXTURE:Texture = ATLAS.getTexture("drop-down-arrow");
 		
@@ -156,21 +158,10 @@ package org.josht.starling.foxhole.themes
 				sliderThumbDefaultSkin.height = 88 * this._scale;
 				button.defaultSkin = sliderThumbDefaultSkin;
 			}
-			else if(button.nameList.contains("foxhole-slider-minimum-track"))
+			else if(button.nameList.contains("foxhole-slider-minimum-track") || button.nameList.contains("foxhole-slider-maximum-track"))
 			{
-				const minimumTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-				minimumTrackDefaultSkin.width = 132 * this._scale;
-				minimumTrackDefaultSkin.height = 88 * this._scale;
-				minimumTrackDefaultSkin.blendMode = BlendMode.NONE;
-				button.defaultSkin = minimumTrackDefaultSkin;
-			}
-			else if(button.nameList.contains("foxhole-slider-maximum-track"))
-			{
-				const maximumTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SIMPLE_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-				maximumTrackDefaultSkin.width = 132 * this._scale;
-				maximumTrackDefaultSkin.height = 88 * this._scale;
-				maximumTrackDefaultSkin.blendMode = BlendMode.NONE;
-				button.defaultSkin = maximumTrackDefaultSkin;
+				//do nothing. we're taking care of these based on the slider's
+				//direction.
 			}
 			else if(button.nameList.contains("foxhole-toggle-switch-thumb"))
 			{
@@ -275,35 +266,52 @@ package org.josht.starling.foxhole.themes
 
 		private function sliderInitializer(slider:Slider):void
 		{
-			if(slider.direction == Slider.DIRECTION_HORIZONTAL)
+			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_STRETCH;
+			if(slider.direction == Slider.DIRECTION_VERTICAL)
 			{
-				slider.setMinimumTrackProperty("width", 132 * this._scale);
-				slider.setMinimumTrackProperty("height", 88 * this._scale);
-				slider.setMaximumTrackProperty("width", 132 * this._scale);
-				slider.setMaximumTrackProperty("height", 88 * this._scale);
+				var minimumTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				minimumTrackDefaultSkin.width = 88 * this._scale;
+				minimumTrackDefaultSkin.height = 176 * this._scale;
+				minimumTrackDefaultSkin.blendMode = BlendMode.NONE;
+				slider.setMinimumTrackProperty("defaultSkin", minimumTrackDefaultSkin);
+
+				var maximumTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SIMPLE_VERTICAL_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				maximumTrackDefaultSkin.width = 88 * this._scale;
+				maximumTrackDefaultSkin.height = 176 * this._scale;
+				maximumTrackDefaultSkin.blendMode = BlendMode.NONE;
+				slider.setMaximumTrackProperty("defaultSkin", maximumTrackDefaultSkin);
 			}
-			else
+			else //horizontal
 			{
-				slider.setMinimumTrackProperty("width", 88 * this._scale);
-				slider.setMinimumTrackProperty("height", 132 * this._scale);
-				slider.setMaximumTrackProperty("width", 88 * this._scale);
-				slider.setMaximumTrackProperty("height", 132 * this._scale);
+				minimumTrackDefaultSkin = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				minimumTrackDefaultSkin.width = 176 * this._scale;
+				minimumTrackDefaultSkin.height = 88 * this._scale;
+				minimumTrackDefaultSkin.blendMode = BlendMode.NONE;
+				slider.setMinimumTrackProperty("defaultSkin", minimumTrackDefaultSkin);
+
+				maximumTrackDefaultSkin = new Scale9Image(INSET_BACKGROUND_SIMPLE_HORIZONTAL_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				maximumTrackDefaultSkin.width = 176 * this._scale;
+				maximumTrackDefaultSkin.height = 88 * this._scale;
+				maximumTrackDefaultSkin.blendMode = BlendMode.NONE;
+				slider.setMaximumTrackProperty("defaultSkin", maximumTrackDefaultSkin);
 			}
 		}
 		
 		private function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
 		{
-			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-			onSkin.width = 132 * this._scale;
-			onSkin.height = 88 * this._scale;
-			onSkin.blendMode = BlendMode.NONE;
-			toggleSwitch.onSkin = onSkin;
+			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_STRETCH;
+
+			const onTrackSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			onTrackSkin.width = 132 * this._scale;
+			onTrackSkin.height = 88 * this._scale;
+			onTrackSkin.blendMode = BlendMode.NONE;
+			toggleSwitch.onTrackSkin = onTrackSkin;
 			
-			const offSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SIMPLE_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-			offSkin.width = 132 * this._scale;
-			offSkin.height = 88 * this._scale;
-			offSkin.blendMode = BlendMode.NONE;
-			toggleSwitch.offSkin = offSkin;
+			const offTrackSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SIMPLE_HORIZONTAL_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			offTrackSkin.width = 132 * this._scale;
+			offTrackSkin.height = 88 * this._scale;
+			offTrackSkin.blendMode = BlendMode.NONE;
+			toggleSwitch.offTrackSkin = offTrackSkin;
 			
 			toggleSwitch.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
