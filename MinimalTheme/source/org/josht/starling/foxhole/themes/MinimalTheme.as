@@ -18,14 +18,13 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
-	import org.josht.starling.text.BitmapFont;
 	import org.josht.utils.math.roundToNearest;
 
 	import starling.core.Starling;
 	import starling.display.BlendMode;
-
 	import starling.display.DisplayObject;
 	import starling.events.Event;
+	import starling.text.BitmapFont;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 	import starling.textures.TextureSmoothing;
