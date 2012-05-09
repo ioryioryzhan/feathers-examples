@@ -263,7 +263,7 @@ package org.josht.starling.foxhole.themes
 		{
 			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_SINGLE;
 
-			const sliderTrackDefaultSkin = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			const sliderTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			sliderTrackDefaultSkin.blendMode = BlendMode.NONE;
 			if(slider.direction == Slider.DIRECTION_VERTICAL)
 			{
