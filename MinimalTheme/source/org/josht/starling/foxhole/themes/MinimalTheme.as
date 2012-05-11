@@ -32,64 +32,64 @@ package org.josht.starling.foxhole.themes
 	public class MinimalTheme extends AddedWatcher implements IFoxholeTheme
 	{
 		[Embed(source="/../assets/images/minimal.png")]
-		private static const ATLAS_IMAGE:Class;
+		protected static const ATLAS_IMAGE:Class;
 		
 		[Embed(source="/../assets/images/minimal.xml",mimeType="application/octet-stream")]
-		private static const ATLAS_XML:Class;
+		protected static const ATLAS_XML:Class;
 		
-		private static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
+		protected static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
 
-		private static const TOOLBAR_BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-up-skin");
+		protected static const TOOLBAR_BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-up-skin");
 
-		private static const TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-down-skin");
+		protected static const TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-down-skin");
 
-		private static const TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-selected-skin");
+		protected static const TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-selected-skin");
 
-		private static const BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-up-skin");
+		protected static const BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-up-skin");
 		
-		private static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
+		protected static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
 
-		private static const BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-disabled-skin");
+		protected static const BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-disabled-skin");
 		
-		private static const BUTTON_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-selected-skin");
+		protected static const BUTTON_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-selected-skin");
 
-		private static const TAB_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-up-skin");
+		protected static const TAB_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-up-skin");
 
-		private static const TAB_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-down-skin");
+		protected static const TAB_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-down-skin");
 
-		private static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
+		protected static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
 		
-		private static const THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("thumb-skin");
+		protected static const THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("thumb-skin");
 		
-		private static const INSET_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-skin");
+		protected static const INSET_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-skin");
 
-		private static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-disabled-skin");
+		protected static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-disabled-skin");
 		
-		private static const DROP_DOWN_ARROW_TEXTURE:Texture = ATLAS.getTexture("drop-down-arrow");
+		protected static const DROP_DOWN_ARROW_TEXTURE:Texture = ATLAS.getTexture("drop-down-arrow");
 		
-		private static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up");
+		protected static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up");
 		
-		private static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down");
+		protected static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down");
 		
-		private static const LIST_ITEM_SELECTED_TEXTURE:Texture = ATLAS.getTexture("list-item-selected");
+		protected static const LIST_ITEM_SELECTED_TEXTURE:Texture = ATLAS.getTexture("list-item-selected");
 
-		private static const HEADER_SKIN_TEXTURE:Texture = ATLAS.getTexture("header-skin");
+		protected static const HEADER_SKIN_TEXTURE:Texture = ATLAS.getTexture("header-skin");
 		
 		[Embed(source="/../assets/fonts/pf_ronda_seven.fnt",mimeType="application/octet-stream")]
-		private static const ATLAS_FONT_XML:Class;
+		protected static const ATLAS_FONT_XML:Class;
 		
-		private static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("pf_ronda_seven_0"), XML(new ATLAS_FONT_XML()));
+		protected static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("pf_ronda_seven_0"), XML(new ATLAS_FONT_XML()));
 		
-		private static const SCALE_9_GRID:Rectangle = new Rectangle(9, 9, 2, 2);
+		protected static const SCALE_9_GRID:Rectangle = new Rectangle(9, 9, 2, 2);
 
-		private static const TAB_SCALE_9_GRID:Rectangle = new Rectangle(25, 25, 2, 2);
+		protected static const TAB_SCALE_9_GRID:Rectangle = new Rectangle(25, 25, 2, 2);
 
-		private static const BACKGROUND_COLOR:uint = 0xf3f3f3;
-		private static const PRIMARY_TEXT_COLOR:uint = 0x666666;
-		private static const SELECTED_TEXT_COLOR:uint = 0x333333;
-		private static const INSET_TEXT_COLOR:uint = 0x333333;
+		protected static const BACKGROUND_COLOR:uint = 0xf3f3f3;
+		protected static const PRIMARY_TEXT_COLOR:uint = 0x666666;
+		protected static const SELECTED_TEXT_COLOR:uint = 0x333333;
+		protected static const INSET_TEXT_COLOR:uint = 0x333333;
 
-		private static const ORIGINAL_DPI:int = 326;
+		protected static const ORIGINAL_DPI:int = 326;
 		
 		public function MinimalTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
@@ -106,17 +106,17 @@ package org.josht.starling.foxhole.themes
 			this.initialize(scaleToDPI);
 		}
 
-		private var _originalDPI:int;
+		protected var _originalDPI:int;
 
 		public function get originalDPI():int
 		{
 			return this._originalDPI;
 		}
 		
-		private var _scale:Number;
-		private var _fontSize:int;
+		protected var _scale:Number;
+		protected var _fontSize:int;
 		
-		private function initialize(scaleToDPI:Boolean):void
+		protected function initialize(scaleToDPI:Boolean):void
 		{
 			this._originalDPI = scaleToDPI ? ORIGINAL_DPI : Capabilities.screenDPI;
 			this._scale = Capabilities.screenDPI / this._originalDPI;
@@ -137,14 +137,14 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(ProgressBar, progressBarInitializer)
 		}
 		
-		private function labelInitializer(label:Label):void
+		protected function labelInitializer(label:Label):void
 		{
 			label.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			//since it's a pixel font, we don't want to smooth it.
 			label.smoothing = TextureSmoothing.NONE;
 		}
 		
-		private function buttonInitializer(button:Button):void
+		protected function buttonInitializer(button:Button):void
 		{
 			button.minTouchWidth = button.minTouchHeight = 88 * this._scale;
 			if(button.nameList.contains("foxhole-slider-thumb"))
@@ -274,7 +274,7 @@ package org.josht.starling.foxhole.themes
 			}
 		}
 
-		private function sliderInitializer(slider:Slider):void
+		protected function sliderInitializer(slider:Slider):void
 		{
 			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_SINGLE;
 
@@ -293,7 +293,7 @@ package org.josht.starling.foxhole.themes
 			slider.setMinimumTrackProperty("defaultSkin", sliderTrackDefaultSkin);
 		}
 		
-		private function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
+		protected function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
 		{
 			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_SINGLE;
 
@@ -307,7 +307,7 @@ package org.josht.starling.foxhole.themes
 			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 		}
 		
-		private function itemRendererInitializer(renderer:DefaultItemRenderer):void
+		protected function itemRendererInitializer(renderer:DefaultItemRenderer):void
 		{
 			const defaultSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
 			//no smoothing. it's a solid color and we'll be stretching it
@@ -338,7 +338,7 @@ package org.josht.starling.foxhole.themes
 			renderer.minWidth = renderer.minHeight = 88 * this._scale;
 		}
 		
-		private function pickerListInitializer(list:PickerList):void
+		protected function pickerListInitializer(list:PickerList):void
 		{
 			list.listProperties =
 			{
@@ -347,7 +347,7 @@ package org.josht.starling.foxhole.themes
 			}
 		}
 
-		private function screenHeaderInitializer(header:ScreenHeader):void
+		protected function screenHeaderInitializer(header:ScreenHeader):void
 		{
 			header.minWidth = 88 * this._scale;
 			header.minHeight = 88 * this._scale;
@@ -361,7 +361,7 @@ package org.josht.starling.foxhole.themes
 			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 		}
 
-		private function textInputInitializer(input:TextInput):void
+		protected function textInputInitializer(input:TextInput):void
 		{
 			input.minWidth = 88 * this._scale;
 			input.minHeight = 88 * this._scale;
@@ -385,7 +385,7 @@ package org.josht.starling.foxhole.themes
 			input.backgroundDisabledSkin = backgroundDisabledSkin;
 		}
 
-		private function progressBarInitializer(progress:ProgressBar):void
+		protected function progressBarInitializer(progress:ProgressBar):void
 		{
 			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 22) * this._scale;
@@ -412,7 +412,7 @@ package org.josht.starling.foxhole.themes
 			progress.fillDisabledSkin = fillDisabledSkin;
 		}
 
-		private function root_addedToStageHandler(event:Event):void
+		protected function root_addedToStageHandler(event:Event):void
 		{
 			DisplayObject(event.currentTarget).stage.color = BACKGROUND_COLOR;
 		}

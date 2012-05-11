@@ -31,87 +31,87 @@ package org.josht.starling.foxhole.themes
 	public class AzureTheme extends AddedWatcher implements IFoxholeTheme
 	{
 		[Embed(source="/../assets/images/azure.png")]
-		private static const ATLAS_IMAGE:Class;
+		protected static const ATLAS_IMAGE:Class;
 
 		[Embed(source="/../assets/images/azure.xml",mimeType="application/octet-stream")]
-		private static const ATLAS_XML:Class;
+		protected static const ATLAS_XML:Class;
 
-		private static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
+		protected static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
 
-		private static const BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-up-skin");
+		protected static const BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-up-skin");
 
-		private static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
+		protected static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
 
-		private static const BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-disabled-skin");
+		protected static const BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-disabled-skin");
 
-		private static const HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-up-skin");
+		protected static const HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-up-skin");
 
-		private static const HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-down-skin");
+		protected static const HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-down-skin");
 
-		private static const HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-disabled-skin");
+		protected static const HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-disabled-skin");
 
-		private static const HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-up-skin");
+		protected static const HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-up-skin");
 
-		private static const HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-down-skin");
+		protected static const HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-down-skin");
 
-		private static const HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-disabled-skin");
+		protected static const HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-disabled-skin");
 
-		private static const VSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-up-skin");
+		protected static const VSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-up-skin");
 
-		private static const VSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-down-skin");
+		protected static const VSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-down-skin");
 
-		private static const VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-disabled-skin");
+		protected static const VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-disabled-skin");
 
-		private static const VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-up-skin");
+		protected static const VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-up-skin");
 
-		private static const VSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-down-skin");
+		protected static const VSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-down-skin");
 
-		private static const VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-disabled-skin");
+		protected static const VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-disabled-skin");
 
-		private static const SLIDER_THUMB_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-up-skin");
+		protected static const SLIDER_THUMB_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-up-skin");
 
-		private static const SLIDER_THUMB_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-down-skin");
+		protected static const SLIDER_THUMB_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-down-skin");
 
-		private static const SLIDER_THUMB_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-disabled-skin");
+		protected static const SLIDER_THUMB_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-disabled-skin");
 
-		private static const PROGRESS_BAR_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-background-skin");
+		protected static const PROGRESS_BAR_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-background-skin");
 
-		private static const PROGRESS_BAR_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-background-disabled-skin");
+		protected static const PROGRESS_BAR_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-background-disabled-skin");
 
-		private static const PROGRESS_BAR_FILL_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-fill-skin");
+		protected static const PROGRESS_BAR_FILL_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-fill-skin");
 
-		private static const PROGRESS_BAR_FILL_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-fill-disabled-skin");
+		protected static const PROGRESS_BAR_FILL_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-fill-disabled-skin");
 
-		private static const INSET_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-skin");
+		protected static const INSET_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-skin");
 
-		private static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-disabled-skin");
+		protected static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-disabled-skin");
 
-		private static const PICKER_ICON_TEXTURE:Texture = ATLAS.getTexture("picker-icon");
+		protected static const PICKER_ICON_TEXTURE:Texture = ATLAS.getTexture("picker-icon");
 
-		private static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up-skin");
+		protected static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up-skin");
 
-		private static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down-skin");
+		protected static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down-skin");
 
-		private static const TOOLBAR_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-background-skin");
+		protected static const TOOLBAR_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-background-skin");
 
-		private static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
+		protected static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
 
 		[Embed(source="/../assets/fonts/lato30.fnt",mimeType="application/octet-stream")]
-		private static const ATLAS_FONT_XML:Class;
+		protected static const ATLAS_FONT_XML:Class;
 
-		private static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("lato30_0"), XML(new ATLAS_FONT_XML()));
+		protected static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("lato30_0"), XML(new ATLAS_FONT_XML()));
 
-		private static const PROGRESS_BAR_SCALE_3_FIRST_REGION:Number = 12;
-		private static const PROGRESS_BAR_SCALE_3_SECOND_REGION:Number = 12;
-		private static const BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 15, 49);
-		private static const SLIDER_FIRST:Number = 16;
-		private static const SLIDER_SECOND:Number = 8;
+		protected static const PROGRESS_BAR_SCALE_3_FIRST_REGION:Number = 12;
+		protected static const PROGRESS_BAR_SCALE_3_SECOND_REGION:Number = 12;
+		protected static const BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 15, 49);
+		protected static const SLIDER_FIRST:Number = 16;
+		protected static const SLIDER_SECOND:Number = 8;
 
-		private static const BACKGROUND_COLOR:uint = 0x13171a;
-		private static const PRIMARY_TEXT_COLOR:uint = 0xe5e5e5;
-		private static const SELECTED_TEXT_COLOR:uint = 0xffffff;
+		protected static const BACKGROUND_COLOR:uint = 0x13171a;
+		protected static const PRIMARY_TEXT_COLOR:uint = 0xe5e5e5;
+		protected static const SELECTED_TEXT_COLOR:uint = 0xffffff;
 
-		private static const ORIGINAL_DPI:int = 326;
+		protected static const ORIGINAL_DPI:int = 326;
 
 		public function AzureTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
@@ -128,17 +128,17 @@ package org.josht.starling.foxhole.themes
 			this.initialize(scaleToDPI);
 		}
 
-		private var _originalDPI:int;
+		protected var _originalDPI:int;
 
 		public function get originalDPI():int
 		{
 			return this._originalDPI;
 		}
 
-		private var _scale:Number;
-		private var _fontSize:int;
+		protected var _scale:Number;
+		protected var _fontSize:int;
 
-		private function initialize(scaleToDPI:Boolean):void
+		protected function initialize(scaleToDPI:Boolean):void
 		{
 			this._originalDPI = scaleToDPI ? ORIGINAL_DPI : Capabilities.screenDPI;
 			this._scale = Capabilities.screenDPI / this._originalDPI;
@@ -157,7 +157,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(ProgressBar, progressBarInitializer);
 		}
 
-		private function labelInitializer(label:Label):void
+		protected function labelInitializer(label:Label):void
 		{
 			if(label.name)
 			{
@@ -166,7 +166,7 @@ package org.josht.starling.foxhole.themes
 			label.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 		}
 
-		private function buttonInitializer(button:Button):void
+		protected function buttonInitializer(button:Button):void
 		{
 			button.minTouchWidth = button.minTouchHeight = 88 * this._scale;
 			if(button.nameList.contains("foxhole-tabbar-tab"))
@@ -281,7 +281,7 @@ package org.josht.starling.foxhole.themes
 			}
 		}
 
-		private function sliderInitializer(slider:Slider):void
+		protected function sliderInitializer(slider:Slider):void
 		{
 			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_STRETCH;
 			if(slider.direction == Slider.DIRECTION_VERTICAL)
@@ -342,7 +342,7 @@ package org.josht.starling.foxhole.themes
 			}
 		}
 
-		private function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
+		protected function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
 		{
 			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
 			onSkin.width = 148 * this._scale;
@@ -355,7 +355,7 @@ package org.josht.starling.foxhole.themes
 			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 		}
 
-		private function itemRendererInitializer(renderer:DefaultItemRenderer):void
+		protected function itemRendererInitializer(renderer:DefaultItemRenderer):void
 		{
 			const defaultSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
 			defaultSkin.width = 88 * this._scale;
@@ -381,7 +381,7 @@ package org.josht.starling.foxhole.themes
 			renderer.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 		}
 
-		private function pickerListInitializer(list:PickerList):void
+		protected function pickerListInitializer(list:PickerList):void
 		{
 			list.listProperties =
 			{
@@ -390,7 +390,7 @@ package org.josht.starling.foxhole.themes
 			}
 		}
 
-		private function screenHeaderInitializer(header:ScreenHeader):void
+		protected function screenHeaderInitializer(header:ScreenHeader):void
 		{
 			const backgroundSkin:Image = new Image(TOOLBAR_BACKGROUND_SKIN_TEXTURE);
 			backgroundSkin.width = 88 * this._scale;
@@ -403,7 +403,7 @@ package org.josht.starling.foxhole.themes
 			header.minHeight = 88 * this._scale;
 		}
 
-		private function textInputInitializer(input:TextInput):void
+		protected function textInputInitializer(input:TextInput):void
 		{
 			input.minWidth = 88 * this._scale;
 			input.minHeight = 88 * this._scale;
@@ -427,7 +427,7 @@ package org.josht.starling.foxhole.themes
 			input.backgroundDisabledSkin = backgroundDisabledSkin;
 		}
 
-		private function progressBarInitializer(progress:ProgressBar):void
+		protected function progressBarInitializer(progress:ProgressBar):void
 		{
 			const backgroundSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_BACKGROUND_SKIN_TEXTURE, PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, progress.direction, this._scale);
 			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 24) * this._scale;
@@ -450,7 +450,7 @@ package org.josht.starling.foxhole.themes
 			progress.fillDisabledSkin = fillDisabledSkin;
 		}
 
-		private function root_addedToStageHandler(event:Event):void
+		protected function root_addedToStageHandler(event:Event):void
 		{
 			DisplayObject(event.currentTarget).stage.color = BACKGROUND_COLOR;
 		}
