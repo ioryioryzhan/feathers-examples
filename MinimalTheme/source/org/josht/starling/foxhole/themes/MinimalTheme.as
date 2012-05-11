@@ -12,7 +12,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
-	import org.josht.starling.foxhole.controls.SimpleItemRenderer;
+	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.TextInput;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
@@ -44,7 +44,7 @@ package org.josht.starling.foxhole.themes
 		private static const TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-down-skin");
 
 		private static const TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-selected-skin");
-		
+
 		private static const BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-up-skin");
 		
 		private static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
@@ -82,7 +82,7 @@ package org.josht.starling.foxhole.themes
 		
 		private static const SCALE_9_GRID:Rectangle = new Rectangle(9, 9, 2, 2);
 
-		private static const TOOLBAR_SCALE_9_GRID:Rectangle = new Rectangle(25, 25, 2, 2);
+		private static const TAB_SCALE_9_GRID:Rectangle = new Rectangle(25, 25, 2, 2);
 
 		private static const BACKGROUND_COLOR:uint = 0xf3f3f3;
 		private static const PRIMARY_TEXT_COLOR:uint = 0x666666;
@@ -123,14 +123,14 @@ package org.josht.starling.foxhole.themes
 			
 			//since it's a pixel font, we want a multiple of the original size,
 			//which, in this case, is 8.
-			this._fontSize = Math.max(8, roundToNearest(24 * this._scale, 8));
+			this._fontSize = Math.max(4, roundToNearest(24 * this._scale, 8));
 			
 			this.setInitializerForClass(Label, labelInitializer);
 			this.setInitializerForClass(FPSDisplay, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Slider, sliderInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
-			this.setInitializerForClass(SimpleItemRenderer, itemRendererInitializer);
+			this.setInitializerForClass(DefaultItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
@@ -146,51 +146,25 @@ package org.josht.starling.foxhole.themes
 		
 		private function buttonInitializer(button:Button):void
 		{
+			button.minTouchWidth = button.minTouchHeight = 88 * this._scale;
 			if(button.nameList.contains("foxhole-slider-thumb"))
 			{
 				const sliderThumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-				sliderThumbDefaultSkin.width = 88 * this._scale;
-				sliderThumbDefaultSkin.height = 88 * this._scale;
+				sliderThumbDefaultSkin.width = 66 * this._scale;
+				sliderThumbDefaultSkin.height = 66 * this._scale;
 				button.defaultSkin = sliderThumbDefaultSkin;
 			}
 			else if(button.nameList.contains("foxhole-slider-minimum-track") || button.nameList.contains("foxhole-slider-maximum-track"))
 			{
-				//do nothing. we're taking care of these based on the slider's
-				//direction.
+				//no skin is defined here. we're taking care of these based on
+				//the slider's direction.
 			}
 			else if(button.nameList.contains("foxhole-toggle-switch-thumb"))
 			{
 				const toggleSwitchThumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-				toggleSwitchThumbDefaultSkin.width = 88 * this._scale;
-				toggleSwitchThumbDefaultSkin.height = 88 * this._scale;
+				toggleSwitchThumbDefaultSkin.width = 66 * this._scale;
+				toggleSwitchThumbDefaultSkin.height = 66 * this._scale;
 				button.defaultSkin = toggleSwitchThumbDefaultSkin;
-			}
-			else if(button.nameList.contains("foxhole-header-item"))
-			{
-				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID, this._scale);
-				toolbarDefaultSkin.width = 88 * this._scale;
-				toolbarDefaultSkin.height = 88 * this._scale;
-				button.defaultSkin = toolbarDefaultSkin;
-
-				const toolbarDownSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID, this._scale);
-				toolbarDownSkin.width = 88 * this._scale;
-				toolbarDownSkin.height = 88 * this._scale;
-				button.downSkin = toolbarDownSkin;
-
-				const toolbarDefaultSelectedSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID, this._scale);
-				toolbarDefaultSelectedSkin.width = 88 * this._scale;
-				toolbarDefaultSelectedSkin.height = 88 * this._scale;
-				button.defaultSelectedSkin = toolbarDefaultSelectedSkin;
-
-				button.selectedDownSkin = toolbarDownSkin;
-
-				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
-
-				button.contentPadding = 28 * this._scale;
-				button.gap = 12 * this._scale;
-				button.minWidth = 88 * this._scale;
-				button.minHeight = 88 * this._scale;
 			}
 			else if(button.nameList.contains("foxhole-tabbar-tab"))
 			{
@@ -200,13 +174,13 @@ package org.josht.starling.foxhole.themes
 				tabDefaultSkin.blendMode = BlendMode.NONE;
 				button.defaultSkin = tabDefaultSkin;
 
-				const tabDownSkin:Scale9Image = new Scale9Image(TAB_DOWN_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID, this._scale);
+				const tabDownSkin:Scale9Image = new Scale9Image(TAB_DOWN_SKIN_TEXTURE, TAB_SCALE_9_GRID, this._scale);
 				tabDownSkin.width = 88 * this._scale;
 				tabDownSkin.height = 88 * this._scale;
 				tabDownSkin.blendMode = BlendMode.NONE;
 				button.downSkin = tabDownSkin;
 
-				const tabDefaultSelectedSkin:Scale9Image = new Scale9Image(TAB_SELECTED_SKIN_TEXTURE, TOOLBAR_SCALE_9_GRID, this._scale);
+				const tabDefaultSelectedSkin:Scale9Image = new Scale9Image(TAB_SELECTED_SKIN_TEXTURE, TAB_SCALE_9_GRID, this._scale);
 				tabDefaultSelectedSkin.width = 88 * this._scale;
 				tabDefaultSelectedSkin.height = 88 * this._scale;
 				tabDefaultSelectedSkin.blendMode = BlendMode.NONE;
@@ -216,34 +190,63 @@ package org.josht.starling.foxhole.themes
 				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 
 				button.iconPosition = Button.ICON_POSITION_TOP;
-				button.contentPadding = 28 * this._scale;
+				button.paddingTop = button.paddingRight = button.paddingBottom =
+					button.paddingLeft = 28 * this._scale;
 				button.gap = 12 * this._scale;
 				button.minWidth = 88 * this._scale;
 				button.minHeight = 88 * this._scale;
 			}
+			else if(button.nameList.contains("foxhole-header-item"))
+			{
+				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				toolbarDefaultSkin.width = 60 * this._scale;
+				toolbarDefaultSkin.height = 60 * this._scale;
+				button.defaultSkin = toolbarDefaultSkin;
+
+				const toolbarDownSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				toolbarDownSkin.width = 60 * this._scale;
+				toolbarDownSkin.height = 60 * this._scale;
+				button.downSkin = toolbarDownSkin;
+
+				const toolbarDefaultSelectedSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				toolbarDefaultSelectedSkin.width = 60 * this._scale;
+				toolbarDefaultSelectedSkin.height = 60 * this._scale;
+				button.defaultSelectedSkin = toolbarDefaultSelectedSkin;
+
+				button.selectedDownSkin = toolbarDownSkin;
+
+				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+
+				button.paddingTop = button.paddingBottom = 8 * this._scale;
+				button.paddingLeft = button.paddingRight = 16 * this._scale;
+				button.gap = 12 * this._scale;
+				button.minWidth = 60 * this._scale;
+				button.minHeight = 60 * this._scale;
+			}
 			else
 			{
 				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-				defaultSkin.width = 88 * this._scale;
-				defaultSkin.height = 88 * this._scale;
+				defaultSkin.width = 66 * this._scale;
+				defaultSkin.height = 66 * this._scale;
 				defaultSkin.blendMode = BlendMode.NONE;
 				button.defaultSkin = defaultSkin;
 
 				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-				downSkin.width = 88 * this._scale;
-				downSkin.height = 88 * this._scale;
+				downSkin.width = 66 * this._scale;
+				downSkin.height = 66 * this._scale;
 				downSkin.blendMode = BlendMode.NONE;
 				button.downSkin = downSkin;
 
 				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-				disabledSkin.width = 88 * this._scale;
-				disabledSkin.height = 88 * this._scale;
+				disabledSkin.width = 66 * this._scale;
+				disabledSkin.height = 66 * this._scale;
 				disabledSkin.blendMode = BlendMode.NONE;
 				button.disabledSkin = disabledSkin;
 
 				const defaultSelectedSkin:Scale9Image = new Scale9Image(BUTTON_SELECTED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-				defaultSelectedSkin.width = 88 * this._scale;
-				defaultSelectedSkin.height = 88 * this._scale;
+				defaultSelectedSkin.width = 66 * this._scale;
+				defaultSelectedSkin.height = 66 * this._scale;
 				defaultSelectedSkin.blendMode = BlendMode.NONE;
 				button.defaultSelectedSkin = defaultSelectedSkin;
 
@@ -252,10 +255,22 @@ package org.josht.starling.foxhole.themes
 				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 
-				button.contentPadding = 16 * this._scale;
+				button.paddingTop = button.paddingBottom = 8 * this._scale;
+				button.paddingLeft = button.paddingRight = 16 * this._scale;
 				button.gap = 12 * this._scale;
-				button.minWidth = 88 * this._scale;
-				button.minHeight = 88 * this._scale;
+				button.minWidth = 66 * this._scale;
+				button.minHeight = 66 * this._scale;
+			}
+
+			//we're tweaking the normal button styles
+			if(button.nameList.contains("foxhole-pickerlist-button"))
+			{
+				const pickerListButtonDefaultIcon:Image = new Image(DROP_DOWN_ARROW_TEXTURE);
+				pickerListButtonDefaultIcon.scaleX = pickerListButtonDefaultIcon.scaleY = this._scale;
+				button.defaultIcon = pickerListButtonDefaultIcon;
+				button.gap = Number.POSITIVE_INFINITY, //fill as completely as possible
+				button.iconPosition = Button.ICON_POSITION_RIGHT;
+				button.horizontalAlign =  Button.HORIZONTAL_ALIGN_LEFT;
 			}
 		}
 
@@ -267,13 +282,13 @@ package org.josht.starling.foxhole.themes
 			sliderTrackDefaultSkin.blendMode = BlendMode.NONE;
 			if(slider.direction == Slider.DIRECTION_VERTICAL)
 			{
-				sliderTrackDefaultSkin.width = 88 * this._scale;
-				sliderTrackDefaultSkin.height = 264 * this._scale;
+				sliderTrackDefaultSkin.width = 66 * this._scale;
+				sliderTrackDefaultSkin.height = 198 * this._scale;
 			}
 			else //horizontal
 			{
-				sliderTrackDefaultSkin.width = 264 * this._scale;
-				sliderTrackDefaultSkin.height = 88 * this._scale;
+				sliderTrackDefaultSkin.width = 198 * this._scale;
+				sliderTrackDefaultSkin.height = 66 * this._scale;
 			}
 			slider.setMinimumTrackProperty("defaultSkin", sliderTrackDefaultSkin);
 		}
@@ -282,17 +297,17 @@ package org.josht.starling.foxhole.themes
 		{
 			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_SINGLE;
 
-			const onTrackSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-			onTrackSkin.width = 176 * this._scale;
-			onTrackSkin.height = 88 * this._scale;
-			onTrackSkin.blendMode = BlendMode.NONE;
-			toggleSwitch.onTrackSkin = onTrackSkin;
+			const trackSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			trackSkin.width = 132 * this._scale;
+			trackSkin.height = 66 * this._scale;
+			trackSkin.blendMode = BlendMode.NONE;
+			toggleSwitch.onTrackSkin = trackSkin;
 			
 			toggleSwitch.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 		}
 		
-		private function itemRendererInitializer(renderer:SimpleItemRenderer):void
+		private function itemRendererInitializer(renderer:DefaultItemRenderer):void
 		{
 			const defaultSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
 			//no smoothing. it's a solid color and we'll be stretching it
@@ -316,9 +331,11 @@ package org.josht.starling.foxhole.themes
 			defaultSelectedSkin.height = 88 * this._scale;
 			defaultSelectedSkin.blendMode = BlendMode.NONE;
 			renderer.defaultSelectedSkin = defaultSelectedSkin;
-			
-			renderer.contentPadding = 20 * this._scale;
+
+			renderer.paddingTop = renderer.paddingRight = renderer.paddingBottom =
+				renderer.paddingLeft = 20 * this._scale;
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
+			renderer.minWidth = renderer.minHeight = 88 * this._scale;
 		}
 		
 		private function pickerListInitializer(list:PickerList):void
@@ -328,22 +345,14 @@ package org.josht.starling.foxhole.themes
 				verticalAlign: List.VERTICAL_ALIGN_BOTTOM,
 				clipContent: true
 			}
-			
-			const defaultIcon:Image = new Image(DROP_DOWN_ARROW_TEXTURE);
-			defaultIcon.scaleX = defaultIcon.scaleY = this._scale;
-			list.buttonProperties =
-			{
-				gap: Number.POSITIVE_INFINITY, //fill as completely as possible
-				horizontalAlign: Button.HORIZONTAL_ALIGN_LEFT,
-				iconPosition: Button.ICON_POSITION_RIGHT,
-				defaultIcon: defaultIcon
-			};
 		}
 
 		private function screenHeaderInitializer(header:ScreenHeader):void
 		{
 			header.minWidth = 88 * this._scale;
 			header.minHeight = 88 * this._scale;
+			header.paddingTop = header.paddingRight = header.paddingBottom =
+				header.paddingLeft = 14 * this._scale;
 			const backgroundSkin:Scale9Image = new Scale9Image(HEADER_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			backgroundSkin.width = 88 * this._scale;
 			backgroundSkin.height = 88 * this._scale;
@@ -356,7 +365,8 @@ package org.josht.starling.foxhole.themes
 		{
 			input.minWidth = 88 * this._scale;
 			input.minHeight = 88 * this._scale;
-			input.contentPadding = 22 * this._scale;
+			input.paddingTop = input.paddingRight = input.paddingBottom =
+				input.paddingLeft = 22 * this._scale;
 			input.stageTextProperties =
 			{
 				fontFamily: "Helvetica",
