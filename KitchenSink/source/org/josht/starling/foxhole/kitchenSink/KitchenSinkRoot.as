@@ -8,11 +8,14 @@ package org.josht.starling.foxhole.kitchenSink
 	import org.josht.starling.foxhole.controls.ScreenNavigator;
 	import org.josht.starling.foxhole.controls.ScreenNavigatorItem;
 	import org.josht.starling.foxhole.kitchenSink.screens.ButtonScreen;
+	import org.josht.starling.foxhole.kitchenSink.screens.ButtonSettingsScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ListScreen;
+	import org.josht.starling.foxhole.kitchenSink.screens.ListSettingsScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.MainMenuScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.PickerListScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ProgressBarScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.SliderScreen;
+	import org.josht.starling.foxhole.kitchenSink.screens.SliderSettingsScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.TextInputScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ToggleSwitchScreen;
 	import org.josht.starling.foxhole.themes.IFoxholeTheme;
@@ -27,10 +30,13 @@ package org.josht.starling.foxhole.kitchenSink
 	{
 		private static const MAIN_MENU:String = "mainMenu";
 		private static const BUTTON:String = "button";
+		private static const BUTTON_SETTINGS:String = "buttonSettings";
 		private static const LIST:String = "list";
+		private static const LIST_SETTINGS:String = "listSettings";
 		private static const PICKER_LIST:String = "pickerList";
 		private static const PROGRESS_BAR:String = "progressBar";
 		private static const SLIDER:String = "slider";
+		private static const SLIDER_SETTINGS:String = "sliderSettings";
 		private static const TEXT_INPUT:String = "textInput";
 		private static const TOGGLE_SWITCH:String = "toggleSwitch";
 		
@@ -76,7 +82,16 @@ package org.josht.starling.foxhole.kitchenSink
 			
 			this._navigator.addScreen(BUTTON, new ScreenNavigatorItem(ButtonScreen,
 			{
-				onBack: MAIN_MENU
+				onBack: MAIN_MENU,
+				onSettings: BUTTON_SETTINGS
+			},
+			{
+				originalDPI: originalThemeDPI
+			}));
+
+			this._navigator.addScreen(BUTTON_SETTINGS, new ScreenNavigatorItem(ButtonSettingsScreen,
+			{
+				onBack: BUTTON
 			},
 			{
 				originalDPI: originalThemeDPI
@@ -84,7 +99,16 @@ package org.josht.starling.foxhole.kitchenSink
 			
 			this._navigator.addScreen(SLIDER, new ScreenNavigatorItem(SliderScreen,
 			{
-				onBack: MAIN_MENU
+				onBack: MAIN_MENU,
+				onSettings: SLIDER_SETTINGS
+			},
+			{
+				originalDPI: originalThemeDPI
+			}));
+
+			this._navigator.addScreen(SLIDER_SETTINGS, new ScreenNavigatorItem(SliderSettingsScreen,
+			{
+				onBack: SLIDER
 			},
 			{
 				originalDPI: originalThemeDPI
@@ -100,7 +124,16 @@ package org.josht.starling.foxhole.kitchenSink
 			
 			this._navigator.addScreen(LIST, new ScreenNavigatorItem(ListScreen,
 			{
-				onBack: MAIN_MENU
+				onBack: MAIN_MENU,
+				onSettings: LIST_SETTINGS
+			},
+			{
+				originalDPI: originalThemeDPI
+			}));
+
+			this._navigator.addScreen(LIST_SETTINGS, new ScreenNavigatorItem(ListSettingsScreen,
+			{
+				onBack: LIST
 			},
 			{
 				originalDPI: originalThemeDPI

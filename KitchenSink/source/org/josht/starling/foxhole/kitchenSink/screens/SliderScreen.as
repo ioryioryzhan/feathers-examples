@@ -19,23 +19,25 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		{
 			super();
 		}
-		
-		private var _backButton:Button;
-		private var _header:ScreenHeader;
+
 		private var _slider:Slider;
+		private var _header:ScreenHeader;
+		private var _backButton:Button;
+		private var _settingsButton:Button;
 		private var _valueLabel:Label;
-		private var _directionPicker:PickerList;
-		private var _directionLabel:Label;
-		private var _liveDraggingToggle:ToggleSwitch;
-		private var _liveDraggingLabel:Label;
-		private var _stepSlider:Slider;
-		private var _stepLabel:Label;
 		
 		private var _onBack:Signal = new Signal(SliderScreen);
 		
 		public function get onBack():ISignal
 		{
 			return this._onBack;
+		}
+
+		private var _onSettings:Signal = new Signal(SliderScreen);
+
+		public function get onSettings():ISignal
+		{
+			return this._onSettings;
 		}
 		
 		override protected function initialize():void
@@ -45,41 +47,9 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._slider.maximum = 100;
 			this._slider.step = 1;
 			this._slider.value = 50;
+			this._slider.direction = Slider.DIRECTION_VERTICAL;
 			this._slider.onChange.add(slider_onChange);
 			this.addChild(this._slider);
-			
-			this._directionLabel = new Label();
-			this._directionLabel.text = "direction";
-			this.addChild(this._directionLabel);
-			this._directionPicker = new PickerList();
-			this._directionPicker.typicalItem = Slider.DIRECTION_HORIZONTAL;
-			this._directionPicker.dataProvider = new ListCollection(new <String>
-			[
-				Slider.DIRECTION_HORIZONTAL,
-				Slider.DIRECTION_VERTICAL
-			]);
-			this._directionPicker.selectedItem = this._slider.direction;
-			this._directionPicker.onChange.add(directionPicker_onChange);
-			this.addChild(this._directionPicker);
-			
-			this._liveDraggingLabel = new Label();
-			this._liveDraggingLabel.text = "liveDragging";
-			this.addChild(this._liveDraggingLabel);
-			this._liveDraggingToggle = new ToggleSwitch();
-			this._liveDraggingToggle.isSelected = this._slider.liveDragging;
-			this._liveDraggingToggle.onChange.add(liveDraggingToggle_onChange);
-			this.addChild(this._liveDraggingToggle);
-			
-			this._stepLabel = new Label();
-			this._stepLabel.text = "step";
-			this.addChild(this._stepLabel);
-			this._stepSlider = new Slider();
-			this._stepSlider.minimum = 1;
-			this._stepSlider.maximum = 20;
-			this._stepSlider.step = 1;
-			this._stepSlider.value = 1;
-			this._stepSlider.onChange.add(stepSlider_onChange);
-			this.addChild(this._stepSlider);
 			
 			this._valueLabel = new Label();
 			this._valueLabel.text = this._slider.value.toString();
@@ -89,12 +59,20 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._backButton.label = "Back";
 			this._backButton.onRelease.add(backButton_onRelease);
 
+			this._settingsButton = new Button();
+			this._settingsButton.label = "Settings";
+			this._settingsButton.onRelease.add(settingsButton_onRelease);
+
 			this._header = new ScreenHeader();
 			this._header.title = "Slider";
 			this.addChild(this._header);
 			this._header.leftItems = new <DisplayObject>
 			[
 				this._backButton
+			];
+			this._header.rightItems = new <DisplayObject>
+			[
+				this._settingsButton
 			];
 			
 			// handles the back hardware key on android
@@ -103,39 +81,18 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		
 		override protected function draw():void
 		{
-			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
 			const spacingX:Number = this.originalHeight * 0.02 * this.dpiScale;
-			const spacingY:Number = this.originalHeight * 0.02 * this.dpiScale;
 
 			this._header.width = this.actualWidth;
 			this._header.validate();
-			
-			this._directionPicker.validate();
-			this._directionPicker.x = this.actualWidth - this._directionPicker.width - margin;
-			this._directionPicker.y = this._header.y + this._header.height + spacingY;
-			this._directionLabel.validate();
-			this._directionLabel.x = this._directionPicker.x - this._directionLabel.width - spacingX;
-			this._directionLabel.y = this._directionPicker.y + (this._directionPicker.height - this._directionLabel.height) / 2;
-			
-			this._liveDraggingToggle.validate();
-			this._liveDraggingToggle.x = this.actualWidth - this._liveDraggingToggle.width - margin;
-			this._liveDraggingToggle.y = this._directionPicker.y + this._directionPicker.height + spacingY;
-			this._liveDraggingLabel.validate();
-			this._liveDraggingLabel.x = this._liveDraggingToggle.x - this._liveDraggingLabel.width - spacingX;
-			this._liveDraggingLabel.y = this._liveDraggingToggle.y + (this._liveDraggingToggle.height - this._liveDraggingLabel.height) / 2;
-			
-			this._stepSlider.validate();
-			this._stepSlider.x = this.actualWidth - this._stepSlider.width - margin;
-			this._stepSlider.y = this._liveDraggingToggle.y + this._liveDraggingToggle.height + spacingY;
-			this._stepLabel.validate();
-			this._stepLabel.x = this._stepSlider.x - this._stepLabel.width - spacingX;
-			this._stepLabel.y = this._stepSlider.y + (this._stepSlider.height - this._stepLabel.height) / 2;
-			
-			var minX:Number = Math.min(this._directionLabel.x, this._liveDraggingLabel.x, this._stepLabel.x) - spacingX;
-			this._slider.validate(); //auto-size the slider
-			this._slider.x = (minX - this._slider.width) / 2;
-			this._slider.y = (this.actualHeight - this._slider.height) / 2;
+
+			//auto-size the slider and label so that we can position them properly
+			this._slider.validate();
 			this._valueLabel.validate();
+
+			const contentWidth:Number = this._slider.width + spacingX + this._valueLabel.width;
+			this._slider.x = (this.actualWidth - contentWidth) / 2;
+			this._slider.y = (this.actualHeight - this._slider.height) / 2;
 			this._valueLabel.x = this._slider.x + this._slider.width + spacingX;
 			this._valueLabel.y = this._slider.y + (this._slider.height - this._valueLabel.height) / 2;
 		}
@@ -150,28 +107,14 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._valueLabel.text = this._slider.value.toString();
 		}
 		
-		private function directionPicker_onChange(list:PickerList):void
-		{
-			this._slider.direction = this._directionPicker.selectedItem as String;
-			const temp:Number = this._slider.width;
-			this._slider.width = this._slider.height;
-			this._slider.height = temp;
-			this.invalidate(INVALIDATION_FLAG_DATA);
-		}
-		
-		private function liveDraggingToggle_onChange(toggle:ToggleSwitch):void
-		{
-			this._slider.liveDragging = this._liveDraggingToggle.isSelected;
-		}
-		
-		private function stepSlider_onChange(slider:Slider):void
-		{
-			this._slider.step = this._stepSlider.value;
-		}
-		
 		private function backButton_onRelease(button:Button):void
 		{
 			this.onBackButton();
+		}
+
+		private function settingsButton_onRelease(button:Button):void
+		{
+			this._onSettings.dispatch(this);
 		}
 	}
 }

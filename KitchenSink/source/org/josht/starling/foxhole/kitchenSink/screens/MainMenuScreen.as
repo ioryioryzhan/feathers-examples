@@ -75,6 +75,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		
 		private var _header:ScreenHeader;
 		private var _buttons:Vector.<Button> = new <Button>[];
+		private var _buttonMaxWidth:Number = 0;
 		
 		override protected function initialize():void
 		{
@@ -89,6 +90,8 @@ package org.josht.starling.foxhole.kitchenSink.screens
 				this.triggerSignalOnButtonRelease(button, signal);
 				this.addChild(button);
 				this._buttons.push(button);
+				button.validate();
+				this._buttonMaxWidth = Math.max(this._buttonMaxWidth, button.width);
 			}
 
 			this._header = new ScreenHeader();
@@ -98,40 +101,38 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		
 		override protected function draw():void
 		{
-			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
-			const spacingX:Number = this.originalHeight * 0.02 * this.dpiScale;
-			const spacingY:Number = this.originalHeight * 0.02 * this.dpiScale;
+			const margin:Number = this.originalHeight * 0.06 * this.dpiScale;
+			const spacingX:Number = this.originalHeight * 0.03 * this.dpiScale;
+			const spacingY:Number = this.originalHeight * 0.03 * this.dpiScale;
 
 			this._header.width = this.actualWidth;
 			this._header.validate();
 
 			const contentMaxWidth:Number = this.actualWidth - 2 * margin;
 			const buttonCount:int = this._buttons.length;
-			const buttonWidth:Number = 270 * this.dpiScale;
 			var horizontalButtonCount:int = 1;
-			var horizontalButtonCombinedWidth:Number = buttonWidth;
-			while((horizontalButtonCombinedWidth + buttonWidth + spacingX) < contentMaxWidth)
+			var horizontalButtonCombinedWidth:Number = this._buttonMaxWidth;
+			while((horizontalButtonCombinedWidth + this._buttonMaxWidth + spacingX) <= contentMaxWidth)
 			{
-				horizontalButtonCombinedWidth += buttonWidth + spacingX;
+				horizontalButtonCombinedWidth += this._buttonMaxWidth + spacingX;
 				horizontalButtonCount++;
 				if(horizontalButtonCount == buttonCount)
 				{
 					break;
 				}
 			}
-			const startX:Number = (this.actualWidth - horizontalButtonCombinedWidth) / 2;
 
+			const startX:Number = (this.actualWidth - horizontalButtonCombinedWidth) / 2;
 			var positionX:Number = startX;
 			var positionY:Number = this._header.y + this._header.height + spacingY;
 			for(var i:int = 0; i < buttonCount; i++)
 			{
 				var button:Button = this._buttons[i];
-				button.width = buttonWidth;
-				button.height = 88 * this.dpiScale;
+				button.width = this._buttonMaxWidth;
 				button.x = positionX;
 				button.y = positionY;
-				positionX += buttonWidth + spacingX;
-				if(positionX + buttonWidth >= contentMaxWidth)
+				positionX += this._buttonMaxWidth + spacingX;
+				if(positionX + this._buttonMaxWidth > margin + contentMaxWidth)
 				{
 					positionX = startX;
 					positionY += button.height + spacingY;

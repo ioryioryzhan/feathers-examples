@@ -49,10 +49,6 @@ package org.josht.starling.foxhole.kitchenSink.screens
 
 		override protected function draw():void
 		{
-			const margin:Number = this.originalHeight * 0.04 * this.dpiScale;
-			const spacingX:Number = this.originalHeight * 0.02 * this.dpiScale;
-			const spacingY:Number = this.originalHeight * 0.02 * this.dpiScale;
-
 			this._header.width = this.actualWidth;
 			this._header.validate();
 

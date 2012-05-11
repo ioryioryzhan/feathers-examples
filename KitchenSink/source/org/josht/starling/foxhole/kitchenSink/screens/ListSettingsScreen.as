@@ -1,11 +1,9 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
-	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.Button;
-	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.List;
+	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
-	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.data.ListCollection;
 	import org.osflash.signals.ISignal;
@@ -13,76 +11,60 @@ package org.josht.starling.foxhole.kitchenSink.screens
 
 	import starling.display.DisplayObject;
 
-	public class ListScreen extends Screen
+	public class ListSettingsScreen extends Screen
 	{
-		public function ListScreen()
+		public function ListSettingsScreen()
 		{
-			super();
 		}
 
-		private var _list:List;
 		private var _header:ScreenHeader;
+		private var _list:List;
 		private var _backButton:Button;
-		private var _settingsButton:Button;
-		
-		private var _onBack:Signal = new Signal(ListScreen);
-		
+
+		private var _isSelectableToggle:ToggleSwitch;
+		private var _hasElasticEdgesToggle:ToggleSwitch;
+
+		private var _onBack:Signal = new Signal(ListSettingsScreen);
+
 		public function get onBack():ISignal
 		{
 			return this._onBack;
 		}
 
-		private var _onSettings:Signal = new Signal(ListScreen);
-
-		public function get onSettings():ISignal
-		{
-			return this._onSettings;
-		}
-		
 		override protected function initialize():void
 		{
-			var items:Vector.<String> = new <String>[];
-			for(var i:int = 0; i < 150; i++)
-			{
-				var label:String = "Item " + (i + 1).toString();
-				items.push(label);
-			}
-			items.fixed = true;
-			
+			this._isSelectableToggle = new ToggleSwitch();
+			this._isSelectableToggle.isSelected = true;
+			this._isSelectableToggle.onChange.add(isSelectableToggle_onChange);
+
+			this._hasElasticEdgesToggle = new ToggleSwitch();
+			this._hasElasticEdgesToggle.isSelected = true;
+			this._hasElasticEdgesToggle.onChange.add(hasElasticEdgesToggle_onChange);
+
 			this._list = new List();
-			this._list.dataProvider = new ListCollection(items);
-			this._list.typicalItem = "Item 1000";
-			this._list.scrollerProperties =
-			{
-				hasElasticEdges: true
-			};
-			this._list.isSelectable = true;
-			this.addChildAt(this._list, 0);
+			this._list.isSelectable = false;
+			this._list.dataProvider = new ListCollection(
+			[
+				{ label: "isSelectable", accessory: this._isSelectableToggle },
+				{ label: "hasElasticEdges", accessory: this._hasElasticEdgesToggle },
+			]);
+			this.addChild(this._list);
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
 			this._backButton.onRelease.add(backButton_onRelease);
 
-			this._settingsButton = new Button();
-			this._settingsButton.label = "Settings";
-			this._settingsButton.onRelease.add(settingsButton_onRelease);
-
 			this._header = new ScreenHeader();
-			this._header.title = "List";
+			this._header.title = "List Settings";
 			this.addChild(this._header);
 			this._header.leftItems = new <DisplayObject>
 			[
 				this._backButton
 			];
-			this._header.rightItems = new <DisplayObject>
-			[
-				this._settingsButton
-			];
-			
-			// handles the back hardware key on android
+
 			this.backButtonHandler = this.onBackButton;
 		}
-		
+
 		override protected function draw():void
 		{
 			this._header.width = this.actualWidth;
@@ -92,20 +74,25 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._list.width = this.actualWidth;
 			this._list.height = this.actualHeight - this._list.y;
 		}
-		
+
 		private function onBackButton():void
 		{
 			this._onBack.dispatch(this);
 		}
-		
+
 		private function backButton_onRelease(button:Button):void
 		{
 			this.onBackButton();
 		}
 
-		private function settingsButton_onRelease(button:Button):void
+		private function isSelectableToggle_onChange(toggle:ToggleSwitch):void
 		{
-			this._onSettings.dispatch(this);
+			//this._list.isSelectable = this._isSelectableToggle.isSelected;
+		}
+
+		private function hasElasticEdgesToggle_onChange(toggle:ToggleSwitch):void
+		{
+			//this._list.setScrollerProperty("hasElasticEdges", this._hasElasticEdgesToggle.isSelected);
 		}
 	}
 }

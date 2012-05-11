@@ -16,7 +16,7 @@
 	<initialWindow>
 		<content>KitchenSink.swf</content>
 		<aspectRatio>landscape</aspectRatio>
-		<autoOrients>false</autoOrients>
+		<autoOrients>true</autoOrients>
 		<fullScreen>true</fullScreen>
 		<visible>true</visible>
 		<renderMode>direct</renderMode>
