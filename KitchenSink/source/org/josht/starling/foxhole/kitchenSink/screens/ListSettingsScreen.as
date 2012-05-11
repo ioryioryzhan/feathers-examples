@@ -6,6 +6,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.data.ListCollection;
+	import org.josht.starling.foxhole.kitchenSink.data.ListSettings;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
@@ -16,6 +17,8 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		public function ListSettingsScreen()
 		{
 		}
+
+		public var settings:ListSettings;
 
 		private var _header:ScreenHeader;
 		private var _list:List;
@@ -34,11 +37,11 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		override protected function initialize():void
 		{
 			this._isSelectableToggle = new ToggleSwitch();
-			this._isSelectableToggle.isSelected = true;
+			this._isSelectableToggle.isSelected = this.settings.isSelectable;
 			this._isSelectableToggle.onChange.add(isSelectableToggle_onChange);
 
 			this._hasElasticEdgesToggle = new ToggleSwitch();
-			this._hasElasticEdgesToggle.isSelected = true;
+			this._hasElasticEdgesToggle.isSelected = this.settings.hasElasticEdges;
 			this._hasElasticEdgesToggle.onChange.add(hasElasticEdgesToggle_onChange);
 
 			this._list = new List();
@@ -87,12 +90,12 @@ package org.josht.starling.foxhole.kitchenSink.screens
 
 		private function isSelectableToggle_onChange(toggle:ToggleSwitch):void
 		{
-			//this._list.isSelectable = this._isSelectableToggle.isSelected;
+			this.settings.isSelectable = this._isSelectableToggle.isSelected;
 		}
 
 		private function hasElasticEdgesToggle_onChange(toggle:ToggleSwitch):void
 		{
-			//this._list.setScrollerProperty("hasElasticEdges", this._hasElasticEdgesToggle.isSelected);
+			this.settings.hasElasticEdges = this._hasElasticEdgesToggle.isSelected;
 		}
 	}
 }

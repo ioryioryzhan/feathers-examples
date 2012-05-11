@@ -8,6 +8,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.data.ListCollection;
+	import org.josht.starling.foxhole.kitchenSink.data.SliderSettings;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
@@ -18,6 +19,8 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		public function SliderSettingsScreen()
 		{
 		}
+
+		public var settings:SliderSettings;
 
 		private var _header:ScreenHeader;
 		private var _list:List;
@@ -42,18 +45,18 @@ package org.josht.starling.foxhole.kitchenSink.screens
 				Slider.DIRECTION_HORIZONTAL,
 				Slider.DIRECTION_VERTICAL
 			]);
-			this._directionPicker.selectedItem = Slider.DIRECTION_HORIZONTAL;
+			this._directionPicker.selectedItem = this.settings.direction;
 			this._directionPicker.onChange.add(directionPicker_onChange);
 
 			this._liveDraggingToggle = new ToggleSwitch();
-			this._liveDraggingToggle.isSelected = true;
+			this._liveDraggingToggle.isSelected = this.settings.liveDragging;
 			this._liveDraggingToggle.onChange.add(liveDraggingToggle_onChange);
 
 			this._stepSlider = new Slider();
 			this._stepSlider.minimum = 1;
 			this._stepSlider.maximum = 20;
 			this._stepSlider.step = 1;
-			this._stepSlider.value = 1;
+			this._stepSlider.value = this.settings.step;
 			this._stepSlider.onChange.add(stepSlider_onChange);
 
 			this._list = new List();
@@ -93,21 +96,17 @@ package org.josht.starling.foxhole.kitchenSink.screens
 
 		private function directionPicker_onChange(list:PickerList):void
 		{
-			/*this._slider.direction = this._directionPicker.selectedItem as String;
-			const temp:Number = this._slider.width;
-			this._slider.width = this._slider.height;
-			this._slider.height = temp;
-			this.invalidate(INVALIDATION_FLAG_DATA);*/
+			this.settings.direction = this._directionPicker.selectedItem as String;
 		}
 
 		private function liveDraggingToggle_onChange(toggle:ToggleSwitch):void
 		{
-			//this._slider.liveDragging = this._liveDraggingToggle.isSelected;
+			this.settings.liveDragging = this._liveDraggingToggle.isSelected;
 		}
 
 		private function stepSlider_onChange(slider:Slider):void
 		{
-			//this._slider.step = this._stepSlider.value;
+			this.settings.step = this._stepSlider.value;
 		}
 
 		private function onBackButton():void

@@ -9,8 +9,10 @@ package org.josht.starling.foxhole.kitchenSink.screens
 	import org.josht.starling.foxhole.controls.ScrollContainer;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.data.ListCollection;
+	import org.josht.starling.foxhole.kitchenSink.data.ButtonSettings;
 	import org.josht.starling.foxhole.layout.HorizontalLayout;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
+	import org.josht.utils.math.roundToNearest;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
@@ -30,6 +32,8 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		{
 			super();
 		}
+
+		public var settings:ButtonSettings;
 
 		private var _button:Button;
 		private var _header:ScreenHeader;
@@ -65,8 +69,15 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			
 			this._button = new Button();
 			this._button.label = "Click Me";
-			this._button.defaultIcon = this._icon;
-			this._button.defaultSelectedIcon = this._selectedIcon;
+			this._button.isToggle = this.settings.isToggle;
+			if(this.settings.hasIcon)
+			{
+				this._button.defaultIcon = this._icon;
+				this._button.defaultSelectedIcon = this._selectedIcon;
+			}
+			this._button.horizontalAlign = this.settings.horizontalAlign;
+			this._button.verticalAlign = this.settings.verticalAlign;
+			this._button.iconPosition = this.settings.iconPosition;
 			this._button.width = 264 * this.dpiScale;
 			this._button.height = 264 * this.dpiScale;
 			this.addChild(this._button);

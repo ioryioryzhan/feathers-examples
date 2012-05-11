@@ -8,6 +8,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.data.ListCollection;
+	import org.josht.starling.foxhole.kitchenSink.data.ListSettings;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
@@ -19,6 +20,8 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		{
 			super();
 		}
+
+		public var settings:ListSettings;
 
 		private var _list:List;
 		private var _header:ScreenHeader;
@@ -54,9 +57,9 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._list.typicalItem = "Item 1000";
 			this._list.scrollerProperties =
 			{
-				hasElasticEdges: true
+				hasElasticEdges: this.settings.hasElasticEdges
 			};
-			this._list.isSelectable = true;
+			this._list.isSelectable = this.settings.isSelectable;
 			this.addChildAt(this._list, 0);
 
 			this._backButton = new Button();

@@ -8,6 +8,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.data.ListCollection;
+	import org.josht.starling.foxhole.kitchenSink.data.SliderSettings;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
@@ -19,6 +20,8 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		{
 			super();
 		}
+
+		public var settings:SliderSettings;
 
 		private var _slider:Slider;
 		private var _header:ScreenHeader;
@@ -45,9 +48,10 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._slider = new Slider();
 			this._slider.minimum = 0;
 			this._slider.maximum = 100;
-			this._slider.step = 1;
 			this._slider.value = 50;
-			this._slider.direction = Slider.DIRECTION_VERTICAL;
+			this._slider.step = this.settings.step;
+			this._slider.direction = this.settings.direction;
+			this._slider.liveDragging = this.settings.liveDragging;
 			this._slider.onChange.add(slider_onChange);
 			this.addChild(this._slider);
 			

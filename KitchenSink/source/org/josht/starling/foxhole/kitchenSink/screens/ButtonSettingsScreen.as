@@ -7,6 +7,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.data.ListCollection;
+	import org.josht.starling.foxhole.kitchenSink.data.ButtonSettings;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
@@ -17,6 +18,8 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		public function ButtonSettingsScreen()
 		{
 		}
+
+		public var settings:ButtonSettings;
 
 		private var _header:ScreenHeader;
 		private var _list:List;
@@ -38,7 +41,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		override protected function initialize():void
 		{
 			this._isToggleToggle = new ToggleSwitch();
-			this._isToggleToggle.isSelected = false;
+			this._isToggleToggle.isSelected = this.settings.isToggle;
 			this._isToggleToggle.onChange.add(isToggleToggle_onChange);
 
 			this._horizontalAlignPicker = new PickerList();
@@ -49,7 +52,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 				Button.HORIZONTAL_ALIGN_CENTER,
 				Button.HORIZONTAL_ALIGN_RIGHT
 			]);
-			this._horizontalAlignPicker.selectedItem = Button.HORIZONTAL_ALIGN_CENTER;
+			this._horizontalAlignPicker.selectedItem = this.settings.horizontalAlign;
 			this._horizontalAlignPicker.onChange.add(horizontalAlignPicker_onChange);
 
 			this._verticalAlignPicker = new PickerList();
@@ -60,7 +63,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 				Button.VERTICAL_ALIGN_MIDDLE,
 				Button.VERTICAL_ALIGN_BOTTOM
 			]);
-			this._verticalAlignPicker.selectedItem = Button.VERTICAL_ALIGN_MIDDLE;
+			this._verticalAlignPicker.selectedItem = this.settings.verticalAlign;
 			this._verticalAlignPicker.onChange.add(verticalAlignPicker_onChange);
 
 			this._iconToggle = new ToggleSwitch();
@@ -78,7 +81,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 				Button.ICON_POSITION_LEFT,
 				Button.ICON_POSITION_LEFT_BASELINE
 			]);
-			this._iconPositionPicker.selectedItem = Button.ICON_POSITION_LEFT;
+			this._iconPositionPicker.selectedItem = this.settings.iconPosition;
 			this._iconPositionPicker.onChange.add(iconPositionPicker_onChange);
 
 			this._list = new List();
@@ -130,28 +133,27 @@ package org.josht.starling.foxhole.kitchenSink.screens
 
 		private function isToggleToggle_onChange(toggle:ToggleSwitch):void
 		{
-			//this._button.isToggle = this._toggleToggle.isSelected;
+			this.settings.isToggle = this._isToggleToggle.isSelected;
 		}
 
 		private function horizontalAlignPicker_onChange(picker:PickerList):void
 		{
-			//this._button.horizontalAlign = this._horizontalAlignPicker.selectedItem as String;
+			this.settings.horizontalAlign = this._horizontalAlignPicker.selectedItem as String;
 		}
 
 		private function verticalAlignPicker_onChange(picker:PickerList):void
 		{
-			//this._button.verticalAlign = this._verticalAlignPicker.selectedItem as String;
+			this.settings.verticalAlign = this._verticalAlignPicker.selectedItem as String;
 		}
 
 		private function iconToggle_onChange(toggle:ToggleSwitch):void
 		{
-			//this._button.defaultIcon = this._iconToggle.isSelected ? this._icon : null;
-			//this._button.defaultSelectedIcon = this._iconToggle.isSelected ? this._selectedIcon : null;
+			this.settings.hasIcon = this._iconToggle.isSelected;
 		}
 
 		private function iconPositionPicker_onChange(picker:PickerList):void
 		{
-			//this._button.iconPosition = this._iconPositionPicker.selectedItem as String;
+			this.settings.iconPosition = this._iconPositionPicker.selectedItem as String;
 		}
 	}
 }

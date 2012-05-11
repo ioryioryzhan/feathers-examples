@@ -7,6 +7,9 @@ package org.josht.starling.foxhole.kitchenSink
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.ScreenNavigator;
 	import org.josht.starling.foxhole.controls.ScreenNavigatorItem;
+	import org.josht.starling.foxhole.kitchenSink.data.ButtonSettings;
+	import org.josht.starling.foxhole.kitchenSink.data.ListSettings;
+	import org.josht.starling.foxhole.kitchenSink.data.SliderSettings;
 	import org.josht.starling.foxhole.kitchenSink.screens.ButtonScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ButtonSettingsScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ListScreen;
@@ -79,13 +82,15 @@ package org.josht.starling.foxhole.kitchenSink
 				//content by the same amount with the dpiScale property.
 				originalDPI: originalThemeDPI
 			}));
-			
+
+			const buttonSettings:ButtonSettings = new ButtonSettings();
 			this._navigator.addScreen(BUTTON, new ScreenNavigatorItem(ButtonScreen,
 			{
 				onBack: MAIN_MENU,
 				onSettings: BUTTON_SETTINGS
 			},
 			{
+				settings: buttonSettings,
 				originalDPI: originalThemeDPI
 			}));
 
@@ -94,15 +99,18 @@ package org.josht.starling.foxhole.kitchenSink
 				onBack: BUTTON
 			},
 			{
+				settings: buttonSettings,
 				originalDPI: originalThemeDPI
 			}));
-			
+
+			const sliderSettings:SliderSettings = new SliderSettings();
 			this._navigator.addScreen(SLIDER, new ScreenNavigatorItem(SliderScreen,
 			{
 				onBack: MAIN_MENU,
 				onSettings: SLIDER_SETTINGS
 			},
 			{
+				settings: sliderSettings,
 				originalDPI: originalThemeDPI
 			}));
 
@@ -111,6 +119,7 @@ package org.josht.starling.foxhole.kitchenSink
 				onBack: SLIDER
 			},
 			{
+				settings: sliderSettings,
 				originalDPI: originalThemeDPI
 			}));
 			
@@ -121,13 +130,15 @@ package org.josht.starling.foxhole.kitchenSink
 			{
 				originalDPI: originalThemeDPI
 			}));
-			
+
+			const listSettings:ListSettings = new ListSettings();
 			this._navigator.addScreen(LIST, new ScreenNavigatorItem(ListScreen,
 			{
 				onBack: MAIN_MENU,
 				onSettings: LIST_SETTINGS
 			},
 			{
+				settings: listSettings,
 				originalDPI: originalThemeDPI
 			}));
 
@@ -136,6 +147,7 @@ package org.josht.starling.foxhole.kitchenSink
 				onBack: LIST
 			},
 			{
+				settings: listSettings,
 				originalDPI: originalThemeDPI
 			}));
 			
