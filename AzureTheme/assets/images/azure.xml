@@ -1,42 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:66c5c692bb0466a795e760af5479d93a$ -->
+<!-- $TexturePacker:SmartUpdate:6c71bdb603e15ef951772a1785bd7b38$ -->
 <TextureAtlas imagePath="azure.png">
-    <SubTexture name="button-disabled-skin" x="259" y="325" width="32" height="88"/>
-    <SubTexture name="button-down-skin" x="239" y="417" width="32" height="88"/>
-    <SubTexture name="button-up-skin" x="223" y="325" width="32" height="88"/>
-    <SubTexture name="hslider-maximum-track-disabled-skin" x="313" y="105" width="24" height="32" frameX="0" frameY="-28" frameWidth="24" frameHeight="88"/>
-    <SubTexture name="hslider-maximum-track-down-skin" x="305" y="233" width="24" height="32" frameX="0" frameY="-28" frameWidth="24" frameHeight="88"/>
-    <SubTexture name="hslider-maximum-track-up-skin" x="305" y="197" width="24" height="32" frameX="0" frameY="-28" frameWidth="24" frameHeight="88"/>
-    <SubTexture name="hslider-minimum-track-disabled-skin" x="261" y="75" width="24" height="32" frameX="0" frameY="-28" frameWidth="24" frameHeight="88"/>
-    <SubTexture name="hslider-minimum-track-down-skin" x="261" y="39" width="24" height="32" frameX="0" frameY="-28" frameWidth="24" frameHeight="88"/>
-    <SubTexture name="hslider-minimum-track-up-skin" x="261" y="3" width="24" height="32" frameX="0" frameY="-28" frameWidth="24" frameHeight="88"/>
-    <SubTexture name="inset-disabled-skin" x="203" y="417" width="32" height="88"/>
-    <SubTexture name="inset-left-disabled" x="281" y="111" width="16" height="88"/>
-    <SubTexture name="inset-left" x="261" y="203" width="16" height="88"/>
-    <SubTexture name="inset-right-disabled" x="261" y="111" width="16" height="88"/>
-    <SubTexture name="inset-right" x="275" y="417" width="16" height="88"/>
-    <SubTexture name="inset-skin" x="187" y="325" width="32" height="88"/>
+    <SubTexture name="button-disabled-skin" x="203" y="325" width="32" height="66"/>
+    <SubTexture name="button-down-skin" x="169" y="395" width="32" height="66"/>
+    <SubTexture name="button-up-skin" x="167" y="325" width="32" height="66"/>
+    <SubTexture name="hslider-maximum-track-disabled-skin" x="167" y="465" width="24" height="32"/>
+    <SubTexture name="hslider-maximum-track-down-skin" x="139" y="465" width="24" height="32"/>
+    <SubTexture name="hslider-maximum-track-up-skin" x="111" y="465" width="24" height="32"/>
+    <SubTexture name="hslider-minimum-track-disabled-skin" x="83" y="465" width="24" height="32"/>
+    <SubTexture name="hslider-minimum-track-down-skin" x="55" y="465" width="24" height="32"/>
+    <SubTexture name="hslider-minimum-track-up-skin" x="27" y="465" width="24" height="32"/>
+    <SubTexture name="inset-disabled-skin" x="133" y="395" width="32" height="66"/>
+    <SubTexture name="inset-skin" x="97" y="395" width="32" height="66"/>
     <SubTexture name="lato30_0" x="3" y="3" width="254" height="318" frameX="0" frameY="0" frameWidth="256" frameHeight="320"/>
-    <SubTexture name="list-item-down-skin" x="295" y="323" width="8" height="88"/>
-    <SubTexture name="list-item-up-skin" x="301" y="105" width="8" height="88"/>
-    <SubTexture name="picker-icon" x="295" y="3" width="42" height="70"/>
-    <SubTexture name="progress-bar-background-disabled-skin" x="329" y="77" width="36" height="24"/>
-    <SubTexture name="progress-bar-background-skin" x="301" y="295" width="36" height="24"/>
-    <SubTexture name="progress-bar-fill-disabled-skin" x="289" y="77" width="36" height="24"/>
-    <SubTexture name="progress-bar-fill-skin" x="261" y="295" width="36" height="24"/>
-    <SubTexture name="slider-thumb-disabled-skin" x="95" y="325" width="88" height="88"/>
-    <SubTexture name="slider-thumb-down-skin" x="3" y="417" width="88" height="88"/>
-    <SubTexture name="slider-thumb-up-skin" x="3" y="325" width="88" height="88"/>
-    <SubTexture name="tab-selected-skin" x="293" y="203" width="8" height="88"/>
-    <SubTexture name="toolbar-background-skin" x="281" y="203" width="8" height="88"/>
-    <SubTexture name="toolbar-button-disabled-skin" x="167" y="417" width="32" height="88" frameX="-14" frameY="-14" frameWidth="60" frameHeight="116"/>
-    <SubTexture name="toolbar-button-down-skin" x="131" y="417" width="32" height="88" frameX="-14" frameY="-14" frameWidth="60" frameHeight="116"/>
-    <SubTexture name="toolbar-button-up-skin" x="95" y="417" width="32" height="88" frameX="-14" frameY="-14" frameWidth="60" frameHeight="116"/>
-    <SubTexture name="vslider-maximum-track-disabled-skin" x="369" y="59" width="32" height="24" frameX="-28" frameY="0" frameWidth="88" frameHeight="24"/>
-    <SubTexture name="vslider-maximum-track-down-skin" x="341" y="31" width="32" height="24" frameX="-28" frameY="0" frameWidth="88" frameHeight="24"/>
-    <SubTexture name="vslider-maximum-track-up-skin" x="341" y="3" width="32" height="24" frameX="-28" frameY="0" frameWidth="88" frameHeight="24"/>
-    <SubTexture name="vslider-minimum-track-disabled-skin" x="341" y="105" width="32" height="24" frameX="-28" frameY="0" frameWidth="88" frameHeight="24"/>
-    <SubTexture name="vslider-minimum-track-down-skin" x="313" y="169" width="32" height="24" frameX="-28" frameY="0" frameWidth="88" frameHeight="24"/>
-    <SubTexture name="vslider-minimum-track-up-skin" x="313" y="141" width="32" height="24" frameX="-28" frameY="0" frameWidth="88" frameHeight="24"/>
+    <SubTexture name="list-item-down-skin" x="15" y="417" width="8" height="88"/>
+    <SubTexture name="list-item-up-skin" x="15" y="325" width="8" height="88"/>
+    <SubTexture name="picker-icon" x="205" y="395" width="32" height="50"/>
+    <SubTexture name="progress-bar-background-disabled-skin" x="239" y="325" width="36" height="24"/>
+    <SubTexture name="progress-bar-background-skin" x="235" y="477" width="36" height="24"/>
+    <SubTexture name="progress-bar-fill-disabled-skin" x="235" y="449" width="36" height="24"/>
+    <SubTexture name="progress-bar-fill-skin" x="195" y="465" width="36" height="24"/>
+    <SubTexture name="slider-thumb-disabled-skin" x="97" y="325" width="66" height="66"/>
+    <SubTexture name="slider-thumb-down-skin" x="27" y="395" width="66" height="66"/>
+    <SubTexture name="slider-thumb-up-skin" x="27" y="325" width="66" height="66"/>
+    <SubTexture name="tab-selected-skin" x="3" y="417" width="8" height="88"/>
+    <SubTexture name="toolbar-background-skin" x="3" y="325" width="8" height="88"/>
+    <SubTexture name="vslider-maximum-track-disabled-skin" x="275" y="465" width="32" height="24"/>
+    <SubTexture name="vslider-maximum-track-down-skin" x="275" y="437" width="32" height="24"/>
+    <SubTexture name="vslider-maximum-track-up-skin" x="241" y="409" width="32" height="24"/>
+    <SubTexture name="vslider-minimum-track-disabled-skin" x="275" y="353" width="32" height="24"/>
+    <SubTexture name="vslider-minimum-track-down-skin" x="241" y="381" width="32" height="24" frameX="-28" frameY="0" frameWidth="88" frameHeight="24"/>
+    <SubTexture name="vslider-minimum-track-up-skin" x="239" y="353" width="32" height="24"/>
 </TextureAtlas>

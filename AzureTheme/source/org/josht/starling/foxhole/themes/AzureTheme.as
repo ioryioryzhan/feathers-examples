@@ -13,7 +13,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
-	import org.josht.starling.foxhole.controls.SimpleItemRenderer;
+	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.TextInput;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
@@ -43,12 +43,6 @@ package org.josht.starling.foxhole.themes
 		private static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
 
 		private static const BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-disabled-skin");
-
-		private static const TOOLBAR_BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-up-skin");
-
-		private static const TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-down-skin");
-
-		private static const TOOLBAR_BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-disabled-skin");
 
 		private static const HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-up-skin");
 
@@ -92,10 +86,6 @@ package org.josht.starling.foxhole.themes
 
 		private static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-disabled-skin");
 
-		private static const INSET_BACKGROUND_LEFT_TEXTURE:Texture = ATLAS.getTexture("inset-left");
-
-		private static const INSET_BACKGROUND_RIGHT_TEXTURE:Texture = ATLAS.getTexture("inset-right");
-
 		private static const PICKER_ICON_TEXTURE:Texture = ATLAS.getTexture("picker-icon");
 
 		private static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up-skin");
@@ -113,10 +103,7 @@ package org.josht.starling.foxhole.themes
 
 		private static const PROGRESS_BAR_SCALE_3_FIRST_REGION:Number = 12;
 		private static const PROGRESS_BAR_SCALE_3_SECOND_REGION:Number = 12;
-		private static const BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 15, 71);
-		private static const TOOLBAR_BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(22, 22, 15, 71);
-		private static const INSET_LEFT_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 8, 71);
-		private static const INSET_RIGHT_SCALE_9_GRID:Rectangle = new Rectangle(0, 8, 8, 71);
+		private static const BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 15, 49);
 		private static const SLIDER_FIRST:Number = 16;
 		private static const SLIDER_SECOND:Number = 8;
 
@@ -163,7 +150,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Slider, sliderInitializer)
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
-			this.setInitializerForClass(SimpleItemRenderer, itemRendererInitializer);
+			this.setInitializerForClass(DefaultItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
@@ -181,6 +168,7 @@ package org.josht.starling.foxhole.themes
 
 		private function buttonInitializer(button:Button):void
 		{
+			button.minTouchWidth = button.minTouchHeight = 88 * this._scale;
 			if(button.nameList.contains("foxhole-tabbar-tab"))
 			{
 				const tabDefaultSkin:Image = new Image(TOOLBAR_BACKGROUND_SKIN_TEXTURE);
@@ -195,7 +183,8 @@ package org.josht.starling.foxhole.themes
 
 				button.minWidth = 88 * this._scale;
 				button.minHeight = 88 * this._scale;
-				button.contentPadding = 16 * this._scale;
+				button.paddingTop = button.paddingRight = button.paddingBottom =
+					button.paddingLeft = 16 * this._scale;
 				button.gap = 12 * this._scale;
 				button.iconPosition = Button.ICON_POSITION_TOP;
 
@@ -204,19 +193,19 @@ package org.josht.starling.foxhole.themes
 			}
 			else if(button.nameList.contains("foxhole-header-item"))
 			{
-				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURE, TOOLBAR_BUTTON_SCALE_9_GRID, this._scale);
-				toolbarDefaultSkin.width = 88 * this._scale;
-				toolbarDefaultSkin.height = 88 * this._scale;
+				const toolbarDefaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+				toolbarDefaultSkin.width = 60 * this._scale;
+				toolbarDefaultSkin.height = 60 * this._scale;
 				button.defaultSkin = toolbarDefaultSkin;
 
-				const toolbarDownSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE, TOOLBAR_BUTTON_SCALE_9_GRID, this._scale);
-				toolbarDownSkin.width = 88 * this._scale;
-				toolbarDownSkin.height = 88 * this._scale;
+				const toolbarDownSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+				toolbarDownSkin.width = 60 * this._scale;
+				toolbarDownSkin.height = 60 * this._scale;
 				button.downSkin = toolbarDownSkin;
 
-				const toolbarDisabledSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_DISABLED_SKIN_TEXTURE, TOOLBAR_BUTTON_SCALE_9_GRID, this._scale);
-				toolbarDisabledSkin.width = 88 * this._scale;
-				toolbarDisabledSkin.height = 88 * this._scale;
+				const toolbarDisabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+				toolbarDisabledSkin.width = 60 * this._scale;
+				toolbarDisabledSkin.height = 60 * this._scale;
 				button.disabledSkin = toolbarDisabledSkin;
 
 				button.defaultSelectedSkin = toolbarDownSkin;
@@ -225,41 +214,46 @@ package org.josht.starling.foxhole.themes
 				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 
-				button.contentPadding = 30 * this._scale;
+				button.paddingTop = button.paddingBottom = 8 * this._scale;
+				button.paddingLeft = button.paddingRight = 16 * this._scale;
 				button.gap = 12 * this._scale;
-				button.minWidth = 88 * this._scale;
-				button.minHeight = 88 * this._scale;
+				button.minWidth = 66 * this._scale;
+				button.minHeight = 66 * this._scale;
 			}
 			else if(button.nameList.contains("foxhole-slider-thumb"))
 			{
 				const sliderThumbDefaultSkin:Image = new Image(SLIDER_THUMB_UP_SKIN_TEXTURE);
-				sliderThumbDefaultSkin.width = 88 * this._scale;
-				sliderThumbDefaultSkin.height = 88 * this._scale;
+				sliderThumbDefaultSkin.width = 66 * this._scale;
+				sliderThumbDefaultSkin.height = 66 * this._scale;
 				button.defaultSkin = sliderThumbDefaultSkin;
 				const sliderThumbDownSkin:Image = new Image(SLIDER_THUMB_DOWN_SKIN_TEXTURE);
+				sliderThumbDownSkin.width = 66 * this._scale;
+				sliderThumbDownSkin.height = 66 * this._scale;
 				button.downSkin = sliderThumbDownSkin;
 				const sliderThumbDisabledSkin:Image = new Image(SLIDER_THUMB_DISABLED_SKIN_TEXTURE);
+				sliderThumbDisabledSkin.width = 66 * this._scale;
+				sliderThumbDisabledSkin.height = 66 * this._scale;
 				button.disabledSkin = sliderThumbDisabledSkin;
 			}
 			else if(button.nameList.contains("foxhole-slider-minimum-track") || button.nameList.contains("foxhole-slider-maximum-track"))
 			{
-				//do nothing. we're skinning them based on slider direction
+				//do nothing. we're skinning them based on slider direction.
 			}
 			else
 			{
 				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
-				defaultSkin.width = 88 * this._scale;
-				defaultSkin.height = 88 * this._scale;
+				defaultSkin.width = 66 * this._scale;
+				defaultSkin.height = 66 * this._scale;
 				button.defaultSkin = defaultSkin;
 
 				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
-				downSkin.width = 88 * this._scale;
-				downSkin.height = 88 * this._scale;
+				downSkin.width = 66 * this._scale;
+				downSkin.height = 66 * this._scale;
 				button.downSkin = downSkin;
 
 				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
-				disabledSkin.width = 88 * this._scale;
-				disabledSkin.height = 88 * this._scale;
+				disabledSkin.width = 66 * this._scale;
+				disabledSkin.height = 66 * this._scale;
 				button.defaultSelectedSkin = disabledSkin;
 
 				button.defaultSelectedSkin = downSkin;
@@ -267,10 +261,11 @@ package org.josht.starling.foxhole.themes
 				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 
-				button.contentPadding = 16 * this._scale;
+				button.paddingTop = button.paddingBottom = 8 * this._scale;
+				button.paddingLeft = button.paddingRight = 16 * this._scale;
 				button.gap = 12 * this._scale;
-				button.minWidth = 88 * this._scale;
-				button.minHeight = 88 * this._scale;
+				button.minWidth = 66 * this._scale;
+				button.minHeight = 66 * this._scale;
 			}
 
 			//styles for the pickerlist button come from above, and then we're
@@ -292,27 +287,27 @@ package org.josht.starling.foxhole.themes
 			if(slider.direction == Slider.DIRECTION_VERTICAL)
 			{
 				var sliderMinimumTrackDefaultSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
-				sliderMinimumTrackDefaultSkin.width = 88 * this._scale;
-				sliderMinimumTrackDefaultSkin.height = 220 * this._scale;
+				sliderMinimumTrackDefaultSkin.width *= this._scale;
+				sliderMinimumTrackDefaultSkin.height = 198 * this._scale;
 				var sliderMinimumTrackDownSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
-				sliderMinimumTrackDefaultSkin.width = 88 * this._scale;
-				sliderMinimumTrackDefaultSkin.height = 220 * this._scale;
+				sliderMinimumTrackDefaultSkin.width *= this._scale;
+				sliderMinimumTrackDefaultSkin.height = 198 * this._scale;
 				var sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
-				sliderMinimumTrackDefaultSkin.width = 88 * this._scale;
-				sliderMinimumTrackDefaultSkin.height = 220 * this._scale;
+				sliderMinimumTrackDefaultSkin.width *= this._scale;
+				sliderMinimumTrackDefaultSkin.height = 198 * this._scale;
 				slider.setMinimumTrackProperty("defaultSkin", sliderMinimumTrackDefaultSkin);
 				slider.setMinimumTrackProperty("downSkin", sliderMinimumTrackDownSkin);
 				slider.setMinimumTrackProperty("disabledSkin", sliderMinimumTrackDisabledSkin);
 
 				var sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
-				sliderMaximumTrackDefaultSkin.width = 88 * this._scale;
-				sliderMaximumTrackDefaultSkin.height = 220 * this._scale;
+				sliderMaximumTrackDefaultSkin.width *= this._scale;
+				sliderMaximumTrackDefaultSkin.height = 198 * this._scale;
 				var sliderMaximumTrackDownSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
-				sliderMaximumTrackDownSkin.width = 88 * this._scale;
-				sliderMaximumTrackDownSkin.height = 220 * this._scale;
+				sliderMaximumTrackDownSkin.width *= this._scale;
+				sliderMaximumTrackDownSkin.height = 198 * this._scale;
 				var sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
-				sliderMaximumTrackDisabledSkin.width = 88 * this._scale;
-				sliderMaximumTrackDisabledSkin.height = 220 * this._scale;
+				sliderMaximumTrackDisabledSkin.width *= this._scale;
+				sliderMaximumTrackDisabledSkin.height = 198 * this._scale;
 				slider.setMaximumTrackProperty("defaultSkin", sliderMaximumTrackDefaultSkin);
 				slider.setMaximumTrackProperty("downSkin", sliderMaximumTrackDownSkin);
 				slider.setMaximumTrackProperty("disabledSkin", sliderMaximumTrackDisabledSkin);
@@ -320,27 +315,27 @@ package org.josht.starling.foxhole.themes
 			else //horizontal
 			{
 				sliderMinimumTrackDefaultSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				sliderMinimumTrackDefaultSkin.width = 220 * this._scale;
-				sliderMinimumTrackDefaultSkin.height = 88 * this._scale;
+				sliderMinimumTrackDefaultSkin.width = 198 * this._scale;
+				sliderMinimumTrackDefaultSkin.height *= this._scale;
 				sliderMinimumTrackDownSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				sliderMinimumTrackDefaultSkin.width = 220 * this._scale;
-				sliderMinimumTrackDefaultSkin.height = 88 * this._scale;
+				sliderMinimumTrackDefaultSkin.width = 198 * this._scale;
+				sliderMinimumTrackDefaultSkin.height *= this._scale;
 				sliderMinimumTrackDisabledSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				sliderMinimumTrackDefaultSkin.width = 220 * this._scale;
-				sliderMinimumTrackDefaultSkin.height = 88 * this._scale;
+				sliderMinimumTrackDefaultSkin.width = 198 * this._scale;
+				sliderMinimumTrackDefaultSkin.height *= this._scale;
 				slider.setMinimumTrackProperty("defaultSkin", sliderMinimumTrackDefaultSkin);
 				slider.setMinimumTrackProperty("downSkin", sliderMinimumTrackDownSkin);
 				slider.setMinimumTrackProperty("disabledSkin", sliderMinimumTrackDisabledSkin);
 
 				sliderMaximumTrackDefaultSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				sliderMaximumTrackDefaultSkin.width = 220 * this._scale;
-				sliderMaximumTrackDefaultSkin.height = 88 * this._scale;
+				sliderMaximumTrackDefaultSkin.width = 198 * this._scale;
+				sliderMaximumTrackDefaultSkin.height *= this._scale;
 				sliderMaximumTrackDownSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				sliderMaximumTrackDownSkin.width = 220 * this._scale;
-				sliderMaximumTrackDownSkin.height = 88 * this._scale;
+				sliderMaximumTrackDownSkin.width = 198 * this._scale;
+				sliderMaximumTrackDownSkin.height *= this._scale;
 				sliderMaximumTrackDisabledSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
-				sliderMaximumTrackDisabledSkin.width = 220 * this._scale;
-				sliderMaximumTrackDisabledSkin.height = 88 * this._scale;
+				sliderMaximumTrackDisabledSkin.width = 198 * this._scale;
+				sliderMaximumTrackDisabledSkin.height *= this._scale;
 				slider.setMaximumTrackProperty("defaultSkin", sliderMaximumTrackDefaultSkin);
 				slider.setMaximumTrackProperty("downSkin", sliderMaximumTrackDownSkin);
 				slider.setMaximumTrackProperty("disabledSkin", sliderMaximumTrackDisabledSkin);
@@ -349,23 +344,18 @@ package org.josht.starling.foxhole.themes
 
 		private function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
 		{
-			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_LEFT_TEXTURE, INSET_LEFT_SCALE_9_GRID, this._scale);
-			onSkin.width = 132 * this._scale;
-			onSkin.height = 88 * this._scale;
+			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+			onSkin.width = 148 * this._scale;
+			onSkin.height = 66 * this._scale;
 			toggleSwitch.onTrackSkin = onSkin;
 
-			const offSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_RIGHT_TEXTURE, INSET_RIGHT_SCALE_9_GRID, this._scale);
-			offSkin.width = 132 * this._scale;
-			offSkin.height = 88 * this._scale;
-			toggleSwitch.offTrackSkin = offSkin;
-
-			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_STRETCH;
+			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_SINGLE;
 
 			toggleSwitch.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 		}
 
-		private function itemRendererInitializer(renderer:SimpleItemRenderer):void
+		private function itemRendererInitializer(renderer:DefaultItemRenderer):void
 		{
 			const defaultSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
 			defaultSkin.width = 88 * this._scale;
@@ -381,7 +371,8 @@ package org.josht.starling.foxhole.themes
 
 			renderer.defaultSelectedSkin = downSkin;
 
-			renderer.contentPadding = 20 * this._scale;
+			renderer.paddingTop = renderer.paddingBottom = 11 * this._scale;
+			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
 			renderer.minWidth = 88 * this._scale;
 			renderer.minHeight = 88 * this._scale;
 
@@ -407,7 +398,8 @@ package org.josht.starling.foxhole.themes
 			backgroundSkin.blendMode = BlendMode.NONE;
 			header.backgroundSkin = backgroundSkin;
 			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			header.contentPadding = 0;
+			header.paddingTop = header.paddingRight = header.paddingBottom =
+				header.paddingLeft = 14 * this._scale;
 			header.minHeight = 88 * this._scale;
 		}
 
@@ -415,7 +407,8 @@ package org.josht.starling.foxhole.themes
 		{
 			input.minWidth = 88 * this._scale;
 			input.minHeight = 88 * this._scale;
-			input.contentPadding = 22 * this._scale;
+			input.paddingTop = input.paddingRight = input.paddingBottom =
+				input.paddingLeft = 22 * this._scale;
 			input.stageTextProperties =
 			{
 				fontFamily: "Helvetica",
