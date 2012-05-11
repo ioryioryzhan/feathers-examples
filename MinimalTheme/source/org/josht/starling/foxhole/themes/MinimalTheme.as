@@ -298,7 +298,7 @@ package org.josht.starling.foxhole.themes
 			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_SINGLE;
 
 			const trackSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-			trackSkin.width = 132 * this._scale;
+			trackSkin.width = 148 * this._scale;
 			trackSkin.height = 66 * this._scale;
 			trackSkin.blendMode = BlendMode.NONE;
 			toggleSwitch.onTrackSkin = trackSkin;
@@ -332,8 +332,8 @@ package org.josht.starling.foxhole.themes
 			defaultSelectedSkin.blendMode = BlendMode.NONE;
 			renderer.defaultSelectedSkin = defaultSelectedSkin;
 
-			renderer.paddingTop = renderer.paddingRight = renderer.paddingBottom =
-				renderer.paddingLeft = 20 * this._scale;
+			renderer.paddingTop = renderer.paddingBottom = 11 * this._scale;
+			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			renderer.minWidth = renderer.minHeight = 88 * this._scale;
 		}
