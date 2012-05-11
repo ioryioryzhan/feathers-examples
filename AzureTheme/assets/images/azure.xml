@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:6c71bdb603e15ef951772a1785bd7b38$ -->
+<!-- $TexturePacker:SmartUpdate:959ee66504336bf20dc2f484c73e3fa6$ -->
 <TextureAtlas imagePath="azure.png">
     <SubTexture name="button-disabled-skin" x="203" y="325" width="32" height="66"/>
     <SubTexture name="button-down-skin" x="169" y="395" width="32" height="66"/>
     <SubTexture name="button-up-skin" x="167" y="325" width="32" height="66"/>
-    <SubTexture name="hslider-maximum-track-disabled-skin" x="167" y="465" width="24" height="32"/>
-    <SubTexture name="hslider-maximum-track-down-skin" x="139" y="465" width="24" height="32"/>
-    <SubTexture name="hslider-maximum-track-up-skin" x="111" y="465" width="24" height="32"/>
-    <SubTexture name="hslider-minimum-track-disabled-skin" x="83" y="465" width="24" height="32"/>
-    <SubTexture name="hslider-minimum-track-down-skin" x="55" y="465" width="24" height="32"/>
-    <SubTexture name="hslider-minimum-track-up-skin" x="27" y="465" width="24" height="32"/>
+    <SubTexture name="hslider-maximum-track-disabled-skin" x="167" y="465" width="24" height="32" frameX="0" frameY="-17" frameWidth="24" frameHeight="66"/>
+    <SubTexture name="hslider-maximum-track-down-skin" x="139" y="465" width="24" height="32" frameX="0" frameY="-17" frameWidth="24" frameHeight="66"/>
+    <SubTexture name="hslider-maximum-track-up-skin" x="111" y="465" width="24" height="32" frameX="0" frameY="-17" frameWidth="24" frameHeight="66"/>
+    <SubTexture name="hslider-minimum-track-disabled-skin" x="83" y="465" width="24" height="32" frameX="0" frameY="-17" frameWidth="24" frameHeight="66"/>
+    <SubTexture name="hslider-minimum-track-down-skin" x="55" y="465" width="24" height="32" frameX="0" frameY="-17" frameWidth="24" frameHeight="66"/>
+    <SubTexture name="hslider-minimum-track-up-skin" x="27" y="465" width="24" height="32" frameX="0" frameY="-17" frameWidth="24" frameHeight="66"/>
     <SubTexture name="inset-disabled-skin" x="133" y="395" width="32" height="66"/>
     <SubTexture name="inset-skin" x="97" y="395" width="32" height="66"/>
     <SubTexture name="lato30_0" x="3" y="3" width="254" height="318" frameX="0" frameY="0" frameWidth="256" frameHeight="320"/>
@@ -26,10 +26,10 @@
     <SubTexture name="slider-thumb-up-skin" x="27" y="325" width="66" height="66"/>
     <SubTexture name="tab-selected-skin" x="3" y="417" width="8" height="88"/>
     <SubTexture name="toolbar-background-skin" x="3" y="325" width="8" height="88"/>
-    <SubTexture name="vslider-maximum-track-disabled-skin" x="275" y="465" width="32" height="24"/>
-    <SubTexture name="vslider-maximum-track-down-skin" x="275" y="437" width="32" height="24"/>
-    <SubTexture name="vslider-maximum-track-up-skin" x="241" y="409" width="32" height="24"/>
-    <SubTexture name="vslider-minimum-track-disabled-skin" x="275" y="353" width="32" height="24"/>
-    <SubTexture name="vslider-minimum-track-down-skin" x="241" y="381" width="32" height="24" frameX="-28" frameY="0" frameWidth="88" frameHeight="24"/>
-    <SubTexture name="vslider-minimum-track-up-skin" x="239" y="353" width="32" height="24"/>
+    <SubTexture name="vslider-maximum-track-disabled-skin" x="275" y="465" width="32" height="24" frameX="-17" frameY="0" frameWidth="66" frameHeight="24"/>
+    <SubTexture name="vslider-maximum-track-down-skin" x="275" y="437" width="32" height="24" frameX="-17" frameY="0" frameWidth="66" frameHeight="24"/>
+    <SubTexture name="vslider-maximum-track-up-skin" x="241" y="409" width="32" height="24" frameX="-17" frameY="0" frameWidth="66" frameHeight="24"/>
+    <SubTexture name="vslider-minimum-track-disabled-skin" x="275" y="353" width="32" height="24" frameX="-17" frameY="0" frameWidth="66" frameHeight="24"/>
+    <SubTexture name="vslider-minimum-track-down-skin" x="241" y="381" width="32" height="24" frameX="-17" frameY="0" frameWidth="66" frameHeight="24"/>
+    <SubTexture name="vslider-minimum-track-up-skin" x="239" y="353" width="32" height="24" frameX="-17" frameY="0" frameWidth="66" frameHeight="24"/>
 </TextureAtlas>
