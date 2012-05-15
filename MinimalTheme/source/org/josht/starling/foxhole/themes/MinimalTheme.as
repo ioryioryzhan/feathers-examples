@@ -6,17 +6,17 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.display.Image;
 	import org.josht.starling.display.Scale9Image;
 	import org.josht.starling.foxhole.controls.Button;
+	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
-	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
-	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.TextInput;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.core.AddedWatcher;
+	import org.josht.starling.foxhole.layout.VerticalLayout;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
 	import org.josht.utils.math.roundToNearest;
 
@@ -134,7 +134,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
-			this.setInitializerForClass(ProgressBar, progressBarInitializer)
+			this.setInitializerForClass(ProgressBar, progressBarInitializer);
 		}
 		
 		protected function labelInitializer(label:Label):void
@@ -340,11 +340,17 @@ package org.josht.starling.foxhole.themes
 		
 		protected function pickerListInitializer(list:PickerList):void
 		{
+			const layout:VerticalLayout = new VerticalLayout();
+			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_BOTTOM;
+			layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
+			layout.useVirtualLayout = true;
+			layout.gap = 0;
+			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
+				layout.paddingLeft = 0;
 			list.listProperties =
 			{
-				verticalAlign: List.VERTICAL_ALIGN_BOTTOM,
-				clipContent: true
-			}
+				layout: layout
+			};
 		}
 
 		protected function screenHeaderInitializer(header:ScreenHeader):void
