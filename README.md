@@ -9,6 +9,13 @@ Demonstrates each of the UI controls in Foxhole, with live previews of many of t
 * [Web Demo](http://flashtoolbox.com/foxhole-starling/examples/kitchen-sink/)
 * [Source Code](https://github.com/joshtynjala/foxhole-starling-examples/tree/master/KitchenSink)
 
+## Layout Explorer
+
+Demonstrates the various layout modes available to the `List` and `ScrollContainer` classes.
+
+* [Web Demo](http://flashtoolbox.com/foxhole-starling/examples/layout-explorer/)
+* [Source Code](https://github.com/joshtynjala/foxhole-starling-examples/tree/master/LayoutExplorer)
+
 ## Display Object Explorer
 
 Demonstrates the resizing behavior of `Scale9Image`, `Scale3Image`, and `TiledImage` classes.

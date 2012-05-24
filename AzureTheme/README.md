@@ -8,4 +8,4 @@ This [Foxhole for Starling](https://github.com/joshtynjala/foxhole-starling) the
 
 ## Preview
 
-The Azure Theme is used in the [Display Object Explorer](http://flashtoolbox.com/foxhole-starling/examples/display-object-explorer/) example.
+The Azure Theme is used in the [Layout Explorer](http://flashtoolbox.com/foxhole-starling/examples/layout-explorer/) example.
