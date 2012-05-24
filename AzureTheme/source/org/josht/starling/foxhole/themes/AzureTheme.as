@@ -111,7 +111,8 @@ package org.josht.starling.foxhole.themes
 		protected static const PRIMARY_TEXT_COLOR:uint = 0xe5e5e5;
 		protected static const SELECTED_TEXT_COLOR:uint = 0xffffff;
 
-		protected static const ORIGINAL_DPI:int = 326;
+		protected static const ORIGINAL_DPI_IPHONE_RETINA:int = 326;
+		protected static const ORIGINAL_DPI_IPAD_RETINA:int = 264;
 
 		public function AzureTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
@@ -140,7 +141,22 @@ package org.josht.starling.foxhole.themes
 
 		protected function initialize(scaleToDPI:Boolean):void
 		{
-			this._originalDPI = scaleToDPI ? ORIGINAL_DPI : Capabilities.screenDPI;
+			if(scaleToDPI)
+			{
+				//special case for ipad. should be same pixel size as iphone
+				if(Capabilities.screenDPI % (ORIGINAL_DPI_IPAD_RETINA / 2) == 0)
+				{
+					this._originalDPI = ORIGINAL_DPI_IPAD_RETINA;
+				}
+				else
+				{
+					this._originalDPI = ORIGINAL_DPI_IPHONE_RETINA;
+				}
+			}
+			else
+			{
+				this._originalDPI = Capabilities.screenDPI;
+			}
 			this._scale = Capabilities.screenDPI / this._originalDPI;
 
 			this._fontSize = 30 * this._scale;
@@ -390,10 +406,7 @@ package org.josht.starling.foxhole.themes
 			layout.gap = 0;
 			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
 				layout.paddingLeft = 0;
-			list.listProperties =
-			{
-				layout: layout
-			};
+			list.setListProperty("layout", layout);
 		}
 
 		protected function screenHeaderInitializer(header:ScreenHeader):void
