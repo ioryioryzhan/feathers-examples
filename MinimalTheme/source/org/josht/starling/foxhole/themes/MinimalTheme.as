@@ -21,7 +21,6 @@ package org.josht.starling.foxhole.themes
 	import org.josht.utils.math.roundToNearest;
 
 	import starling.core.Starling;
-	import starling.display.BlendMode;
 	import starling.display.DisplayObject;
 	import starling.events.Event;
 	import starling.text.BitmapFont;
@@ -89,7 +88,8 @@ package org.josht.starling.foxhole.themes
 		protected static const SELECTED_TEXT_COLOR:uint = 0x333333;
 		protected static const INSET_TEXT_COLOR:uint = 0x333333;
 
-		protected static const ORIGINAL_DPI:int = 326;
+		protected static const ORIGINAL_DPI_IPHONE_RETINA:int = 326;
+		protected static const ORIGINAL_DPI_IPAD_RETINA:int = 264;
 		
 		public function MinimalTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
@@ -118,7 +118,22 @@ package org.josht.starling.foxhole.themes
 		
 		protected function initialize(scaleToDPI:Boolean):void
 		{
-			this._originalDPI = scaleToDPI ? ORIGINAL_DPI : Capabilities.screenDPI;
+			if(scaleToDPI)
+			{
+				//special case for ipad. should be same pixel size as iphone
+				if(Capabilities.screenDPI % (ORIGINAL_DPI_IPAD_RETINA / 2) == 0)
+				{
+					this._originalDPI = ORIGINAL_DPI_IPAD_RETINA;
+				}
+				else
+				{
+					this._originalDPI = ORIGINAL_DPI_IPHONE_RETINA;
+				}
+			}
+			else
+			{
+				this._originalDPI = Capabilities.screenDPI;
+			}
 			this._scale = Capabilities.screenDPI / this._originalDPI;
 			
 			//since it's a pixel font, we want a multiple of the original size,
@@ -171,19 +186,16 @@ package org.josht.starling.foxhole.themes
 				const tabDefaultSkin:Scale9Image = new Scale9Image(TAB_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 				tabDefaultSkin.width = 88 * this._scale;
 				tabDefaultSkin.height = 88 * this._scale;
-				tabDefaultSkin.blendMode = BlendMode.NONE;
 				button.defaultSkin = tabDefaultSkin;
 
 				const tabDownSkin:Scale9Image = new Scale9Image(TAB_DOWN_SKIN_TEXTURE, TAB_SCALE_9_GRID, this._scale);
 				tabDownSkin.width = 88 * this._scale;
 				tabDownSkin.height = 88 * this._scale;
-				tabDownSkin.blendMode = BlendMode.NONE;
 				button.downSkin = tabDownSkin;
 
 				const tabDefaultSelectedSkin:Scale9Image = new Scale9Image(TAB_SELECTED_SKIN_TEXTURE, TAB_SCALE_9_GRID, this._scale);
 				tabDefaultSelectedSkin.width = 88 * this._scale;
 				tabDefaultSelectedSkin.height = 88 * this._scale;
-				tabDefaultSelectedSkin.blendMode = BlendMode.NONE;
 				button.defaultSelectedSkin = tabDefaultSelectedSkin;
 
 				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
@@ -229,25 +241,21 @@ package org.josht.starling.foxhole.themes
 				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 				defaultSkin.width = 66 * this._scale;
 				defaultSkin.height = 66 * this._scale;
-				defaultSkin.blendMode = BlendMode.NONE;
 				button.defaultSkin = defaultSkin;
 
 				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 				downSkin.width = 66 * this._scale;
 				downSkin.height = 66 * this._scale;
-				downSkin.blendMode = BlendMode.NONE;
 				button.downSkin = downSkin;
 
 				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 				disabledSkin.width = 66 * this._scale;
 				disabledSkin.height = 66 * this._scale;
-				disabledSkin.blendMode = BlendMode.NONE;
 				button.disabledSkin = disabledSkin;
 
 				const defaultSelectedSkin:Scale9Image = new Scale9Image(BUTTON_SELECTED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 				defaultSelectedSkin.width = 66 * this._scale;
 				defaultSelectedSkin.height = 66 * this._scale;
-				defaultSelectedSkin.blendMode = BlendMode.NONE;
 				button.defaultSelectedSkin = defaultSelectedSkin;
 
 				button.selectedDownSkin = downSkin;
@@ -279,7 +287,6 @@ package org.josht.starling.foxhole.themes
 			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_SINGLE;
 
 			const sliderTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-			sliderTrackDefaultSkin.blendMode = BlendMode.NONE;
 			if(slider.direction == Slider.DIRECTION_VERTICAL)
 			{
 				sliderTrackDefaultSkin.width = 66 * this._scale;
@@ -300,7 +307,6 @@ package org.josht.starling.foxhole.themes
 			const trackSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			trackSkin.width = 148 * this._scale;
 			trackSkin.height = 66 * this._scale;
-			trackSkin.blendMode = BlendMode.NONE;
 			toggleSwitch.onTrackSkin = trackSkin;
 			
 			toggleSwitch.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
@@ -315,21 +321,18 @@ package org.josht.starling.foxhole.themes
 			defaultSkin.smoothing = TextureSmoothing.NONE;
 			defaultSkin.width = 88 * this._scale;
 			defaultSkin.height = 88 * this._scale;
-			defaultSkin.blendMode = BlendMode.NONE;
 			renderer.defaultSkin = defaultSkin;
 			
 			const downSkin:Image = new Image(LIST_ITEM_DOWN_TEXTURE);
 			downSkin.smoothing = TextureSmoothing.NONE;
 			downSkin.width = 88 * this._scale;
 			downSkin.height = 88 * this._scale;
-			downSkin.blendMode = BlendMode.NONE;
 			renderer.downSkin = downSkin;
 			
 			const defaultSelectedSkin:Image = new Image(LIST_ITEM_SELECTED_TEXTURE);
 			defaultSelectedSkin.smoothing = TextureSmoothing.NONE;
 			defaultSelectedSkin.width = 88 * this._scale;
 			defaultSelectedSkin.height = 88 * this._scale;
-			defaultSelectedSkin.blendMode = BlendMode.NONE;
 			renderer.defaultSelectedSkin = defaultSelectedSkin;
 
 			renderer.paddingTop = renderer.paddingBottom = 11 * this._scale;
@@ -347,10 +350,7 @@ package org.josht.starling.foxhole.themes
 			layout.gap = 0;
 			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
 				layout.paddingLeft = 0;
-			list.listProperties =
-			{
-				layout: layout
-			};
+			list.setListProperty("layout", layout);
 		}
 
 		protected function screenHeaderInitializer(header:ScreenHeader):void
@@ -362,7 +362,6 @@ package org.josht.starling.foxhole.themes
 			const backgroundSkin:Scale9Image = new Scale9Image(HEADER_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			backgroundSkin.width = 88 * this._scale;
 			backgroundSkin.height = 88 * this._scale;
-			backgroundSkin.blendMode = BlendMode.NONE;
 			header.backgroundSkin = backgroundSkin;
 			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 		}
@@ -396,25 +395,21 @@ package org.josht.starling.foxhole.themes
 			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 22) * this._scale;
 			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 22 : 264) * this._scale;
-			backgroundSkin.blendMode = BlendMode.NONE;
 			progress.backgroundSkin = backgroundSkin;
 
 			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 22) * this._scale;
 			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 22 : 264) * this._scale;
-			backgroundDisabledSkin.blendMode = BlendMode.NONE;
 			progress.backgroundDisabledSkin = backgroundDisabledSkin;
 
 			const fillSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			fillSkin.width = 12 * this._scale;
 			fillSkin.height = 12 * this._scale;
-			fillSkin.blendMode = BlendMode.NONE;
 			progress.fillSkin = fillSkin;
 
 			const fillDisabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
 			fillDisabledSkin.width = 12 * this._scale;
 			fillDisabledSkin.height = 12 * this._scale;
-			fillDisabledSkin.blendMode = BlendMode.NONE;
 			progress.fillDisabledSkin = fillDisabledSkin;
 		}
 
