@@ -1,8 +1,8 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
-	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.PickerList;
+	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.data.ListCollection;
 	import org.osflash.signals.ISignal;
@@ -37,11 +37,15 @@ package org.josht.starling.foxhole.kitchenSink.screens
 				items.push(label);
 			}
 			items.fixed = true;
-			
+
 			this._list = new PickerList();
-			this._list.typicalItem = "Item 1000";
 			this._list.dataProvider = new ListCollection(items);
 			this.addChildAt(this._list, 0);
+			this._list.typicalItem = "Item 1000";
+			//we need to do this separately. the one above applies to the picker
+			//list's button, while the one below applies to the picker list's
+			//pop up list
+			this._list.setListProperty("typicalItem", "Item 1000");
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
