@@ -3,8 +3,10 @@
 *.stackdump
 ._*
 *.local.properties
-output
-third-party
+*.p12
+out/
+output/
+third-party/
 signing/
 .actionScriptProperties
 .flexLibProperties
