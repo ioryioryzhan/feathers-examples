@@ -270,7 +270,7 @@ package org.josht.starling.foxhole.themes
 				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
 				disabledSkin.width = 66 * this._scale;
 				disabledSkin.height = 66 * this._scale;
-				button.defaultSelectedSkin = disabledSkin;
+				button.disabledSkin = disabledSkin;
 
 				button.defaultSelectedSkin = downSkin;
 
