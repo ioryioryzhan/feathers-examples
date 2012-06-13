@@ -11,6 +11,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private static const LABELS:Vector.<String> = new <String>
 		[
 			"Button",
+			"Callout",
 			"List",
 			"Picker List",
 			"Progress Bar",
@@ -29,6 +30,13 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		public function get onButton():ISignal
 		{
 			return this._onButton;
+		}
+
+		private var _onCallout:Signal = new Signal(MainMenuScreen);
+
+		public function get onCallout():ISignal
+		{
+			return this._onCallout;
 		}
 		
 		private var _onSlider:Signal = new Signal(MainMenuScreen);
@@ -79,7 +87,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		
 		override protected function initialize():void
 		{
-			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onList, this._onPickerList, this._onProgressBar, this._onSlider, this._onTextInput, this._onToggleSwitch];
+			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onCallout, this._onList, this._onPickerList, this._onProgressBar, this._onSlider, this._onTextInput, this._onToggleSwitch];
 			const buttonCount:int = LABELS.length;
 			for(var i:int = 0; i < buttonCount; i++)
 			{
