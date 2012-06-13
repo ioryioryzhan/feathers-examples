@@ -6,6 +6,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.display.Image;
 	import org.josht.starling.display.Scale9Image;
 	import org.josht.starling.foxhole.controls.Button;
+	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
@@ -73,6 +74,16 @@ package org.josht.starling.foxhole.themes
 		protected static const LIST_ITEM_SELECTED_TEXTURE:Texture = ATLAS.getTexture("list-item-selected");
 
 		protected static const HEADER_SKIN_TEXTURE:Texture = ATLAS.getTexture("header-skin");
+
+		protected static const CALLOUT_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-background-skin");
+
+		protected static const CALLOUT_TOP_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-top");
+
+		protected static const CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-bottom");
+
+		protected static const CALLOUT_LEFT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-left");
+
+		protected static const CALLOUT_RIGHT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-right");
 		
 		[Embed(source="/../assets/fonts/pf_ronda_seven.fnt",mimeType="application/octet-stream")]
 		protected static const ATLAS_FONT_XML:Class;
@@ -150,6 +161,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
 			this.setInitializerForClass(ProgressBar, progressBarInitializer);
+			this.setInitializerForClass(Callout, calloutInitializer);
 		}
 		
 		protected function labelInitializer(label:Label):void
@@ -411,6 +423,38 @@ package org.josht.starling.foxhole.themes
 			fillDisabledSkin.width = 12 * this._scale;
 			fillDisabledSkin.height = 12 * this._scale;
 			progress.fillDisabledSkin = fillDisabledSkin;
+		}
+
+		protected function calloutInitializer(callout:Callout):void
+		{
+			callout.minWidth = 20 * this._scale;
+			callout.minHeight = 20 * this._scale;
+			callout.paddingTop = callout.paddingRight = callout.paddingBottom =
+				callout.paddingLeft = 8 * this._scale;
+			const backgroundSkin:Scale9Image = new Scale9Image(CALLOUT_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			backgroundSkin.width = 20 * this._scale;
+			backgroundSkin.height = 20 * this._scale;
+			callout.backgroundSkin = backgroundSkin;
+
+			const topArrowSkin:Image = new Image(CALLOUT_TOP_ARROW_SKIN_TEXTURE);
+			topArrowSkin.scaleX = topArrowSkin.scaleY = this._scale;
+			callout.topArrowSkin = topArrowSkin;
+			callout.topArrowGap = -4 * this._scale;
+
+			const bottomArrowSkin:Image = new Image(CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE);
+			bottomArrowSkin.scaleX = bottomArrowSkin.scaleY = this._scale;
+			callout.bottomArrowSkin = bottomArrowSkin;
+			callout.bottomArrowGap = -4 * this._scale;
+
+			const leftArrowSkin:Image = new Image(CALLOUT_LEFT_ARROW_SKIN_TEXTURE);
+			leftArrowSkin.scaleX = leftArrowSkin.scaleY = this._scale;
+			callout.leftArrowSkin = leftArrowSkin;
+			callout.leftArrowGap = -4 * this._scale;
+
+			const rightArrowSkin:Image = new Image(CALLOUT_RIGHT_ARROW_SKIN_TEXTURE);
+			rightArrowSkin.scaleX = rightArrowSkin.scaleY = this._scale;
+			callout.rightArrowSkin = rightArrowSkin;
+			callout.rightArrowGap = -4 * this._scale;
 		}
 
 		protected function root_addedToStageHandler(event:Event):void
