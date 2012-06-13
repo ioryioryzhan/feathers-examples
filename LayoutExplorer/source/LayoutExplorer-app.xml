@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/3.2">
-
+<application xmlns="http://ns.adobe.com/air/application/3.3">
 	<id>org.josht.foxhole.LayoutExplorer</id>
-
 	<filename>Foxhole Layout Explorer</filename>
-
 	<name>Foxhole Layout Explorer</name>
-	
 	<versionNumber>1.0.0</versionNumber>
-		         
 	<description>Layout Explorer example application built with Foxhole for Starling</description>
-
 	<copyright>2012 Josh Tynjala</copyright>
 
 	<initialWindow>
@@ -20,6 +14,8 @@
 		<visible>true</visible>
 		<renderMode>direct</renderMode>
 	</initialWindow>
+
+	<supportedLanguages>en</supportedLanguages>
 
 	<!--<icon>
 		<image48x48>icon48.png</image48x48>

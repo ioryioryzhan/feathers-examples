@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/3.2">
-
+<application xmlns="http://ns.adobe.com/air/application/3.3">
 	<id>org.josht.foxhole.KitchenSink</id>
-
 	<filename>Foxhole Kitchen Sink</filename>
-
 	<name>Foxhole Kitchen Sink</name>
-	
 	<versionNumber>1.0.0</versionNumber>
-		         
 	<description>Kitchen Sink example application built with Foxhole for Starling</description>
-
 	<copyright>2012 Josh Tynjala</copyright>
 
 	<initialWindow>
 		<content>KitchenSink.swf</content>
-		<aspectRatio>landscape</aspectRatio>
 		<autoOrients>true</autoOrients>
 		<fullScreen>true</fullScreen>
 		<visible>true</visible>
 		<renderMode>direct</renderMode>
 	</initialWindow>
 
-	<supportedProfiles>mobileDevice</supportedProfiles>
+	<supportedLanguages>en</supportedLanguages>
 
 	<!--<icon>
 		<image48x48>icon48.png</image48x48>
