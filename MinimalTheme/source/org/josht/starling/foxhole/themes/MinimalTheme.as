@@ -7,6 +7,8 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.display.Scale9Image;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
+	import org.josht.starling.foxhole.controls.CalloutPopUpContentManager;
+	import org.josht.starling.foxhole.controls.VerticalCenteredPopUpContentManager;
 	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
@@ -19,6 +21,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
+	import org.josht.system.PhysicalCapabilities;
 	import org.josht.utils.math.roundToNearest;
 
 	import starling.core.Starling;
@@ -363,6 +366,28 @@ package org.josht.starling.foxhole.themes
 			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
 				layout.paddingLeft = 0;
 			list.setListProperty("layout", layout);
+
+			if(PhysicalCapabilities.isTablet(Starling.current.nativeStage))
+			{
+				list.popUpContentManager = new CalloutPopUpContentManager();
+				list.setListProperty("maxHeight", 352 * this._scale);
+			}
+			else
+			{
+				const backgroundSkin:Scale9Image = new Scale9Image(CALLOUT_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				backgroundSkin.width = 20 * this._scale;
+				backgroundSkin.height = 20 * this._scale;
+				list.setListProperty("backgroundSkin", backgroundSkin);
+				list.setListProperty("paddingTop", 8 * this._scale);
+				list.setListProperty("paddingRight", 8 * this._scale);
+				list.setListProperty("paddingBottom", 8 * this._scale);
+				list.setListProperty("paddingLeft", 8 * this._scale);
+
+				const centerStage:VerticalCenteredPopUpContentManager = new VerticalCenteredPopUpContentManager();
+				centerStage.marginTop = centerStage.marginRight = centerStage.marginBottom =
+					centerStage.marginLeft = 16 * this._scale;
+				list.popUpContentManager = centerStage;
+			}
 		}
 
 		protected function screenHeaderInitializer(header:ScreenHeader):void
