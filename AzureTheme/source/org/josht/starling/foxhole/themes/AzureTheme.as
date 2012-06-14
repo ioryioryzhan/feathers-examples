@@ -7,6 +7,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.display.Scale3Image;
 	import org.josht.starling.display.Scale9Image;
 	import org.josht.starling.foxhole.controls.Button;
+	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
@@ -96,6 +97,16 @@ package org.josht.starling.foxhole.themes
 
 		protected static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
 
+		protected static const CALLOUT_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-background-skin");
+
+		protected static const CALLOUT_TOP_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-top-skin");
+
+		protected static const CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-bottom-skin");
+
+		protected static const CALLOUT_LEFT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-left-skin");
+
+		protected static const CALLOUT_RIGHT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-right-skin");
+
 		[Embed(source="/../assets/fonts/lato30.fnt",mimeType="application/octet-stream")]
 		protected static const ATLAS_FONT_XML:Class;
 
@@ -106,6 +117,7 @@ package org.josht.starling.foxhole.themes
 		protected static const BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 15, 49);
 		protected static const SLIDER_FIRST:Number = 16;
 		protected static const SLIDER_SECOND:Number = 8;
+		protected static const CALLOUT_SCALE_9_GRID:Rectangle = new Rectangle(8, 24, 15, 33);
 
 		protected static const BACKGROUND_COLOR:uint = 0x13171a;
 		protected static const PRIMARY_TEXT_COLOR:uint = 0xe5e5e5;
@@ -171,6 +183,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
 			this.setInitializerForClass(ProgressBar, progressBarInitializer);
+			this.setInitializerForClass(Callout, calloutInitializer);
 		}
 
 		protected function labelInitializer(label:Label):void
@@ -467,6 +480,37 @@ package org.josht.starling.foxhole.themes
 			fillDisabledSkin.width = 24 * this._scale;
 			fillDisabledSkin.height = 24 * this._scale;
 			progress.fillDisabledSkin = fillDisabledSkin;
+		}
+
+		protected function calloutInitializer(callout:Callout):void
+		{
+			callout.paddingTop = callout.paddingRight = callout.paddingBottom =
+				callout.paddingLeft = 16 * this._scale;
+
+			const backgroundSkin:Scale9Image = new Scale9Image(CALLOUT_BACKGROUND_SKIN_TEXTURE, CALLOUT_SCALE_9_GRID, this._scale);
+			backgroundSkin.width = 48 * this._scale;
+			backgroundSkin.height = 48 * this._scale;
+			callout.backgroundSkin = backgroundSkin;
+
+			const topArrowSkin:Image = new Image(CALLOUT_TOP_ARROW_SKIN_TEXTURE);
+			topArrowSkin.scaleX = topArrowSkin.scaleY = this._scale;
+			callout.topArrowSkin = topArrowSkin;
+			callout.topArrowGap = 0 * this._scale;
+
+			const bottomArrowSkin:Image = new Image(CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE);
+			bottomArrowSkin.scaleX = bottomArrowSkin.scaleY = this._scale;
+			callout.bottomArrowSkin = bottomArrowSkin;
+			callout.bottomArrowGap = -1 * this._scale;
+
+			const leftArrowSkin:Image = new Image(CALLOUT_LEFT_ARROW_SKIN_TEXTURE);
+			leftArrowSkin.scaleX = leftArrowSkin.scaleY = this._scale;
+			callout.leftArrowSkin = leftArrowSkin;
+			callout.leftArrowGap = 0 * this._scale;
+
+			const rightArrowSkin:Image = new Image(CALLOUT_RIGHT_ARROW_SKIN_TEXTURE);
+			rightArrowSkin.scaleX = rightArrowSkin.scaleY = this._scale;
+			callout.rightArrowSkin = rightArrowSkin;
+			callout.rightArrowGap = -1 * this._scale;
 		}
 
 		protected function root_addedToStageHandler(event:Event):void
