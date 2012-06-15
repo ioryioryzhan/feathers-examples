@@ -8,6 +8,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.CalloutPopUpContentManager;
+	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.VerticalCenteredPopUpContentManager;
 	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
@@ -159,6 +160,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Slider, sliderInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
+			this.setInitializerForClass(List, listInitializer);
 			this.setInitializerForClass(DefaultItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
@@ -327,6 +329,36 @@ package org.josht.starling.foxhole.themes
 			toggleSwitch.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 		}
+
+		protected function listInitializer(list:List):void
+		{
+			if(list.nameList.contains("foxhole-pickerlist-list"))
+			{
+				const layout:VerticalLayout = new VerticalLayout();
+				layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_BOTTOM;
+				layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
+				layout.useVirtualLayout = true;
+				layout.gap = 0;
+				layout.paddingTop = layout.paddingRight = layout.paddingBottom =
+					layout.paddingLeft = 0;
+				list.layout = layout;
+
+				if(PhysicalCapabilities.isTablet(Starling.current.nativeStage))
+				{
+					list.minWidth = 264 * this._scale;
+					list.maxHeight = 352 * this._scale;
+				}
+				else
+				{
+					const backgroundSkin:Scale9Image = new Scale9Image(CALLOUT_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+					backgroundSkin.width = 20 * this._scale;
+					backgroundSkin.height = 20 * this._scale;
+					list.backgroundSkin = backgroundSkin;
+					list.paddingTop = list.paddingRight = list.paddingBottom =
+						list.paddingLeft = 8 * this._scale;
+				}
+			}
+		}
 		
 		protected function itemRendererInitializer(renderer:DefaultItemRenderer):void
 		{
@@ -358,31 +390,12 @@ package org.josht.starling.foxhole.themes
 		
 		protected function pickerListInitializer(list:PickerList):void
 		{
-			const layout:VerticalLayout = new VerticalLayout();
-			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_BOTTOM;
-			layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
-			layout.useVirtualLayout = true;
-			layout.gap = 0;
-			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
-				layout.paddingLeft = 0;
-			list.setListProperty("layout", layout);
-
 			if(PhysicalCapabilities.isTablet(Starling.current.nativeStage))
 			{
 				list.popUpContentManager = new CalloutPopUpContentManager();
-				list.setListProperty("maxHeight", 352 * this._scale);
 			}
 			else
 			{
-				const backgroundSkin:Scale9Image = new Scale9Image(CALLOUT_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
-				backgroundSkin.width = 20 * this._scale;
-				backgroundSkin.height = 20 * this._scale;
-				list.setListProperty("backgroundSkin", backgroundSkin);
-				list.setListProperty("paddingTop", 8 * this._scale);
-				list.setListProperty("paddingRight", 8 * this._scale);
-				list.setListProperty("paddingBottom", 8 * this._scale);
-				list.setListProperty("paddingLeft", 8 * this._scale);
-
 				const centerStage:VerticalCenteredPopUpContentManager = new VerticalCenteredPopUpContentManager();
 				centerStage.marginTop = centerStage.marginRight = centerStage.marginBottom =
 					centerStage.marginLeft = 16 * this._scale;
