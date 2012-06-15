@@ -33,10 +33,10 @@ package org.josht.starling.foxhole.displayObjects.screens
 		private var _rightButton:Button;
 		private var _bottomButton:Button;
 
-		private var _minWidth:Number;
-		private var _minHeight:Number;
-		private var _maxWidth:Number;
-		private var _maxHeight:Number;
+		private var _minDisplayObjectWidth:Number;
+		private var _minDisplayObjectHeight:Number;
+		private var _maxDisplayObjectWidth:Number;
+		private var _maxDisplayObjectHeight:Number;
 		private var _startX:Number;
 		private var _startY:Number;
 		private var _startWidth:Number;
@@ -52,8 +52,8 @@ package org.josht.starling.foxhole.displayObjects.screens
 
 			const texture:Texture = Texture.fromBitmap(new SCALE_9_TEXTURE(), false);
 			this._image = new Scale9Image(texture, new Rectangle(20, 20, 20, 20), this.dpiScale);
-			this._minWidth = 40;
-			this._minHeight = 40;
+			this._minDisplayObjectWidth = 40;
+			this._minDisplayObjectHeight = 40;
 			this.addChild(this._image);
 
 			this._rightButton = new Button();
@@ -84,11 +84,11 @@ package org.josht.starling.foxhole.displayObjects.screens
 			this._rightButton.validate();
 			this._bottomButton.validate();
 
-			this._maxWidth = this.actualWidth - this._rightButton.width - this._image.x;
-			this._maxHeight = this.actualHeight - this._bottomButton.height - this._image.y - this._header.height;
+			this._maxDisplayObjectWidth = this.actualWidth - this._rightButton.width - this._image.x;
+			this._maxDisplayObjectHeight = this.actualHeight - this._bottomButton.height - this._image.y - this._header.height;
 
-			this._image.width = Math.max(this._minWidth, Math.min(this._maxWidth, this._image.width));
-			this._image.height = Math.max(this._minHeight, Math.min(this._maxHeight, this._image.height));
+			this._image.width = Math.max(this._minDisplayObjectWidth, Math.min(this._maxDisplayObjectWidth, this._image.width));
+			this._image.height = Math.max(this._minDisplayObjectHeight, Math.min(this._maxDisplayObjectHeight, this._image.height));
 
 			this.layoutButtons();
 		}
@@ -118,7 +118,7 @@ package org.josht.starling.foxhole.displayObjects.screens
 			}
 			else if(touch.phase == TouchPhase.MOVED)
 			{
-				this._image.width = Math.min(this._maxWidth, Math.max(this._minWidth, this._startWidth + touch.globalX - this._startX));
+				this._image.width = Math.min(this._maxDisplayObjectWidth, Math.max(this._minDisplayObjectWidth, this._startWidth + touch.globalX - this._startX));
 				this.layoutButtons()
 			}
 			else if(touch.phase == TouchPhase.ENDED)
@@ -143,7 +143,7 @@ package org.josht.starling.foxhole.displayObjects.screens
 			}
 			else if(touch.phase == TouchPhase.MOVED)
 			{
-				this._image.height = Math.min(this._maxHeight, Math.max(this._minHeight, this._startHeight + touch.globalY - this._startY));
+				this._image.height = Math.min(this._maxDisplayObjectHeight, Math.max(this._minDisplayObjectHeight, this._startHeight + touch.globalY - this._startY));
 				this.layoutButtons()
 			}
 			else if(touch.phase == TouchPhase.ENDED)
