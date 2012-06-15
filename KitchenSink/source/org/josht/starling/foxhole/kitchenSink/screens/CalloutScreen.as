@@ -108,28 +108,28 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		{
 			const content:Label = new Label();
 			content.text = "Hello, I'm a Callout";
-			Callout.show(content, this._rightButton.getBounds(this.stage), Callout.DIRECTION_RIGHT);
+			Callout.show(content, this._rightButton, Callout.DIRECTION_RIGHT);
 		}
 
 		private function downButton_onRelease(button:Button):void
 		{
 			const content:Label = new Label();
 			content.text = "Hello, I'm a Callout";
-			Callout.show(content, this._downButton.getBounds(this.stage), Callout.DIRECTION_DOWN);
+			Callout.show(content, this._downButton, Callout.DIRECTION_DOWN);
 		}
 
 		private function upButton_onRelease(button:Button):void
 		{
 			const content:Label = new Label();
 			content.text = "Hello, I'm a Callout";
-			Callout.show(content, this._upButton.getBounds(this.stage), Callout.DIRECTION_UP);
+			Callout.show(content, this._upButton, Callout.DIRECTION_UP);
 		}
 
 		private function leftButton_onRelease(button:Button):void
 		{
 			const content:Label = new Label();
 			content.text = "Hello, I'm a Callout";
-			Callout.show(content, this._leftButton.getBounds(this.stage), Callout.DIRECTION_LEFT);
+			Callout.show(content, this._leftButton, Callout.DIRECTION_LEFT);
 		}
 	}
 }
