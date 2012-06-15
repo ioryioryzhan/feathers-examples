@@ -7,6 +7,8 @@ package
 	import flash.ui.ContextMenu;
 	import flash.utils.getDefinitionByName;
 
+	import org.josht.system.PhysicalCapabilities;
+
 	import starling.core.Starling;
 
 	[SWF(width="960",height="640",frameRate="60",backgroundColor="#1a1a1a")]
@@ -23,6 +25,10 @@ package
 				this.stage.align = StageAlign.TOP_LEFT;
 				this.stage.scaleMode = StageScaleMode.NO_SCALE;
 			}
+
+			PhysicalCapabilities.CUSTOM_SCREEN_WIDTH = 960;
+			PhysicalCapabilities.CUSTOM_SCREEN_HEIGHT = 640;
+			PhysicalCapabilities.CUSTOM_SCREEN_DPI = 326;
 			
 			this.loaderInfo.addEventListener(Event.COMPLETE, loaderInfo_completeHandler);
 		}
