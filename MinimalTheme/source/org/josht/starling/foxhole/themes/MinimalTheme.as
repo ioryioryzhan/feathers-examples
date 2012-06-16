@@ -8,17 +8,17 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.CalloutPopUpContentManager;
-	import org.josht.starling.foxhole.controls.List;
-	import org.josht.starling.foxhole.controls.VerticalCenteredPopUpContentManager;
 	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
+	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.TextInput;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
+	import org.josht.starling.foxhole.controls.VerticalCenteredPopUpContentManager;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
@@ -64,6 +64,8 @@ package org.josht.starling.foxhole.themes
 		protected static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
 		
 		protected static const THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("thumb-skin");
+
+		protected static const SCROLLBAR_THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("scrollbar-thumb-skin");
 		
 		protected static const INSET_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-skin");
 
@@ -95,7 +97,7 @@ package org.josht.starling.foxhole.themes
 		protected static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("pf_ronda_seven_0"), XML(new ATLAS_FONT_XML()));
 		
 		protected static const SCALE_9_GRID:Rectangle = new Rectangle(9, 9, 2, 2);
-
+		protected static const SCROLLBAR_THUMB_SCALE_9_GRID:Rectangle = new Rectangle(1, 1, 2, 2);
 		protected static const TAB_SCALE_9_GRID:Rectangle = new Rectangle(25, 25, 2, 2);
 
 		protected static const BACKGROUND_COLOR:uint = 0xf3f3f3;
@@ -190,6 +192,14 @@ package org.josht.starling.foxhole.themes
 			{
 				//no skin is defined here. we're taking care of these based on
 				//the slider's direction.
+			}
+			else if(button.nameList.contains("foxhole-simple-scroll-bar-thumb"))
+			{
+				const scrollBarThumbDefaultSkin:Scale9Image = new Scale9Image(SCROLLBAR_THUMB_SKIN_TEXTURE, SCROLLBAR_THUMB_SCALE_9_GRID, this._scale);
+				scrollBarThumbDefaultSkin.width = 8 * this._scale;
+				scrollBarThumbDefaultSkin.height = 8 * this._scale;
+				button.defaultSkin = scrollBarThumbDefaultSkin;
+				button.minTouchWidth = button.minTouchHeight = 12 * this._scale;
 			}
 			else if(button.nameList.contains("foxhole-toggle-switch-thumb"))
 			{
