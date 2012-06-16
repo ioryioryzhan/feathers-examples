@@ -16,6 +16,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
+	import org.josht.starling.foxhole.controls.SimpleScrollBar;
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.TextInput;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
@@ -79,6 +80,8 @@ package org.josht.starling.foxhole.themes
 
 		protected static const SLIDER_THUMB_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-disabled-skin");
 
+		protected static const SCROLL_BAR_THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("simple-scroll-bar-thumb-skin");
+
 		protected static const PROGRESS_BAR_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-background-skin");
 
 		protected static const PROGRESS_BAR_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-background-disabled-skin");
@@ -122,6 +125,7 @@ package org.josht.starling.foxhole.themes
 		protected static const SLIDER_FIRST:Number = 16;
 		protected static const SLIDER_SECOND:Number = 8;
 		protected static const CALLOUT_SCALE_9_GRID:Rectangle = new Rectangle(8, 24, 15, 33);
+		protected static const SCROLL_BAR_THUMB_SCALE_9_GRID:Rectangle = new Rectangle(4, 4, 4, 4);
 
 		protected static const BACKGROUND_COLOR:uint = 0x13171a;
 		protected static const PRIMARY_TEXT_COLOR:uint = 0xe5e5e5;
@@ -180,7 +184,8 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Label, labelInitializer);
 			this.setInitializerForClass(FPSDisplay, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
-			this.setInitializerForClass(Slider, sliderInitializer)
+			this.setInitializerForClass(Slider, sliderInitializer);
+			this.setInitializerForClass(SimpleScrollBar, scrollBarInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
 			this.setInitializerForClass(List, listInitializer);
 			this.setInitializerForClass(DefaultItemRenderer, itemRendererInitializer);
@@ -253,6 +258,13 @@ package org.josht.starling.foxhole.themes
 				button.gap = 12 * this._scale;
 				button.minWidth = 66 * this._scale;
 				button.minHeight = 66 * this._scale;
+			}
+			else if(button.nameList.contains("foxhole-simple-scroll-bar-thumb"))
+			{
+				const scrollBarDefaultSkin:Scale9Image = new Scale9Image(SCROLL_BAR_THUMB_SKIN_TEXTURE, SCROLL_BAR_THUMB_SCALE_9_GRID, this._scale);
+				scrollBarDefaultSkin.width = 8 * this._scale;
+				scrollBarDefaultSkin.height = 8 * this._scale;
+				button.defaultSkin = scrollBarDefaultSkin;
 			}
 			else if(button.nameList.contains("foxhole-slider-thumb"))
 			{
@@ -376,6 +388,12 @@ package org.josht.starling.foxhole.themes
 			}
 		}
 
+		protected function scrollBarInitializer(scrollBar:SimpleScrollBar):void
+		{
+			scrollBar.paddingTop = scrollBar.paddingRight = scrollBar.paddingBottom =
+				scrollBar.paddingLeft = 2 * this._scale;
+		}
+
 		protected function listInitializer(list:List):void
 		{
 			if(list.nameList.contains("foxhole-pickerlist-list"))
@@ -436,7 +454,7 @@ package org.josht.starling.foxhole.themes
 			renderer.defaultSelectedSkin = downSkin;
 
 			renderer.paddingTop = renderer.paddingBottom = 11 * this._scale;
-			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
+			renderer.paddingLeft = renderer.paddingRight = 20 * this._scale;
 			renderer.minWidth = 88 * this._scale;
 			renderer.minHeight = 88 * this._scale;
 
