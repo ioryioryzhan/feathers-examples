@@ -1,7 +1,7 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
-	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.Button;
+	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;

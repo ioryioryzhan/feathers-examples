@@ -1,7 +1,5 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
-	import flash.geom.Rectangle;
-
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Label;

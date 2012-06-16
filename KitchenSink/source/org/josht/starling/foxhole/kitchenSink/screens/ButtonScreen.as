@@ -1,18 +1,10 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
 	import org.josht.starling.display.Image;
-	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.Button;
-	import org.josht.starling.foxhole.controls.Label;
-	import org.josht.starling.foxhole.controls.PickerList;
+	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
-	import org.josht.starling.foxhole.controls.ScrollContainer;
-	import org.josht.starling.foxhole.controls.ToggleSwitch;
-	import org.josht.starling.foxhole.data.ListCollection;
 	import org.josht.starling.foxhole.kitchenSink.data.ButtonSettings;
-	import org.josht.starling.foxhole.layout.HorizontalLayout;
-	import org.josht.starling.foxhole.layout.VerticalLayout;
-	import org.josht.utils.math.roundToNearest;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
