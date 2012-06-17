@@ -41,22 +41,23 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		
 		override protected function initialize():void
 		{
-			var items:Vector.<String> = new <String>[];
+			var items:Array = [];
 			for(var i:int = 0; i < 150; i++)
 			{
-				var label:String = "Item " + (i + 1).toString();
-				items.push(label);
+				var item:Object = {text: "Item " + (i + 1).toString()};
+				items.push(item);
 			}
 			items.fixed = true;
 			
 			this._list = new List();
 			this._list.dataProvider = new ListCollection(items);
-			this._list.typicalItem = "Item 1000";
+			this._list.typicalItem = {text: "Item 1000"};
 			this._list.scrollerProperties =
 			{
 				hasElasticEdges: this.settings.hasElasticEdges
 			};
 			this._list.isSelectable = this.settings.isSelectable;
+			this._list.setItemRendererProperty("labelField", "text");
 			this.addChildAt(this._list, 0);
 
 			this._backButton = new Button();
