@@ -8,7 +8,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.display.Scale9Image;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
-	import org.josht.starling.foxhole.controls.popUpContentManagers.CalloutPopUpContentManager;
+	import org.josht.starling.foxhole.controls.popups.CalloutPopUpContentManager;
 	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
@@ -20,7 +20,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.TextInput;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
-	import org.josht.starling.foxhole.controls.popUpContentManagers.VerticalCenteredPopUpContentManager;
+	import org.josht.starling.foxhole.controls.popups.VerticalCenteredPopUpContentManager;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
