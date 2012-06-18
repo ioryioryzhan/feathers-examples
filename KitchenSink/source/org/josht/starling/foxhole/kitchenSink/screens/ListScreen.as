@@ -57,7 +57,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 				hasElasticEdges: this.settings.hasElasticEdges
 			};
 			this._list.isSelectable = this.settings.isSelectable;
-			this._list.setItemRendererProperty("labelField", "text");
+			this._list.itemRendererProperties.labelField = "text";
 			this.addChildAt(this._list, 0);
 
 			this._backButton = new Button();

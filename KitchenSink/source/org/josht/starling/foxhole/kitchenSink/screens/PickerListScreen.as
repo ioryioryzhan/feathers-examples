@@ -30,22 +30,32 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		
 		override protected function initialize():void
 		{
-			var items:Vector.<String> = new <String>[];
+			var items:Array = [];
 			for(var i:int = 0; i < 150; i++)
 			{
-				var label:String = "Item " + (i + 1).toString();
-				items.push(label);
+				var item:Object = {text: "Item " + (i + 1).toString()};
+				items.push(item);
 			}
 			items.fixed = true;
 
 			this._list = new PickerList();
 			this._list.dataProvider = new ListCollection(items);
 			this.addChildAt(this._list, 0);
-			this._list.typicalItem = "Item 1000";
-			//we need to do this separately. the one above applies to the picker
-			//list's button, while the one below applies to the picker list's
-			//pop up list
-			this._list.setListProperty("typicalItem", "Item 1000");
+
+			this._list.typicalItem = {text: "Item 1000"};
+			this._list.labelField = "text";
+
+			//notice that we're setting typicalItem on the list separately. we
+			//may want to have the list measure at a different width, so it
+			//might need a different typical item than the picker list's button.
+			this._list.listProperties.typicalItem = {text: "Item 1000"};
+
+			//notice that we're setting labelField on the item renderers
+			//separately. the default item renderer has a labelField property,
+			//but a custom item renderer may not even have a label, so
+			//PickerList cannot simply pass its labelField down to item
+			//renderers automatically
+			this._list.itemRendererProperties.labelField = "text";
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
