@@ -324,7 +324,7 @@ package org.josht.starling.foxhole.themes
 				sliderTrackDefaultSkin.width = 198 * this._scale;
 				sliderTrackDefaultSkin.height = 66 * this._scale;
 			}
-			slider.setMinimumTrackProperty("defaultSkin", sliderTrackDefaultSkin);
+			slider.minimumTrackProperties.defaultSkin = sliderTrackDefaultSkin;
 		}
 		
 		protected function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void

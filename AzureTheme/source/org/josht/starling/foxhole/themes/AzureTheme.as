@@ -341,9 +341,9 @@ package org.josht.starling.foxhole.themes
 				var sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
 				sliderMinimumTrackDefaultSkin.width *= this._scale;
 				sliderMinimumTrackDefaultSkin.height = 198 * this._scale;
-				slider.setMinimumTrackProperty("defaultSkin", sliderMinimumTrackDefaultSkin);
-				slider.setMinimumTrackProperty("downSkin", sliderMinimumTrackDownSkin);
-				slider.setMinimumTrackProperty("disabledSkin", sliderMinimumTrackDisabledSkin);
+				slider.minimumTrackProperties.defaultSkin = sliderMinimumTrackDefaultSkin;
+				slider.minimumTrackProperties.downSkin = sliderMinimumTrackDownSkin;
+				slider.minimumTrackProperties.disabledSkin = sliderMinimumTrackDisabledSkin;
 
 				var sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
 				sliderMaximumTrackDefaultSkin.width *= this._scale;
@@ -354,9 +354,9 @@ package org.josht.starling.foxhole.themes
 				var sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
 				sliderMaximumTrackDisabledSkin.width *= this._scale;
 				sliderMaximumTrackDisabledSkin.height = 198 * this._scale;
-				slider.setMaximumTrackProperty("defaultSkin", sliderMaximumTrackDefaultSkin);
-				slider.setMaximumTrackProperty("downSkin", sliderMaximumTrackDownSkin);
-				slider.setMaximumTrackProperty("disabledSkin", sliderMaximumTrackDisabledSkin);
+				slider.maximumTrackProperties.defaultSkin = sliderMaximumTrackDefaultSkin;
+				slider.maximumTrackProperties.downSkin = sliderMaximumTrackDownSkin;
+				slider.maximumTrackProperties.disabledSkin = sliderMaximumTrackDisabledSkin;
 			}
 			else //horizontal
 			{
@@ -369,9 +369,9 @@ package org.josht.starling.foxhole.themes
 				sliderMinimumTrackDisabledSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMinimumTrackDefaultSkin.width = 198 * this._scale;
 				sliderMinimumTrackDefaultSkin.height *= this._scale;
-				slider.setMinimumTrackProperty("defaultSkin", sliderMinimumTrackDefaultSkin);
-				slider.setMinimumTrackProperty("downSkin", sliderMinimumTrackDownSkin);
-				slider.setMinimumTrackProperty("disabledSkin", sliderMinimumTrackDisabledSkin);
+				slider.minimumTrackProperties.defaultSkin = sliderMinimumTrackDefaultSkin;
+				slider.minimumTrackProperties.downSkin = sliderMinimumTrackDownSkin;
+				slider.minimumTrackProperties.disabledSkin = sliderMinimumTrackDisabledSkin;
 
 				sliderMaximumTrackDefaultSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMaximumTrackDefaultSkin.width = 198 * this._scale;
@@ -382,9 +382,9 @@ package org.josht.starling.foxhole.themes
 				sliderMaximumTrackDisabledSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
 				sliderMaximumTrackDisabledSkin.width = 198 * this._scale;
 				sliderMaximumTrackDisabledSkin.height *= this._scale;
-				slider.setMaximumTrackProperty("defaultSkin", sliderMaximumTrackDefaultSkin);
-				slider.setMaximumTrackProperty("downSkin", sliderMaximumTrackDownSkin);
-				slider.setMaximumTrackProperty("disabledSkin", sliderMaximumTrackDisabledSkin);
+				slider.maximumTrackProperties.defaultSkin = sliderMaximumTrackDefaultSkin;
+				slider.maximumTrackProperties.downSkin = sliderMaximumTrackDownSkin;
+				slider.maximumTrackProperties.disabledSkin = sliderMaximumTrackDisabledSkin;
 			}
 		}
 
