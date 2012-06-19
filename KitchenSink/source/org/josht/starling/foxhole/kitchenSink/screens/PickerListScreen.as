@@ -55,7 +55,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			//but a custom item renderer may not even have a label, so
 			//PickerList cannot simply pass its labelField down to item
 			//renderers automatically
-			this._list.itemRendererProperties.labelField = "text";
+			this._list.listProperties.@itemRendererProperties.labelField = "text";
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
