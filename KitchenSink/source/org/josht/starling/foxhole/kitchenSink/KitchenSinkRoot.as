@@ -21,7 +21,7 @@ package org.josht.starling.foxhole.kitchenSink
 	import org.josht.starling.foxhole.kitchenSink.screens.SliderScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.SliderSettingsScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.TextInputScreen;
-	import org.josht.starling.foxhole.kitchenSink.screens.ToggleSwitchScreen;
+	import org.josht.starling.foxhole.kitchenSink.screens.ToggleScreen;
 	import org.josht.starling.foxhole.themes.IFoxholeTheme;
 	import org.josht.starling.foxhole.themes.MinimalTheme;
 	import org.josht.starling.foxhole.transitions.ScreenSlidingStackTransitionManager;
@@ -43,7 +43,7 @@ package org.josht.starling.foxhole.kitchenSink
 		private static const SLIDER:String = "slider";
 		private static const SLIDER_SETTINGS:String = "sliderSettings";
 		private static const TEXT_INPUT:String = "textInput";
-		private static const TOGGLE_SWITCH:String = "toggleSwitch";
+		private static const TOGGLES:String = "toggles";
 		
 		public function KitchenSinkRoot()
 		{
@@ -78,7 +78,7 @@ package org.josht.starling.foxhole.kitchenSink
 				onProgressBar: PROGRESS_BAR,
 				onSlider: SLIDER,
 				onTextInput: TEXT_INPUT,
-				onToggleSwitch: TOGGLE_SWITCH
+				onToggles: TOGGLES
 			},
 			{
 				//the screens can use the theme's original DPI to scale other
@@ -134,7 +134,7 @@ package org.josht.starling.foxhole.kitchenSink
 				originalDPI: originalThemeDPI
 			}));
 			
-			this._navigator.addScreen(TOGGLE_SWITCH, new ScreenNavigatorItem(ToggleSwitchScreen,
+			this._navigator.addScreen(TOGGLES, new ScreenNavigatorItem(ToggleScreen,
 			{
 				onBack: MAIN_MENU
 			},

@@ -17,7 +17,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			"Progress Bar",
 			"Slider",
 			"Text Input",
-			"Toggle Switch",
+			"Toggles",
 		];
 		
 		public function MainMenuScreen()
@@ -46,11 +46,11 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			return this._onSlider;
 		}
 		
-		private var _onToggleSwitch:Signal = new Signal(MainMenuScreen);
+		private var _onToggles:Signal = new Signal(MainMenuScreen);
 		
-		public function get onToggleSwitch():ISignal
+		public function get onToggles():ISignal
 		{
-			return this._onToggleSwitch;
+			return this._onToggles;
 		}
 		
 		private var _onList:Signal = new Signal(MainMenuScreen);
@@ -87,7 +87,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		
 		override protected function initialize():void
 		{
-			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onCallout, this._onList, this._onPickerList, this._onProgressBar, this._onSlider, this._onTextInput, this._onToggleSwitch];
+			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onCallout, this._onList, this._onPickerList, this._onProgressBar, this._onSlider, this._onTextInput, this._onToggles];
 			const buttonCount:int = LABELS.length;
 			for(var i:int = 0; i < buttonCount; i++)
 			{
