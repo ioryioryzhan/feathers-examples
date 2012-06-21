@@ -71,7 +71,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._backButton.onRelease.add(backButton_onRelease);
 
 			this._header = new ScreenHeader();
-			this._header.title = "Toggle Switch";
+			this._header.title = "Toggle Switch, Check, and Radio";
 			this.addChild(this._header);
 			this._header.leftItems = new <DisplayObject>
 			[
