@@ -7,6 +7,8 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.display.Scale9Image;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
+	import org.josht.starling.foxhole.controls.Check;
+	import org.josht.starling.foxhole.controls.Radio;
 	import org.josht.starling.foxhole.controls.popups.CalloutPopUpContentManager;
 	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
@@ -27,6 +29,7 @@ package org.josht.starling.foxhole.themes
 
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
+	import starling.display.Quad;
 	import starling.events.Event;
 	import starling.text.BitmapFont;
 	import starling.textures.Texture;
@@ -44,23 +47,16 @@ package org.josht.starling.foxhole.themes
 		protected static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
 
 		protected static const TOOLBAR_BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-up-skin");
-
 		protected static const TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-down-skin");
-
 		protected static const TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-selected-skin");
 
 		protected static const BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-up-skin");
-		
 		protected static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
-
 		protected static const BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-disabled-skin");
-		
 		protected static const BUTTON_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-selected-skin");
 
 		protected static const TAB_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-up-skin");
-
 		protected static const TAB_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-down-skin");
-
 		protected static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
 		
 		protected static const THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("thumb-skin");
@@ -68,28 +64,26 @@ package org.josht.starling.foxhole.themes
 		protected static const SCROLLBAR_THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("scrollbar-thumb-skin");
 		
 		protected static const INSET_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-skin");
-
 		protected static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-disabled-skin");
 		
 		protected static const DROP_DOWN_ARROW_TEXTURE:Texture = ATLAS.getTexture("drop-down-arrow");
 		
 		protected static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up");
-		
 		protected static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down");
-		
 		protected static const LIST_ITEM_SELECTED_TEXTURE:Texture = ATLAS.getTexture("list-item-selected");
 
 		protected static const HEADER_SKIN_TEXTURE:Texture = ATLAS.getTexture("header-skin");
 
 		protected static const CALLOUT_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-background-skin");
-
 		protected static const CALLOUT_TOP_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-top");
-
 		protected static const CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-bottom");
-
 		protected static const CALLOUT_LEFT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-left");
-
 		protected static const CALLOUT_RIGHT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-right");
+
+		protected static const CHECK_SELECTED_ICON_TEXTURE:Texture = ATLAS.getTexture("check-selected-icon");
+
+		protected static const RADIO_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-icon");
+		protected static const RADIO_SELECTED_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-selected-icon");
 		
 		[Embed(source="/../assets/fonts/pf_ronda_seven.fnt",mimeType="application/octet-stream")]
 		protected static const ATLAS_FONT_XML:Class;
@@ -99,6 +93,7 @@ package org.josht.starling.foxhole.themes
 		protected static const SCALE_9_GRID:Rectangle = new Rectangle(9, 9, 2, 2);
 		protected static const SCROLLBAR_THUMB_SCALE_9_GRID:Rectangle = new Rectangle(1, 1, 2, 2);
 		protected static const TAB_SCALE_9_GRID:Rectangle = new Rectangle(25, 25, 2, 2);
+		protected static const CHECK_SCALE_9_GRID:Rectangle = new Rectangle(13, 13, 2, 2);
 
 		protected static const BACKGROUND_COLOR:uint = 0xf3f3f3;
 		protected static const PRIMARY_TEXT_COLOR:uint = 0x666666;
@@ -162,6 +157,8 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Slider, sliderInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
+			this.setInitializerForClass(Check, checkInitializer);
+			this.setInitializerForClass(Radio, radioInitializer);
 			this.setInitializerForClass(List, listInitializer);
 			this.setInitializerForClass(DefaultItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
@@ -338,6 +335,44 @@ package org.josht.starling.foxhole.themes
 			
 			toggleSwitch.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+		}
+
+		protected function checkInitializer(check:Check):void
+		{
+			const defaultIcon:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			defaultIcon.width = 40 * this._scale;
+			defaultIcon.height = 40 * this._scale;
+			check.defaultIcon = defaultIcon;
+
+			const defaultSelectedIcon:Scale9Image = new Scale9Image(CHECK_SELECTED_ICON_TEXTURE, CHECK_SCALE_9_GRID, this._scale);
+			defaultSelectedIcon.width = 40 * this._scale;
+			defaultSelectedIcon.height = 40 * this._scale;
+			check.defaultSelectedIcon = defaultSelectedIcon;
+
+			check.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			check.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+
+			check.minTouchWidth = check.minTouchHeight = 88 * this._scale;
+			check.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
+			check.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
+		}
+
+		protected function radioInitializer(radio:Radio):void
+		{
+			const defaultIcon:Image = new Image(RADIO_ICON_TEXTURE);
+			defaultIcon.scaleX = defaultIcon.scaleY = this._scale;
+			radio.defaultIcon = defaultIcon;
+
+			const defaultSelectedIcon:Image = new Image(RADIO_SELECTED_ICON_TEXTURE);
+			defaultSelectedIcon.scaleX = defaultSelectedIcon.scaleY = this._scale;
+			radio.defaultSelectedIcon = defaultSelectedIcon;
+
+			radio.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			radio.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+
+			radio.minTouchWidth = radio.minTouchHeight = 88 * this._scale;
+			radio.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
+			radio.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
 		}
 
 		protected function listInitializer(list:List):void

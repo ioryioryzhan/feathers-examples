@@ -8,6 +8,8 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.display.Scale9Image;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
+	import org.josht.starling.foxhole.controls.Check;
+	import org.josht.starling.foxhole.controls.Radio;
 	import org.josht.starling.foxhole.controls.popups.CalloutPopUpContentManager;
 	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
@@ -45,59 +47,43 @@ package org.josht.starling.foxhole.themes
 		protected static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
 
 		protected static const BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-up-skin");
-
 		protected static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
-
 		protected static const BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-disabled-skin");
 
 		protected static const HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-up-skin");
-
 		protected static const HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-down-skin");
-
 		protected static const HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-disabled-skin");
 
 		protected static const HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-up-skin");
-
 		protected static const HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-down-skin");
-
 		protected static const HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-disabled-skin");
 
 		protected static const VSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-up-skin");
-
 		protected static const VSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-down-skin");
-
 		protected static const VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-disabled-skin");
 
 		protected static const VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-up-skin");
-
 		protected static const VSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-down-skin");
-
 		protected static const VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-disabled-skin");
 
 		protected static const SLIDER_THUMB_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-up-skin");
-
 		protected static const SLIDER_THUMB_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-down-skin");
-
 		protected static const SLIDER_THUMB_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-disabled-skin");
 
 		protected static const SCROLL_BAR_THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("simple-scroll-bar-thumb-skin");
 
 		protected static const PROGRESS_BAR_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-background-skin");
-
 		protected static const PROGRESS_BAR_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-background-disabled-skin");
 
 		protected static const PROGRESS_BAR_FILL_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-fill-skin");
-
 		protected static const PROGRESS_BAR_FILL_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-fill-disabled-skin");
 
 		protected static const INSET_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-skin");
-
 		protected static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-disabled-skin");
 
 		protected static const PICKER_ICON_TEXTURE:Texture = ATLAS.getTexture("picker-icon");
 
 		protected static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up-skin");
-
 		protected static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down-skin");
 
 		protected static const TOOLBAR_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-background-skin");
@@ -105,14 +91,23 @@ package org.josht.starling.foxhole.themes
 		protected static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
 
 		protected static const CALLOUT_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-background-skin");
-
 		protected static const CALLOUT_TOP_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-top-skin");
-
 		protected static const CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-bottom-skin");
-
 		protected static const CALLOUT_LEFT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-left-skin");
-
 		protected static const CALLOUT_RIGHT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-right-skin");
+
+		protected static const CHECK_UP_ICON_TEXTURE:Texture = ATLAS.getTexture("check-up-icon");
+		protected static const CHECK_DOWN_ICON_TEXTURE:Texture = ATLAS.getTexture("check-down-icon");
+		protected static const CHECK_DISABLED_ICON_TEXTURE:Texture = ATLAS.getTexture("check-disabled-icon");
+		protected static const CHECK_SELECTED_UP_ICON_TEXTURE:Texture = ATLAS.getTexture("check-selected-up-icon");
+		protected static const CHECK_SELECTED_DOWN_ICON_TEXTURE:Texture = ATLAS.getTexture("check-selected-down-icon");
+		protected static const CHECK_SELECTED_DISABLED_ICON_TEXTURE:Texture = ATLAS.getTexture("check-selected-disabled-icon");
+
+		protected static const RADIO_UP_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-up-icon");
+		protected static const RADIO_DOWN_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-down-icon");
+		protected static const RADIO_DISABLED_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-disabled-icon");
+		protected static const RADIO_SELECTED_UP_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-selected-up-icon");
+		protected static const RADIO_SELECTED_DISABLED_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-selected-disabled-icon");
 
 		[Embed(source="/../assets/fonts/lato30.fnt",mimeType="application/octet-stream")]
 		protected static const ATLAS_FONT_XML:Class;
@@ -186,6 +181,8 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Slider, sliderInitializer);
 			this.setInitializerForClass(SimpleScrollBar, scrollBarInitializer);
+			this.setInitializerForClass(Check, checkInitializer);
+			this.setInitializerForClass(Radio, radioInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
 			this.setInitializerForClass(List, listInitializer);
 			this.setInitializerForClass(DefaultItemRenderer, itemRendererInitializer);
@@ -422,6 +419,70 @@ package org.josht.starling.foxhole.themes
 						list.paddingLeft = 8 * this._scale;
 				}
 			}
+		}
+
+		protected function checkInitializer(check:Check):void
+		{
+			const defaultIcon:Image = new Image(CHECK_UP_ICON_TEXTURE);
+			defaultIcon.scaleX = defaultIcon.scaleY = this._scale;
+			check.defaultIcon = defaultIcon;
+
+			const downIcon:Image = new Image(CHECK_DOWN_ICON_TEXTURE);
+			downIcon.scaleX = downIcon.scaleY = this._scale;
+			check.downIcon = downIcon;
+
+			const selectedDownIcon:Image = new Image(CHECK_SELECTED_DOWN_ICON_TEXTURE);
+			selectedDownIcon.scaleX = selectedDownIcon.scaleY = this._scale;
+			check.selectedDownIcon = selectedDownIcon;
+
+			const disabledIcon:Image = new Image(CHECK_DISABLED_ICON_TEXTURE);
+			disabledIcon.scaleX = disabledIcon.scaleY = this._scale;
+			check.disabledIcon = disabledIcon;
+
+			const defaultSelectedIcon:Image = new Image(CHECK_SELECTED_UP_ICON_TEXTURE);
+			defaultSelectedIcon.scaleX = defaultSelectedIcon.scaleY = this._scale;
+			check.defaultSelectedIcon = defaultSelectedIcon;
+
+			const selectedDisabledIcon:Image = new Image(CHECK_SELECTED_DISABLED_ICON_TEXTURE);
+			selectedDisabledIcon.scaleX = selectedDisabledIcon.scaleY = this._scale;
+			check.selectedDisabledIcon = selectedDisabledIcon;
+
+			check.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			check.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+
+			check.minTouchWidth = check.minTouchHeight = 88 * this._scale;
+			check.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
+			check.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
+		}
+
+		protected function radioInitializer(radio:Radio):void
+		{
+			const defaultIcon:Image = new Image(RADIO_UP_ICON_TEXTURE);
+			defaultIcon.scaleX = defaultIcon.scaleY = this._scale;
+			radio.defaultIcon = defaultIcon;
+
+			const downIcon:Image = new Image(RADIO_DOWN_ICON_TEXTURE);
+			downIcon.scaleX = downIcon.scaleY = this._scale;
+			radio.downIcon = downIcon;
+
+			const disabledIcon:Image = new Image(RADIO_DISABLED_ICON_TEXTURE);
+			disabledIcon.scaleX = disabledIcon.scaleY = this._scale;
+			radio.disabledIcon = disabledIcon;
+
+			const defaultSelectedIcon:Image = new Image(RADIO_SELECTED_UP_ICON_TEXTURE);
+			defaultSelectedIcon.scaleX = defaultSelectedIcon.scaleY = this._scale;
+			radio.defaultSelectedIcon = defaultSelectedIcon;
+
+			const selectedDisabledIcon:Image = new Image(RADIO_SELECTED_DISABLED_ICON_TEXTURE);
+			selectedDisabledIcon.scaleX = selectedDisabledIcon.scaleY = this._scale;
+			radio.selectedDisabledIcon = selectedDisabledIcon;
+
+			radio.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			radio.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+
+			radio.minTouchWidth = radio.minTouchHeight = 88 * this._scale;
+			radio.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
+			radio.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
 		}
 
 		protected function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
