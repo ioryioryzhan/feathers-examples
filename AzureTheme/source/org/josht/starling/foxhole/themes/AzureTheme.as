@@ -262,6 +262,7 @@ package org.josht.starling.foxhole.themes
 				scrollBarDefaultSkin.width = 8 * this._scale;
 				scrollBarDefaultSkin.height = 8 * this._scale;
 				button.defaultSkin = scrollBarDefaultSkin;
+				button.minTouchWidth = button.minTouchHeight = 12 * this._scale;
 			}
 			else if(button.nameList.contains("foxhole-slider-thumb"))
 			{
