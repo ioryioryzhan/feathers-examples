@@ -8,28 +8,28 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
-	import org.josht.starling.foxhole.controls.Radio;
-	import org.josht.starling.foxhole.controls.popups.CalloutPopUpContentManager;
 	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
+	import org.josht.starling.foxhole.controls.Radio;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.TextInput;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
+	import org.josht.starling.foxhole.controls.popups.CalloutPopUpContentManager;
 	import org.josht.starling.foxhole.controls.popups.VerticalCenteredPopUpContentManager;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
+	import org.josht.starling.textures.Scale9Textures;
 	import org.josht.system.PhysicalCapabilities;
 	import org.josht.utils.math.roundToNearest;
 
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
-	import starling.display.Quad;
 	import starling.events.Event;
 	import starling.text.BitmapFont;
 	import starling.textures.Texture;
@@ -46,50 +46,6 @@ package org.josht.starling.foxhole.themes
 		
 		protected static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
 
-		protected static const TOOLBAR_BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-up-skin");
-		protected static const TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-down-skin");
-		protected static const TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-button-selected-skin");
-
-		protected static const BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-up-skin");
-		protected static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
-		protected static const BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-disabled-skin");
-		protected static const BUTTON_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-selected-skin");
-
-		protected static const TAB_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-up-skin");
-		protected static const TAB_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-down-skin");
-		protected static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
-		
-		protected static const THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("thumb-skin");
-
-		protected static const SCROLLBAR_THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("scrollbar-thumb-skin");
-		
-		protected static const INSET_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-skin");
-		protected static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-background-disabled-skin");
-		
-		protected static const DROP_DOWN_ARROW_TEXTURE:Texture = ATLAS.getTexture("drop-down-arrow");
-		
-		protected static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up");
-		protected static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down");
-		protected static const LIST_ITEM_SELECTED_TEXTURE:Texture = ATLAS.getTexture("list-item-selected");
-
-		protected static const HEADER_SKIN_TEXTURE:Texture = ATLAS.getTexture("header-skin");
-
-		protected static const CALLOUT_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-background-skin");
-		protected static const CALLOUT_TOP_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-top");
-		protected static const CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-bottom");
-		protected static const CALLOUT_LEFT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-left");
-		protected static const CALLOUT_RIGHT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-right");
-
-		protected static const CHECK_SELECTED_ICON_TEXTURE:Texture = ATLAS.getTexture("check-selected-icon");
-
-		protected static const RADIO_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-icon");
-		protected static const RADIO_SELECTED_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-selected-icon");
-		
-		[Embed(source="/../assets/fonts/pf_ronda_seven.fnt",mimeType="application/octet-stream")]
-		protected static const ATLAS_FONT_XML:Class;
-		
-		protected static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("pf_ronda_seven_0"), XML(new ATLAS_FONT_XML()));
-		
 		protected static const SCALE_9_GRID:Rectangle = new Rectangle(9, 9, 2, 2);
 		protected static const SCROLLBAR_THUMB_SCALE_9_GRID:Rectangle = new Rectangle(1, 1, 2, 2);
 		protected static const TAB_SCALE_9_GRID:Rectangle = new Rectangle(25, 25, 2, 2);
@@ -102,6 +58,50 @@ package org.josht.starling.foxhole.themes
 
 		protected static const ORIGINAL_DPI_IPHONE_RETINA:int = 326;
 		protected static const ORIGINAL_DPI_IPAD_RETINA:int = 264;
+
+		protected static const TOOLBAR_BUTTON_UP_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("toolbar-button-up-skin"), SCALE_9_GRID);
+		protected static const TOOLBAR_BUTTON_DOWN_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("toolbar-button-down-skin"), SCALE_9_GRID);
+		protected static const TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("toolbar-button-selected-skin"), SCALE_9_GRID);
+
+		protected static const BUTTON_UP_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-up-skin"), SCALE_9_GRID);
+		protected static const BUTTON_DOWN_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-down-skin"), SCALE_9_GRID);
+		protected static const BUTTON_DISABLED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-disabled-skin"), SCALE_9_GRID);
+		protected static const BUTTON_SELECTED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-selected-skin"), SCALE_9_GRID);
+
+		protected static const TAB_UP_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("tab-up-skin"), SCALE_9_GRID);
+		protected static const TAB_DOWN_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("tab-down-skin"), TAB_SCALE_9_GRID);
+		protected static const TAB_SELECTED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("tab-selected-skin"), TAB_SCALE_9_GRID);
+
+		protected static const THUMB_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("thumb-skin"), SCALE_9_GRID);
+
+		protected static const SCROLL_BAR_THUMB_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("scrollbar-thumb-skin"), SCROLLBAR_THUMB_SCALE_9_GRID);
+		
+		protected static const INSET_BACKGROUND_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("inset-background-skin"), SCALE_9_GRID);
+		protected static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("inset-background-disabled-skin"), SCALE_9_GRID);
+		
+		protected static const DROP_DOWN_ARROW_TEXTURE:Texture = ATLAS.getTexture("drop-down-arrow");
+		
+		protected static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up");
+		protected static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down");
+		protected static const LIST_ITEM_SELECTED_TEXTURE:Texture = ATLAS.getTexture("list-item-selected");
+
+		protected static const HEADER_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("header-skin"), SCALE_9_GRID);
+
+		protected static const POPUP_BACKGROUND_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("callout-background-skin"), SCALE_9_GRID);
+		protected static const CALLOUT_TOP_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-top");
+		protected static const CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-bottom");
+		protected static const CALLOUT_LEFT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-left");
+		protected static const CALLOUT_RIGHT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-right");
+
+		protected static const CHECK_SELECTED_ICON_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("check-selected-icon"), CHECK_SCALE_9_GRID);
+
+		protected static const RADIO_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-icon");
+		protected static const RADIO_SELECTED_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-selected-icon");
+		
+		[Embed(source="/../assets/fonts/pf_ronda_seven.fnt",mimeType="application/octet-stream")]
+		protected static const ATLAS_FONT_XML:Class;
+		
+		protected static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("pf_ronda_seven_0"), XML(new ATLAS_FONT_XML()));
 		
 		public function MinimalTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
@@ -180,7 +180,7 @@ package org.josht.starling.foxhole.themes
 			button.minTouchWidth = button.minTouchHeight = 88 * this._scale;
 			if(button.nameList.contains("foxhole-slider-thumb"))
 			{
-				const sliderThumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				const sliderThumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURES, this._scale);
 				sliderThumbDefaultSkin.width = 66 * this._scale;
 				sliderThumbDefaultSkin.height = 66 * this._scale;
 				button.defaultSkin = sliderThumbDefaultSkin;
@@ -192,7 +192,7 @@ package org.josht.starling.foxhole.themes
 			}
 			else if(button.nameList.contains("foxhole-simple-scroll-bar-thumb"))
 			{
-				const scrollBarThumbDefaultSkin:Scale9Image = new Scale9Image(SCROLLBAR_THUMB_SKIN_TEXTURE, SCROLLBAR_THUMB_SCALE_9_GRID, this._scale);
+				const scrollBarThumbDefaultSkin:Scale9Image = new Scale9Image(SCROLL_BAR_THUMB_SKIN_TEXTURES, this._scale);
 				scrollBarThumbDefaultSkin.width = 8 * this._scale;
 				scrollBarThumbDefaultSkin.height = 8 * this._scale;
 				button.defaultSkin = scrollBarThumbDefaultSkin;
@@ -200,24 +200,24 @@ package org.josht.starling.foxhole.themes
 			}
 			else if(button.nameList.contains("foxhole-toggle-switch-thumb"))
 			{
-				const toggleSwitchThumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				const toggleSwitchThumbDefaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURES, this._scale);
 				toggleSwitchThumbDefaultSkin.width = 66 * this._scale;
 				toggleSwitchThumbDefaultSkin.height = 66 * this._scale;
 				button.defaultSkin = toggleSwitchThumbDefaultSkin;
 			}
 			else if(button.nameList.contains("foxhole-tabbar-tab"))
 			{
-				const tabDefaultSkin:Scale9Image = new Scale9Image(TAB_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				const tabDefaultSkin:Scale9Image = new Scale9Image(TAB_UP_SKIN_TEXTURES, this._scale);
 				tabDefaultSkin.width = 88 * this._scale;
 				tabDefaultSkin.height = 88 * this._scale;
 				button.defaultSkin = tabDefaultSkin;
 
-				const tabDownSkin:Scale9Image = new Scale9Image(TAB_DOWN_SKIN_TEXTURE, TAB_SCALE_9_GRID, this._scale);
+				const tabDownSkin:Scale9Image = new Scale9Image(TAB_DOWN_SKIN_TEXTURES, this._scale);
 				tabDownSkin.width = 88 * this._scale;
 				tabDownSkin.height = 88 * this._scale;
 				button.downSkin = tabDownSkin;
 
-				const tabDefaultSelectedSkin:Scale9Image = new Scale9Image(TAB_SELECTED_SKIN_TEXTURE, TAB_SCALE_9_GRID, this._scale);
+				const tabDefaultSelectedSkin:Scale9Image = new Scale9Image(TAB_SELECTED_SKIN_TEXTURES, this._scale);
 				tabDefaultSelectedSkin.width = 88 * this._scale;
 				tabDefaultSelectedSkin.height = 88 * this._scale;
 				button.defaultSelectedSkin = tabDefaultSelectedSkin;
@@ -234,17 +234,17 @@ package org.josht.starling.foxhole.themes
 			}
 			else if(button.nameList.contains("foxhole-header-item"))
 			{
-				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURES, this._scale);
 				toolbarDefaultSkin.width = 60 * this._scale;
 				toolbarDefaultSkin.height = 60 * this._scale;
 				button.defaultSkin = toolbarDefaultSkin;
 
-				const toolbarDownSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_DOWN_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				const toolbarDownSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_DOWN_SKIN_TEXTURES, this._scale);
 				toolbarDownSkin.width = 60 * this._scale;
 				toolbarDownSkin.height = 60 * this._scale;
 				button.downSkin = toolbarDownSkin;
 
-				const toolbarDefaultSelectedSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				const toolbarDefaultSelectedSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURES, this._scale);
 				toolbarDefaultSelectedSkin.width = 60 * this._scale;
 				toolbarDefaultSelectedSkin.height = 60 * this._scale;
 				button.defaultSelectedSkin = toolbarDefaultSelectedSkin;
@@ -262,22 +262,22 @@ package org.josht.starling.foxhole.themes
 			}
 			else
 			{
-				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURES, this._scale);
 				defaultSkin.width = 66 * this._scale;
 				defaultSkin.height = 66 * this._scale;
 				button.defaultSkin = defaultSkin;
 
-				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURES, this._scale);
 				downSkin.width = 66 * this._scale;
 				downSkin.height = 66 * this._scale;
 				button.downSkin = downSkin;
 
-				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURES, this._scale);
 				disabledSkin.width = 66 * this._scale;
 				disabledSkin.height = 66 * this._scale;
 				button.disabledSkin = disabledSkin;
 
-				const defaultSelectedSkin:Scale9Image = new Scale9Image(BUTTON_SELECTED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+				const defaultSelectedSkin:Scale9Image = new Scale9Image(BUTTON_SELECTED_SKIN_TEXTURES, this._scale);
 				defaultSelectedSkin.width = 66 * this._scale;
 				defaultSelectedSkin.height = 66 * this._scale;
 				button.defaultSelectedSkin = defaultSelectedSkin;
@@ -310,7 +310,7 @@ package org.josht.starling.foxhole.themes
 		{
 			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_SINGLE;
 
-			const sliderTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			const sliderTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
 			if(slider.direction == Slider.DIRECTION_VERTICAL)
 			{
 				sliderTrackDefaultSkin.width = 66 * this._scale;
@@ -328,7 +328,7 @@ package org.josht.starling.foxhole.themes
 		{
 			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_SINGLE;
 
-			const trackSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			const trackSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
 			trackSkin.width = 148 * this._scale;
 			trackSkin.height = 66 * this._scale;
 			toggleSwitch.onTrackSkin = trackSkin;
@@ -339,12 +339,12 @@ package org.josht.starling.foxhole.themes
 
 		protected function checkInitializer(check:Check):void
 		{
-			const defaultIcon:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			const defaultIcon:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
 			defaultIcon.width = 40 * this._scale;
 			defaultIcon.height = 40 * this._scale;
 			check.defaultIcon = defaultIcon;
 
-			const defaultSelectedIcon:Scale9Image = new Scale9Image(CHECK_SELECTED_ICON_TEXTURE, CHECK_SCALE_9_GRID, this._scale);
+			const defaultSelectedIcon:Scale9Image = new Scale9Image(CHECK_SELECTED_ICON_TEXTURES, this._scale);
 			defaultSelectedIcon.width = 40 * this._scale;
 			defaultSelectedIcon.height = 40 * this._scale;
 			check.defaultSelectedIcon = defaultSelectedIcon;
@@ -395,7 +395,7 @@ package org.josht.starling.foxhole.themes
 				}
 				else
 				{
-					const backgroundSkin:Scale9Image = new Scale9Image(CALLOUT_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+					const backgroundSkin:Scale9Image = new Scale9Image(POPUP_BACKGROUND_SKIN_TEXTURES, this._scale);
 					backgroundSkin.width = 20 * this._scale;
 					backgroundSkin.height = 20 * this._scale;
 					list.backgroundSkin = backgroundSkin;
@@ -454,7 +454,7 @@ package org.josht.starling.foxhole.themes
 			header.minHeight = 88 * this._scale;
 			header.paddingTop = header.paddingRight = header.paddingBottom =
 				header.paddingLeft = 14 * this._scale;
-			const backgroundSkin:Scale9Image = new Scale9Image(HEADER_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			const backgroundSkin:Scale9Image = new Scale9Image(HEADER_SKIN_TEXTURES, this._scale);
 			backgroundSkin.width = 88 * this._scale;
 			backgroundSkin.height = 88 * this._scale;
 			header.backgroundSkin = backgroundSkin;
@@ -474,12 +474,12 @@ package org.josht.starling.foxhole.themes
 				color: INSET_TEXT_COLOR
 			};
 
-			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
 			backgroundSkin.width = 264 * this._scale;
 			backgroundSkin.height = 88 * this._scale;
 			input.backgroundSkin = backgroundSkin;
 
-			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURES, this._scale);
 			backgroundDisabledSkin.width = 264 * this._scale;
 			backgroundDisabledSkin.height = 88 * this._scale;
 			input.backgroundDisabledSkin = backgroundDisabledSkin;
@@ -487,22 +487,22 @@ package org.josht.starling.foxhole.themes
 
 		protected function progressBarInitializer(progress:ProgressBar):void
 		{
-			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
 			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 22) * this._scale;
 			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 22 : 264) * this._scale;
 			progress.backgroundSkin = backgroundSkin;
 
-			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURES, this._scale);
 			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 22) * this._scale;
 			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 22 : 264) * this._scale;
 			progress.backgroundDisabledSkin = backgroundDisabledSkin;
 
-			const fillSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			const fillSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURES, this._scale);
 			fillSkin.width = 12 * this._scale;
 			fillSkin.height = 12 * this._scale;
 			progress.fillSkin = fillSkin;
 
-			const fillDisabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			const fillDisabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURES, this._scale);
 			fillDisabledSkin.width = 12 * this._scale;
 			fillDisabledSkin.height = 12 * this._scale;
 			progress.fillDisabledSkin = fillDisabledSkin;
@@ -514,7 +514,7 @@ package org.josht.starling.foxhole.themes
 			callout.minHeight = 20 * this._scale;
 			callout.paddingTop = callout.paddingRight = callout.paddingBottom =
 				callout.paddingLeft = 8 * this._scale;
-			const backgroundSkin:Scale9Image = new Scale9Image(CALLOUT_BACKGROUND_SKIN_TEXTURE, SCALE_9_GRID, this._scale);
+			const backgroundSkin:Scale9Image = new Scale9Image(POPUP_BACKGROUND_SKIN_TEXTURES, this._scale);
 			backgroundSkin.width = 20 * this._scale;
 			backgroundSkin.height = 20 * this._scale;
 			callout.backgroundSkin = backgroundSkin;
