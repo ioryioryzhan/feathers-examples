@@ -7,7 +7,6 @@ package org.josht.starling.foxhole.displayObjects
 	import org.josht.starling.foxhole.controls.ScreenNavigator;
 	import org.josht.starling.foxhole.controls.ScreenNavigatorItem;
 	import org.josht.starling.foxhole.controls.TabBar;
-	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.data.ListCollection;
 	import org.josht.starling.foxhole.displayObjects.screens.Scale3ImageScreen;
 	import org.josht.starling.foxhole.displayObjects.screens.Scale9ImageScreen;

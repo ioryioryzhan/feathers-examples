@@ -7,6 +7,7 @@ package org.josht.starling.foxhole.displayObjects.screens
 	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
+	import org.josht.starling.textures.Scale9Textures;
 
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
@@ -51,7 +52,8 @@ package org.josht.starling.foxhole.displayObjects.screens
 			this.addChild(this._header);
 
 			const texture:Texture = Texture.fromBitmap(new SCALE_9_TEXTURE(), false);
-			this._image = new Scale9Image(texture, new Rectangle(20, 20, 20, 20), this.dpiScale);
+			const textures:Scale9Textures = new Scale9Textures(texture, new Rectangle(20, 20, 20, 20));
+			this._image = new Scale9Image(textures, this.dpiScale);
 			this._minDisplayObjectWidth = 40;
 			this._minDisplayObjectHeight = 40;
 			this.addChild(this._image);
