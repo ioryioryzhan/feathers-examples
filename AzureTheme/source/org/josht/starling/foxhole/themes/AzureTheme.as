@@ -9,23 +9,25 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
-	import org.josht.starling.foxhole.controls.Radio;
-	import org.josht.starling.foxhole.controls.popups.CalloutPopUpContentManager;
 	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
+	import org.josht.starling.foxhole.controls.Radio;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.SimpleScrollBar;
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.TextInput;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
+	import org.josht.starling.foxhole.controls.popups.CalloutPopUpContentManager;
 	import org.josht.starling.foxhole.controls.popups.VerticalCenteredPopUpContentManager;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
+	import org.josht.starling.textures.Scale3Textures;
+	import org.josht.starling.textures.Scale9Textures;
 	import org.josht.system.PhysicalCapabilities;
 
 	import starling.core.Starling;
@@ -46,40 +48,54 @@ package org.josht.starling.foxhole.themes
 
 		protected static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
 
-		protected static const BUTTON_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-up-skin");
-		protected static const BUTTON_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-down-skin");
-		protected static const BUTTON_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("button-disabled-skin");
+		protected static const PROGRESS_BAR_SCALE_3_FIRST_REGION:Number = 12;
+		protected static const PROGRESS_BAR_SCALE_3_SECOND_REGION:Number = 12;
+		protected static const BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 15, 49);
+		protected static const SLIDER_FIRST:Number = 16;
+		protected static const SLIDER_SECOND:Number = 8;
+		protected static const CALLOUT_SCALE_9_GRID:Rectangle = new Rectangle(8, 24, 15, 33);
+		protected static const SCROLL_BAR_THUMB_SCALE_9_GRID:Rectangle = new Rectangle(4, 4, 4, 4);
 
-		protected static const HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-up-skin");
-		protected static const HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-down-skin");
-		protected static const HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-minimum-track-disabled-skin");
+		protected static const BACKGROUND_COLOR:uint = 0x13171a;
+		protected static const PRIMARY_TEXT_COLOR:uint = 0xe5e5e5;
+		protected static const SELECTED_TEXT_COLOR:uint = 0xffffff;
 
-		protected static const HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-up-skin");
-		protected static const HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-down-skin");
-		protected static const HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("hslider-maximum-track-disabled-skin");
+		protected static const ORIGINAL_DPI_IPHONE_RETINA:int = 326;
+		protected static const ORIGINAL_DPI_IPAD_RETINA:int = 264;
 
-		protected static const VSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-up-skin");
-		protected static const VSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-down-skin");
-		protected static const VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-minimum-track-disabled-skin");
+		protected static const BUTTON_UP_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-up-skin"), BUTTON_SCALE_9_GRID);
+		protected static const BUTTON_DOWN_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-down-skin"), BUTTON_SCALE_9_GRID);
+		protected static const BUTTON_DISABLED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-disabled-skin"), BUTTON_SCALE_9_GRID);
 
-		protected static const VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-up-skin");
-		protected static const VSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-down-skin");
-		protected static const VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("vslider-maximum-track-disabled-skin");
+		protected static const HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("hslider-minimum-track-up-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
+		protected static const HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("hslider-minimum-track-down-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
+		protected static const HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("hslider-minimum-track-disabled-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
+
+		protected static const HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("hslider-maximum-track-up-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
+		protected static const HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("hslider-maximum-track-down-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
+		protected static const HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("hslider-maximum-track-disabled-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
+
+		protected static const VSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("vslider-minimum-track-up-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
+		protected static const VSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("vslider-minimum-track-down-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
+		protected static const VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("vslider-minimum-track-disabled-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
+
+		protected static const VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("vslider-maximum-track-up-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
+		protected static const VSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("vslider-maximum-track-down-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
+		protected static const VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("vslider-maximum-track-disabled-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
 
 		protected static const SLIDER_THUMB_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-up-skin");
 		protected static const SLIDER_THUMB_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-down-skin");
 		protected static const SLIDER_THUMB_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-disabled-skin");
 
-		protected static const SCROLL_BAR_THUMB_SKIN_TEXTURE:Texture = ATLAS.getTexture("simple-scroll-bar-thumb-skin");
+		protected static const SCROLL_BAR_THUMB_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("simple-scroll-bar-thumb-skin"), SCROLL_BAR_THUMB_SCALE_9_GRID);
 
-		protected static const PROGRESS_BAR_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-background-skin");
-		protected static const PROGRESS_BAR_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-background-disabled-skin");
+		protected static const PROGRESS_BAR_BACKGROUND_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("progress-bar-background-skin"), PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, Scale3Textures.DIRECTION_HORIZONTAL);
+		protected static const PROGRESS_BAR_BACKGROUND_DISABLED_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("progress-bar-background-disabled-skin"), PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, Scale3Textures.DIRECTION_HORIZONTAL);
+		protected static const PROGRESS_BAR_FILL_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("progress-bar-fill-skin"), PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, Scale3Textures.DIRECTION_HORIZONTAL);
+		protected static const PROGRESS_BAR_FILL_DISABLED_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("progress-bar-fill-disabled-skin"), PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, Scale3Textures.DIRECTION_HORIZONTAL);
 
-		protected static const PROGRESS_BAR_FILL_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-fill-skin");
-		protected static const PROGRESS_BAR_FILL_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("progress-bar-fill-disabled-skin");
-
-		protected static const INSET_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-skin");
-		protected static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("inset-disabled-skin");
+		protected static const INSET_BACKGROUND_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("inset-skin"), BUTTON_SCALE_9_GRID);
+		protected static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("inset-disabled-skin"), BUTTON_SCALE_9_GRID);
 
 		protected static const PICKER_ICON_TEXTURE:Texture = ATLAS.getTexture("picker-icon");
 
@@ -90,7 +106,7 @@ package org.josht.starling.foxhole.themes
 
 		protected static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
 
-		protected static const CALLOUT_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-background-skin");
+		protected static const CALLOUT_BACKGROUND_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("callout-background-skin"), CALLOUT_SCALE_9_GRID);
 		protected static const CALLOUT_TOP_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-top-skin");
 		protected static const CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-bottom-skin");
 		protected static const CALLOUT_LEFT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-left-skin");
@@ -113,21 +129,6 @@ package org.josht.starling.foxhole.themes
 		protected static const ATLAS_FONT_XML:Class;
 
 		protected static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("lato30_0"), XML(new ATLAS_FONT_XML()));
-
-		protected static const PROGRESS_BAR_SCALE_3_FIRST_REGION:Number = 12;
-		protected static const PROGRESS_BAR_SCALE_3_SECOND_REGION:Number = 12;
-		protected static const BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(8, 8, 15, 49);
-		protected static const SLIDER_FIRST:Number = 16;
-		protected static const SLIDER_SECOND:Number = 8;
-		protected static const CALLOUT_SCALE_9_GRID:Rectangle = new Rectangle(8, 24, 15, 33);
-		protected static const SCROLL_BAR_THUMB_SCALE_9_GRID:Rectangle = new Rectangle(4, 4, 4, 4);
-
-		protected static const BACKGROUND_COLOR:uint = 0x13171a;
-		protected static const PRIMARY_TEXT_COLOR:uint = 0xe5e5e5;
-		protected static const SELECTED_TEXT_COLOR:uint = 0xffffff;
-
-		protected static const ORIGINAL_DPI_IPHONE_RETINA:int = 326;
-		protected static const ORIGINAL_DPI_IPAD_RETINA:int = 264;
 
 		public function AzureTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
@@ -229,17 +230,17 @@ package org.josht.starling.foxhole.themes
 			}
 			else if(button.nameList.contains("foxhole-header-item"))
 			{
-				const toolbarDefaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+				const toolbarDefaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURES, this._scale);
 				toolbarDefaultSkin.width = 60 * this._scale;
 				toolbarDefaultSkin.height = 60 * this._scale;
 				button.defaultSkin = toolbarDefaultSkin;
 
-				const toolbarDownSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+				const toolbarDownSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURES, this._scale);
 				toolbarDownSkin.width = 60 * this._scale;
 				toolbarDownSkin.height = 60 * this._scale;
 				button.downSkin = toolbarDownSkin;
 
-				const toolbarDisabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+				const toolbarDisabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURES, this._scale);
 				toolbarDisabledSkin.width = 60 * this._scale;
 				toolbarDisabledSkin.height = 60 * this._scale;
 				button.disabledSkin = toolbarDisabledSkin;
@@ -258,7 +259,7 @@ package org.josht.starling.foxhole.themes
 			}
 			else if(button.nameList.contains("foxhole-simple-scroll-bar-thumb"))
 			{
-				const scrollBarDefaultSkin:Scale9Image = new Scale9Image(SCROLL_BAR_THUMB_SKIN_TEXTURE, SCROLL_BAR_THUMB_SCALE_9_GRID, this._scale);
+				const scrollBarDefaultSkin:Scale9Image = new Scale9Image(SCROLL_BAR_THUMB_SKIN_TEXTURES, this._scale);
 				scrollBarDefaultSkin.width = 8 * this._scale;
 				scrollBarDefaultSkin.height = 8 * this._scale;
 				button.defaultSkin = scrollBarDefaultSkin;
@@ -285,17 +286,17 @@ package org.josht.starling.foxhole.themes
 			}
 			else
 			{
-				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURES, this._scale);
 				defaultSkin.width = 66 * this._scale;
 				defaultSkin.height = 66 * this._scale;
 				button.defaultSkin = defaultSkin;
 
-				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURES, this._scale);
 				downSkin.width = 66 * this._scale;
 				downSkin.height = 66 * this._scale;
 				button.downSkin = downSkin;
 
-				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURES, this._scale);
 				disabledSkin.width = 66 * this._scale;
 				disabledSkin.height = 66 * this._scale;
 				button.disabledSkin = disabledSkin;
@@ -330,26 +331,26 @@ package org.josht.starling.foxhole.themes
 			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_STRETCH;
 			if(slider.direction == Slider.DIRECTION_VERTICAL)
 			{
-				var sliderMinimumTrackDefaultSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
+				var sliderMinimumTrackDefaultSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURES, this._scale);
 				sliderMinimumTrackDefaultSkin.width *= this._scale;
 				sliderMinimumTrackDefaultSkin.height = 198 * this._scale;
-				var sliderMinimumTrackDownSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
+				var sliderMinimumTrackDownSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURES, this._scale);
 				sliderMinimumTrackDefaultSkin.width *= this._scale;
 				sliderMinimumTrackDefaultSkin.height = 198 * this._scale;
-				var sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
+				var sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURES, this._scale);
 				sliderMinimumTrackDefaultSkin.width *= this._scale;
 				sliderMinimumTrackDefaultSkin.height = 198 * this._scale;
 				slider.minimumTrackProperties.defaultSkin = sliderMinimumTrackDefaultSkin;
 				slider.minimumTrackProperties.downSkin = sliderMinimumTrackDownSkin;
 				slider.minimumTrackProperties.disabledSkin = sliderMinimumTrackDisabledSkin;
 
-				var sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
+				var sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURES, this._scale);
 				sliderMaximumTrackDefaultSkin.width *= this._scale;
 				sliderMaximumTrackDefaultSkin.height = 198 * this._scale;
-				var sliderMaximumTrackDownSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
+				var sliderMaximumTrackDownSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURES, this._scale);
 				sliderMaximumTrackDownSkin.width *= this._scale;
 				sliderMaximumTrackDownSkin.height = 198 * this._scale;
-				var sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_VERTICAL, this._scale);
+				var sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURES, this._scale);
 				sliderMaximumTrackDisabledSkin.width *= this._scale;
 				sliderMaximumTrackDisabledSkin.height = 198 * this._scale;
 				slider.maximumTrackProperties.defaultSkin = sliderMaximumTrackDefaultSkin;
@@ -358,26 +359,26 @@ package org.josht.starling.foxhole.themes
 			}
 			else //horizontal
 			{
-				sliderMinimumTrackDefaultSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMinimumTrackDefaultSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURES, this._scale);
 				sliderMinimumTrackDefaultSkin.width = 198 * this._scale;
 				sliderMinimumTrackDefaultSkin.height *= this._scale;
-				sliderMinimumTrackDownSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMinimumTrackDownSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURES, this._scale);
 				sliderMinimumTrackDefaultSkin.width = 198 * this._scale;
 				sliderMinimumTrackDefaultSkin.height *= this._scale;
-				sliderMinimumTrackDisabledSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMinimumTrackDisabledSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURES, this._scale);
 				sliderMinimumTrackDefaultSkin.width = 198 * this._scale;
 				sliderMinimumTrackDefaultSkin.height *= this._scale;
 				slider.minimumTrackProperties.defaultSkin = sliderMinimumTrackDefaultSkin;
 				slider.minimumTrackProperties.downSkin = sliderMinimumTrackDownSkin;
 				slider.minimumTrackProperties.disabledSkin = sliderMinimumTrackDisabledSkin;
 
-				sliderMaximumTrackDefaultSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMaximumTrackDefaultSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURES, this._scale);
 				sliderMaximumTrackDefaultSkin.width = 198 * this._scale;
 				sliderMaximumTrackDefaultSkin.height *= this._scale;
-				sliderMaximumTrackDownSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURE, 0, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMaximumTrackDownSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURES, this._scale);
 				sliderMaximumTrackDownSkin.width = 198 * this._scale;
 				sliderMaximumTrackDownSkin.height *= this._scale;
-				sliderMaximumTrackDisabledSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURE, SLIDER_FIRST, SLIDER_SECOND, Scale3Image.DIRECTION_HORIZONTAL, this._scale);
+				sliderMaximumTrackDisabledSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURES, this._scale);
 				sliderMaximumTrackDisabledSkin.width = 198 * this._scale;
 				sliderMaximumTrackDisabledSkin.height *= this._scale;
 				slider.maximumTrackProperties.defaultSkin = sliderMaximumTrackDefaultSkin;
@@ -412,7 +413,7 @@ package org.josht.starling.foxhole.themes
 				}
 				else
 				{
-					const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+					const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
 					backgroundSkin.width = 20 * this._scale;
 					backgroundSkin.height = 20 * this._scale;
 					list.backgroundSkin = backgroundSkin;
@@ -488,7 +489,7 @@ package org.josht.starling.foxhole.themes
 
 		protected function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
 		{
-			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
 			onSkin.width = 148 * this._scale;
 			onSkin.height = 66 * this._scale;
 			toggleSwitch.onTrackSkin = onSkin;
@@ -566,12 +567,12 @@ package org.josht.starling.foxhole.themes
 				color: 0xffffff
 			};
 
-			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
 			backgroundSkin.width = 264 * this._scale;
 			backgroundSkin.height = 88 * this._scale;
 			input.backgroundSkin = backgroundSkin;
 
-			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURE, BUTTON_SCALE_9_GRID, this._scale);
+			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURES, this._scale);
 			backgroundDisabledSkin.width = 264 * this._scale;
 			backgroundDisabledSkin.height = 88 * this._scale;
 			input.backgroundDisabledSkin = backgroundDisabledSkin;
@@ -579,22 +580,22 @@ package org.josht.starling.foxhole.themes
 
 		protected function progressBarInitializer(progress:ProgressBar):void
 		{
-			const backgroundSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_BACKGROUND_SKIN_TEXTURE, PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, progress.direction, this._scale);
+			const backgroundSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_BACKGROUND_SKIN_TEXTURES, this._scale);
 			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 24) * this._scale;
 			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 24 : 264) * this._scale;
 			progress.backgroundSkin = backgroundSkin;
 
-			const backgroundDisabledSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_BACKGROUND_DISABLED_SKIN_TEXTURE, PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, progress.direction, this._scale);
+			const backgroundDisabledSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_BACKGROUND_DISABLED_SKIN_TEXTURES, this._scale);
 			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 24) * this._scale;
 			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 24 : 264) * this._scale;
 			progress.backgroundDisabledSkin = backgroundDisabledSkin;
 
-			const fillSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_FILL_SKIN_TEXTURE, PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, progress.direction, this._scale);
+			const fillSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_FILL_SKIN_TEXTURES, this._scale);
 			fillSkin.width = 24 * this._scale;
 			fillSkin.height = 24 * this._scale;
 			progress.fillSkin = fillSkin;
 
-			const fillDisabledSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_FILL_DISABLED_SKIN_TEXTURE, PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, progress.direction, this._scale);
+			const fillDisabledSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_FILL_DISABLED_SKIN_TEXTURES, this._scale);
 			fillDisabledSkin.width = 24 * this._scale;
 			fillDisabledSkin.height = 24 * this._scale;
 			progress.fillDisabledSkin = fillDisabledSkin;
@@ -605,7 +606,7 @@ package org.josht.starling.foxhole.themes
 			callout.paddingTop = callout.paddingRight = callout.paddingBottom =
 				callout.paddingLeft = 16 * this._scale;
 
-			const backgroundSkin:Scale9Image = new Scale9Image(CALLOUT_BACKGROUND_SKIN_TEXTURE, CALLOUT_SCALE_9_GRID, this._scale);
+			const backgroundSkin:Scale9Image = new Scale9Image(CALLOUT_BACKGROUND_SKIN_TEXTURES, this._scale);
 			backgroundSkin.width = 48 * this._scale;
 			backgroundSkin.height = 48 * this._scale;
 			callout.backgroundSkin = backgroundSkin;
