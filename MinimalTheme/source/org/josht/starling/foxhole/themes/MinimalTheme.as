@@ -115,7 +115,8 @@ package org.josht.starling.foxhole.themes
 			{
 				root.addEventListener(Event.ADDED_TO_STAGE, root_addedToStageHandler);
 			}
-			this.initialize(scaleToDPI);
+			this._scaleToDPI = scaleToDPI;
+			this.initialize();
 		}
 
 		protected var _originalDPI:int;
@@ -124,13 +125,20 @@ package org.josht.starling.foxhole.themes
 		{
 			return this._originalDPI;
 		}
+
+		protected var _scaleToDPI:Boolean;
+
+		public function get scaleToDPI():Boolean
+		{
+			return this._scaleToDPI;
+		}
 		
 		protected var _scale:Number;
 		protected var _fontSize:int;
 		
-		protected function initialize(scaleToDPI:Boolean):void
+		protected function initialize():void
 		{
-			if(scaleToDPI)
+			if(this._scaleToDPI)
 			{
 				//special case for ipad. should be same pixel size as iphone
 				if(Capabilities.screenDPI % (ORIGINAL_DPI_IPAD_RETINA / 2) == 0)
