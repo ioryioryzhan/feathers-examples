@@ -52,6 +52,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 				Button.HORIZONTAL_ALIGN_CENTER,
 				Button.HORIZONTAL_ALIGN_RIGHT
 			]);
+			this._horizontalAlignPicker.listProperties.typicalItem = Button.HORIZONTAL_ALIGN_CENTER;
 			this._horizontalAlignPicker.selectedItem = this.settings.horizontalAlign;
 			this._horizontalAlignPicker.onChange.add(horizontalAlignPicker_onChange);
 
@@ -63,6 +64,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 				Button.VERTICAL_ALIGN_MIDDLE,
 				Button.VERTICAL_ALIGN_BOTTOM
 			]);
+			this._verticalAlignPicker.listProperties.typicalItem = Button.VERTICAL_ALIGN_BOTTOM;
 			this._verticalAlignPicker.selectedItem = this.settings.verticalAlign;
 			this._verticalAlignPicker.onChange.add(verticalAlignPicker_onChange);
 
@@ -81,6 +83,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 				Button.ICON_POSITION_LEFT,
 				Button.ICON_POSITION_LEFT_BASELINE
 			]);
+			this._iconPositionPicker.listProperties.typicalItem = Button.ICON_POSITION_RIGHT_BASELINE;
 			this._iconPositionPicker.selectedItem = this.settings.iconPosition;
 			this._iconPositionPicker.onChange.add(iconPositionPicker_onChange);
 

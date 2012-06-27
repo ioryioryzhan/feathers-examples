@@ -45,6 +45,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 				Slider.DIRECTION_HORIZONTAL,
 				Slider.DIRECTION_VERTICAL
 			]);
+			this._directionPicker.listProperties.typicalItem = Slider.DIRECTION_HORIZONTAL;
 			this._directionPicker.selectedItem = this.settings.direction;
 			this._directionPicker.onChange.add(directionPicker_onChange);
 
