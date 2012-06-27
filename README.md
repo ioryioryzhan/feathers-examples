@@ -33,8 +33,14 @@ This theme places a bold blue color over a dark background with light text.
 
 * [Source Code](https://github.com/joshtynjala/foxhole-starling-examples/tree/master/AzureTheme)
 
-## Minimal
+## Minimal Mobile
 
 This theme combines simple gray colors with a retro pixel aesthetic.
 
 * [Source Code](https://github.com/joshtynjala/foxhole-starling-examples/tree/master/MinimalTheme)
+
+## Aeon Desktop
+
+Based on the classic theme included with the Flash Pro components.
+
+* [Source Code](https://github.com/joshtynjala/foxhole-starling-examples/tree/master/AeonDesktopTheme)
