@@ -98,7 +98,7 @@ package org.josht.starling.foxhole.displayObjects
 			this._transitionManager.ease = Cubic.easeOut;
 		}
 
-		private function navigator_onChange(navigator:ScreenNavigator, activeScreen:DisplayObject):void
+		private function navigator_onChange(navigator:ScreenNavigator):void
 		{
 			const dataProvider:ListCollection = this._tabBar.dataProvider;
 			const itemCount:int = dataProvider.length;
