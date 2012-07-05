@@ -52,11 +52,8 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._list = new List();
 			this._list.dataProvider = new ListCollection(items);
 			this._list.typicalItem = {text: "Item 1000"};
-			this._list.scrollerProperties =
-			{
-				hasElasticEdges: this.settings.hasElasticEdges
-			};
 			this._list.isSelectable = this.settings.isSelectable;
+			this._list.scrollerProperties.hasElasticEdges = this.settings.hasElasticEdges;
 			this._list.itemRendererProperties.labelField = "text";
 			this.addChildAt(this._list, 0);
 
