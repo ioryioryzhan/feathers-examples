@@ -2,6 +2,13 @@
 
 A series of example applications built with [Foxhole for Starling](https://github.com/joshtynjala/foxhole-starling).
 
+## Hello World
+
+A very simple example that creates and skins a Button control.
+
+* [Web Demo](http://flashtoolbox.com/foxhole-starling/examples/hello-world/)
+* [Source Code](https://github.com/joshtynjala/foxhole-starling-examples/tree/master/HelloWorld)
+
 ## Kitchen Sink
 
 Demonstrates each of the UI controls in Foxhole, with live previews of many of the most-used properties.
