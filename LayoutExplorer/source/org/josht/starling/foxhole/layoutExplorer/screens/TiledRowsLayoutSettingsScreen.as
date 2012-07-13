@@ -27,6 +27,7 @@ package org.josht.starling.foxhole.layoutExplorer.screens
 		private var _backButton:Button;
 
 		private var _itemCountSlider:Slider;
+		private var _pagingPicker:PickerList;
 		private var _gapSlider:Slider;
 		private var _paddingTopSlider:Slider;
 		private var _paddingRightSlider:Slider;
@@ -53,6 +54,17 @@ package org.josht.starling.foxhole.layoutExplorer.screens
 			this._itemCountSlider.step = 1;
 			this._itemCountSlider.value = this.settings.itemCount;
 			this._itemCountSlider.onChange.add(itemCountSlider_onChange);
+
+			this._pagingPicker = new PickerList();
+			this._pagingPicker.typicalItem = TiledRowsLayout.PAGING_HORIZONTAL;
+			this._pagingPicker.dataProvider = new ListCollection(new <String>
+			[
+				TiledRowsLayout.PAGING_NONE,
+				TiledRowsLayout.PAGING_HORIZONTAL,
+				TiledRowsLayout.PAGING_VERTICAL
+			]);
+			this._pagingPicker.selectedItem = this.settings.paging;
+			this._pagingPicker.onChange.add(pagingPicker_onChange);
 
 			this._horizontalAlignPicker = new PickerList();
 			this._horizontalAlignPicker.typicalItem = TiledRowsLayout.HORIZONTAL_ALIGN_CENTER;
@@ -145,6 +157,7 @@ package org.josht.starling.foxhole.layoutExplorer.screens
 			this._list.dataProvider = new ListCollection(
 			[
 				{ label: "Item Count", accessory: this._itemCountSlider },
+				{ label: "Paging", accessory: this._pagingPicker },
 				{ label: "horizontalAlign", accessory: this._horizontalAlignPicker },
 				{ label: "verticalAlign", accessory: this._verticalAlignPicker },
 				{ label: "tileHorizontalAlign", accessory: this._tileHorizontalAlignPicker },
@@ -195,6 +208,11 @@ package org.josht.starling.foxhole.layoutExplorer.screens
 		private function itemCountSlider_onChange(slider:Slider):void
 		{
 			this.settings.itemCount = slider.value;
+		}
+
+		private function pagingPicker_onChange(picker:PickerList):void
+		{
+			this.settings.paging = picker.selectedItem as String;
 		}
 
 		private function horizontalAlignPicker_onChange(picker:PickerList):void

@@ -9,6 +9,7 @@ package org.josht.starling.foxhole.layoutExplorer.data
 		}
 
 		public var itemCount:int = 50;
+		public var paging:String = TiledColumnsLayout.PAGING_NONE;
 		public var horizontalAlign:String = TiledColumnsLayout.HORIZONTAL_ALIGN_LEFT;
 		public var verticalAlign:String = TiledColumnsLayout.VERTICAL_ALIGN_TOP;
 		public var tileHorizontalAlign:String = TiledColumnsLayout.TILE_HORIZONTAL_ALIGN_LEFT;

@@ -42,6 +42,7 @@ package org.josht.starling.foxhole.layoutExplorer.screens
 		override protected function initialize():void
 		{
 			const layout:TiledRowsLayout = new TiledRowsLayout();
+			layout.paging = this.settings.paging;
 			layout.gap = this.settings.gap;
 			layout.paddingTop = this.settings.paddingTop;
 			layout.paddingRight = this.settings.paddingRight;
