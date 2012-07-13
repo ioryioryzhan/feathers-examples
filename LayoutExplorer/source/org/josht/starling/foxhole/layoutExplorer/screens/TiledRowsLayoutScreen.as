@@ -55,6 +55,7 @@ package org.josht.starling.foxhole.layoutExplorer.screens
 
 			this._container = new ScrollContainer();
 			this._container.layout = layout;
+			this._container.scrollerProperties.snapToPages = this.settings.paging != TiledRowsLayout.PAGING_NONE;
 			this.addChild(this._container);
 			for(var i:int = 0; i < this.settings.itemCount; i++)
 			{
