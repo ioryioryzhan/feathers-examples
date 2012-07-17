@@ -9,7 +9,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
-	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
+	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
@@ -211,7 +211,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Scroller, scrollerInitializer);
 			this.setInitializerForClass(List, listInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
-			this.setInitializerForClass(DefaultItemRenderer, defaultItemRendererInitializer);
+			this.setInitializerForClass(DefaultListItemRenderer, defaultItemRendererInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(Callout, calloutInitializer);
 		}
@@ -479,7 +479,7 @@ package org.josht.starling.foxhole.themes
 			list.popUpContentManager = new DropDownPopUpContentManager();
 		}
 
-		protected function defaultItemRendererInitializer(renderer:DefaultItemRenderer):void
+		protected function defaultItemRendererInitializer(renderer:DefaultListItemRenderer):void
 		{
 			renderer.defaultSkin = new Image(ITEM_RENDERER_UP_SKIN_TEXTURE);
 			renderer.hoverSkin = new Image(ITEM_RENDERER_HOVER_SKIN_TEXTURE);

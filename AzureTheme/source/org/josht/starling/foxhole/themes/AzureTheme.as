@@ -9,7 +9,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
-	import org.josht.starling.foxhole.controls.DefaultItemRenderer;
+	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.List;
@@ -194,7 +194,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Radio, radioInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
 			this.setInitializerForClass(List, listInitializer);
-			this.setInitializerForClass(DefaultItemRenderer, itemRendererInitializer);
+			this.setInitializerForClass(DefaultListItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
@@ -508,7 +508,7 @@ package org.josht.starling.foxhole.themes
 			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 		}
 
-		protected function itemRendererInitializer(renderer:DefaultItemRenderer):void
+		protected function itemRendererInitializer(renderer:DefaultListItemRenderer):void
 		{
 			const defaultSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
 			defaultSkin.width = 88 * this._scale;
