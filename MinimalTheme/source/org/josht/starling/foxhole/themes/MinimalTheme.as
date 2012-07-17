@@ -475,12 +475,9 @@ package org.josht.starling.foxhole.themes
 			input.minHeight = 88 * this._scale;
 			input.paddingTop = input.paddingRight = input.paddingBottom =
 				input.paddingLeft = 22 * this._scale;
-			input.stageTextProperties =
-			{
-				fontFamily: "Helvetica",
-				fontSize: 36 * this._scale,
-				color: INSET_TEXT_COLOR
-			};
+			input.stageTextProperties.fontFamily = "Helvetica";
+			input.stageTextProperties.fontSize = 36 * this._scale;
+			input.stageTextProperties.color = INSET_TEXT_COLOR;
 
 			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
 			backgroundSkin.width = 264 * this._scale;
