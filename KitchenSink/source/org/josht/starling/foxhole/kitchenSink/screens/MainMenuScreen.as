@@ -12,6 +12,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		[
 			"Button",
 			"Callout",
+			"Grouped List",
 			"List",
 			"Picker List",
 			"Progress Bar",
@@ -52,6 +53,13 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		{
 			return this._onToggles;
 		}
+
+		private var _onGroupedList:Signal = new Signal(MainMenuScreen);
+
+		public function get onGroupedList():ISignal
+		{
+			return this._onGroupedList;
+		}
 		
 		private var _onList:Signal = new Signal(MainMenuScreen);
 		
@@ -87,7 +95,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		
 		override protected function initialize():void
 		{
-			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onCallout, this._onList, this._onPickerList, this._onProgressBar, this._onSlider, this._onTextInput, this._onToggles];
+			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onCallout, this._onGroupedList, this._onList, this._onPickerList, this._onProgressBar, this._onSlider, this._onTextInput, this._onToggles];
 			const buttonCount:int = LABELS.length;
 			for(var i:int = 0; i < buttonCount; i++)
 			{

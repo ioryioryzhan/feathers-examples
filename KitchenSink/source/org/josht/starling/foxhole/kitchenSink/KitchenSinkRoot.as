@@ -12,6 +12,7 @@ package org.josht.starling.foxhole.kitchenSink
 	import org.josht.starling.foxhole.kitchenSink.screens.ButtonScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ButtonSettingsScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.CalloutScreen;
+	import org.josht.starling.foxhole.kitchenSink.screens.GroupedListScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ListScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ListSettingsScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.MainMenuScreen;
@@ -34,6 +35,7 @@ package org.josht.starling.foxhole.kitchenSink
 		private static const BUTTON:String = "button";
 		private static const BUTTON_SETTINGS:String = "buttonSettings";
 		private static const CALLOUT:String = "callout";
+		private static const GROUPED_LIST:String = "groupedList";
 		private static const LIST:String = "list";
 		private static const LIST_SETTINGS:String = "listSettings";
 		private static const PICKER_LIST:String = "pickerList";
@@ -70,6 +72,7 @@ package org.josht.starling.foxhole.kitchenSink
 			{
 				onButton: BUTTON,
 				onCallout: CALLOUT,
+				onGroupedList: GROUPED_LIST,
 				onList: LIST,
 				onPickerList: PICKER_LIST,
 				onProgressBar: PROGRESS_BAR,
@@ -132,6 +135,14 @@ package org.josht.starling.foxhole.kitchenSink
 			}));
 			
 			this._navigator.addScreen(TOGGLES, new ScreenNavigatorItem(ToggleScreen,
+			{
+				onBack: MAIN_MENU
+			},
+			{
+				originalDPI: originalThemeDPI
+			}));
+
+			this._navigator.addScreen(GROUPED_LIST, new ScreenNavigatorItem(GroupedListScreen,
 			{
 				onBack: MAIN_MENU
 			},
