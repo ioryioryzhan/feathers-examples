@@ -193,7 +193,6 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Check, checkInitializer);
 			this.setInitializerForClass(Radio, radioInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
-			this.setInitializerForClass(List, listInitializer);
 			this.setInitializerForClass(DefaultListItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
@@ -401,36 +400,6 @@ package org.josht.starling.foxhole.themes
 				scrollBar.paddingLeft = 2 * this._scale;
 		}
 
-		protected function listInitializer(list:List):void
-		{
-			if(list.nameList.contains("foxhole-pickerlist-list"))
-			{
-				const layout:VerticalLayout = new VerticalLayout();
-				layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_BOTTOM;
-				layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
-				layout.useVirtualLayout = true;
-				layout.gap = 0;
-				layout.paddingTop = layout.paddingRight = layout.paddingBottom =
-					layout.paddingLeft = 0;
-				list.layout = layout;
-
-				if(PhysicalCapabilities.isTablet(Starling.current.nativeStage))
-				{
-					list.minWidth = 264 * this._scale;
-					list.maxHeight = 352 * this._scale;
-				}
-				else
-				{
-					const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
-					backgroundSkin.width = 20 * this._scale;
-					backgroundSkin.height = 20 * this._scale;
-					list.backgroundSkin = backgroundSkin;
-					list.paddingTop = list.paddingRight = list.paddingBottom =
-						list.paddingLeft = 8 * this._scale;
-				}
-			}
-		}
-
 		protected function checkInitializer(check:Check):void
 		{
 			const defaultIcon:Image = new Image(CHECK_UP_ICON_TEXTURE);
@@ -546,6 +515,30 @@ package org.josht.starling.foxhole.themes
 				centerStage.marginTop = centerStage.marginRight = centerStage.marginBottom =
 					centerStage.marginLeft = 16 * this._scale;
 				list.popUpContentManager = centerStage;
+			}
+
+			const layout:VerticalLayout = new VerticalLayout();
+			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_BOTTOM;
+			layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
+			layout.useVirtualLayout = true;
+			layout.gap = 0;
+			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
+				layout.paddingLeft = 0;
+			list.listProperties.layout = layout;
+
+			if(PhysicalCapabilities.isTablet(Starling.current.nativeStage))
+			{
+				list.listProperties.minWidth = 264 * this._scale;
+				list.listProperties.maxHeight = 352 * this._scale;
+			}
+			else
+			{
+				const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
+				backgroundSkin.width = 20 * this._scale;
+				backgroundSkin.height = 20 * this._scale;
+				list.listProperties.backgroundSkin = backgroundSkin;
+				list.listProperties.paddingTop = list.listProperties.paddingRight =
+					list.listProperties.paddingBottom = list.listProperties.paddingLeft = 8 * this._scale;
 			}
 		}
 

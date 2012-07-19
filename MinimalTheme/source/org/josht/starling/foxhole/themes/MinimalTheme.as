@@ -8,6 +8,9 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
+	import org.josht.starling.foxhole.controls.renderers.BaseDefaultItemRenderer;
+	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
+	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListItemRenderer;
 	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
@@ -167,8 +170,9 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
 			this.setInitializerForClass(Check, checkInitializer);
 			this.setInitializerForClass(Radio, radioInitializer);
-			this.setInitializerForClass(List, listInitializer);
 			this.setInitializerForClass(DefaultListItemRenderer, itemRendererInitializer);
+			this.setInitializerForClass(DefaultGroupedListItemRenderer, itemRendererInitializer);
+			this.setInitializerForClass(DefaultGroupedListHeaderOrFooterRenderer, headerOrFooterRendererInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
@@ -382,38 +386,8 @@ package org.josht.starling.foxhole.themes
 			radio.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			radio.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
 		}
-
-		protected function listInitializer(list:List):void
-		{
-			if(list.nameList.contains("foxhole-pickerlist-list"))
-			{
-				const layout:VerticalLayout = new VerticalLayout();
-				layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_BOTTOM;
-				layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
-				layout.useVirtualLayout = true;
-				layout.gap = 0;
-				layout.paddingTop = layout.paddingRight = layout.paddingBottom =
-					layout.paddingLeft = 0;
-				list.layout = layout;
-
-				if(PhysicalCapabilities.isTablet(Starling.current.nativeStage))
-				{
-					list.minWidth = 264 * this._scale;
-					list.maxHeight = 352 * this._scale;
-				}
-				else
-				{
-					const backgroundSkin:Scale9Image = new Scale9Image(POPUP_BACKGROUND_SKIN_TEXTURES, this._scale);
-					backgroundSkin.width = 20 * this._scale;
-					backgroundSkin.height = 20 * this._scale;
-					list.backgroundSkin = backgroundSkin;
-					list.paddingTop = list.paddingRight = list.paddingBottom =
-						list.paddingLeft = 8 * this._scale;
-				}
-			}
-		}
 		
-		protected function itemRendererInitializer(renderer:DefaultListItemRenderer):void
+		protected function itemRendererInitializer(renderer:BaseDefaultItemRenderer):void
 		{
 			const defaultSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
 			//no smoothing. it's a solid color and we'll be stretching it
@@ -440,6 +414,19 @@ package org.josht.starling.foxhole.themes
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			renderer.minWidth = renderer.minHeight = 88 * this._scale;
 		}
+
+		protected function headerOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
+		{
+			const backgroundSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
+			backgroundSkin.smoothing = TextureSmoothing.NONE;
+			backgroundSkin.width = 88 * this._scale;
+			backgroundSkin.height = 88 * this._scale;
+			renderer.backgroundSkin = backgroundSkin;
+
+			renderer.paddingTop = renderer.paddingBottom = 11 * this._scale;
+			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
+			renderer.minWidth = renderer.minHeight = 88 * this._scale;
+		}
 		
 		protected function pickerListInitializer(list:PickerList):void
 		{
@@ -453,6 +440,30 @@ package org.josht.starling.foxhole.themes
 				centerStage.marginTop = centerStage.marginRight = centerStage.marginBottom =
 					centerStage.marginLeft = 16 * this._scale;
 				list.popUpContentManager = centerStage;
+			}
+
+			const layout:VerticalLayout = new VerticalLayout();
+			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_BOTTOM;
+			layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
+			layout.useVirtualLayout = true;
+			layout.gap = 0;
+			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
+				layout.paddingLeft = 0;
+			list.listProperties.layout = layout;
+
+			if(PhysicalCapabilities.isTablet(Starling.current.nativeStage))
+			{
+				list.listProperties.minWidth = 10 * this._scale;
+				list.listProperties.maxHeight = 352 * this._scale;
+			}
+			else
+			{
+				const backgroundSkin:Scale9Image = new Scale9Image(POPUP_BACKGROUND_SKIN_TEXTURES, this._scale);
+				backgroundSkin.width = 20 * this._scale;
+				backgroundSkin.height = 20 * this._scale;
+				list.listProperties.backgroundSkin = backgroundSkin;
+				list.listProperties.paddingTop = list.listProperties.paddingRight =
+					list.listProperties.paddingBottom = list.listProperties.paddingLeft = 8 * this._scale;
 			}
 		}
 

@@ -463,20 +463,26 @@ package org.josht.starling.foxhole.themes
 
 		protected function listInitializer(list:List):void
 		{
+			if(list.nameList.contains("foxhole-pickerlist-list"))
+			{
+				return;
+			}
+
 			list.backgroundSkin = new Scale9Image(SIMPLE_BORDER_BACKGROUND_SKIN_TEXTURES);
 
 			list.paddingTop = list.paddingRight = list.paddingBottom =
 				list.paddingLeft = 1;
-
-			if(list.nameList.contains("foxhole-pickerlist-list"))
-			{
-				list.maxHeight = 110;
-			}
 		}
 
 		protected function pickerListInitializer(list:PickerList):void
 		{
 			list.popUpContentManager = new DropDownPopUpContentManager();
+			list.listProperties.maxHeight = 110;
+
+			list.listProperties.backgroundSkin = new Scale9Image(SIMPLE_BORDER_BACKGROUND_SKIN_TEXTURES);
+
+			list.listProperties.paddingTop = list.listProperties.paddingRight = list.listProperties.paddingBottom =
+				list.listProperties.paddingLeft = 1;
 		}
 
 		protected function defaultItemRendererInitializer(renderer:DefaultListItemRenderer):void
