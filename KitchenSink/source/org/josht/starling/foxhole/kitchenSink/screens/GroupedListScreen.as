@@ -23,7 +23,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private var _header:ScreenHeader;
 		private var _backButton:Button;
 		
-		private var _onBack:Signal = new Signal(ListScreen);
+		private var _onBack:Signal = new Signal(GroupedListScreen);
 		
 		public function get onBack():ISignal
 		{
@@ -35,7 +35,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			var groups:Array = [];
 			for(var i:int = 0; i < 5; i++)
 			{
-				var group:Object = { header: "Group " + (i + 1).toString() }
+				var group:Object = { header: "Group " + (i + 1).toString() };
 				var items:Array = [];
 				for(var j:int = 0; j < 10; j++)
 				{
