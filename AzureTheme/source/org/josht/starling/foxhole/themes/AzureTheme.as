@@ -9,10 +9,8 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
-	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
-	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.Radio;
@@ -23,6 +21,10 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.controls.popups.CalloutPopUpContentManager;
 	import org.josht.starling.foxhole.controls.popups.VerticalCenteredPopUpContentManager;
+	import org.josht.starling.foxhole.controls.renderers.BaseDefaultItemRenderer;
+	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
+	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListItemRenderer;
+	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
@@ -101,6 +103,8 @@ package org.josht.starling.foxhole.themes
 
 		protected static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up-skin");
 		protected static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down-skin");
+
+		protected static const GROUPED_LIST_HEADER_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("grouped-list-header-background-skin");
 
 		protected static const TOOLBAR_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-background-skin");
 
@@ -194,6 +198,8 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Radio, radioInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
 			this.setInitializerForClass(DefaultListItemRenderer, itemRendererInitializer);
+			this.setInitializerForClass(DefaultGroupedListItemRenderer, itemRendererInitializer);
+			this.setInitializerForClass(DefaultGroupedListHeaderOrFooterRenderer, headerOrFooterRendererInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
@@ -477,7 +483,7 @@ package org.josht.starling.foxhole.themes
 			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 		}
 
-		protected function itemRendererInitializer(renderer:DefaultListItemRenderer):void
+		protected function itemRendererInitializer(renderer:BaseDefaultItemRenderer):void
 		{
 			const defaultSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
 			defaultSkin.width = 88 * this._scale;
@@ -501,6 +507,18 @@ package org.josht.starling.foxhole.themes
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 
 			renderer.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+		}
+
+		protected function headerOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
+		{
+			const backgroundSkin:Image = new Image(GROUPED_LIST_HEADER_BACKGROUND_SKIN_TEXTURE);
+			backgroundSkin.width = 44 * this._scale;
+			backgroundSkin.height = 44 * this._scale;
+			renderer.backgroundSkin = backgroundSkin;
+
+			renderer.paddingTop = renderer.paddingBottom = 9 * this._scale;
+			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
+			renderer.minWidth = renderer.minHeight = 44 * this._scale;
 		}
 
 		protected function pickerListInitializer(list:PickerList):void

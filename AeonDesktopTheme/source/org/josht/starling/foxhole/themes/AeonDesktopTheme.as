@@ -9,6 +9,9 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
+	import org.josht.starling.foxhole.controls.renderers.BaseDefaultItemRenderer;
+	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
+	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListItemRenderer;
 	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
 	import org.josht.starling.foxhole.controls.Label;
 	import org.josht.starling.foxhole.controls.List;
@@ -212,6 +215,8 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(List, listInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(DefaultListItemRenderer, defaultItemRendererInitializer);
+			this.setInitializerForClass(DefaultGroupedListItemRenderer, defaultItemRendererInitializer);
+			this.setInitializerForClass(DefaultGroupedListHeaderOrFooterRenderer, defaultHeaderOrFooterRendererInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(Callout, calloutInitializer);
 		}
@@ -485,7 +490,7 @@ package org.josht.starling.foxhole.themes
 				list.listProperties.paddingLeft = 1;
 		}
 
-		protected function defaultItemRendererInitializer(renderer:DefaultListItemRenderer):void
+		protected function defaultItemRendererInitializer(renderer:BaseDefaultItemRenderer):void
 		{
 			renderer.defaultSkin = new Image(ITEM_RENDERER_UP_SKIN_TEXTURE);
 			renderer.hoverSkin = new Image(ITEM_RENDERER_HOVER_SKIN_TEXTURE);
@@ -500,6 +505,16 @@ package org.josht.starling.foxhole.themes
 			renderer.paddingRight = renderer.paddingLeft = 6;
 			renderer.gap = 2;
 			renderer.minWidth = renderer.minHeight = 22;
+		}
+
+		protected function defaultHeaderOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
+		{
+			renderer.backgroundSkin = new Scale9Image(HEADER_BACKGROUND_SKIN_TEXTURES);
+			renderer.backgroundSkin.height = 18;
+
+			renderer.paddingTop = renderer.paddingBottom = 2;
+			renderer.paddingRight = renderer.paddingLeft = 6;
+			renderer.minWidth = renderer.minHeight = 18;
 		}
 
 		protected function calloutInitializer(callout:Callout):void
