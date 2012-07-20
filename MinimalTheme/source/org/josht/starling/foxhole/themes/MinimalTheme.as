@@ -417,15 +417,15 @@ package org.josht.starling.foxhole.themes
 
 		protected function headerOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
 		{
-			const backgroundSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
+			const backgroundSkin:Image = new Image(LIST_ITEM_DOWN_TEXTURE);
 			backgroundSkin.smoothing = TextureSmoothing.NONE;
-			backgroundSkin.width = 88 * this._scale;
-			backgroundSkin.height = 88 * this._scale;
+			backgroundSkin.width = 44 * this._scale;
+			backgroundSkin.height = 44 * this._scale;
 			renderer.backgroundSkin = backgroundSkin;
 
-			renderer.paddingTop = renderer.paddingBottom = 11 * this._scale;
+			renderer.paddingTop = renderer.paddingBottom = 9 * this._scale;
 			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
-			renderer.minWidth = renderer.minHeight = 88 * this._scale;
+			renderer.minWidth = renderer.minHeight = 44 * this._scale;
 		}
 		
 		protected function pickerListInitializer(list:PickerList):void
