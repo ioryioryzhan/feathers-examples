@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:62d9f9a9bac488c70e185add5e4fa440$ -->
+<!-- $TexturePacker:SmartUpdate:01ab18a80abf6a59b0dcb2dc788ef13d$ -->
 <TextureAtlas imagePath="minimal.png">
     <SubTexture name="button-disabled-skin" x="399" y="3" width="16" height="16"/>
     <SubTexture name="button-down-skin" x="379" y="3" width="16" height="16"/>

@@ -8,13 +8,8 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
-	import org.josht.starling.foxhole.controls.renderers.BaseDefaultItemRenderer;
-	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
-	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListItemRenderer;
-	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
-	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.Radio;
@@ -24,6 +19,10 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.controls.popups.CalloutPopUpContentManager;
 	import org.josht.starling.foxhole.controls.popups.VerticalCenteredPopUpContentManager;
+	import org.josht.starling.foxhole.controls.renderers.BaseDefaultItemRenderer;
+	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
+	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListItemRenderer;
+	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
@@ -423,7 +422,7 @@ package org.josht.starling.foxhole.themes
 			backgroundSkin.height = 44 * this._scale;
 			renderer.backgroundSkin = backgroundSkin;
 
-			renderer.paddingTop = renderer.paddingBottom = 9 * this._scale;
+			renderer.paddingTop = renderer.paddingBottom = 6 * this._scale;
 			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
 			renderer.minWidth = renderer.minHeight = 44 * this._scale;
 		}
