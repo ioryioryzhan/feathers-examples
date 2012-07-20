@@ -55,6 +55,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._list.isSelectable = this.settings.isSelectable;
 			this._list.scrollerProperties.hasElasticEdges = this.settings.hasElasticEdges;
 			this._list.itemRendererProperties.labelField = "text";
+			this._list.onChange.add(list_onChange);
 			this.addChildAt(this._list, 0);
 
 			this._backButton = new Button();
@@ -104,6 +105,11 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private function settingsButton_onRelease(button:Button):void
 		{
 			this._onSettings.dispatch(this);
+		}
+
+		private function list_onChange(list:List):void
+		{
+			trace("List onChange:", this._list.selectedIndex);
 		}
 	}
 }
