@@ -25,6 +25,9 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
+	import org.josht.starling.foxhole.skins.ImageStateValueManager;
+	import org.josht.starling.foxhole.skins.Scale9ImageStateValueManager;
+	import org.josht.starling.foxhole.skins.StateValueManager;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
 	import org.josht.starling.textures.Scale9Textures;
 	import org.josht.system.PhysicalCapabilities;
@@ -42,10 +45,10 @@ package org.josht.starling.foxhole.themes
 	{
 		[Embed(source="/../assets/images/minimal.png")]
 		protected static const ATLAS_IMAGE:Class;
-		
+
 		[Embed(source="/../assets/images/minimal.xml",mimeType="application/octet-stream")]
 		protected static const ATLAS_XML:Class;
-		
+
 		protected static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
 
 		protected static const SCALE_9_GRID:Rectangle = new Rectangle(9, 9, 2, 2);
@@ -77,12 +80,12 @@ package org.josht.starling.foxhole.themes
 		protected static const THUMB_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("thumb-skin"), SCALE_9_GRID);
 
 		protected static const SCROLL_BAR_THUMB_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("scrollbar-thumb-skin"), SCROLLBAR_THUMB_SCALE_9_GRID);
-		
+
 		protected static const INSET_BACKGROUND_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("inset-background-skin"), SCALE_9_GRID);
 		protected static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("inset-background-disabled-skin"), SCALE_9_GRID);
-		
+
 		protected static const DROP_DOWN_ARROW_TEXTURE:Texture = ATLAS.getTexture("drop-down-arrow");
-		
+
 		protected static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up");
 		protected static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down");
 		protected static const LIST_ITEM_SELECTED_TEXTURE:Texture = ATLAS.getTexture("list-item-selected");
@@ -99,12 +102,12 @@ package org.josht.starling.foxhole.themes
 
 		protected static const RADIO_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-icon");
 		protected static const RADIO_SELECTED_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-selected-icon");
-		
+
 		[Embed(source="/../assets/fonts/pf_ronda_seven.fnt",mimeType="application/octet-stream")]
 		protected static const ATLAS_FONT_XML:Class;
-		
+
 		protected static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("pf_ronda_seven_0"), XML(new ATLAS_FONT_XML()));
-		
+
 		public function MinimalTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
 			super(root);
@@ -134,10 +137,10 @@ package org.josht.starling.foxhole.themes
 		{
 			return this._scaleToDPI;
 		}
-		
+
 		protected var _scale:Number;
 		protected var _fontSize:int;
-		
+
 		protected function initialize():void
 		{
 			if(this._scaleToDPI)
@@ -157,11 +160,11 @@ package org.josht.starling.foxhole.themes
 				this._originalDPI = Capabilities.screenDPI;
 			}
 			this._scale = Capabilities.screenDPI / this._originalDPI;
-			
+
 			//since it's a pixel font, we want a multiple of the original size,
 			//which, in this case, is 8.
 			this._fontSize = Math.max(4, roundToNearest(24 * this._scale, 8));
-			
+
 			this.setInitializerForClass(Label, labelInitializer);
 			this.setInitializerForClass(FPSDisplay, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
@@ -178,14 +181,14 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(ProgressBar, progressBarInitializer);
 			this.setInitializerForClass(Callout, calloutInitializer);
 		}
-		
+
 		protected function labelInitializer(label:Label):void
 		{
 			label.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			//since it's a pixel font, we don't want to smooth it.
 			label.smoothing = TextureSmoothing.NONE;
 		}
-		
+
 		protected function buttonInitializer(button:Button):void
 		{
 			button.minTouchWidth = button.minTouchHeight = 88 * this._scale;
@@ -218,20 +221,17 @@ package org.josht.starling.foxhole.themes
 			}
 			else if(button.nameList.contains("foxhole-tabbar-tab"))
 			{
-				const tabDefaultSkin:Scale9Image = new Scale9Image(TAB_UP_SKIN_TEXTURES, this._scale);
-				tabDefaultSkin.width = 88 * this._scale;
-				tabDefaultSkin.height = 88 * this._scale;
-				button.defaultSkin = tabDefaultSkin;
-
-				const tabDownSkin:Scale9Image = new Scale9Image(TAB_DOWN_SKIN_TEXTURES, this._scale);
-				tabDownSkin.width = 88 * this._scale;
-				tabDownSkin.height = 88 * this._scale;
-				button.downSkin = tabDownSkin;
-
-				const tabDefaultSelectedSkin:Scale9Image = new Scale9Image(TAB_SELECTED_SKIN_TEXTURES, this._scale);
-				tabDefaultSelectedSkin.width = 88 * this._scale;
-				tabDefaultSelectedSkin.height = 88 * this._scale;
-				button.defaultSelectedSkin = tabDefaultSelectedSkin;
+				const tabSkinManager:Scale9ImageStateValueManager = new Scale9ImageStateValueManager();
+				tabSkinManager.defaultValue = TAB_UP_SKIN_TEXTURES;
+				tabSkinManager.defaultSelectedValue = TAB_SELECTED_SKIN_TEXTURES;
+				tabSkinManager.setValueForState(Button.STATE_DOWN, TAB_DOWN_SKIN_TEXTURES);
+				tabSkinManager.imageProperties =
+				{
+					width: 88 * this._scale,
+					height: 88 * this._scale,
+					textureScale: this._scale
+				};
+				button.stateToSkinFunction = tabSkinManager.updateValue;
 
 				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
@@ -245,22 +245,18 @@ package org.josht.starling.foxhole.themes
 			}
 			else if(button.nameList.contains("foxhole-header-item"))
 			{
-				const toolbarDefaultSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_UP_SKIN_TEXTURES, this._scale);
-				toolbarDefaultSkin.width = 60 * this._scale;
-				toolbarDefaultSkin.height = 60 * this._scale;
-				button.defaultSkin = toolbarDefaultSkin;
-
-				const toolbarDownSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_DOWN_SKIN_TEXTURES, this._scale);
-				toolbarDownSkin.width = 60 * this._scale;
-				toolbarDownSkin.height = 60 * this._scale;
-				button.downSkin = toolbarDownSkin;
-
-				const toolbarDefaultSelectedSkin:Scale9Image = new Scale9Image(TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURES, this._scale);
-				toolbarDefaultSelectedSkin.width = 60 * this._scale;
-				toolbarDefaultSelectedSkin.height = 60 * this._scale;
-				button.defaultSelectedSkin = toolbarDefaultSelectedSkin;
-
-				button.selectedDownSkin = toolbarDownSkin;
+				const headerButtonSkinManager:Scale9ImageStateValueManager = new Scale9ImageStateValueManager();
+				headerButtonSkinManager.defaultValue = TOOLBAR_BUTTON_UP_SKIN_TEXTURES;
+				headerButtonSkinManager.defaultSelectedValue = TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURES;
+				headerButtonSkinManager.setValueForState(Button.STATE_DOWN, TOOLBAR_BUTTON_DOWN_SKIN_TEXTURES);
+				headerButtonSkinManager.setValueForState(Button.STATE_SELECTED_DOWN, TOOLBAR_BUTTON_DOWN_SKIN_TEXTURES);
+				headerButtonSkinManager.imageProperties =
+				{
+					width: 60 * this._scale,
+					height: 60 * this._scale,
+					textureScale: this._scale
+				};
+				button.stateToSkinFunction = headerButtonSkinManager.updateValue;
 
 				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
@@ -273,27 +269,19 @@ package org.josht.starling.foxhole.themes
 			}
 			else
 			{
-				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURES, this._scale);
-				defaultSkin.width = 66 * this._scale;
-				defaultSkin.height = 66 * this._scale;
-				button.defaultSkin = defaultSkin;
-
-				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURES, this._scale);
-				downSkin.width = 66 * this._scale;
-				downSkin.height = 66 * this._scale;
-				button.downSkin = downSkin;
-
-				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURES, this._scale);
-				disabledSkin.width = 66 * this._scale;
-				disabledSkin.height = 66 * this._scale;
-				button.disabledSkin = disabledSkin;
-
-				const defaultSelectedSkin:Scale9Image = new Scale9Image(BUTTON_SELECTED_SKIN_TEXTURES, this._scale);
-				defaultSelectedSkin.width = 66 * this._scale;
-				defaultSelectedSkin.height = 66 * this._scale;
-				button.defaultSelectedSkin = defaultSelectedSkin;
-
-				button.selectedDownSkin = downSkin;
+				const skinManager:Scale9ImageStateValueManager = new Scale9ImageStateValueManager();
+				skinManager.defaultValue = BUTTON_UP_SKIN_TEXTURES;
+				skinManager.defaultSelectedValue = BUTTON_SELECTED_SKIN_TEXTURES;
+				skinManager.setValueForState(Button.STATE_DOWN, BUTTON_DOWN_SKIN_TEXTURES);
+				skinManager.setValueForState(Button.STATE_DISABLED, BUTTON_DISABLED_SKIN_TEXTURES);
+				skinManager.setValueForState(Button.STATE_SELECTED_DOWN, BUTTON_DOWN_SKIN_TEXTURES);
+				skinManager.imageProperties =
+				{
+					width: 66 * this._scale,
+					height: 66 * this._scale,
+					textureScale: this._scale
+				};
+				button.stateToSkinFunction = skinManager.updateValue;
 
 				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
@@ -334,7 +322,7 @@ package org.josht.starling.foxhole.themes
 			}
 			slider.minimumTrackProperties.defaultSkin = sliderTrackDefaultSkin;
 		}
-		
+
 		protected function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
 		{
 			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_SINGLE;
@@ -343,22 +331,23 @@ package org.josht.starling.foxhole.themes
 			trackSkin.width = 148 * this._scale;
 			trackSkin.height = 66 * this._scale;
 			toggleSwitch.onTrackSkin = trackSkin;
-			
+
 			toggleSwitch.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 		}
 
 		protected function checkInitializer(check:Check):void
 		{
-			const defaultIcon:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
-			defaultIcon.width = 40 * this._scale;
-			defaultIcon.height = 40 * this._scale;
-			check.defaultIcon = defaultIcon;
-
-			const defaultSelectedIcon:Scale9Image = new Scale9Image(CHECK_SELECTED_ICON_TEXTURES, this._scale);
-			defaultSelectedIcon.width = 40 * this._scale;
-			defaultSelectedIcon.height = 40 * this._scale;
-			check.defaultSelectedIcon = defaultSelectedIcon;
+			const iconManager:Scale9ImageStateValueManager = new Scale9ImageStateValueManager();
+			iconManager.defaultValue = INSET_BACKGROUND_SKIN_TEXTURES;
+			iconManager.defaultSelectedValue = CHECK_SELECTED_ICON_TEXTURES;
+			iconManager.imageProperties =
+			{
+				width: 40 * this._scale,
+				height: 40 * this._scale,
+				textureScale: this._scale
+			};
+			check.stateToIconFunction = iconManager.updateValue;
 
 			check.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			check.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
@@ -370,13 +359,16 @@ package org.josht.starling.foxhole.themes
 
 		protected function radioInitializer(radio:Radio):void
 		{
-			const defaultIcon:Image = new Image(RADIO_ICON_TEXTURE);
-			defaultIcon.scaleX = defaultIcon.scaleY = this._scale;
-			radio.defaultIcon = defaultIcon;
-
-			const defaultSelectedIcon:Image = new Image(RADIO_SELECTED_ICON_TEXTURE);
-			defaultSelectedIcon.scaleX = defaultSelectedIcon.scaleY = this._scale;
-			radio.defaultSelectedIcon = defaultSelectedIcon;
+			const iconManager:ImageStateValueManager = new ImageStateValueManager();
+			iconManager.defaultValue = RADIO_ICON_TEXTURE;
+			iconManager.defaultSelectedValue = RADIO_SELECTED_ICON_TEXTURE;
+			iconManager.imageProperties =
+			{
+				scaleX: this._scale,
+				scaleY: this._scale,
+				textureScale: this._scale
+			};
+			radio.stateToIconFunction = iconManager.updateValue;
 
 			radio.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			radio.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
@@ -385,28 +377,20 @@ package org.josht.starling.foxhole.themes
 			radio.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			radio.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
 		}
-		
+
 		protected function itemRendererInitializer(renderer:BaseDefaultItemRenderer):void
 		{
-			const defaultSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
-			//no smoothing. it's a solid color and we'll be stretching it
-			//quite a bit
-			defaultSkin.smoothing = TextureSmoothing.NONE;
-			defaultSkin.width = 88 * this._scale;
-			defaultSkin.height = 88 * this._scale;
-			renderer.defaultSkin = defaultSkin;
-			
-			const downSkin:Image = new Image(LIST_ITEM_DOWN_TEXTURE);
-			downSkin.smoothing = TextureSmoothing.NONE;
-			downSkin.width = 88 * this._scale;
-			downSkin.height = 88 * this._scale;
-			renderer.downSkin = downSkin;
-			
-			const defaultSelectedSkin:Image = new Image(LIST_ITEM_SELECTED_TEXTURE);
-			defaultSelectedSkin.smoothing = TextureSmoothing.NONE;
-			defaultSelectedSkin.width = 88 * this._scale;
-			defaultSelectedSkin.height = 88 * this._scale;
-			renderer.defaultSelectedSkin = defaultSelectedSkin;
+			const skinManager:ImageStateValueManager = new ImageStateValueManager();
+			skinManager.defaultValue = LIST_ITEM_UP_TEXTURE;
+			skinManager.defaultSelectedValue = LIST_ITEM_SELECTED_TEXTURE;
+			skinManager.setValueForState(Button.STATE_DOWN, LIST_ITEM_DOWN_TEXTURE);
+			skinManager.imageProperties =
+			{
+				width: 88 * this._scale,
+				height: 88 * this._scale,
+				smoothing: TextureSmoothing.NONE
+			};
+			renderer.stateToSkinFunction = skinManager.updateValue;
 
 			renderer.paddingTop = renderer.paddingBottom = 11 * this._scale;
 			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
@@ -426,7 +410,7 @@ package org.josht.starling.foxhole.themes
 			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
 			renderer.minWidth = renderer.minHeight = 44 * this._scale;
 		}
-		
+
 		protected function pickerListInitializer(list:PickerList):void
 		{
 			if(PhysicalCapabilities.isTablet(Starling.current.nativeStage))
