@@ -31,14 +31,6 @@ package
 
 		private function loaderInfo_completeHandler(event:Event):void
 		{
-			//workaround for testing on desktop until ADL stops offsetting the
-			//starling stage in fullScreen mode.
-			if(Capabilities.os.indexOf("Windows") >= 0 || Capabilities.os.indexOf("Mac OS") >= 0)
-			{
-				this.stage.displayState = StageDisplayState.NORMAL;
-				this.stage.setOrientation(StageOrientation.DEFAULT);
-			}
-
 			Starling.handleLostContext = true;
 			Starling.multitouchEnabled = true;
 			this._starling = new Starling(DisplayObjectExplorerRoot, this.stage);
