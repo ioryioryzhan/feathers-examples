@@ -26,7 +26,10 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListItemRenderer;
 	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
 	import org.josht.starling.foxhole.core.AddedWatcher;
+	import org.josht.starling.foxhole.core.FoxholeControl;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
+	import org.josht.starling.foxhole.skins.ImageStateValueSelector;
+	import org.josht.starling.foxhole.skins.Scale9ImageStateValueSelector;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
 	import org.josht.starling.textures.Scale3Textures;
 	import org.josht.starling.textures.Scale9Textures;
@@ -192,6 +195,13 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Label, labelInitializer);
 			this.setInitializerForClass(FPSDisplay, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
+			this.setInitializerForClass(Button, tabInitializer, "foxhole-tabbar-tab");
+			this.setInitializerForClass(Button, headerButtonInitializer, "foxhole-header-item");
+			this.setInitializerForClass(Button, scrollBarThumbInitializer, "foxhole-simple-scroll-bar-thumb");
+			this.setInitializerForClass(Button, sliderThumbInitializer, "foxhole-slider-thumb");
+			this.setInitializerForClass(Button, pickerListButtonInitializer, "foxhole-pickerlist-button");
+			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-minimum-track");
+			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-maximum-track");
 			this.setInitializerForClass(Slider, sliderInitializer);
 			this.setInitializerForClass(SimpleScrollBar, scrollBarInitializer);
 			this.setInitializerForClass(Check, checkInitializer);
@@ -207,6 +217,11 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Callout, calloutInitializer);
 		}
 
+		protected function nothingInitializer(nothing:FoxholeControl):void
+		{
+
+		}
+
 		protected function labelInitializer(label:Label):void
 		{
 			if(label.name)
@@ -218,125 +233,115 @@ package org.josht.starling.foxhole.themes
 
 		protected function buttonInitializer(button:Button):void
 		{
-			button.minTouchWidth = button.minTouchHeight = 88 * this._scale;
-			if(button.nameList.contains("foxhole-tabbar-tab"))
+			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
+			skinSelector.defaultValue = BUTTON_UP_SKIN_TEXTURES;
+			skinSelector.defaultSelectedValue = BUTTON_DOWN_SKIN_TEXTURES;
+			skinSelector.setValueForState(BUTTON_DOWN_SKIN_TEXTURES, Button.STATE_DOWN, false);
+			skinSelector.setValueForState(BUTTON_DISABLED_SKIN_TEXTURES, Button.STATE_DISABLED, false);
+			skinSelector.imageProperties =
 			{
-				const tabDefaultSkin:Image = new Image(TOOLBAR_BACKGROUND_SKIN_TEXTURE);
-				tabDefaultSkin.width = 88 * this._scale;
-				tabDefaultSkin.height = 88 * this._scale;
-				button.defaultSkin = tabDefaultSkin;
-				const tabDefaultSelectedSkin:Image = new Image(TAB_SELECTED_SKIN_TEXTURE);
-				tabDefaultSelectedSkin.width = 88 * this._scale;
-				tabDefaultSelectedSkin.height = 88 * this._scale;
-				button.defaultSelectedSkin = tabDefaultSelectedSkin;
-				button.downSkin = tabDefaultSelectedSkin;
+				width: 66 * this._scale,
+				height: 66 * this._scale,
+				textureScale: this._scale
+			};
+			button.stateToSkinFunction = skinSelector.updateValue;
 
-				button.minWidth = 88 * this._scale;
-				button.minHeight = 88 * this._scale;
-				button.paddingTop = button.paddingRight = button.paddingBottom =
-					button.paddingLeft = 16 * this._scale;
-				button.gap = 12 * this._scale;
-				button.iconPosition = Button.ICON_POSITION_TOP;
+			button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 
-				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
-			}
-			else if(button.nameList.contains("foxhole-header-item"))
-			{
-				const toolbarDefaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURES, this._scale);
-				toolbarDefaultSkin.width = 60 * this._scale;
-				toolbarDefaultSkin.height = 60 * this._scale;
-				button.defaultSkin = toolbarDefaultSkin;
+			button.paddingTop = button.paddingBottom = 8 * this._scale;
+			button.paddingLeft = button.paddingRight = 16 * this._scale;
+			button.gap = 12 * this._scale;
+			button.minWidth = button.minHeight = 66 * this._scale;
+		}
 
-				const toolbarDownSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURES, this._scale);
-				toolbarDownSkin.width = 60 * this._scale;
-				toolbarDownSkin.height = 60 * this._scale;
-				button.downSkin = toolbarDownSkin;
-
-				const toolbarDisabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURES, this._scale);
-				toolbarDisabledSkin.width = 60 * this._scale;
-				toolbarDisabledSkin.height = 60 * this._scale;
-				button.disabledSkin = toolbarDisabledSkin;
-
-				button.defaultSelectedSkin = toolbarDownSkin;
-				button.selectedDownSkin = toolbarDownSkin;
-
-				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
-
-				button.paddingTop = button.paddingBottom = 8 * this._scale;
-				button.paddingLeft = button.paddingRight = 16 * this._scale;
-				button.gap = 12 * this._scale;
-				button.minWidth = 66 * this._scale;
-				button.minHeight = 66 * this._scale;
-			}
-			else if(button.nameList.contains("foxhole-simple-scroll-bar-thumb"))
-			{
-				const scrollBarDefaultSkin:Scale9Image = new Scale9Image(SCROLL_BAR_THUMB_SKIN_TEXTURES, this._scale);
-				scrollBarDefaultSkin.width = 8 * this._scale;
-				scrollBarDefaultSkin.height = 8 * this._scale;
-				button.defaultSkin = scrollBarDefaultSkin;
-				button.minTouchWidth = button.minTouchHeight = 12 * this._scale;
-			}
-			else if(button.nameList.contains("foxhole-slider-thumb"))
-			{
-				const sliderThumbDefaultSkin:Image = new Image(SLIDER_THUMB_UP_SKIN_TEXTURE);
-				sliderThumbDefaultSkin.width = 66 * this._scale;
-				sliderThumbDefaultSkin.height = 66 * this._scale;
-				button.defaultSkin = sliderThumbDefaultSkin;
-				const sliderThumbDownSkin:Image = new Image(SLIDER_THUMB_DOWN_SKIN_TEXTURE);
-				sliderThumbDownSkin.width = 66 * this._scale;
-				sliderThumbDownSkin.height = 66 * this._scale;
-				button.downSkin = sliderThumbDownSkin;
-				const sliderThumbDisabledSkin:Image = new Image(SLIDER_THUMB_DISABLED_SKIN_TEXTURE);
-				sliderThumbDisabledSkin.width = 66 * this._scale;
-				sliderThumbDisabledSkin.height = 66 * this._scale;
-				button.disabledSkin = sliderThumbDisabledSkin;
-			}
-			else if(button.nameList.contains("foxhole-slider-minimum-track") || button.nameList.contains("foxhole-slider-maximum-track"))
-			{
-				//do nothing. we're skinning them based on slider direction.
-			}
-			else
-			{
-				const defaultSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURES, this._scale);
-				defaultSkin.width = 66 * this._scale;
-				defaultSkin.height = 66 * this._scale;
-				button.defaultSkin = defaultSkin;
-
-				const downSkin:Scale9Image = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURES, this._scale);
-				downSkin.width = 66 * this._scale;
-				downSkin.height = 66 * this._scale;
-				button.downSkin = downSkin;
-
-				const disabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURES, this._scale);
-				disabledSkin.width = 66 * this._scale;
-				disabledSkin.height = 66 * this._scale;
-				button.disabledSkin = disabledSkin;
-
-				button.defaultSelectedSkin = downSkin;
-
-				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-				button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
-
-				button.paddingTop = button.paddingBottom = 8 * this._scale;
-				button.paddingLeft = button.paddingRight = 16 * this._scale;
-				button.gap = 12 * this._scale;
-				button.minWidth = 66 * this._scale;
-				button.minHeight = 66 * this._scale;
-			}
-
+		protected function pickerListButtonInitializer(button:Button):void
+		{
 			//styles for the pickerlist button come from above, and then we're
 			//adding a little bit extra.
-			if(button.nameList.contains("foxhole-pickerlist-button"))
+			this.buttonInitializer(button);
+
+			const pickerListButtonDefaultIcon:Image = new Image(PICKER_ICON_TEXTURE);
+			pickerListButtonDefaultIcon.scaleX = pickerListButtonDefaultIcon.scaleY = this._scale;
+			button.defaultIcon = pickerListButtonDefaultIcon
+			button.gap = Number.POSITIVE_INFINITY; //fill as completely as possible
+			button.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
+			button.iconPosition = Button.ICON_POSITION_RIGHT;
+		}
+
+		protected function scrollBarThumbInitializer(thumb:Button):void
+		{
+			const scrollBarDefaultSkin:Scale9Image = new Scale9Image(SCROLL_BAR_THUMB_SKIN_TEXTURES, this._scale);
+			scrollBarDefaultSkin.width = 8 * this._scale;
+			scrollBarDefaultSkin.height = 8 * this._scale;
+			thumb.defaultSkin = scrollBarDefaultSkin;
+			thumb.minTouchWidth = thumb.minTouchHeight = 12 * this._scale;
+		}
+
+		protected function sliderThumbInitializer(thumb:Button):void
+		{
+			const skinSelector:ImageStateValueSelector = new ImageStateValueSelector();
+			skinSelector.defaultValue = SLIDER_THUMB_UP_SKIN_TEXTURE;
+			skinSelector.defaultSelectedValue = TAB_SELECTED_SKIN_TEXTURE;
+			skinSelector.setValueForState(SLIDER_THUMB_DOWN_SKIN_TEXTURE, Button.STATE_DOWN, false);
+			skinSelector.setValueForState(SLIDER_THUMB_DISABLED_SKIN_TEXTURE, Button.STATE_DISABLED, false);
+			skinSelector.imageProperties =
 			{
-				const pickerListButtonDefaultIcon:Image = new Image(PICKER_ICON_TEXTURE);
-				pickerListButtonDefaultIcon.scaleX = pickerListButtonDefaultIcon.scaleY = this._scale;
-				button.defaultIcon = pickerListButtonDefaultIcon
-				button.gap = Number.POSITIVE_INFINITY; //fill as completely as possible
-				button.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
-				button.iconPosition = Button.ICON_POSITION_RIGHT;
-			}
+				width: 66 * this._scale,
+				height: 66 * this._scale
+			};
+			thumb.stateToSkinFunction = skinSelector.updateValue;
+
+			thumb.minTouchWidth = thumb.minTouchHeight = 88 * this._scale;
+		}
+
+		protected function tabInitializer(tab:Button):void
+		{
+			const skinSelector:ImageStateValueSelector = new ImageStateValueSelector();
+			skinSelector.defaultValue = TOOLBAR_BACKGROUND_SKIN_TEXTURE;
+			skinSelector.defaultSelectedValue = TAB_SELECTED_SKIN_TEXTURE;
+			skinSelector.setValueForState(TAB_SELECTED_SKIN_TEXTURE, Button.STATE_DOWN, false);
+			skinSelector.imageProperties =
+			{
+				width: 88 * this._scale,
+				height: 88 * this._scale
+			};
+			tab.stateToSkinFunction = skinSelector.updateValue;
+
+			tab.minWidth = tab.minHeight = 88 * this._scale;
+			tab.minTouchWidth = tab.minTouchHeight = 88 * this._scale;
+			tab.paddingTop = tab.paddingRight = tab.paddingBottom =
+				tab.paddingLeft = 16 * this._scale;
+			tab.gap = 12 * this._scale;
+			tab.iconPosition = Button.ICON_POSITION_TOP;
+
+			tab.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			tab.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+		}
+
+		protected function headerButtonInitializer(button:Button):void
+		{
+			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
+			skinSelector.defaultValue = BUTTON_UP_SKIN_TEXTURES;
+			skinSelector.defaultSelectedValue = BUTTON_DOWN_SKIN_TEXTURES;
+			skinSelector.setValueForState(BUTTON_DOWN_SKIN_TEXTURES, Button.STATE_DOWN, false);
+			skinSelector.setValueForState(BUTTON_DISABLED_SKIN_TEXTURES, Button.STATE_DISABLED, false);
+			skinSelector.imageProperties =
+			{
+				width: 60 * this._scale,
+				height: 60 * this._scale,
+				textureScale: this._scale
+			};
+			button.stateToSkinFunction = skinSelector.updateValue;
+
+			button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+
+			button.paddingTop = button.paddingBottom = 8 * this._scale;
+			button.paddingLeft = button.paddingRight = 16 * this._scale;
+			button.gap = 12 * this._scale;
+			button.minWidth = button.minHeight = 60 * this._scale;
+			button.minTouchWidth = button.minTouchHeight = 88 * this._scale;
 		}
 
 		protected function sliderInitializer(slider:Slider):void
@@ -408,29 +413,19 @@ package org.josht.starling.foxhole.themes
 
 		protected function checkInitializer(check:Check):void
 		{
-			const defaultIcon:Image = new Image(CHECK_UP_ICON_TEXTURE);
-			defaultIcon.scaleX = defaultIcon.scaleY = this._scale;
-			check.defaultIcon = defaultIcon;
-
-			const downIcon:Image = new Image(CHECK_DOWN_ICON_TEXTURE);
-			downIcon.scaleX = downIcon.scaleY = this._scale;
-			check.downIcon = downIcon;
-
-			const selectedDownIcon:Image = new Image(CHECK_SELECTED_DOWN_ICON_TEXTURE);
-			selectedDownIcon.scaleX = selectedDownIcon.scaleY = this._scale;
-			check.selectedDownIcon = selectedDownIcon;
-
-			const disabledIcon:Image = new Image(CHECK_DISABLED_ICON_TEXTURE);
-			disabledIcon.scaleX = disabledIcon.scaleY = this._scale;
-			check.disabledIcon = disabledIcon;
-
-			const defaultSelectedIcon:Image = new Image(CHECK_SELECTED_UP_ICON_TEXTURE);
-			defaultSelectedIcon.scaleX = defaultSelectedIcon.scaleY = this._scale;
-			check.defaultSelectedIcon = defaultSelectedIcon;
-
-			const selectedDisabledIcon:Image = new Image(CHECK_SELECTED_DISABLED_ICON_TEXTURE);
-			selectedDisabledIcon.scaleX = selectedDisabledIcon.scaleY = this._scale;
-			check.selectedDisabledIcon = selectedDisabledIcon;
+			const iconSelector:ImageStateValueSelector = new ImageStateValueSelector();
+			iconSelector.defaultValue = CHECK_UP_ICON_TEXTURE;
+			iconSelector.defaultSelectedValue = CHECK_SELECTED_UP_ICON_TEXTURE;
+			iconSelector.setValueForState(CHECK_DOWN_ICON_TEXTURE, Button.STATE_DOWN, false);
+			iconSelector.setValueForState(CHECK_DISABLED_ICON_TEXTURE, Button.STATE_DISABLED, false);
+			iconSelector.setValueForState(CHECK_SELECTED_DOWN_ICON_TEXTURE, Button.STATE_DOWN, true);
+			iconSelector.setValueForState(CHECK_SELECTED_DISABLED_ICON_TEXTURE, Button.STATE_DISABLED, true);
+			iconSelector.imageProperties =
+			{
+				scaleX: this._scale,
+				scaleY: this._scale
+			};
+			check.stateToIconFunction = iconSelector.updateValue;
 
 			check.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			check.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
@@ -442,25 +437,18 @@ package org.josht.starling.foxhole.themes
 
 		protected function radioInitializer(radio:Radio):void
 		{
-			const defaultIcon:Image = new Image(RADIO_UP_ICON_TEXTURE);
-			defaultIcon.scaleX = defaultIcon.scaleY = this._scale;
-			radio.defaultIcon = defaultIcon;
-
-			const downIcon:Image = new Image(RADIO_DOWN_ICON_TEXTURE);
-			downIcon.scaleX = downIcon.scaleY = this._scale;
-			radio.downIcon = downIcon;
-
-			const disabledIcon:Image = new Image(RADIO_DISABLED_ICON_TEXTURE);
-			disabledIcon.scaleX = disabledIcon.scaleY = this._scale;
-			radio.disabledIcon = disabledIcon;
-
-			const defaultSelectedIcon:Image = new Image(RADIO_SELECTED_UP_ICON_TEXTURE);
-			defaultSelectedIcon.scaleX = defaultSelectedIcon.scaleY = this._scale;
-			radio.defaultSelectedIcon = defaultSelectedIcon;
-
-			const selectedDisabledIcon:Image = new Image(RADIO_SELECTED_DISABLED_ICON_TEXTURE);
-			selectedDisabledIcon.scaleX = selectedDisabledIcon.scaleY = this._scale;
-			radio.selectedDisabledIcon = selectedDisabledIcon;
+			const iconSelector:ImageStateValueSelector = new ImageStateValueSelector();
+			iconSelector.defaultValue = RADIO_UP_ICON_TEXTURE;
+			iconSelector.defaultSelectedValue = RADIO_SELECTED_UP_ICON_TEXTURE;
+			iconSelector.setValueForState(RADIO_DOWN_ICON_TEXTURE, Button.STATE_DOWN, false);
+			iconSelector.setValueForState(RADIO_DISABLED_ICON_TEXTURE, Button.STATE_DISABLED, false);
+			iconSelector.setValueForState(RADIO_SELECTED_DISABLED_ICON_TEXTURE, Button.STATE_DISABLED, true);
+			iconSelector.imageProperties =
+			{
+				scaleX: this._scale,
+				scaleY: this._scale
+			};
+			radio.stateToIconFunction = iconSelector.updateValue;
 
 			radio.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			radio.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
@@ -485,19 +473,17 @@ package org.josht.starling.foxhole.themes
 
 		protected function itemRendererInitializer(renderer:BaseDefaultItemRenderer):void
 		{
-			const defaultSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
-			defaultSkin.width = 88 * this._scale;
-			defaultSkin.height = 88 * this._scale;
-			defaultSkin.blendMode = BlendMode.NONE;
-			renderer.defaultSkin = defaultSkin;
-
-			const downSkin:Image = new Image(LIST_ITEM_DOWN_TEXTURE);
-			downSkin.width = 88 * this._scale;
-			downSkin.height = 88 * this._scale;
-			downSkin.blendMode = BlendMode.NONE;
-			renderer.downSkin = downSkin;
-
-			renderer.defaultSelectedSkin = downSkin;
+			const skinSelector:ImageStateValueSelector = new ImageStateValueSelector();
+			skinSelector.defaultValue = LIST_ITEM_UP_TEXTURE;
+			skinSelector.defaultSelectedValue = LIST_ITEM_DOWN_TEXTURE;
+			skinSelector.setValueForState(LIST_ITEM_DOWN_TEXTURE, Button.STATE_DOWN, false);
+			skinSelector.imageProperties =
+			{
+				width: 88 * this._scale,
+				height: 88 * this._scale,
+				blendMode: BlendMode.NONE
+			};
+			renderer.stateToSkinFunction = skinSelector.updateValue;
 
 			renderer.paddingTop = renderer.paddingBottom = 11 * this._scale;
 			renderer.paddingLeft = renderer.paddingRight = 20 * this._scale;
