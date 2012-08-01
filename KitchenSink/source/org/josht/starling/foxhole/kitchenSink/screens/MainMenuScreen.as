@@ -17,6 +17,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			"Picker List",
 			"Progress Bar",
 			"Slider",
+			"Tab Bar",
 			"Text Input",
 			"Toggles",
 		];
@@ -75,6 +76,13 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			return this._onPickerList;
 		}
 
+		private var _onTabBar:Signal = new Signal(MainMenuScreen);
+
+		public function get onTabBar():ISignal
+		{
+			return this._onTabBar;
+		}
+
 		private var _onTextInput:Signal = new Signal(MainMenuScreen);
 
 		public function get onTextInput():ISignal
@@ -95,7 +103,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		
 		override protected function initialize():void
 		{
-			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onCallout, this._onGroupedList, this._onList, this._onPickerList, this._onProgressBar, this._onSlider, this._onTextInput, this._onToggles];
+			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onCallout, this._onGroupedList, this._onList, this._onPickerList, this._onProgressBar, this._onSlider, this._onTabBar, this._onTextInput, this._onToggles];
 			const buttonCount:int = LABELS.length;
 			for(var i:int = 0; i < buttonCount; i++)
 			{

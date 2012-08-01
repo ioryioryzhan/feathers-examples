@@ -20,6 +20,7 @@ package org.josht.starling.foxhole.kitchenSink
 	import org.josht.starling.foxhole.kitchenSink.screens.ProgressBarScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.SliderScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.SliderSettingsScreen;
+	import org.josht.starling.foxhole.kitchenSink.screens.TabBarScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.TextInputScreen;
 	import org.josht.starling.foxhole.kitchenSink.screens.ToggleScreen;
 	import org.josht.starling.foxhole.themes.IFoxholeTheme;
@@ -42,6 +43,7 @@ package org.josht.starling.foxhole.kitchenSink
 		private static const PROGRESS_BAR:String = "progressBar";
 		private static const SLIDER:String = "slider";
 		private static const SLIDER_SETTINGS:String = "sliderSettings";
+		private static const TAB_BAR:String = "tabBar";
 		private static const TEXT_INPUT:String = "textInput";
 		private static const TOGGLES:String = "toggles";
 		
@@ -77,6 +79,7 @@ package org.josht.starling.foxhole.kitchenSink
 				onPickerList: PICKER_LIST,
 				onProgressBar: PROGRESS_BAR,
 				onSlider: SLIDER,
+				onTabBar: TAB_BAR,
 				onTextInput: TEXT_INPUT,
 				onToggles: TOGGLES
 			},
@@ -171,6 +174,14 @@ package org.josht.starling.foxhole.kitchenSink
 			}));
 			
 			this._navigator.addScreen(PICKER_LIST, new ScreenNavigatorItem(PickerListScreen,
+			{
+				onBack: MAIN_MENU
+			},
+			{
+				originalDPI: originalThemeDPI
+			}));
+
+			this._navigator.addScreen(TAB_BAR, new ScreenNavigatorItem(TabBarScreen,
 			{
 				onBack: MAIN_MENU
 			},
