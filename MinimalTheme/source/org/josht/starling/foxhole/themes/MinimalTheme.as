@@ -10,6 +10,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Check;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.Label;
+	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.Radio;
@@ -183,6 +184,8 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(DefaultListItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(DefaultGroupedListItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(DefaultGroupedListHeaderOrFooterRenderer, headerOrFooterRendererInitializer);
+			this.setInitializerForClass(List, listInitializer);
+			this.setInitializerForClass(List, nothingInitializer, "foxhole-pickerlist-list");
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
@@ -415,6 +418,14 @@ package org.josht.starling.foxhole.themes
 			renderer.paddingTop = renderer.paddingBottom = 6 * this._scale;
 			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
 			renderer.minWidth = renderer.minHeight = 44 * this._scale;
+		}
+
+		protected function listInitializer(list:List):void
+		{
+			const backgroundSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
+			backgroundSkin.scaleX = backgroundSkin.scaleY = this._scale;
+			backgroundSkin.smoothing = TextureSmoothing.NONE;
+			list.backgroundSkin = backgroundSkin;
 		}
 
 		protected function pickerListInitializer(list:PickerList):void
