@@ -30,6 +30,13 @@ Demonstrates the resizing behavior of `Scale9Image`, `Scale3Image`, and `TiledIm
 * [Web Demo](http://flashtoolbox.com/foxhole-starling/examples/display-object-explorer/)
 * [Source Code](https://github.com/joshtynjala/foxhole-starling-examples/tree/master/DisplayObjectExplorer)
 
+## Tile List
+
+An example of customizing the List component using a tile layout with paging. Includes some customization of the DefaultListItemRenderer layout to display an icon above text.
+
+* [Web Demo](http://flashtoolbox.com/foxhole-starling/examples/tile-list/)
+* [Source Code](https://github.com/joshtynjala/foxhole-starling-examples/tree/master/TileList)
+
 # Foxhole for Starling Themes
 
 The following themes demonstrate how Foxhole for Starling UI controls may be skinned.
