@@ -2,8 +2,10 @@ package org.josht.starling.foxhole.displayObjects
 {
 	import com.gskinner.motion.easing.Cubic;
 
+	import flash.system.Capabilities;
 	import flash.ui.Mouse;
 
+	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.ScreenNavigator;
 	import org.josht.starling.foxhole.controls.ScreenNavigatorItem;
 	import org.josht.starling.foxhole.controls.TabBar;
@@ -12,13 +14,13 @@ package org.josht.starling.foxhole.displayObjects
 	import org.josht.starling.foxhole.displayObjects.screens.Scale9ImageScreen;
 	import org.josht.starling.foxhole.displayObjects.screens.TiledImageScreen;
 	import org.josht.starling.foxhole.themes.AzureTheme;
-	import org.josht.starling.foxhole.themes.IFoxholeTheme;
 	import org.josht.starling.foxhole.transitions.TabBarSlideTransitionManager;
 
-	import starling.display.DisplayObject;
+	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.ResizeEvent;
+	import starling.textures.Texture;
 
 	public class DisplayObjectExplorerRoot extends Sprite
 	{
@@ -26,15 +28,24 @@ package org.josht.starling.foxhole.displayObjects
 		private static const SCALE_3_IMAGE:String = "scale3Image";
 		private static const TILED_IMAGE:String = "tiledImage";
 
+		[Embed(source="/../assets/images/horizontal-grip.png")]
+		private static const HORIZONTAL_GRIP:Class;
+
+		[Embed(source="/../assets/images/vertical-grip.png")]
+		private static const VERTICAL_GRIP:Class;
+
 		public function DisplayObjectExplorerRoot()
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 
-		private var _theme:IFoxholeTheme;
+		private var _theme:AzureTheme;
 		private var _navigator:ScreenNavigator;
 		private var _tabBar:TabBar;
 		private var _transitionManager:TabBarSlideTransitionManager;
+
+		private var _rightGripTexture:Texture = Texture.fromBitmap(new VERTICAL_GRIP(), false);
+		private var _bottomGripTexture:Texture = Texture.fromBitmap(new HORIZONTAL_GRIP(), false);
 
 		private function layout(w:Number, h:Number):void
 		{
@@ -43,11 +54,27 @@ package org.josht.starling.foxhole.displayObjects
 			this._tabBar.y = h - this._tabBar.height;
 		}
 
+		private function rightGripInitializer(button:Button):void
+		{
+			const rightSkin:Image = new Image(this._rightGripTexture);
+			rightSkin.scaleX = rightSkin.scaleY = Capabilities.screenDPI / this._theme.originalDPI;
+			button.defaultSkin = rightSkin;
+		}
+
+		private function bottomGripInitializer(button:Button):void
+		{
+			const bottomSkin:Image = new Image(this._bottomGripTexture);
+			bottomSkin.scaleX = bottomSkin.scaleY = Capabilities.screenDPI / this._theme.originalDPI;
+			button.defaultSkin = bottomSkin;
+		}
+
 		private function addedToStageHandler(event:Event):void
 		{
 			this.stage.addEventListener(ResizeEvent.RESIZE, stage_resizeHandler);
 			const isDesktop:Boolean = Mouse.supportsCursor;
 			this._theme = new AzureTheme(this.stage, !isDesktop);
+			this._theme.setInitializerForClass(Button, rightGripInitializer, "right-grip");
+			this._theme.setInitializerForClass(Button, bottomGripInitializer, "bottom-grip");
 
 			//the screens can use the theme's original DPI to scale other
 			//content by the same amount with the dpiScale property.

@@ -1,33 +1,19 @@
 package org.josht.starling.foxhole.displayObjects.screens
 {
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
-
-	import org.josht.starling.display.Image;
-	import org.josht.starling.display.Scale9Image;
-	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.display.TiledImage;
 	import org.josht.starling.foxhole.controls.Button;
+	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
-	import org.osflash.signals.Signal;
 
-	import starling.events.Event;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-
 	import starling.textures.Texture;
 
 	public class TiledImageScreen extends Screen
 	{
 		[Embed(source="/../assets/images/tile-pattern.png")]
 		private static const TILE_TEXTURE:Class;
-
-		[Embed(source="/../assets/images/horizontal-grip.png")]
-		private static const HORIZONTAL_GRIP:Class;
-
-		[Embed(source="/../assets/images/vertical-grip.png")]
-		private static const VERTICAL_GRIP:Class;
 
 		public function TiledImageScreen()
 		{
@@ -62,20 +48,14 @@ package org.josht.starling.foxhole.displayObjects.screens
 			this.addChild(this._image);
 
 			this._rightButton = new Button();
+			this._rightButton.nameList.add("right-grip");
 			this._rightButton.addEventListener(TouchEvent.TOUCH, rightButton_touchHandler);
 			this.addChild(this._rightButton);
-			const rightSkin:Image = new Image(Texture.fromBitmap(new VERTICAL_GRIP(), false));
-			rightSkin.scaleX = rightSkin.scaleY = this.dpiScale;
-			this._rightButton.defaultSkin = rightSkin;
-			this._rightButton.upSkin = this._rightButton.downSkin = null;
 
 			this._bottomButton = new Button();
+			this._bottomButton.nameList.add("bottom-grip");
 			this._bottomButton.addEventListener(TouchEvent.TOUCH, bottomButton_touchHandler);
 			this.addChild(this._bottomButton);
-			const bottomSkin:Image = new Image(Texture.fromBitmap(new HORIZONTAL_GRIP(), false));
-			bottomSkin.scaleX = bottomSkin.scaleY = this.dpiScale;
-			this._bottomButton.defaultSkin = bottomSkin;
-			this._bottomButton.upSkin = this._bottomButton.downSkin = null;
 		}
 
 		override protected function draw():void
