@@ -533,7 +533,7 @@ package org.josht.starling.foxhole.themes
 		{
 			header.backgroundSkin = new Scale9Image(HEADER_BACKGROUND_SKIN_TEXTURES);
 
-			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			header.titleProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 
 			header.paddingTop = header.paddingBottom = 2;
 			header.paddingRight = header.paddingLeft = 6;

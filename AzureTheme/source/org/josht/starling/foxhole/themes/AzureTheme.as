@@ -553,7 +553,7 @@ package org.josht.starling.foxhole.themes
 			backgroundSkin.height = 88 * this._scale;
 			backgroundSkin.blendMode = BlendMode.NONE;
 			header.backgroundSkin = backgroundSkin;
-			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			header.titleProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			header.paddingTop = header.paddingRight = header.paddingBottom =
 				header.paddingLeft = 14 * this._scale;
 			header.minHeight = 88 * this._scale;

@@ -490,7 +490,7 @@ package org.josht.starling.foxhole.themes
 			backgroundSkin.width = 88 * this._scale;
 			backgroundSkin.height = 88 * this._scale;
 			header.backgroundSkin = backgroundSkin;
-			header.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			header.titleProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 		}
 
 		protected function textInputInitializer(input:TextInput):void
