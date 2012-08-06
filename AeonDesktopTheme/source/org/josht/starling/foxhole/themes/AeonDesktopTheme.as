@@ -247,7 +247,7 @@ package org.josht.starling.foxhole.themes
 				button.selectedDownSkin = new Scale9Image(BUTTON_SELECTED_DOWN_SKIN_TEXTURES);
 				button.selectedDisabledSkin = new Scale9Image(BUTTON_SELECTED_DISABLED_SKIN_TEXTURES);
 
-				button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+				button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 
 				button.paddingTop = button.paddingBottom = 2;
 				button.paddingLeft = button.paddingRight = 10;
@@ -285,7 +285,7 @@ package org.josht.starling.foxhole.themes
 			check.selectedDownIcon = new Image(CHECK_SELECTED_DOWN_ICON_TEXTURE);
 			check.selectedDisabledIcon = new Image(CHECK_SELECTED_DISABLED_ICON_TEXTURE);
 
-			check.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			check.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 
 			check.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			check.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
@@ -302,7 +302,7 @@ package org.josht.starling.foxhole.themes
 			radio.selectedDownIcon = new Image(RADIO_SELECTED_DOWN_ICON_TEXTURE);
 			radio.selectedDisabledIcon = new Image(RADIO_SELECTED_DISABLED_ICON_TEXTURE);
 
-			radio.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			radio.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 
 			radio.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			radio.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
@@ -497,7 +497,7 @@ package org.josht.starling.foxhole.themes
 			renderer.downSkin = new Image(ITEM_RENDERER_SELECTED_UP_SKIN_TEXTURE);
 			renderer.defaultSelectedSkin = new Image(ITEM_RENDERER_SELECTED_UP_SKIN_TEXTURE);
 
-			renderer.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			renderer.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 

@@ -246,8 +246,8 @@ package org.josht.starling.foxhole.themes
 			};
 			button.stateToSkinFunction = skinSelector.updateValue;
 
-			button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			button.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 
 			button.paddingTop = button.paddingBottom = 8 * this._scale;
 			button.paddingLeft = button.paddingRight = 16 * this._scale;
@@ -315,8 +315,8 @@ package org.josht.starling.foxhole.themes
 			tab.gap = 12 * this._scale;
 			tab.iconPosition = Button.ICON_POSITION_TOP;
 
-			tab.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			tab.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			tab.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			tab.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 		}
 
 		protected function headerButtonInitializer(button:Button):void
@@ -334,8 +334,8 @@ package org.josht.starling.foxhole.themes
 			};
 			button.stateToSkinFunction = skinSelector.updateValue;
 
-			button.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			button.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			button.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 
 			button.paddingTop = button.paddingBottom = 8 * this._scale;
 			button.paddingLeft = button.paddingRight = 16 * this._scale;
@@ -427,8 +427,8 @@ package org.josht.starling.foxhole.themes
 			};
 			check.stateToIconFunction = iconSelector.updateValue;
 
-			check.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			check.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			check.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			check.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 
 			check.minTouchWidth = check.minTouchHeight = 88 * this._scale;
 			check.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
@@ -450,8 +450,8 @@ package org.josht.starling.foxhole.themes
 			};
 			radio.stateToIconFunction = iconSelector.updateValue;
 
-			radio.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			radio.defaultSelectedTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			radio.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			radio.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 
 			radio.minTouchWidth = radio.minTouchHeight = 88 * this._scale;
 			radio.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
@@ -492,7 +492,7 @@ package org.josht.starling.foxhole.themes
 
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 
-			renderer.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			renderer.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 		}
 
 		protected function headerOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
