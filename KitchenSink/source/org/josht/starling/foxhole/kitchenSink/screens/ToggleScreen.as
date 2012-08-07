@@ -2,7 +2,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 {
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Check;
-	import org.josht.starling.foxhole.controls.Label;
+	import org.josht.starling.foxhole.controls.text.BitmapFontTextRenderer;
 	import org.josht.starling.foxhole.controls.Radio;
 	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.ScreenHeader;

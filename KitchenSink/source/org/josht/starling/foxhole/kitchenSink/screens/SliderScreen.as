@@ -1,7 +1,7 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
 	import org.josht.starling.foxhole.controls.Button;
-	import org.josht.starling.foxhole.controls.Label;
+	import org.josht.starling.foxhole.controls.text.BitmapFontTextRenderer;
 	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.Slider;
@@ -24,7 +24,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private var _header:ScreenHeader;
 		private var _backButton:Button;
 		private var _settingsButton:Button;
-		private var _valueLabel:Label;
+		private var _valueLabel:BitmapFontTextRenderer;
 		
 		private var _onBack:Signal = new Signal(SliderScreen);
 		
@@ -52,7 +52,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._slider.onChange.add(slider_onChange);
 			this.addChild(this._slider);
 			
-			this._valueLabel = new Label();
+			this._valueLabel = new BitmapFontTextRenderer();
 			this._valueLabel.text = this._slider.value.toString();
 			this.addChild(this._valueLabel);
 
