@@ -112,7 +112,7 @@ package org.josht.starling.foxhole.examples.tileList
 			this._list.itemRendererProperties.labelField = "label";
 			this._list.itemRendererProperties.iconTextureField = "texture";
 			this._list.itemRendererProperties.iconPosition = Button.ICON_POSITION_TOP;
-			this._list.itemRendererProperties.defaultTextFormat = new BitmapFontTextFormat(this._font, NaN, 0x000000);
+			this._list.itemRendererProperties.@defaultLabelProperties.textFormat = new BitmapFontTextFormat(this._font, NaN, 0x000000);
 			this._list.onScroll.add(list_onScroll);
 			this.addChild(this._list);
 
