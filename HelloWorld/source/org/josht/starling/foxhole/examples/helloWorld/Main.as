@@ -98,7 +98,7 @@ package org.josht.starling.foxhole.examples.helloWorld
 			this.button.downSkin = new Image(this.atlas.getTexture("button-down-skin"));
 
 			//the button's defaultTextFormat works similarly to the defaultSkin
-			this.button.defaultTextFormat = new BitmapFontTextFormat(this.font, 30, 0x000000);
+			this.button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(this.font, 30, 0x000000);
 
 			//onRelease is an as3-signal that tells us when the user has tapped
 			//the button
