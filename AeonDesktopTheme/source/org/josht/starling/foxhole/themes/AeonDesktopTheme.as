@@ -13,7 +13,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
 	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListItemRenderer;
 	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
-	import org.josht.starling.foxhole.controls.Label;
+	import org.josht.starling.foxhole.controls.text.BitmapFontTextRenderer;
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
@@ -201,7 +201,7 @@ package org.josht.starling.foxhole.themes
 		protected function initialize():void
 		{
 			this._fontSize = BITMAP_FONT.size;
-			this.setInitializerForClass(Label, labelInitializer);
+			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Check, checkInitializer);
 			this.setInitializerForClass(Radio, radioInitializer);
@@ -221,7 +221,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Callout, calloutInitializer);
 		}
 
-		protected function labelInitializer(label:Label):void
+		protected function labelInitializer(label:BitmapFontTextRenderer):void
 		{
 			label.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 		}

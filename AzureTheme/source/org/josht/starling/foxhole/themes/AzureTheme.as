@@ -10,7 +10,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
-	import org.josht.starling.foxhole.controls.Label;
+	import org.josht.starling.foxhole.controls.text.BitmapFontTextRenderer;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.Radio;
@@ -192,7 +192,7 @@ package org.josht.starling.foxhole.themes
 
 			this._fontSize = 30 * this._scale;
 
-			this.setInitializerForClass(Label, labelInitializer);
+			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
 			this.setInitializerForClass(FPSDisplay, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, tabInitializer, "foxhole-tabbar-tab");
@@ -222,7 +222,7 @@ package org.josht.starling.foxhole.themes
 
 		}
 
-		protected function labelInitializer(label:Label):void
+		protected function labelInitializer(label:BitmapFontTextRenderer):void
 		{
 			if(label.name)
 			{

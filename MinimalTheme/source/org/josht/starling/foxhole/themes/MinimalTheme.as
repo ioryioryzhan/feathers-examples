@@ -9,7 +9,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
 	import org.josht.starling.foxhole.controls.FPSDisplay;
-	import org.josht.starling.foxhole.controls.Label;
+	import org.josht.starling.foxhole.controls.text.BitmapFontTextRenderer;
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
@@ -165,7 +165,7 @@ package org.josht.starling.foxhole.themes
 			//which, in this case, is 8.
 			this._fontSize = Math.max(4, roundToNearest(24 * this._scale, 8));
 
-			this.setInitializerForClass(Label, labelInitializer);
+			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
 			this.setInitializerForClass(FPSDisplay, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, sliderThumbInitializer, "foxhole-slider-thumb");
@@ -201,7 +201,7 @@ package org.josht.starling.foxhole.themes
 			//target too.
 		}
 
-		protected function labelInitializer(label:Label):void
+		protected function labelInitializer(label:BitmapFontTextRenderer):void
 		{
 			label.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 			//since it's a pixel font, we don't want to smooth it.
