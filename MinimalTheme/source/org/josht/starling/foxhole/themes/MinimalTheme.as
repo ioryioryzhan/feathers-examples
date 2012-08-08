@@ -493,22 +493,22 @@ package org.josht.starling.foxhole.themes
 
 		protected function textInputInitializer(input:TextInput):void
 		{
-			input.minWidth = 88 * this._scale;
-			input.minHeight = 88 * this._scale;
-			input.paddingTop = input.paddingRight = input.paddingBottom =
-				input.paddingLeft = 22 * this._scale;
+			input.minWidth = input.minHeight = 66 * this._scale;
+			input.minTouchWidth = input.minTouchHeight = 66 * this._scale;
+			input.paddingTop = input.paddingBottom = 14 * this._scale;
+			input.paddingLeft = input.paddingRight = 16 * this._scale;
 			input.stageTextProperties.fontFamily = "Helvetica";
-			input.stageTextProperties.fontSize = 36 * this._scale;
+			input.stageTextProperties.fontSize = 30 * this._scale;
 			input.stageTextProperties.color = INSET_TEXT_COLOR;
 
 			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
 			backgroundSkin.width = 264 * this._scale;
-			backgroundSkin.height = 88 * this._scale;
+			backgroundSkin.height = 66 * this._scale;
 			input.backgroundSkin = backgroundSkin;
 
 			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURES, this._scale);
 			backgroundDisabledSkin.width = 264 * this._scale;
-			backgroundDisabledSkin.height = 88 * this._scale;
+			backgroundDisabledSkin.height = 66 * this._scale;
 			input.backgroundDisabledSkin = backgroundDisabledSkin;
 		}
 
