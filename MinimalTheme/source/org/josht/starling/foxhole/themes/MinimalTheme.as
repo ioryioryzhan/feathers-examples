@@ -8,8 +8,6 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
-	import org.josht.starling.foxhole.controls.FPSDisplay;
-	import org.josht.starling.foxhole.controls.text.BitmapFontTextRenderer;
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
@@ -24,6 +22,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
 	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListItemRenderer;
 	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
+	import org.josht.starling.foxhole.controls.text.BitmapFontTextRenderer;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
 	import org.josht.starling.foxhole.skins.ImageStateValueSelector;
@@ -166,7 +165,6 @@ package org.josht.starling.foxhole.themes
 			this._fontSize = Math.max(4, roundToNearest(24 * this._scale, 8));
 
 			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
-			this.setInitializerForClass(FPSDisplay, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, sliderThumbInitializer, "foxhole-slider-thumb");
 			this.setInitializerForClass(Button, simpleScrollBarThumbInitializer, "foxhole-simple-scroll-bar-thumb");

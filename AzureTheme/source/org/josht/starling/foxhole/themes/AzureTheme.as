@@ -9,8 +9,6 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
-	import org.josht.starling.foxhole.controls.FPSDisplay;
-	import org.josht.starling.foxhole.controls.text.BitmapFontTextRenderer;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.Radio;
@@ -25,6 +23,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
 	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListItemRenderer;
 	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
+	import org.josht.starling.foxhole.controls.text.BitmapFontTextRenderer;
 	import org.josht.starling.foxhole.core.AddedWatcher;
 	import org.josht.starling.foxhole.core.FoxholeControl;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
@@ -193,7 +192,6 @@ package org.josht.starling.foxhole.themes
 			this._fontSize = 30 * this._scale;
 
 			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
-			this.setInitializerForClass(FPSDisplay, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, tabInitializer, "foxhole-tabbar-tab");
 			this.setInitializerForClass(Button, headerButtonInitializer, "foxhole-header-item");
