@@ -97,7 +97,11 @@ package org.josht.starling.foxhole.examples.helloWorld
 			//here's a specific skin for the down state
 			this.button.downSkin = new Image(this.atlas.getTexture("button-down-skin"));
 
-			//the button's defaultTextFormat works similarly to the defaultSkin
+			//the button's defaultLabelProperties works similarly to the
+			//defaultSkin. Any of the text renderer's properties may be set,
+			//but we'll only set the textFormat.
+			//The default text renderer is BitmapFontTextRenderer, so we pass in
+			//a BitmapFontTextFormat object.
 			this.button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(this.font, 30, 0x000000);
 
 			//onRelease is an as3-signal that tells us when the user has tapped
