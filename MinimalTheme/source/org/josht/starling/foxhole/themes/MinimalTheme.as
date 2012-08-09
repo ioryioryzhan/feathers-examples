@@ -195,7 +195,7 @@ package org.josht.starling.foxhole.themes
 		protected function nothingInitializer(target:DisplayObject):void
 		{
 			//if this is assigned as an initializer, chances are the target will
-			//be a sub-component of something. the initializer for this
+			//be a subcomponent of something. the initializer for this
 			//component's parent is probably handing the initializing for the
 			//target too.
 		}
