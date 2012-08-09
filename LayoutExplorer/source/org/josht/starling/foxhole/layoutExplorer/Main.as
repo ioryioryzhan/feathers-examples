@@ -4,7 +4,6 @@ package org.josht.starling.foxhole.layoutExplorer
 
 	import flash.ui.Mouse;
 
-	import org.josht.starling.foxhole.controls.FPSDisplay;
 	import org.josht.starling.foxhole.controls.ScreenNavigator;
 	import org.josht.starling.foxhole.controls.ScreenNavigatorItem;
 	import org.josht.starling.foxhole.layoutExplorer.data.HorizontalLayoutSettings;
@@ -26,7 +25,6 @@ package org.josht.starling.foxhole.layoutExplorer
 
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.events.ResizeEvent;
 
 	public class Main extends Sprite
 	{
@@ -49,7 +47,6 @@ package org.josht.starling.foxhole.layoutExplorer
 		private var _theme:IFoxholeTheme;
 		private var _navigator:ScreenNavigator;
 		private var _transitionManager:ScreenSlidingStackTransitionManager;
-		private var _fps:FPSDisplay;
 
 		private function addedToStageHandler(event:Event):void
 		{
@@ -158,18 +155,6 @@ package org.josht.starling.foxhole.layoutExplorer
 			this._transitionManager = new ScreenSlidingStackTransitionManager(this._navigator);
 			this._transitionManager.duration = 0.4;
 			this._transitionManager.ease = Cubic.easeOut;
-
-			this._fps = new FPSDisplay();
-			this.stage.addChild(this._fps);
-			this._fps.validate();
-			this._fps.y = this.stage.stageHeight - this._fps.height;
-			this.stage.addEventListener(ResizeEvent.RESIZE, stage_resizeHandler);
-		}
-
-		private function stage_resizeHandler(event:ResizeEvent):void
-		{
-			this._fps.validate();
-			this._fps.y = this.stage.stageHeight - this._fps.height;
 		}
 	}
 }
