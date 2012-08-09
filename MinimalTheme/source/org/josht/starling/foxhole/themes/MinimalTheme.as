@@ -171,6 +171,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Button, sliderThumbInitializer, "foxhole-slider-thumb");
 			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-minimum-track");
 			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-maximum-track");
+			this.setInitializerForClass(Button, toggleSwitchOnTrackInitializer, "foxhole-toggle-switch-on-track");
 			this.setInitializerForClass(Button, toggleSwitchThumbInitializer, "foxhole-toggle-switch-thumb");
 			this.setInitializerForClass(Button, tabInitializer, "foxhole-tabbar-tab");
 			this.setInitializerForClass(Button, toolBarButtonInitializer, "foxhole-header-item");
@@ -325,13 +326,17 @@ package org.josht.starling.foxhole.themes
 		{
 			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_SINGLE;
 
-			const trackSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
-			trackSkin.width = 148 * this._scale;
-			trackSkin.height = 66 * this._scale;
-			toggleSwitch.onTrackSkin = trackSkin;
+			toggleSwitch.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			toggleSwitch.onLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+		}
 
-			toggleSwitch.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+		protected function toggleSwitchOnTrackInitializer(track:Button):void
+		{
+			const defaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
+			defaultSkin.width = 148 * this._scale;
+			defaultSkin.height = 66 * this._scale;
+			track.defaultSkin = defaultSkin;
+			track.minTouchWidth = track.minTouchHeight = 88 * this._scale;
 		}
 
 		protected function toggleSwitchThumbInitializer(thumb:Button):void

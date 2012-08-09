@@ -27,6 +27,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.controls.popups.DropDownPopUpContentManager;
 	import org.josht.starling.foxhole.core.AddedWatcher;
+	import org.josht.starling.foxhole.core.FoxholeControl;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
 	import org.josht.starling.textures.Scale3Textures;
 	import org.josht.starling.textures.Scale9Textures;
@@ -203,6 +204,18 @@ package org.josht.starling.foxhole.themes
 			this._fontSize = BITMAP_FONT.size;
 			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
+			this.setInitializerForClass(Button, toggleSwitchOnTrackInitializer, "foxhole-toggle-switch-on-track");
+			this.setInitializerForClass(Button, toggleSwitchThumbInitializer, "foxhole-toggle-switch-thumb");
+			this.setInitializerForClass(Button, pickerListButtonInitializer, "foxhole-pickerlist-button");
+			this.setInitializerForClass(Button, nothingInitializer, "foxhole-simple-scroll-bar-thumb");
+			this.setInitializerForClass(Button, nothingInitializer, "foxhole-scroll-bar-thumb");
+			this.setInitializerForClass(Button, nothingInitializer, "foxhole-scroll-bar-decrement-button");
+			this.setInitializerForClass(Button, nothingInitializer, "foxhole-scroll-bar-increment-button");
+			this.setInitializerForClass(Button, nothingInitializer, "foxhole-scroll-bar-minimum-track");
+			this.setInitializerForClass(Button, nothingInitializer, "foxhole-scroll-bar-maximum-track");
+			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-thumb");
+			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-minimum-track");
+			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-maximum-track");
 			this.setInitializerForClass(Check, checkInitializer);
 			this.setInitializerForClass(Radio, radioInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
@@ -221,6 +234,11 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Callout, calloutInitializer);
 		}
 
+		protected function nothingInitializer(target:FoxholeControl):void
+		{
+			//do nothing
+		}
+
 		protected function labelInitializer(label:BitmapFontTextRenderer):void
 		{
 			label.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
@@ -228,50 +246,46 @@ package org.josht.starling.foxhole.themes
 
 		protected function buttonInitializer(button:Button):void
 		{
-			if(button.nameList.contains("foxhole-simple-scroll-bar-thumb") || button.nameList.contains("foxhole-scroll-bar-thumb") ||
-				button.nameList.contains("foxhole-scroll-bar-decrement-button") || button.nameList.contains("foxhole-scroll-bar-increment-button") ||
-				button.nameList.contains("foxhole-scroll-bar-minimum-track") || button.nameList.contains("foxhole-scroll-bar-maximum-track") ||
-				button.nameList.contains("foxhole-slider-thumb") ||
-				button.nameList.contains("foxhole-slider-minimum-track") || button.nameList.contains("foxhole-slider-maximum-track"))
-			{
-				//do nothing. handled elsewhere.
-			}
-			else
-			{
-				button.defaultSkin = new Scale9Image(BUTTON_UP_SKIN_TEXTURES);
-				button.hoverSkin = new Scale9Image(BUTTON_HOVER_SKIN_TEXTURES);
-				button.downSkin = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURES);
-				button.disabledSkin = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURES);
-				button.defaultSelectedSkin = new Scale9Image(BUTTON_SELECTED_UP_SKIN_TEXTURES);
-				button.selectedHoverSkin = new Scale9Image(BUTTON_SELECTED_HOVER_SKIN_TEXTURES);
-				button.selectedDownSkin = new Scale9Image(BUTTON_SELECTED_DOWN_SKIN_TEXTURES);
-				button.selectedDisabledSkin = new Scale9Image(BUTTON_SELECTED_DISABLED_SKIN_TEXTURES);
+			button.defaultSkin = new Scale9Image(BUTTON_UP_SKIN_TEXTURES);
+			button.hoverSkin = new Scale9Image(BUTTON_HOVER_SKIN_TEXTURES);
+			button.downSkin = new Scale9Image(BUTTON_DOWN_SKIN_TEXTURES);
+			button.disabledSkin = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURES);
+			button.defaultSelectedSkin = new Scale9Image(BUTTON_SELECTED_UP_SKIN_TEXTURES);
+			button.selectedHoverSkin = new Scale9Image(BUTTON_SELECTED_HOVER_SKIN_TEXTURES);
+			button.selectedDownSkin = new Scale9Image(BUTTON_SELECTED_DOWN_SKIN_TEXTURES);
+			button.selectedDisabledSkin = new Scale9Image(BUTTON_SELECTED_DISABLED_SKIN_TEXTURES);
 
-				button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 
-				button.paddingTop = button.paddingBottom = 2;
-				button.paddingLeft = button.paddingRight = 10;
-				button.gap = 2;
-				button.minWidth = button.minHeight = 12;
-			}
+			button.paddingTop = button.paddingBottom = 2;
+			button.paddingLeft = button.paddingRight = 10;
+			button.gap = 2;
+			button.minWidth = button.minHeight = 12;
+		}
 
-			//styles for the pickerlist button come from above, and then we're
-			//adding a little bit extra.
-			if(button.nameList.contains("foxhole-pickerlist-button"))
-			{
-				button.defaultIcon = new Image(PICKER_LIST_UP_ICON_TEXTURE);
-				button.hoverIcon = new Image(PICKER_LIST_HOVER_ICON_TEXTURE);
-				button.downIcon = new Image(PICKER_LIST_DOWN_ICON_TEXTURE);
-				button.disabledIcon = new Image(PICKER_LIST_DISABLED_ICON_TEXTURE);
-				button.gap = Number.POSITIVE_INFINITY; //fill as completely as possible
-				button.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
-				button.iconPosition = Button.ICON_POSITION_RIGHT;
-				button.paddingRight = 6;
-			}
-			if(button.nameList.contains("foxhole-toggle-switch-thumb"))
-			{
-				button.width = button.height = BUTTON_UP_SKIN_TEXTURES.texture.frame.height;
-			}
+		protected function pickerListButtonInitializer(button:Button):void
+		{
+			this.buttonInitializer(button);
+
+			button.defaultIcon = new Image(PICKER_LIST_UP_ICON_TEXTURE);
+			button.hoverIcon = new Image(PICKER_LIST_HOVER_ICON_TEXTURE);
+			button.downIcon = new Image(PICKER_LIST_DOWN_ICON_TEXTURE);
+			button.disabledIcon = new Image(PICKER_LIST_DISABLED_ICON_TEXTURE);
+			button.gap = Number.POSITIVE_INFINITY; //fill as completely as possible
+			button.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
+			button.iconPosition = Button.ICON_POSITION_RIGHT;
+			button.paddingRight = 6;
+		}
+
+		protected function toggleSwitchOnTrackInitializer(track:Button):void
+		{
+			track.defaultSkin = new Scale9Image(BUTTON_SELECTED_UP_SKIN_TEXTURES);
+		}
+
+		protected function toggleSwitchThumbInitializer(thumb:Button):void
+		{
+			this.buttonInitializer(thumb);
+			thumb.width = thumb.height = BUTTON_UP_SKIN_TEXTURES.texture.frame.height;
 		}
 
 		protected function checkInitializer(check:Check):void
@@ -311,9 +325,7 @@ package org.josht.starling.foxhole.themes
 		protected function toggleSwitchInitializer(toggle:ToggleSwitch):void
 		{
 			toggle.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_SINGLE;
-			toggle.onTrackSkin = new Scale9Image(BUTTON_SELECTED_UP_SKIN_TEXTURES);
-
-			toggle.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			toggle.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
 		}
 
 		protected function sliderInitializer(slider:Slider):void

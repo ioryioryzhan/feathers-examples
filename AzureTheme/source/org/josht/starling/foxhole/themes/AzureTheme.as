@@ -198,6 +198,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Button, scrollBarThumbInitializer, "foxhole-simple-scroll-bar-thumb");
 			this.setInitializerForClass(Button, sliderThumbInitializer, "foxhole-slider-thumb");
 			this.setInitializerForClass(Button, pickerListButtonInitializer, "foxhole-pickerlist-button");
+			this.setInitializerForClass(Button, toggleSwitchOnTrackInitializer, "foxhole-toggle-switch-on-track");
 			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-minimum-track");
 			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-maximum-track");
 			this.setInitializerForClass(Slider, sliderInitializer);
@@ -265,6 +266,15 @@ package org.josht.starling.foxhole.themes
 			button.gap = Number.POSITIVE_INFINITY; //fill as completely as possible
 			button.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			button.iconPosition = Button.ICON_POSITION_RIGHT;
+		}
+
+		protected function toggleSwitchOnTrackInitializer(track:Button):void
+		{
+			const defaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
+			defaultSkin.width = 148 * this._scale;
+			defaultSkin.height = 66 * this._scale;
+			track.defaultSkin = defaultSkin;
+			track.minTouchWidth = track.minTouchHeight = 88 * this._scale;
 		}
 
 		protected function scrollBarThumbInitializer(thumb:Button):void
@@ -458,15 +468,10 @@ package org.josht.starling.foxhole.themes
 
 		protected function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
 		{
-			const onSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
-			onSkin.width = 148 * this._scale;
-			onSkin.height = 66 * this._scale;
-			toggleSwitch.onTrackSkin = onSkin;
-
 			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_SINGLE;
 
-			toggleSwitch.defaultTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			toggleSwitch.onTextFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			toggleSwitch.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			toggleSwitch.onLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
 		}
 
 		protected function itemRendererInitializer(renderer:BaseDefaultItemRenderer):void
