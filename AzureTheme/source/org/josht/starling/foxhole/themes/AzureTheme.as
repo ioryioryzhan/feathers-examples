@@ -197,7 +197,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Button, headerButtonInitializer, "foxhole-header-item");
 			this.setInitializerForClass(Button, scrollBarThumbInitializer, "foxhole-simple-scroll-bar-thumb");
 			this.setInitializerForClass(Button, sliderThumbInitializer, "foxhole-slider-thumb");
-			this.setInitializerForClass(Button, pickerListButtonInitializer, "foxhole-pickerlist-button");
+			this.setInitializerForClass(Button, pickerListButtonInitializer, "foxhole-picker-list-button");
 			this.setInitializerForClass(Button, toggleSwitchOnTrackInitializer, "foxhole-toggle-switch-on-track");
 			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-minimum-track");
 			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-maximum-track");

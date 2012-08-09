@@ -206,7 +206,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, toggleSwitchOnTrackInitializer, "foxhole-toggle-switch-on-track");
 			this.setInitializerForClass(Button, toggleSwitchThumbInitializer, "foxhole-toggle-switch-thumb");
-			this.setInitializerForClass(Button, pickerListButtonInitializer, "foxhole-pickerlist-button");
+			this.setInitializerForClass(Button, pickerListButtonInitializer, "foxhole-picker-list-button");
 			this.setInitializerForClass(Button, nothingInitializer, "foxhole-simple-scroll-bar-thumb");
 			this.setInitializerForClass(Button, nothingInitializer, "foxhole-scroll-bar-thumb");
 			this.setInitializerForClass(Button, nothingInitializer, "foxhole-scroll-bar-decrement-button");
@@ -226,6 +226,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(ProgressBar, progressBarInitializer);
 			this.setInitializerForClass(Scroller, scrollerInitializer);
 			this.setInitializerForClass(List, listInitializer);
+			this.setInitializerForClass(List, nothingInitializer, "foxhole-picker-list-list");
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(DefaultListItemRenderer, defaultItemRendererInitializer);
 			this.setInitializerForClass(DefaultGroupedListItemRenderer, defaultItemRendererInitializer);
@@ -480,11 +481,6 @@ package org.josht.starling.foxhole.themes
 
 		protected function listInitializer(list:List):void
 		{
-			if(list.nameList.contains("foxhole-pickerlist-list"))
-			{
-				return;
-			}
-
 			list.backgroundSkin = new Scale9Image(SIMPLE_BORDER_BACKGROUND_SKIN_TEXTURES);
 
 			list.paddingTop = list.paddingRight = list.paddingBottom =
