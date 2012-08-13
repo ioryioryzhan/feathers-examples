@@ -2,8 +2,12 @@ package org.josht.starling.foxhole.gallery
 {
 	import flash.display.Bitmap;
 	import flash.display.Loader;
+	import flash.events.ErrorEvent;
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.events.SecurityErrorEvent;
 	import flash.net.URLRequest;
+	import flash.system.LoaderContext;
 
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.renderers.IListItemRenderer;
@@ -19,6 +23,11 @@ package org.josht.starling.foxhole.gallery
 
 	public class GalleryItemRenderer extends FoxholeControl implements IListItemRenderer
 	{
+		/**
+		 * @private
+		 */
+		private static const LOADER_CONTEXT:LoaderContext = new LoaderContext(true);
+
 		/**
 		 * Constructor.
 		 */
@@ -182,6 +191,8 @@ package org.josht.starling.foxhole.gallery
 						if(this.loader)
 						{
 							this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loader_completeHandler);
+							this.loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
+							this.loader.contentLoaderInfo.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_errorHandler);
 							this.loader = null;
 						}
 
@@ -193,7 +204,9 @@ package org.josht.starling.foxhole.gallery
 						this.currentImageURL = this._data.thumbURL;
 						this.loader = new Loader();
 						this.loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loader_completeHandler);
-						this.loader.load(new URLRequest(this._data.thumbURL));
+						this.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
+						this.loader.contentLoaderInfo.addEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_errorHandler);
+						this.loader.load(new URLRequest(this._data.thumbURL), LOADER_CONTEXT);
 					}
 				}
 				else
@@ -307,6 +320,8 @@ package org.josht.starling.foxhole.gallery
 		{
 			const bitmap:Bitmap = Bitmap(this.loader.content);
 			this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loader_completeHandler);
+			this.loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
+			this.loader.contentLoaderInfo.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_errorHandler);
 			this.loader = null;
 
 			const texture:Texture = Texture.fromBitmap(bitmap);
@@ -324,5 +339,20 @@ package org.josht.starling.foxhole.gallery
 			this.image.visible = true;
 			this.invalidate(INVALIDATION_FLAG_SIZE);
 		}
+
+		/**
+		 * @private
+		 */
+		protected function loader_errorHandler(event:ErrorEvent):void
+		{
+			this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loader_completeHandler);
+			this.loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
+			this.loader.contentLoaderInfo.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_errorHandler);
+			this.loader = null;
+			
+			//can't load the image at this time
+			//TODO: maybe show a placeholder?
+		}
+
 	}
 }

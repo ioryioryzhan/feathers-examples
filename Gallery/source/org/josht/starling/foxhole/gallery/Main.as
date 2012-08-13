@@ -5,8 +5,11 @@ package org.josht.starling.foxhole.gallery
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.events.SecurityErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.system.LoaderContext;
 	import flash.text.TextFormat;
 
 	import org.josht.starling.foxhole.controls.List;
@@ -26,6 +29,7 @@ package org.josht.starling.foxhole.gallery
 
 	public class Main extends Sprite
 	{
+		private static const LOADER_CONTEXT:LoaderContext = new LoaderContext(true);
 		private static const FLICKR_URL:String = "http://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=" + CONFIG::FLICKR_API_KEY + "&format=rest";
 		private static const FLICKR_PHOTO_URL:String = "http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_{size}.jpg";
 
@@ -84,8 +88,10 @@ package org.josht.starling.foxhole.gallery
 			{
 				this.loader = new Loader();
 				this.loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, loader_completeHandler);
+				this.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
+				this.loader.contentLoaderInfo.addEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_errorHandler);
 			}
-			this.loader.load(new URLRequest(item.url));
+			this.loader.load(new URLRequest(item.url), LOADER_CONTEXT);
 			if(this.selectedImage)
 			{
 				this.selectedImage.visible = false;
@@ -106,11 +112,6 @@ package org.josht.starling.foxhole.gallery
 			this.apiLoader.load(new URLRequest(FLICKR_URL));
 
 			this.stage.addEventListener(ResizeEvent.RESIZE, stage_resizeHandler);
-
-			FoxholeControl.defaultTextRendererFactory = function():TextFieldTextRenderer
-			{
-				return new TextFieldTextRenderer();
-			};
 
 			this.list = new List();
 			this.list.layout = new HorizontalLayout();
@@ -197,6 +198,12 @@ package org.josht.starling.foxhole.gallery
 
 			this.message.text = "";
 
+			this.layout();
+		}
+
+		protected function loader_errorHandler(event:flash.events.Event):void
+		{
+			this.message.text = "Error loading image.";
 			this.layout();
 		}
 	}
