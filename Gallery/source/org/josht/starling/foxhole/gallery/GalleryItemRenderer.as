@@ -19,14 +19,32 @@ package org.josht.starling.foxhole.gallery
 
 	public class GalleryItemRenderer extends FoxholeControl implements IListItemRenderer
 	{
+		/**
+		 * Constructor.
+		 */
 		public function GalleryItemRenderer()
 		{
 			this.addEventListener(TouchEvent.TOUCH, touchHandler);
 		}
 
+		/**
+		 * @private
+		 */
 		protected var image:Image;
+
+		/**
+		 * @private
+		 */
 		protected var currentImageURL:String;
+
+		/**
+		 * @private
+		 */
 		protected var loader:Loader;
+
+		/**
+		 * @private
+		 */
 		protected var touchPointID:int = -1;
 
 		/**
@@ -77,15 +95,7 @@ package org.josht.starling.foxhole.gallery
 			{
 				return;
 			}
-			/*if(this._owner)
-			{
-				List(this._owner).onScroll.remove(owner_onScroll);
-			}*/
 			this._owner = value;
-			/*if(this._owner)
-			{
-				List(this._owner).onScroll.add(owner_onScroll);
-			}*/
 			this.invalidate(INVALIDATION_FLAG_DATA);
 		}
 
@@ -139,7 +149,6 @@ package org.josht.starling.foxhole.gallery
 			}
 			this._isSelected = value;
 			this._onChange.dispatch(this);
-			this.invalidate(INVALIDATION_FLAG_SELECTED);
 		}
 
 		/**
@@ -189,6 +198,11 @@ package org.josht.starling.foxhole.gallery
 				}
 				else
 				{
+					if(this.loader)
+					{
+						this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loader_completeHandler);
+						this.loader = null;
+					}
 					if(this.image)
 					{
 						this.image.texture.dispose();
@@ -209,13 +223,11 @@ package org.josht.starling.foxhole.gallery
 					this.image.y = (this.actualHeight - this.image.height) / 2;
 				}
 			}
-
-			if(sizeInvalid || selectionInvalid)
-			{
-
-			}
 		}
 
+		/**
+		 * @private
+		 */
 		protected function autoSizeIfNeeded():Boolean
 		{
 			const needsWidth:Boolean = isNaN(this.explicitWidth);
@@ -243,6 +255,9 @@ package org.josht.starling.foxhole.gallery
 			return this.setSizeInternal(newWidth, newHeight, false);
 		}
 
+		/**
+		 * @private
+		 */
 		protected function touchHandler(event:TouchEvent):void
 		{
 			const touches:Vector.<Touch> = event.getTouches(this.stage);
@@ -285,6 +300,9 @@ package org.josht.starling.foxhole.gallery
 			}
 		}
 
+		/**
+		 * @private
+		 */
 		protected function loader_completeHandler(event:Event):void
 		{
 			const bitmap:Bitmap = Bitmap(this.loader.content);
