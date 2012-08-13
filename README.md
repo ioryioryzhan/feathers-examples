@@ -30,6 +30,13 @@ Demonstrates the resizing behavior of `Scale9Image`, `Scale3Image`, and `TiledIm
 * [Web Demo](http://flashtoolbox.com/foxhole-starling/examples/display-object-explorer/)
 * [Source Code](https://github.com/joshtynjala/foxhole-starling-examples/tree/master/DisplayObjectExplorer)
 
+## Gallery
+
+An example of using a List component with a horizontal layout and a custom item renderer. Displays a simple gallery of images from Flickr.
+
+* [Web Demo](http://flashtoolbox.com/foxhole-starling/examples/gallery/)
+* [Source Code](https://github.com/joshtynjala/foxhole-starling-examples/tree/master/Gallery)
+
 ## Tile List
 
 An example of customizing the List component using a tile layout with paging. Includes some customization of the DefaultListItemRenderer layout to display an icon above text.
