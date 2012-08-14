@@ -109,6 +109,7 @@ package org.josht.starling.foxhole.examples.tileList
 			this._list.layout = listLayout;
 			this._list.scrollerProperties.snapToPages = true;
 			this._list.scrollerProperties.scrollBarDisplayMode = Scroller.SCROLL_BAR_DISPLAY_MODE_NONE;
+			this._list.scrollerProperties.verticalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
 			this._list.itemRendererProperties.labelField = "label";
 			this._list.itemRendererProperties.iconTextureField = "texture";
 			this._list.itemRendererProperties.iconPosition = Button.ICON_POSITION_TOP;
