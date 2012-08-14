@@ -1,5 +1,7 @@
 package org.josht.starling.foxhole.gallery
 {
+	import com.gskinner.motion.easing.Sine;
+
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.events.ErrorEvent;
@@ -12,6 +14,7 @@ package org.josht.starling.foxhole.gallery
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.renderers.IListItemRenderer;
 	import org.josht.starling.foxhole.core.FoxholeControl;
+	import org.josht.starling.motion.GTween;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
@@ -55,6 +58,11 @@ package org.josht.starling.foxhole.gallery
 		 * @private
 		 */
 		protected var touchPointID:int = -1;
+
+		/**
+		 * @private
+		 */
+		protected var fadeTween:GTween;
 
 		/**
 		 * @private
@@ -201,6 +209,12 @@ package org.josht.starling.foxhole.gallery
 							this.image.visible = false;
 						}
 
+						if(this.fadeTween)
+						{
+							this.fadeTween.paused = true;
+							this.fadeTween = null;
+						}
+
 						this.currentImageURL = this._data.thumbURL;
 						this.loader = new Loader();
 						this.loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loader_completeHandler);
@@ -256,6 +270,10 @@ package org.josht.starling.foxhole.gallery
 				{
 					newWidth = this.image.width;
 				}
+				else
+				{
+					newWidth = 100;
+				}
 			}
 			var newHeight:Number = this.explicitHeight;
 			if(needsHeight)
@@ -263,6 +281,10 @@ package org.josht.starling.foxhole.gallery
 				if(this.image)
 				{
 					newHeight = this.image.height;
+				}
+				else
+				{
+					newHeight = 100;
 				}
 			}
 			return this.setSizeInternal(newWidth, newHeight, false);
@@ -336,7 +358,15 @@ package org.josht.starling.foxhole.gallery
 				this.image = new Image(texture);
 				this.addChild(this.image);
 			}
+			this.image.alpha = 0;
 			this.image.visible = true;
+			this.fadeTween = new GTween(this.image, 0.25,
+			{
+				alpha: 1
+			},
+			{
+				ease: Sine.easeOut
+			});
 			this.invalidate(INVALIDATION_FLAG_SIZE);
 		}
 
@@ -349,7 +379,7 @@ package org.josht.starling.foxhole.gallery
 			this.loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
 			this.loader.contentLoaderInfo.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_errorHandler);
 			this.loader = null;
-			
+
 			//can't load the image at this time
 			//TODO: maybe show a placeholder?
 		}
