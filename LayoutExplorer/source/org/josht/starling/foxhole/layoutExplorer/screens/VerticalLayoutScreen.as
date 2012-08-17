@@ -4,6 +4,7 @@ package org.josht.starling.foxhole.layoutExplorer.screens
 	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.ScrollContainer;
+	import org.josht.starling.foxhole.controls.Scroller;
 	import org.josht.starling.foxhole.layout.VerticalLayout;
 	import org.josht.starling.foxhole.layoutExplorer.data.VerticalLayoutSettings;
 	import org.osflash.signals.ISignal;
@@ -52,6 +53,7 @@ package org.josht.starling.foxhole.layoutExplorer.screens
 
 			this._container = new ScrollContainer();
 			this._container.layout = layout;
+			this._container.horizontalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
 			this.addChild(this._container);
 			for(var i:int = 0; i < this.settings.itemCount; i++)
 			{
