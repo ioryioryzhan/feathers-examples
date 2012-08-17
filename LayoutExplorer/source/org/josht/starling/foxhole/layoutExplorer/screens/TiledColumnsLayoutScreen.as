@@ -59,11 +59,11 @@ package org.josht.starling.foxhole.layoutExplorer.screens
 			this._container.scrollerProperties.snapToPages = this.settings.paging != TiledColumnsLayout.PAGING_NONE;
 			if(this.settings.paging == TiledColumnsLayout.PAGING_VERTICAL)
 			{
-				this._container.horizontalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
+				this._container.scrollerProperties.horizontalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
 			}
 			else
 			{
-				this._container.verticalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
+				this._container.scrollerProperties.verticalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
 			}
 			this.addChild(this._container);
 			for(var i:int = 0; i < this.settings.itemCount; i++)
@@ -86,13 +86,13 @@ package org.josht.starling.foxhole.layoutExplorer.screens
 			this._header.title = "Tiled Columns Layout";
 			this.addChild(this._header);
 			this._header.leftItems = new <DisplayObject>
-				[
-					this._backButton
-				];
+			[
+				this._backButton
+			];
 			this._header.rightItems = new <DisplayObject>
-				[
-					this._settingsButton
-				];
+			[
+				this._settingsButton
+			];
 
 			// handles the back hardware key on android
 			this.backButtonHandler = this.onBackButton;
