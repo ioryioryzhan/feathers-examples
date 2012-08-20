@@ -9,6 +9,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
 	import org.josht.starling.foxhole.controls.Check;
+	import org.josht.starling.foxhole.controls.GroupedList;
 	import org.josht.starling.foxhole.controls.renderers.BaseDefaultItemRenderer;
 	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
 	import org.josht.starling.foxhole.controls.renderers.DefaultGroupedListItemRenderer;
@@ -97,6 +98,7 @@ package org.josht.starling.foxhole.themes
 		protected static const ITEM_RENDERER_SELECTED_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("item-renderer-selected-up-skin");
 
 		protected static const HEADER_BACKGROUND_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("header-background-skin"), HEADER_SCALE_9_GRID);
+		protected static const GROUPED_LIST_HEADER_BACKGROUND_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("grouped-list-header-background-skin"), HEADER_SCALE_9_GRID);
 
 		protected static const CHECK_UP_ICON_TEXTURE:Texture = ATLAS.getTexture("check-up-icon");
 		protected static const CHECK_HOVER_ICON_TEXTURE:Texture = ATLAS.getTexture("check-hover-icon");
@@ -227,6 +229,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(Scroller, scrollerInitializer);
 			this.setInitializerForClass(List, listInitializer);
 			this.setInitializerForClass(List, nothingInitializer, "foxhole-picker-list-list");
+			this.setInitializerForClass(GroupedList, groupedListInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(DefaultListItemRenderer, defaultItemRendererInitializer);
 			this.setInitializerForClass(DefaultGroupedListItemRenderer, defaultItemRendererInitializer);
@@ -487,6 +490,14 @@ package org.josht.starling.foxhole.themes
 				list.paddingLeft = 1;
 		}
 
+		protected function groupedListInitializer(list:GroupedList):void
+		{
+			list.backgroundSkin = new Scale9Image(SIMPLE_BORDER_BACKGROUND_SKIN_TEXTURES);
+
+			list.paddingTop = list.paddingRight = list.paddingBottom =
+				list.paddingLeft = 1;
+		}
+
 		protected function pickerListInitializer(list:PickerList):void
 		{
 			list.popUpContentManager = new DropDownPopUpContentManager();
@@ -517,7 +528,7 @@ package org.josht.starling.foxhole.themes
 
 		protected function defaultHeaderOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
 		{
-			renderer.backgroundSkin = new Scale9Image(HEADER_BACKGROUND_SKIN_TEXTURES);
+			renderer.backgroundSkin = new Scale9Image(GROUPED_LIST_HEADER_BACKGROUND_SKIN_TEXTURES);
 			renderer.backgroundSkin.height = 18;
 
 			renderer.paddingTop = renderer.paddingBottom = 2;
