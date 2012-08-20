@@ -15,6 +15,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.SimpleScrollBar;
 	import org.josht.starling.foxhole.controls.Slider;
+	import org.josht.starling.foxhole.controls.TabBar;
 	import org.josht.starling.foxhole.controls.TextInput;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.controls.popups.CalloutPopUpContentManager;
@@ -193,14 +194,14 @@ package org.josht.starling.foxhole.themes
 
 			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
-			this.setInitializerForClass(Button, tabInitializer, "foxhole-tabbar-tab");
-			this.setInitializerForClass(Button, headerButtonInitializer, "foxhole-header-item");
-			this.setInitializerForClass(Button, scrollBarThumbInitializer, "foxhole-simple-scroll-bar-thumb");
-			this.setInitializerForClass(Button, sliderThumbInitializer, "foxhole-slider-thumb");
-			this.setInitializerForClass(Button, pickerListButtonInitializer, "foxhole-picker-list-button");
-			this.setInitializerForClass(Button, toggleSwitchOnTrackInitializer, "foxhole-toggle-switch-on-track");
-			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-minimum-track");
-			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-maximum-track");
+			this.setInitializerForClass(Button, tabInitializer, TabBar.DEFAULT_CHILD_NAME_TAB);
+			this.setInitializerForClass(Button, headerButtonInitializer, ScreenHeader.DEFAULT_CHILD_NAME_ITEM);
+			this.setInitializerForClass(Button, scrollBarThumbInitializer, SimpleScrollBar.DEFAULT_CHILD_NAME_THUMB);
+			this.setInitializerForClass(Button, sliderThumbInitializer, Slider.DEFAULT_CHILD_NAME_THUMB);
+			this.setInitializerForClass(Button, pickerListButtonInitializer, PickerList.DEFAULT_CHILD_NAME_BUTTON);
+			this.setInitializerForClass(Button, toggleSwitchOnTrackInitializer, ToggleSwitch.DEFAULT_CHILD_NAME_ON_TRACK);
+			this.setInitializerForClass(Button, nothingInitializer, Slider.DEFAULT_CHILD_NAME_MINIMUM_TRACK);
+			this.setInitializerForClass(Button, nothingInitializer, Slider.DEFAULT_CHILD_NAME_MAXIMUM_TRACK);
 			this.setInitializerForClass(Slider, sliderInitializer);
 			this.setInitializerForClass(SimpleScrollBar, scrollBarInitializer);
 			this.setInitializerForClass(Check, checkInitializer);

@@ -14,7 +14,9 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.Radio;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
+	import org.josht.starling.foxhole.controls.SimpleScrollBar;
 	import org.josht.starling.foxhole.controls.Slider;
+	import org.josht.starling.foxhole.controls.TabBar;
 	import org.josht.starling.foxhole.controls.TextInput;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.controls.popups.CalloutPopUpContentManager;
@@ -169,16 +171,15 @@ package org.josht.starling.foxhole.themes
 
 			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
-			this.setInitializerForClass(Button, sliderThumbInitializer, "foxhole-slider-thumb");
-			this.setInitializerForClass(Button, simpleScrollBarThumbInitializer, "foxhole-simple-scroll-bar-thumb");
-			this.setInitializerForClass(Button, sliderThumbInitializer, "foxhole-slider-thumb");
-			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-minimum-track");
-			this.setInitializerForClass(Button, nothingInitializer, "foxhole-slider-maximum-track");
-			this.setInitializerForClass(Button, toggleSwitchOnTrackInitializer, "foxhole-toggle-switch-on-track");
-			this.setInitializerForClass(Button, toggleSwitchThumbInitializer, "foxhole-toggle-switch-thumb");
-			this.setInitializerForClass(Button, tabInitializer, "foxhole-tabbar-tab");
-			this.setInitializerForClass(Button, toolBarButtonInitializer, "foxhole-header-item");
-			this.setInitializerForClass(Button, pickerListButtonInitializer, "foxhole-picker-list-button");
+			this.setInitializerForClass(Button, sliderThumbInitializer, Slider.DEFAULT_CHILD_NAME_THUMB);
+			this.setInitializerForClass(Button, simpleScrollBarThumbInitializer, SimpleScrollBar.DEFAULT_CHILD_NAME_THUMB);
+			this.setInitializerForClass(Button, nothingInitializer, Slider.DEFAULT_CHILD_NAME_MINIMUM_TRACK);
+			this.setInitializerForClass(Button, nothingInitializer, Slider.DEFAULT_CHILD_NAME_MAXIMUM_TRACK);
+			this.setInitializerForClass(Button, toggleSwitchOnTrackInitializer, ToggleSwitch.DEFAULT_CHILD_NAME_ON_TRACK);
+			this.setInitializerForClass(Button, toggleSwitchThumbInitializer, ToggleSwitch.DEFAULT_CHILD_NAME_THUMB);
+			this.setInitializerForClass(Button, tabInitializer, TabBar.DEFAULT_CHILD_NAME_TAB);
+			this.setInitializerForClass(Button, toolBarButtonInitializer, ScreenHeader.DEFAULT_CHILD_NAME_ITEM);
+			this.setInitializerForClass(Button, pickerListButtonInitializer, PickerList.DEFAULT_CHILD_NAME_BUTTON);
 			this.setInitializerForClass(Slider, sliderInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
 			this.setInitializerForClass(Check, checkInitializer);
@@ -187,7 +188,7 @@ package org.josht.starling.foxhole.themes
 			this.setInitializerForClass(DefaultGroupedListItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(DefaultGroupedListHeaderOrFooterRenderer, headerOrFooterRendererInitializer);
 			this.setInitializerForClass(List, listInitializer);
-			this.setInitializerForClass(List, nothingInitializer, "foxhole-picker-list-list");
+			this.setInitializerForClass(List, nothingInitializer, PickerList.DEFAULT_CHILD_NAME_LIST);
 			this.setInitializerForClass(GroupedList, groupedListInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
