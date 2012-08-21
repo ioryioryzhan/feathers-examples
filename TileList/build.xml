@@ -7,8 +7,15 @@
 	<property file="./sdk.properties"/>
 	<property file="./build.local.properties"/>
 	<property file="./build.properties"/>
+	
+	<fail unless="ios.provision.path"/>
+	<fail unless="ios.certificate.path"/>
+	<fail unless="ios.certificate.password"/>
+	
+	<fail unless="android.certificate.path"/>
+	<fail unless="android.certificate.password"/>
 
-	<target name="build" depends="build-web"/>
+	<target name="build" depends="build-web,build-android,build-ios"/>
 
 	<target name="prepare">
 		<delete dir="${output.path}"/>
@@ -28,6 +35,52 @@
 			<arg line="--source-path+='${foxhole.root}'"/>
 			<arg line="source/TileList.as"/>
 			<arg line="--output ${output.path}/TileListWeb.swf"/>
+		</java>
+	</target>
+	<target name="build-air-swf" depends="prepare">
+		<echo message="Building TileList.swf"/>
+		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
+			<arg line="+flexlib='${flexframework.root}'"/>
+			<arg line="+configname=air"/>
+			<arg line="--swf-version=15"/>
+			<arg line="--source-path+='source'"/>
+			<arg line="--source-path+='${signals.root}'"/>
+			<arg line="--source-path+='${gtween.root}'"/>
+			<arg line="--source-path+='${starling.root}'"/>
+			<arg line="--source-path+='${foxhole.root}'"/>
+			<arg line="source/TileList.as"/>
+			<arg line="--output ${output.path}/TileList.swf"/>
+		</java>
+	</target>
+	<target name="build-ios" depends="build-air-swf">
+		<java jar="${adt}" dir="${basedir}" fork="true" 
+			failonerror="true" maxmemory="512m">
+			<arg line="-package"/>
+			<arg line="-target ipa-app-store"/>
+			<arg line="-provisioning-profile ${ios.provision.path}"/>
+			<arg line="-keystore ${ios.certificate.path}"/>
+			<arg line="-storetype pkcs12"/>
+			<arg line="-storepass ${ios.certificate.password}"/>
+			<arg line="${output.path}/TileList.ipa"/>
+			<arg line="source/TileList-app.xml"/>
+			<!--<arg line="icon48.png icon72.png icon128.png icon512.png"/>-->
+			<arg line="-C ${output.path}"/>
+			<arg line="TileList.swf"/>
+		</java>
+	</target>
+	<target name="build-android" depends="build-air-swf">
+		<java jar="${adt}" dir="${basedir}" fork="true" 
+			failonerror="true" maxmemory="512m">
+			<arg line="-package"/>
+			<arg line="-target apk-captive-runtime"/>
+			<arg line="-storetype pkcs12"/>
+			<arg line="-keystore ${android.certificate.path}"/>
+			<arg line="-storepass ${android.certificate.password}"/>
+			<arg line="${output.path}/TileList.apk"/>
+			<arg line="source/TileList-app.xml"/>
+			<!--<arg line="icon48.png icon72.png icon128.png icon512.png"/>-->
+			<arg line="-C ${output.path}"/>
+			<arg line="TileList.swf"/>
 		</java>
 	</target>
 </project>

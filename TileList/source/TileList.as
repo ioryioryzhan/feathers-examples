@@ -1,65 +1,71 @@
 package
 {
-	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
-	import flash.ui.ContextMenu;
-	import flash.utils.getDefinitionByName;
+	import flash.geom.Rectangle;
+
+	import org.josht.starling.foxhole.examples.tileList.Main;
 
 	import starling.core.Starling;
 
 	[SWF(width="960",height="640",frameRate="60",backgroundColor="#ffffff")]
-	public class TileList extends MovieClip
+	public class TileList extends Sprite
 	{
 		public function TileList()
 		{
-			var menu:ContextMenu = new ContextMenu();
-			menu.hideBuiltInItems();
-			this.contextMenu = menu;
-
 			if(this.stage)
 			{
-				this.stage.align = StageAlign.TOP_LEFT;
 				this.stage.scaleMode = StageScaleMode.NO_SCALE;
+				this.stage.align = StageAlign.TOP_LEFT;
 				this.stage.mouseChildren = false;
 			}
 			this.mouseEnabled = this.mouseChildren = false;
-
 			this.loaderInfo.addEventListener(Event.COMPLETE, loaderInfo_completeHandler);
 		}
 
 		private var _starling:Starling;
 
-		private function start():void
+		private function loaderInfo_completeHandler(event:Event):void
 		{
-			this.gotoAndStop(2);
-			this.graphics.clear();
-
 			Starling.handleLostContext = true;
 			Starling.multitouchEnabled = true;
-			const MainType:Class = getDefinitionByName("org.josht.starling.foxhole.examples.tileList.Main") as Class;
-			this._starling = new Starling(MainType, this.stage);
+			this._starling = new Starling(Main, this.stage);
+			this._starling.enableErrorChecking = false;
+			this._starling.showStats = true;
+			this._starling.start();
+
+			this.stage.addEventListener(Event.RESIZE, stage_resizeHandler, false, int.MAX_VALUE, true);
+			this.stage.addEventListener(Event.DEACTIVATE, stage_deactivateHandler, false, 0, true);
+		}
+
+		private function stage_resizeHandler(event:Event):void
+		{
+			this._starling.stage.stageWidth = this.stage.stageWidth;
+			this._starling.stage.stageHeight = this.stage.stageHeight;
+
+			const viewPort:Rectangle = this._starling.viewPort;
+			viewPort.width = this.stage.stageWidth;
+			viewPort.height = this.stage.stageHeight;
+			try
+			{
+				this._starling.viewPort = viewPort;
+			}
+			catch(error:Error) {}
+		}
+
+		private function stage_deactivateHandler(event:Event):void
+		{
+			this._starling.stop();
+			this.stage.addEventListener(Event.ACTIVATE, stage_activateHandler, false, 0, true);
+		}
+
+		private function stage_activateHandler(event:Event):void
+		{
+			this.stage.removeEventListener(Event.ACTIVATE, stage_activateHandler);
 			this._starling.start();
 		}
 
-		private function enterFrameHandler(event:Event):void
-		{
-			if(this.stage.stageWidth > 0 && this.stage.stageHeight > 0)
-			{
-				this.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
-				this.start();
-			}
-		}
-
-		private function loaderInfo_completeHandler(event:Event):void
-		{
-			if(this.stage.stageWidth == 0 || this.stage.stageHeight == 0)
-			{
-				this.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
-				return;
-			}
-			this.start();
-		}
 	}
 }
