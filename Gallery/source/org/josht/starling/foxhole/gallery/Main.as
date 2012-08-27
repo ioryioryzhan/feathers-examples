@@ -113,14 +113,17 @@ package org.josht.starling.foxhole.gallery
 
 			this.stage.addEventListener(ResizeEvent.RESIZE, stage_resizeHandler);
 
+			const listLayout:HorizontalLayout = new HorizontalLayout();
+			listLayout.verticalAlign = HorizontalLayout.VERTICAL_ALIGN_JUSTIFY;
+			listLayout.hasVariableItemDimensions = true;
+
 			this.list = new List();
-			this.list.layout = new HorizontalLayout();
+			this.list.layout = listLayout;
 			this.list.backgroundSkin = new Quad(100, 100, 0x222222);
 			this.list.scrollerProperties.verticalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
+			this.list.scrollerProperties.snapScrollPositionsToPixels = true;
 			this.list.itemRendererType = GalleryItemRenderer;
 			this.list.itemRendererProperties.labelField = "title";
-			this.list.itemRendererProperties.width = 100;
-			this.list.itemRendererProperties.height = 100;
 			this.list.onChange.add(list_onChange);
 			this.addChild(this.list);
 
