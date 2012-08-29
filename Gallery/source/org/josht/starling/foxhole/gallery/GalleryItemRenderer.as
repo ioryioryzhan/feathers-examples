@@ -36,6 +36,7 @@ package org.josht.starling.foxhole.gallery
 		 */
 		public function GalleryItemRenderer()
 		{
+			this.isQuickHitAreaEnabled = true;
 			this.addEventListener(TouchEvent.TOUCH, touchHandler);
 		}
 
@@ -201,6 +202,7 @@ package org.josht.starling.foxhole.gallery
 							this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loader_completeHandler);
 							this.loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
 							this.loader.contentLoaderInfo.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_errorHandler);
+							this.loader.close();
 							this.loader = null;
 						}
 
