@@ -202,7 +202,14 @@ package org.josht.starling.foxhole.gallery
 							this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loader_completeHandler);
 							this.loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
 							this.loader.contentLoaderInfo.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_errorHandler);
-							this.loader.close();
+							try
+							{
+								this.loader.close();
+							}
+							catch(error:Error)
+							{
+								//no need to do anything in response
+							}
 							this.loader = null;
 						}
 
