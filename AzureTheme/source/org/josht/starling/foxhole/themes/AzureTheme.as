@@ -13,6 +13,7 @@ package org.josht.starling.foxhole.themes
 	import org.josht.starling.foxhole.controls.ProgressBar;
 	import org.josht.starling.foxhole.controls.Radio;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
+	import org.josht.starling.foxhole.controls.Scroller;
 	import org.josht.starling.foxhole.controls.SimpleScrollBar;
 	import org.josht.starling.foxhole.controls.Slider;
 	import org.josht.starling.foxhole.controls.TabBar;
@@ -533,6 +534,7 @@ package org.josht.starling.foxhole.themes
 			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
 				layout.paddingLeft = 0;
 			list.listProperties.layout = layout;
+			list.listProperties.@scrollerProperties.horizontalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
 
 			if(PhysicalCapabilities.isTablet(Starling.current.nativeStage))
 			{
