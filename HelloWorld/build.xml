@@ -25,7 +25,7 @@
 		<echo message="Building HelloWorldWeb.swf"/>
 		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
 			<arg line="+flexlib='${flexframework.root}'"/>
-			<arg line="--swf-version=15"/>
+			<arg line="--swf-version=${swf.version}"/>
 			<arg line="--static-link-runtime-shared-libraries=true"/>
 			<arg line="--frame two org.josht.starling.foxhole.examples.helloWorld.Main"/>
 			<arg line="--source-path+='source'"/>
@@ -42,7 +42,7 @@
 		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
 			<arg line="+flexlib='${flexframework.root}'"/>
 			<arg line="+configname=air"/>
-			<arg line="--swf-version=15"/>
+			<arg line="--swf-version=${swf.version}"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${signals.root}'"/>
 			<arg line="--source-path+='${gtween.root}'"/>
@@ -53,6 +53,7 @@
 		</java>
 	</target>
 	<target name="build-ios" depends="build-air-swf">
+		<echo message="Packaging HelloWorld.ipa"/>
 		<java jar="${adt}" dir="${basedir}" fork="true" 
 			failonerror="true" maxmemory="512m">
 			<arg line="-package"/>
@@ -69,6 +70,7 @@
 		</java>
 	</target>
 	<target name="build-android" depends="build-air-swf">
+		<echo message="Packaging HelloWorld.apk"/>
 		<java jar="${adt}" dir="${basedir}" fork="true" 
 			failonerror="true" maxmemory="512m">
 			<arg line="-package"/>
