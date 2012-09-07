@@ -170,6 +170,9 @@ package org.josht.starling.foxhole.themes
 			//which, in this case, is 8.
 			this._fontSize = Math.max(4, roundToNearest(24 * this._scale, 8));
 
+			Callout.stagePaddingTop = Callout.stagePaddingRight = Callout.stagePaddingBottom =
+				Callout.stagePaddingLeft = 16 * this._scale;
+
 			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, sliderThumbInitializer, Slider.DEFAULT_CHILD_NAME_THUMB);

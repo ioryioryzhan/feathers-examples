@@ -204,6 +204,10 @@ package org.josht.starling.foxhole.themes
 		protected function initialize():void
 		{
 			this._fontSize = BITMAP_FONT.size;
+
+			Callout.stagePaddingTop = Callout.stagePaddingRight = Callout.stagePaddingBottom =
+				Callout.stagePaddingLeft = 16;
+
 			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, toggleSwitchOnTrackInitializer, ToggleSwitch.DEFAULT_CHILD_NAME_ON_TRACK);
