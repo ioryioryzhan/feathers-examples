@@ -8,9 +8,11 @@ package org.josht.starling.foxhole.gallery
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.SecurityErrorEvent;
+	import flash.geom.Point;
 	import flash.net.URLRequest;
 	import flash.system.LoaderContext;
 
+	import org.josht.starling.display.ScrollRectManager;
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.renderers.IListItemRenderer;
 	import org.josht.starling.foxhole.core.FoxholeControl;
@@ -32,12 +34,18 @@ package org.josht.starling.foxhole.gallery
 		private static const LOADER_CONTEXT:LoaderContext = new LoaderContext(true);
 
 		/**
+		 * @private
+		 */
+		private static const HELPER_POINT:Point = new Point();
+
+		/**
 		 * Constructor.
 		 */
 		public function GalleryItemRenderer()
 		{
 			this.isQuickHitAreaEnabled = true;
 			this.addEventListener(TouchEvent.TOUCH, touchHandler);
+			this.addEventListener(starling.events.Event.REMOVED_FROM_STAGE, removedFromStageHandler)
 		}
 
 		/**
@@ -139,6 +147,7 @@ package org.josht.starling.foxhole.gallery
 			{
 				return;
 			}
+			this.touchPointID = -1;
 			this._data = GalleryItem(value);
 			this.invalidate(INVALIDATION_FLAG_DATA);
 		}
@@ -302,9 +311,17 @@ package org.josht.starling.foxhole.gallery
 		/**
 		 * @private
 		 */
+		protected function removedFromStageHandler(event:starling.events.Event):void
+		{
+			this.touchPointID = -1;
+		}
+
+		/**
+		 * @private
+		 */
 		protected function touchHandler(event:TouchEvent):void
 		{
-			const touches:Vector.<Touch> = event.getTouches(this.stage);
+			const touches:Vector.<Touch> = event.getTouches(this);
 			if(touches.length == 0)
 			{
 				return;
@@ -327,7 +344,13 @@ package org.josht.starling.foxhole.gallery
 				if(touch.phase == TouchPhase.ENDED)
 				{
 					this.touchPointID = -1;
-					this.isSelected = !this._isSelected;
+
+					touch.getLocation(this, HELPER_POINT);
+					ScrollRectManager.adjustTouchLocation(HELPER_POINT, this);
+					if(this.hitTest(HELPER_POINT, true) != null && !this._isSelected)
+					{
+						this.isSelected = true;
+					}
 					return;
 				}
 			}
@@ -347,7 +370,7 @@ package org.josht.starling.foxhole.gallery
 		/**
 		 * @private
 		 */
-		protected function loader_completeHandler(event:Event):void
+		protected function loader_completeHandler(event:flash.events.Event):void
 		{
 			const bitmap:Bitmap = Bitmap(this.loader.content);
 			this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loader_completeHandler);
