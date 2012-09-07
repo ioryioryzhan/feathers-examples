@@ -4,7 +4,8 @@ package org.josht.starling.foxhole.kitchenSink.screens
 	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.TabBar;
-	import org.josht.starling.foxhole.controls.text.BitmapFontTextRenderer;
+	import org.josht.starling.foxhole.core.FoxholeControl;
+	import org.josht.starling.foxhole.core.ITextRenderer;
 	import org.josht.starling.foxhole.data.ListCollection;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
@@ -20,7 +21,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private var _header:ScreenHeader;
 		private var _backButton:Button;
 		private var _tabBar:TabBar;
-		private var _label:BitmapFontTextRenderer;
+		private var _label:ITextRenderer;
 
 		private var _onBack:Signal = new Signal(TabBarScreen);
 
@@ -41,9 +42,9 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._tabBar.onChange.add(tabBar_onChange);
 			this.addChild(this._tabBar);
 
-			this._label = new BitmapFontTextRenderer();
+			this._label = FoxholeControl.defaultTextRendererFactory();
 			this._label.text = "selectedIndex: " + this._tabBar.selectedIndex.toString();
-			this.addChild(this._label);
+			this.addChild(DisplayObject(this._label));
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
@@ -70,9 +71,10 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._tabBar.validate();
 			this._tabBar.y = this.actualHeight - this._tabBar.height;
 
-			this._label.validate();
-			this._label.x = (this.actualWidth - this._label.width) / 2;
-			this._label.y = this._header.height + (this.actualHeight - this._header.height - this._tabBar.height - this._label.height) / 2;
+			const displayLabel:FoxholeControl = FoxholeControl(this._label);
+			displayLabel.validate();
+			displayLabel.x = (this.actualWidth - displayLabel.width) / 2;
+			displayLabel.y = this._header.height + (this.actualHeight - this._header.height - this._tabBar.height - displayLabel.height) / 2;
 		}
 
 		private function onBackButton():void

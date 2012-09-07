@@ -1,10 +1,11 @@
 package org.josht.starling.foxhole.kitchenSink.screens
 {
 	import org.josht.starling.foxhole.controls.Button;
-	import org.josht.starling.foxhole.controls.text.BitmapFontTextRenderer;
 	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
 	import org.josht.starling.foxhole.controls.Slider;
+	import org.josht.starling.foxhole.core.FoxholeControl;
+	import org.josht.starling.foxhole.core.ITextRenderer;
 	import org.josht.starling.foxhole.kitchenSink.data.SliderSettings;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
@@ -24,7 +25,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private var _header:ScreenHeader;
 		private var _backButton:Button;
 		private var _settingsButton:Button;
-		private var _valueLabel:BitmapFontTextRenderer;
+		private var _valueLabel:ITextRenderer;
 		
 		private var _onBack:Signal = new Signal(SliderScreen);
 		
@@ -52,9 +53,9 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._slider.onChange.add(slider_onChange);
 			this.addChild(this._slider);
 			
-			this._valueLabel = new BitmapFontTextRenderer();
+			this._valueLabel = FoxholeControl.defaultTextRendererFactory();
 			this._valueLabel.text = this._slider.value.toString();
-			this.addChild(this._valueLabel);
+			this.addChild(DisplayObject(this._valueLabel));
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
@@ -89,13 +90,15 @@ package org.josht.starling.foxhole.kitchenSink.screens
 
 			//auto-size the slider and label so that we can position them properly
 			this._slider.validate();
-			this._valueLabel.validate();
 
-			const contentWidth:Number = this._slider.width + spacingX + this._valueLabel.width;
+			const displayValueLabel:FoxholeControl = FoxholeControl(this._valueLabel);
+			displayValueLabel.validate();
+
+			const contentWidth:Number = this._slider.width + spacingX + displayValueLabel.width;
 			this._slider.x = (this.actualWidth - contentWidth) / 2;
 			this._slider.y = (this.actualHeight - this._slider.height) / 2;
-			this._valueLabel.x = this._slider.x + this._slider.width + spacingX;
-			this._valueLabel.y = this._slider.y + (this._slider.height - this._valueLabel.height) / 2;
+			displayValueLabel.x = this._slider.x + this._slider.width + spacingX;
+			displayValueLabel.y = this._slider.y + (this._slider.height - displayValueLabel.height) / 2;
 		}
 		
 		private function onBackButton():void

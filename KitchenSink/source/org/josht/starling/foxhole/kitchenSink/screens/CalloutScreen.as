@@ -2,9 +2,10 @@ package org.josht.starling.foxhole.kitchenSink.screens
 {
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Callout;
-	import org.josht.starling.foxhole.controls.text.BitmapFontTextRenderer;
 	import org.josht.starling.foxhole.controls.Screen;
 	import org.josht.starling.foxhole.controls.ScreenHeader;
+	import org.josht.starling.foxhole.core.FoxholeControl;
+	import org.josht.starling.foxhole.core.ITextRenderer;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
@@ -104,30 +105,30 @@ package org.josht.starling.foxhole.kitchenSink.screens
 
 		private function rightButton_onRelease(button:Button):void
 		{
-			const content:BitmapFontTextRenderer = new BitmapFontTextRenderer();
+			const content:ITextRenderer = FoxholeControl.defaultTextRendererFactory();
 			content.text = "Hello, I'm a Callout";
-			Callout.show(content, this._rightButton, Callout.DIRECTION_RIGHT);
+			Callout.show(DisplayObject(content), this._rightButton, Callout.DIRECTION_RIGHT);
 		}
 
 		private function downButton_onRelease(button:Button):void
 		{
-			const content:BitmapFontTextRenderer = new BitmapFontTextRenderer();
+			const content:ITextRenderer = FoxholeControl.defaultTextRendererFactory();
 			content.text = "Hello, I'm a Callout";
-			Callout.show(content, this._downButton, Callout.DIRECTION_DOWN);
+			Callout.show(DisplayObject(content), this._downButton, Callout.DIRECTION_DOWN);
 		}
 
 		private function upButton_onRelease(button:Button):void
 		{
-			const content:BitmapFontTextRenderer = new BitmapFontTextRenderer();
+			const content:ITextRenderer = FoxholeControl.defaultTextRendererFactory();
 			content.text = "Hello, I'm a Callout";
-			Callout.show(content, this._upButton, Callout.DIRECTION_UP);
+			Callout.show(DisplayObject(content), this._upButton, Callout.DIRECTION_UP);
 		}
 
 		private function leftButton_onRelease(button:Button):void
 		{
-			const content:BitmapFontTextRenderer = new BitmapFontTextRenderer();
+			const content:ITextRenderer = FoxholeControl.defaultTextRendererFactory();
 			content.text = "Hello, I'm a Callout";
-			Callout.show(content, this._leftButton, Callout.DIRECTION_LEFT);
+			Callout.show(DisplayObject(content), this._leftButton, Callout.DIRECTION_LEFT);
 		}
 	}
 }
