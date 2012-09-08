@@ -12,7 +12,9 @@ package
 	import org.josht.system.PhysicalCapabilities;
 
 	import starling.core.Starling;
-	
+	import starling.utils.HAlign;
+	import starling.utils.VAlign;
+
 	[SWF(width="960",height="640",frameRate="60",backgroundColor="#f3f3f3")]
 	public class KitchenSinkWeb extends MovieClip
 	{
@@ -46,6 +48,9 @@ package
 			Starling.multitouchEnabled = true;
 			const MainType:Class = getDefinitionByName("org.josht.starling.foxhole.kitchenSink.KitchenSinkRoot") as Class;
 			this._starling = new Starling(MainType, this.stage);
+			this._starling.enableErrorChecking = false;
+			//this._starling.showStats = true;
+			//this._starling.showStatsAt(HAlign.LEFT, VAlign.BOTTOM);
 			this._starling.start();
 		}
 		

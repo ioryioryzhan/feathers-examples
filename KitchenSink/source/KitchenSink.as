@@ -13,7 +13,9 @@ package
 	import org.josht.starling.foxhole.kitchenSink.KitchenSinkRoot;
 	
 	import starling.core.Starling;
-	
+	import starling.utils.HAlign;
+	import starling.utils.VAlign;
+
 	[SWF(width="960",height="640",frameRate="60",backgroundColor="#ffffff")]
 	public class KitchenSink extends Sprite
 	{
@@ -38,6 +40,7 @@ package
 			this._starling = new Starling(KitchenSinkRoot, this.stage);
 			this._starling.enableErrorChecking = false;
 			this._starling.showStats = true;
+			this._starling.showStatsAt(HAlign.LEFT, VAlign.BOTTOM);
 			this._starling.start();
 			
 			this.stage.addEventListener(Event.RESIZE, stage_resizeHandler, false, int.MAX_VALUE, true);
@@ -57,6 +60,7 @@ package
 				this._starling.viewPort = viewPort;
 			}
 			catch(error:Error) {}
+			this._starling.showStatsAt(HAlign.LEFT, VAlign.BOTTOM);
 		}
 
 		private function stage_deactivateHandler(event:Event):void
