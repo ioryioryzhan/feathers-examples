@@ -14,7 +14,7 @@ package org.josht.starling.foxhole.layoutExplorer.data
 		public var verticalAlign:String = TiledRowsLayout.VERTICAL_ALIGN_TOP;
 		public var tileHorizontalAlign:String = TiledRowsLayout.TILE_HORIZONTAL_ALIGN_LEFT;
 		public var tileVerticalAlign:String = TiledRowsLayout.TILE_VERTICAL_ALIGN_TOP;
-		public var gap:Number = 0;
+		public var gap:Number = 2;
 		public var paddingTop:Number = 0;
 		public var paddingRight:Number = 0;
 		public var paddingBottom:Number = 0;

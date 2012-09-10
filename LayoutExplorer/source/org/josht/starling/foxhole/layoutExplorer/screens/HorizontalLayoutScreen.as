@@ -11,6 +11,7 @@ package org.josht.starling.foxhole.layoutExplorer.screens
 	import org.osflash.signals.Signal;
 
 	import starling.display.DisplayObject;
+	import starling.display.Quad;
 
 	public class HorizontalLayoutScreen extends Screen
 	{
@@ -54,13 +55,13 @@ package org.josht.starling.foxhole.layoutExplorer.screens
 			this._container = new ScrollContainer();
 			this._container.layout = layout;
 			this._container.scrollerProperties.verticalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
+			this._container.scrollerProperties.snapScrollPositionsToPixels = true;
 			this.addChild(this._container);
 			for(var i:int = 0; i < this.settings.itemCount; i++)
 			{
-				var button:Button = new Button();
-				button.label = (i + 1).toString();
-				button.width = button.height = (44 + 88 * Math.random()) * this.dpiScale;
-				this._container.addChild(button);
+				var size:Number = (44 + 88 * Math.random()) * this.dpiScale;
+				var quad:Quad = new Quad(size, size, 0x194966);
+				this._container.addChild(quad);
 			}
 
 			this._backButton = new Button();
