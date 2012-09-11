@@ -52,7 +52,8 @@ package org.josht.starling.foxhole.themes
 		[Embed(source="/../assets/images/minimal.xml",mimeType="application/octet-stream")]
 		protected static const ATLAS_XML:Class;
 
-		protected static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
+		[Embed(source="/../assets/fonts/pf_ronda_seven.fnt",mimeType="application/octet-stream")]
+		protected static const ATLAS_FONT_XML:Class;
 
 		protected static const SCALE_9_GRID:Rectangle = new Rectangle(9, 9, 2, 2);
 		protected static const SCROLLBAR_THUMB_SCALE_9_GRID:Rectangle = new Rectangle(1, 1, 2, 2);
@@ -66,50 +67,6 @@ package org.josht.starling.foxhole.themes
 
 		protected static const ORIGINAL_DPI_IPHONE_RETINA:int = 326;
 		protected static const ORIGINAL_DPI_IPAD_RETINA:int = 264;
-
-		protected static const TOOLBAR_BUTTON_UP_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("toolbar-button-up-skin"), SCALE_9_GRID);
-		protected static const TOOLBAR_BUTTON_DOWN_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("toolbar-button-down-skin"), SCALE_9_GRID);
-		protected static const TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("toolbar-button-selected-skin"), SCALE_9_GRID);
-
-		protected static const BUTTON_UP_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-up-skin"), SCALE_9_GRID);
-		protected static const BUTTON_DOWN_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-down-skin"), SCALE_9_GRID);
-		protected static const BUTTON_DISABLED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-disabled-skin"), SCALE_9_GRID);
-		protected static const BUTTON_SELECTED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-selected-skin"), SCALE_9_GRID);
-
-		protected static const TAB_UP_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("tab-up-skin"), SCALE_9_GRID);
-		protected static const TAB_DOWN_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("tab-down-skin"), TAB_SCALE_9_GRID);
-		protected static const TAB_SELECTED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("tab-selected-skin"), TAB_SCALE_9_GRID);
-
-		protected static const THUMB_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("thumb-skin"), SCALE_9_GRID);
-
-		protected static const SCROLL_BAR_THUMB_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("scrollbar-thumb-skin"), SCROLLBAR_THUMB_SCALE_9_GRID);
-
-		protected static const INSET_BACKGROUND_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("inset-background-skin"), SCALE_9_GRID);
-		protected static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("inset-background-disabled-skin"), SCALE_9_GRID);
-
-		protected static const DROP_DOWN_ARROW_TEXTURE:Texture = ATLAS.getTexture("drop-down-arrow");
-
-		protected static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up");
-		protected static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down");
-		protected static const LIST_ITEM_SELECTED_TEXTURE:Texture = ATLAS.getTexture("list-item-selected");
-
-		protected static const HEADER_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("header-skin"), SCALE_9_GRID);
-
-		protected static const POPUP_BACKGROUND_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("callout-background-skin"), SCALE_9_GRID);
-		protected static const CALLOUT_TOP_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-top");
-		protected static const CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-bottom");
-		protected static const CALLOUT_LEFT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-left");
-		protected static const CALLOUT_RIGHT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-right");
-
-		protected static const CHECK_SELECTED_ICON_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("check-selected-icon"), CHECK_SCALE_9_GRID);
-
-		protected static const RADIO_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-icon");
-		protected static const RADIO_SELECTED_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-selected-icon");
-
-		[Embed(source="/../assets/fonts/pf_ronda_seven.fnt",mimeType="application/octet-stream")]
-		protected static const ATLAS_FONT_XML:Class;
-
-		protected static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("pf_ronda_seven_0"), XML(new ATLAS_FONT_XML()));
 
 		public function MinimalTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
@@ -141,8 +98,51 @@ package org.josht.starling.foxhole.themes
 			return this._scaleToDPI;
 		}
 
-		protected var _scale:Number;
-		protected var _fontSize:int;
+		protected var scale:Number;
+		protected var fontSize:int;
+
+		protected var atlas:TextureAtlas;
+
+		protected var buttonUpSkinTextures:Scale9Textures;
+		protected var buttonDownSkinTextures:Scale9Textures;
+		protected var buttonDisabledSkinTextures:Scale9Textures;
+		protected var buttonSelectedSkinTextures:Scale9Textures;
+
+		protected var toolBarButtonUpSkinTextures:Scale9Textures;
+		protected var toolBarButtonDownSkinTextures:Scale9Textures;
+		protected var toolBarButtonSelectedSkinTextures:Scale9Textures;
+
+		protected var tabUpSkinTextures:Scale9Textures;
+		protected var tabDownSkinTextures:Scale9Textures;
+		protected var tabSelectedSkinTextures:Scale9Textures;
+
+		protected var thumbSkinTextures:Scale9Textures;
+
+		protected var scrollBarThumbSkinTextures:Scale9Textures;
+
+		protected var insetBackgroundSkinTextures:Scale9Textures;
+		protected var insetBackgroundDisabledSkinTextures:Scale9Textures;
+
+		protected var dropDownArrowTexture:Texture;
+
+		protected var listItemUpTexture:Texture;
+		protected var listItemDownTexture:Texture;
+		protected var listItemSelectedTexture:Texture;
+
+		protected var headerSkinTextures:Scale9Textures;
+
+		protected var popUpBackgroundSkinTextures:Scale9Textures;
+		protected var calloutTopArrowSkinTexture:Texture;
+		protected var calloutBottomArrowSkinTexture:Texture;
+		protected var calloutLeftArrowSkinTexture:Texture;
+		protected var calloutRightArrowSkinTexture:Texture;
+
+		protected var checkSelectedIconTextures:Scale9Textures;
+
+		protected var radioIconTexture:Texture;
+		protected var radioSelectedIconTexture:Texture;
+
+		protected var bitmapFont:BitmapFont;
 
 		protected function initialize():void
 		{
@@ -164,14 +164,56 @@ package org.josht.starling.foxhole.themes
 			}
 			//our min scale is 0.25 because lines in the graphics are four
 			//pixels wide and this will keep them crisp.
-			this._scale = Math.max(0.25, Capabilities.screenDPI / this._originalDPI);
+			this.scale = Math.max(0.25, Capabilities.screenDPI / this._originalDPI);
 
 			//since it's a pixel font, we want a multiple of the original size,
 			//which, in this case, is 8.
-			this._fontSize = Math.max(4, roundToNearest(24 * this._scale, 8));
+			this.fontSize = Math.max(4, roundToNearest(24 * this.scale, 8));
 
 			Callout.stagePaddingTop = Callout.stagePaddingRight = Callout.stagePaddingBottom =
-				Callout.stagePaddingLeft = 16 * this._scale;
+				Callout.stagePaddingLeft = 16 * this.scale;
+
+			this.atlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
+			this.bitmapFont = new BitmapFont(this.atlas.getTexture("pf_ronda_seven_0"), XML(new ATLAS_FONT_XML()));
+
+			this.toolBarButtonUpSkinTextures = new Scale9Textures(this.atlas.getTexture("toolbar-button-up-skin"), SCALE_9_GRID);
+			this.toolBarButtonDownSkinTextures = new Scale9Textures(this.atlas.getTexture("toolbar-button-down-skin"), SCALE_9_GRID);
+			this.toolBarButtonSelectedSkinTextures = new Scale9Textures(this.atlas.getTexture("toolbar-button-selected-skin"), SCALE_9_GRID);
+
+			this.buttonUpSkinTextures = new Scale9Textures(this.atlas.getTexture("button-up-skin"), SCALE_9_GRID);
+			this.buttonDownSkinTextures = new Scale9Textures(this.atlas.getTexture("button-down-skin"), SCALE_9_GRID);
+			this.buttonDisabledSkinTextures = new Scale9Textures(this.atlas.getTexture("button-disabled-skin"), SCALE_9_GRID);
+			this.buttonSelectedSkinTextures = new Scale9Textures(this.atlas.getTexture("button-selected-skin"), SCALE_9_GRID);
+
+			this.tabUpSkinTextures = new Scale9Textures(this.atlas.getTexture("tab-up-skin"), SCALE_9_GRID);
+			this.tabDownSkinTextures = new Scale9Textures(this.atlas.getTexture("tab-down-skin"), TAB_SCALE_9_GRID);
+			this.tabSelectedSkinTextures = new Scale9Textures(this.atlas.getTexture("tab-selected-skin"), TAB_SCALE_9_GRID);
+
+			this.thumbSkinTextures = new Scale9Textures(this.atlas.getTexture("thumb-skin"), SCALE_9_GRID);
+
+			this.scrollBarThumbSkinTextures = new Scale9Textures(this.atlas.getTexture("scrollbar-thumb-skin"), SCROLLBAR_THUMB_SCALE_9_GRID);
+
+			this.insetBackgroundSkinTextures = new Scale9Textures(this.atlas.getTexture("inset-background-skin"), SCALE_9_GRID);
+			this.insetBackgroundDisabledSkinTextures = new Scale9Textures(this.atlas.getTexture("inset-background-disabled-skin"), SCALE_9_GRID);
+
+			this.dropDownArrowTexture = this.atlas.getTexture("drop-down-arrow");
+
+			this.listItemUpTexture = this.atlas.getTexture("list-item-up");
+			this.listItemDownTexture = this.atlas.getTexture("list-item-down");
+			this.listItemSelectedTexture = this.atlas.getTexture("list-item-selected");
+
+			this.headerSkinTextures = new Scale9Textures(this.atlas.getTexture("header-skin"), SCALE_9_GRID);
+
+			this.popUpBackgroundSkinTextures = new Scale9Textures(this.atlas.getTexture("callout-background-skin"), SCALE_9_GRID);
+			this.calloutTopArrowSkinTexture = this.atlas.getTexture("callout-arrow-top");
+			this.calloutBottomArrowSkinTexture = this.atlas.getTexture("callout-arrow-bottom");
+			this.calloutLeftArrowSkinTexture = this.atlas.getTexture("callout-arrow-left");
+			this.calloutRightArrowSkinTexture = this.atlas.getTexture("callout-arrow-right");
+
+			this.checkSelectedIconTextures = new Scale9Textures(this.atlas.getTexture("check-selected-icon"), CHECK_SCALE_9_GRID);
+
+			this.radioIconTexture = this.atlas.getTexture("radio-icon");
+			this.radioSelectedIconTexture = this.atlas.getTexture("radio-selected-icon");
 
 			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
@@ -211,7 +253,7 @@ package org.josht.starling.foxhole.themes
 
 		protected function labelInitializer(label:BitmapFontTextRenderer):void
 		{
-			label.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			label.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 			//since it's a pixel font, we don't want to smooth it.
 			label.smoothing = TextureSmoothing.NONE;
 		}
@@ -219,161 +261,161 @@ package org.josht.starling.foxhole.themes
 		protected function buttonInitializer(button:Button):void
 		{
 			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
-			skinSelector.defaultValue = BUTTON_UP_SKIN_TEXTURES;
-			skinSelector.defaultSelectedValue = BUTTON_SELECTED_SKIN_TEXTURES;
-			skinSelector.setValueForState(BUTTON_DOWN_SKIN_TEXTURES, Button.STATE_DOWN, false);
-			skinSelector.setValueForState(BUTTON_DISABLED_SKIN_TEXTURES, Button.STATE_DISABLED, false);
-			skinSelector.setValueForState(BUTTON_DOWN_SKIN_TEXTURES, Button.STATE_DOWN, true);
+			skinSelector.defaultValue = buttonUpSkinTextures;
+			skinSelector.defaultSelectedValue = buttonSelectedSkinTextures;
+			skinSelector.setValueForState(buttonDownSkinTextures, Button.STATE_DOWN, false);
+			skinSelector.setValueForState(buttonDisabledSkinTextures, Button.STATE_DISABLED, false);
+			skinSelector.setValueForState(buttonDownSkinTextures, Button.STATE_DOWN, true);
 			skinSelector.imageProperties =
 			{
-				width: 66 * this._scale,
-				height: 66 * this._scale,
-				textureScale: this._scale
+				width: 66 * this.scale,
+				height: 66 * this.scale,
+				textureScale: this.scale
 			};
 			button.stateToSkinFunction = skinSelector.updateValue;
 
-			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			button.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			button.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
 
-			button.paddingTop = button.paddingBottom = 8 * this._scale;
-			button.paddingLeft = button.paddingRight = 16 * this._scale;
-			button.gap = 12 * this._scale;
-			button.minWidth = 66 * this._scale;
-			button.minHeight = 66 * this._scale;
-			button.minTouchWidth = button.minTouchHeight = 88 * this._scale;
+			button.paddingTop = button.paddingBottom = 8 * this.scale;
+			button.paddingLeft = button.paddingRight = 16 * this.scale;
+			button.gap = 12 * this.scale;
+			button.minWidth = 66 * this.scale;
+			button.minHeight = 66 * this.scale;
+			button.minTouchWidth = button.minTouchHeight = 88 * this.scale;
 		}
 
 		protected function toolBarButtonInitializer(button:Button):void
 		{
 			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
-			skinSelector.defaultValue = TOOLBAR_BUTTON_UP_SKIN_TEXTURES;
-			skinSelector.defaultSelectedValue = TOOLBAR_BUTTON_SELECTED_SKIN_TEXTURES;
-			skinSelector.setValueForState(TOOLBAR_BUTTON_DOWN_SKIN_TEXTURES, Button.STATE_DOWN, false);
-			skinSelector.setValueForState(TOOLBAR_BUTTON_DOWN_SKIN_TEXTURES, Button.STATE_DOWN, true);
+			skinSelector.defaultValue = toolBarButtonUpSkinTextures;
+			skinSelector.defaultSelectedValue = toolBarButtonSelectedSkinTextures;
+			skinSelector.setValueForState(toolBarButtonDownSkinTextures, Button.STATE_DOWN, false);
+			skinSelector.setValueForState(toolBarButtonDownSkinTextures, Button.STATE_DOWN, true);
 			skinSelector.imageProperties =
 			{
-				width: 60 * this._scale,
-				height: 60 * this._scale,
-				textureScale: this._scale
+				width: 60 * this.scale,
+				height: 60 * this.scale,
+				textureScale: this.scale
 			};
 			button.stateToSkinFunction = skinSelector.updateValue;
 
-			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			button.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			button.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
 
-			button.paddingTop = button.paddingBottom = 8 * this._scale;
-			button.paddingLeft = button.paddingRight = 16 * this._scale;
-			button.gap = 12 * this._scale;
-			button.minWidth = button.minHeight = 60 * this._scale;
-			button.minTouchWidth = button.minTouchHeight = 88 * this._scale;
+			button.paddingTop = button.paddingBottom = 8 * this.scale;
+			button.paddingLeft = button.paddingRight = 16 * this.scale;
+			button.gap = 12 * this.scale;
+			button.minWidth = button.minHeight = 60 * this.scale;
+			button.minTouchWidth = button.minTouchHeight = 88 * this.scale;
 		}
 
 		protected function tabInitializer(tab:Button):void
 		{
 			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
-			skinSelector.defaultValue = TAB_UP_SKIN_TEXTURES;
-			skinSelector.defaultSelectedValue = TAB_SELECTED_SKIN_TEXTURES;
-			skinSelector.setValueForState(TAB_DOWN_SKIN_TEXTURES, Button.STATE_DOWN, false);
+			skinSelector.defaultValue = tabUpSkinTextures;
+			skinSelector.defaultSelectedValue = tabSelectedSkinTextures;
+			skinSelector.setValueForState(tabDownSkinTextures, Button.STATE_DOWN, false);
 			skinSelector.imageProperties =
 			{
-				width: 88 * this._scale,
-				height: 88 * this._scale,
-				textureScale: this._scale
+				width: 88 * this.scale,
+				height: 88 * this.scale,
+				textureScale: this.scale
 			};
 			tab.stateToSkinFunction = skinSelector.updateValue;
 
-			tab.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			tab.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			tab.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			tab.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
 
 			tab.iconPosition = Button.ICON_POSITION_TOP;
 			tab.paddingTop = tab.paddingRight = tab.paddingBottom =
-				tab.paddingLeft = 28 * this._scale;
-			tab.gap = 12 * this._scale;
-			tab.minWidth = tab.minHeight = 88 * this._scale;
-			tab.minTouchWidth = tab.minTouchHeight = 88 * this._scale;
+				tab.paddingLeft = 28 * this.scale;
+			tab.gap = 12 * this.scale;
+			tab.minWidth = tab.minHeight = 88 * this.scale;
+			tab.minTouchWidth = tab.minTouchHeight = 88 * this.scale;
 		}
 
 		protected function simpleScrollBarThumbInitializer(thumb:Button):void
 		{
-			const defaultSkin:Scale9Image = new Scale9Image(SCROLL_BAR_THUMB_SKIN_TEXTURES, this._scale);
-			defaultSkin.width = 8 * this._scale;
-			defaultSkin.height = 8 * this._scale;
+			const defaultSkin:Scale9Image = new Scale9Image(scrollBarThumbSkinTextures, this.scale);
+			defaultSkin.width = 8 * this.scale;
+			defaultSkin.height = 8 * this.scale;
 			thumb.defaultSkin = defaultSkin;
 
-			thumb.minTouchWidth = thumb.minTouchHeight = 12 * this._scale;
+			thumb.minTouchWidth = thumb.minTouchHeight = 12 * this.scale;
 		}
 
 		protected function sliderInitializer(slider:Slider):void
 		{
 			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_SINGLE;
 
-			const sliderTrackDefaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
+			const sliderTrackDefaultSkin:Scale9Image = new Scale9Image(insetBackgroundSkinTextures, this.scale);
 			if(slider.direction == Slider.DIRECTION_VERTICAL)
 			{
-				sliderTrackDefaultSkin.width = 66 * this._scale;
-				sliderTrackDefaultSkin.height = 198 * this._scale;
+				sliderTrackDefaultSkin.width = 66 * this.scale;
+				sliderTrackDefaultSkin.height = 198 * this.scale;
 			}
 			else //horizontal
 			{
-				sliderTrackDefaultSkin.width = 198 * this._scale;
-				sliderTrackDefaultSkin.height = 66 * this._scale;
+				sliderTrackDefaultSkin.width = 198 * this.scale;
+				sliderTrackDefaultSkin.height = 66 * this.scale;
 			}
 			slider.minimumTrackProperties.defaultSkin = sliderTrackDefaultSkin;
 		}
 
 		protected function sliderThumbInitializer(thumb:Button):void
 		{
-			const defaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURES, this._scale);
-			defaultSkin.width = 66 * this._scale;
-			defaultSkin.height = 66 * this._scale;
+			const defaultSkin:Scale9Image = new Scale9Image(thumbSkinTextures, this.scale);
+			defaultSkin.width = 66 * this.scale;
+			defaultSkin.height = 66 * this.scale;
 			thumb.defaultSkin = defaultSkin;
 
-			thumb.minTouchWidth = thumb.minTouchHeight = 88 * this._scale;
+			thumb.minTouchWidth = thumb.minTouchHeight = 88 * this.scale;
 		}
 
 		protected function toggleSwitchInitializer(toggleSwitch:ToggleSwitch):void
 		{
 			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_SINGLE;
 
-			toggleSwitch.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			toggleSwitch.onLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			toggleSwitch.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			toggleSwitch.onLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
 		}
 
 		protected function toggleSwitchOnTrackInitializer(track:Button):void
 		{
-			const defaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
-			defaultSkin.width = 148 * this._scale;
-			defaultSkin.height = 66 * this._scale;
+			const defaultSkin:Scale9Image = new Scale9Image(insetBackgroundSkinTextures, this.scale);
+			defaultSkin.width = 148 * this.scale;
+			defaultSkin.height = 66 * this.scale;
 			track.defaultSkin = defaultSkin;
-			track.minTouchWidth = track.minTouchHeight = 88 * this._scale;
+			track.minTouchWidth = track.minTouchHeight = 88 * this.scale;
 		}
 
 		protected function toggleSwitchThumbInitializer(thumb:Button):void
 		{
-			const defaultSkin:Scale9Image = new Scale9Image(THUMB_SKIN_TEXTURES, this._scale);
-			defaultSkin.width = 66 * this._scale;
-			defaultSkin.height = 66 * this._scale;
+			const defaultSkin:Scale9Image = new Scale9Image(thumbSkinTextures, this.scale);
+			defaultSkin.width = 66 * this.scale;
+			defaultSkin.height = 66 * this.scale;
 			thumb.defaultSkin = defaultSkin;
-			thumb.minTouchWidth = thumb.minTouchHeight = 88 * this._scale;
+			thumb.minTouchWidth = thumb.minTouchHeight = 88 * this.scale;
 		}
 
 		protected function checkInitializer(check:Check):void
 		{
 			const iconSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
-			iconSelector.defaultValue = INSET_BACKGROUND_SKIN_TEXTURES;
-			iconSelector.defaultSelectedValue = CHECK_SELECTED_ICON_TEXTURES;
+			iconSelector.defaultValue = insetBackgroundSkinTextures;
+			iconSelector.defaultSelectedValue = checkSelectedIconTextures;
 			iconSelector.imageProperties =
 			{
-				width: 40 * this._scale,
-				height: 40 * this._scale,
-				textureScale: this._scale
+				width: 40 * this.scale,
+				height: 40 * this.scale,
+				textureScale: this.scale
 			};
 			check.stateToIconFunction = iconSelector.updateValue;
 
-			check.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			check.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			check.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			check.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
 
-			check.minTouchWidth = check.minTouchHeight = 88 * this._scale;
+			check.minTouchWidth = check.minTouchHeight = 88 * this.scale;
 			check.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			check.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
 		}
@@ -381,20 +423,20 @@ package org.josht.starling.foxhole.themes
 		protected function radioInitializer(radio:Radio):void
 		{
 			const iconSelector:ImageStateValueSelector = new ImageStateValueSelector();
-			iconSelector.defaultValue = RADIO_ICON_TEXTURE;
-			iconSelector.defaultSelectedValue = RADIO_SELECTED_ICON_TEXTURE;
+			iconSelector.defaultValue = radioIconTexture;
+			iconSelector.defaultSelectedValue = radioSelectedIconTexture;
 			iconSelector.imageProperties =
 			{
-				scaleX: this._scale,
-				scaleY: this._scale,
-				textureScale: this._scale
+				scaleX: this.scale,
+				scaleY: this.scale,
+				textureScale: this.scale
 			};
 			radio.stateToIconFunction = iconSelector.updateValue;
 
-			radio.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			radio.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			radio.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			radio.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
 
-			radio.minTouchWidth = radio.minTouchHeight = 88 * this._scale;
+			radio.minTouchWidth = radio.minTouchHeight = 88 * this.scale;
 			radio.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			radio.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
 		}
@@ -402,48 +444,48 @@ package org.josht.starling.foxhole.themes
 		protected function itemRendererInitializer(renderer:BaseDefaultItemRenderer):void
 		{
 			const skinSelector:ImageStateValueSelector = new ImageStateValueSelector();
-			skinSelector.defaultValue = LIST_ITEM_UP_TEXTURE;
-			skinSelector.defaultSelectedValue = LIST_ITEM_SELECTED_TEXTURE;
-			skinSelector.setValueForState(LIST_ITEM_DOWN_TEXTURE, Button.STATE_DOWN, false);
+			skinSelector.defaultValue = listItemUpTexture;
+			skinSelector.defaultSelectedValue = listItemSelectedTexture;
+			skinSelector.setValueForState(listItemDownTexture, Button.STATE_DOWN, false);
 			skinSelector.imageProperties =
 			{
-				width: 88 * this._scale,
-				height: 88 * this._scale,
+				width: 88 * this.scale,
+				height: 88 * this.scale,
 				smoothing: TextureSmoothing.NONE
 			};
 			renderer.stateToSkinFunction = skinSelector.updateValue;
 
-			renderer.paddingTop = renderer.paddingBottom = 11 * this._scale;
-			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
+			renderer.paddingTop = renderer.paddingBottom = 11 * this.scale;
+			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
-			renderer.minWidth = renderer.minHeight = 88 * this._scale;
+			renderer.minWidth = renderer.minHeight = 88 * this.scale;
 		}
 
 		protected function headerOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
 		{
-			const backgroundSkin:Image = new Image(LIST_ITEM_DOWN_TEXTURE);
+			const backgroundSkin:Image = new Image(listItemDownTexture);
 			backgroundSkin.smoothing = TextureSmoothing.NONE;
-			backgroundSkin.width = 44 * this._scale;
-			backgroundSkin.height = 44 * this._scale;
+			backgroundSkin.width = 44 * this.scale;
+			backgroundSkin.height = 44 * this.scale;
 			renderer.backgroundSkin = backgroundSkin;
 
-			renderer.paddingTop = renderer.paddingBottom = 6 * this._scale;
-			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
-			renderer.minWidth = renderer.minHeight = 44 * this._scale;
+			renderer.paddingTop = renderer.paddingBottom = 6 * this.scale;
+			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
+			renderer.minWidth = renderer.minHeight = 44 * this.scale;
 		}
 
 		protected function listInitializer(list:List):void
 		{
-			const backgroundSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
-			backgroundSkin.scaleX = backgroundSkin.scaleY = this._scale;
+			const backgroundSkin:Image = new Image(listItemUpTexture);
+			backgroundSkin.scaleX = backgroundSkin.scaleY = this.scale;
 			backgroundSkin.smoothing = TextureSmoothing.NONE;
 			list.backgroundSkin = backgroundSkin;
 		}
 
 		protected function groupedListInitializer(list:GroupedList):void
 		{
-			const backgroundSkin:Image = new Image(LIST_ITEM_UP_TEXTURE);
-			backgroundSkin.scaleX = backgroundSkin.scaleY = this._scale;
+			const backgroundSkin:Image = new Image(listItemUpTexture);
+			backgroundSkin.scaleX = backgroundSkin.scaleY = this.scale;
 			backgroundSkin.smoothing = TextureSmoothing.NONE;
 			list.backgroundSkin = backgroundSkin;
 		}
@@ -458,7 +500,7 @@ package org.josht.starling.foxhole.themes
 			{
 				const centerStage:VerticalCenteredPopUpContentManager = new VerticalCenteredPopUpContentManager();
 				centerStage.marginTop = centerStage.marginRight = centerStage.marginBottom =
-					centerStage.marginLeft = 16 * this._scale;
+					centerStage.marginLeft = 16 * this.scale;
 				list.popUpContentManager = centerStage;
 			}
 
@@ -474,17 +516,17 @@ package org.josht.starling.foxhole.themes
 
 			if(PhysicalCapabilities.isTablet(Starling.current.nativeStage))
 			{
-				list.listProperties.minWidth = 10 * this._scale;
-				list.listProperties.maxHeight = 352 * this._scale;
+				list.listProperties.minWidth = 10 * this.scale;
+				list.listProperties.maxHeight = 352 * this.scale;
 			}
 			else
 			{
-				const backgroundSkin:Scale9Image = new Scale9Image(POPUP_BACKGROUND_SKIN_TEXTURES, this._scale);
-				backgroundSkin.width = 20 * this._scale;
-				backgroundSkin.height = 20 * this._scale;
+				const backgroundSkin:Scale9Image = new Scale9Image(popUpBackgroundSkinTextures, this.scale);
+				backgroundSkin.width = 20 * this.scale;
+				backgroundSkin.height = 20 * this.scale;
 				list.listProperties.backgroundSkin = backgroundSkin;
 				list.listProperties.paddingTop = list.listProperties.paddingRight =
-					list.listProperties.paddingBottom = list.listProperties.paddingLeft = 8 * this._scale;
+					list.listProperties.paddingBottom = list.listProperties.paddingLeft = 8 * this.scale;
 			}
 		}
 
@@ -493,8 +535,8 @@ package org.josht.starling.foxhole.themes
 			//we're going to expand on the standard button styles
 			this.buttonInitializer(button);
 
-			const defaultIcon:Image = new Image(DROP_DOWN_ARROW_TEXTURE);
-			defaultIcon.scaleX = defaultIcon.scaleY = this._scale;
+			const defaultIcon:Image = new Image(dropDownArrowTexture);
+			defaultIcon.scaleX = defaultIcon.scaleY = this.scale;
 			button.defaultIcon = defaultIcon;
 			button.gap = Number.POSITIVE_INFINITY, //fill as completely as possible
 				button.iconPosition = Button.ICON_POSITION_RIGHT;
@@ -503,91 +545,91 @@ package org.josht.starling.foxhole.themes
 
 		protected function screenHeaderInitializer(header:ScreenHeader):void
 		{
-			header.minWidth = 88 * this._scale;
-			header.minHeight = 88 * this._scale;
+			header.minWidth = 88 * this.scale;
+			header.minHeight = 88 * this.scale;
 			header.paddingTop = header.paddingRight = header.paddingBottom =
-				header.paddingLeft = 14 * this._scale;
-			const backgroundSkin:Scale9Image = new Scale9Image(HEADER_SKIN_TEXTURES, this._scale);
-			backgroundSkin.width = 88 * this._scale;
-			backgroundSkin.height = 88 * this._scale;
+				header.paddingLeft = 14 * this.scale;
+			const backgroundSkin:Scale9Image = new Scale9Image(headerSkinTextures, this.scale);
+			backgroundSkin.width = 88 * this.scale;
+			backgroundSkin.height = 88 * this.scale;
 			header.backgroundSkin = backgroundSkin;
-			header.titleProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			header.titleProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 		}
 
 		protected function textInputInitializer(input:TextInput):void
 		{
-			input.minWidth = input.minHeight = 66 * this._scale;
-			input.minTouchWidth = input.minTouchHeight = 66 * this._scale;
-			input.paddingTop = input.paddingBottom = 14 * this._scale;
-			input.paddingLeft = input.paddingRight = 16 * this._scale;
+			input.minWidth = input.minHeight = 66 * this.scale;
+			input.minTouchWidth = input.minTouchHeight = 66 * this.scale;
+			input.paddingTop = input.paddingBottom = 14 * this.scale;
+			input.paddingLeft = input.paddingRight = 16 * this.scale;
 			input.stageTextProperties.fontFamily = "Helvetica";
-			input.stageTextProperties.fontSize = 30 * this._scale;
+			input.stageTextProperties.fontSize = 30 * this.scale;
 			input.stageTextProperties.color = INSET_TEXT_COLOR;
 
-			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
-			backgroundSkin.width = 264 * this._scale;
-			backgroundSkin.height = 66 * this._scale;
+			const backgroundSkin:Scale9Image = new Scale9Image(insetBackgroundSkinTextures, this.scale);
+			backgroundSkin.width = 264 * this.scale;
+			backgroundSkin.height = 66 * this.scale;
 			input.backgroundSkin = backgroundSkin;
 
-			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURES, this._scale);
-			backgroundDisabledSkin.width = 264 * this._scale;
-			backgroundDisabledSkin.height = 66 * this._scale;
+			const backgroundDisabledSkin:Scale9Image = new Scale9Image(insetBackgroundDisabledSkinTextures, this.scale);
+			backgroundDisabledSkin.width = 264 * this.scale;
+			backgroundDisabledSkin.height = 66 * this.scale;
 			input.backgroundDisabledSkin = backgroundDisabledSkin;
 		}
 
 		protected function progressBarInitializer(progress:ProgressBar):void
 		{
-			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
-			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 22) * this._scale;
-			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 22 : 264) * this._scale;
+			const backgroundSkin:Scale9Image = new Scale9Image(insetBackgroundSkinTextures, this.scale);
+			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 22) * this.scale;
+			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 22 : 264) * this.scale;
 			progress.backgroundSkin = backgroundSkin;
 
-			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURES, this._scale);
-			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 22) * this._scale;
-			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 22 : 264) * this._scale;
+			const backgroundDisabledSkin:Scale9Image = new Scale9Image(insetBackgroundDisabledSkinTextures, this.scale);
+			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 22) * this.scale;
+			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 22 : 264) * this.scale;
 			progress.backgroundDisabledSkin = backgroundDisabledSkin;
 
-			const fillSkin:Scale9Image = new Scale9Image(BUTTON_UP_SKIN_TEXTURES, this._scale);
-			fillSkin.width = 12 * this._scale;
-			fillSkin.height = 12 * this._scale;
+			const fillSkin:Scale9Image = new Scale9Image(buttonUpSkinTextures, this.scale);
+			fillSkin.width = 12 * this.scale;
+			fillSkin.height = 12 * this.scale;
 			progress.fillSkin = fillSkin;
 
-			const fillDisabledSkin:Scale9Image = new Scale9Image(BUTTON_DISABLED_SKIN_TEXTURES, this._scale);
-			fillDisabledSkin.width = 12 * this._scale;
-			fillDisabledSkin.height = 12 * this._scale;
+			const fillDisabledSkin:Scale9Image = new Scale9Image(buttonDisabledSkinTextures, this.scale);
+			fillDisabledSkin.width = 12 * this.scale;
+			fillDisabledSkin.height = 12 * this.scale;
 			progress.fillDisabledSkin = fillDisabledSkin;
 		}
 
 		protected function calloutInitializer(callout:Callout):void
 		{
-			callout.minWidth = 20 * this._scale;
-			callout.minHeight = 20 * this._scale;
+			callout.minWidth = 20 * this.scale;
+			callout.minHeight = 20 * this.scale;
 			callout.paddingTop = callout.paddingRight = callout.paddingBottom =
-				callout.paddingLeft = 8 * this._scale;
-			const backgroundSkin:Scale9Image = new Scale9Image(POPUP_BACKGROUND_SKIN_TEXTURES, this._scale);
-			backgroundSkin.width = 20 * this._scale;
-			backgroundSkin.height = 20 * this._scale;
+				callout.paddingLeft = 8 * this.scale;
+			const backgroundSkin:Scale9Image = new Scale9Image(popUpBackgroundSkinTextures, this.scale);
+			backgroundSkin.width = 20 * this.scale;
+			backgroundSkin.height = 20 * this.scale;
 			callout.backgroundSkin = backgroundSkin;
 
-			const topArrowSkin:Image = new Image(CALLOUT_TOP_ARROW_SKIN_TEXTURE);
-			topArrowSkin.scaleX = topArrowSkin.scaleY = this._scale;
+			const topArrowSkin:Image = new Image(calloutTopArrowSkinTexture);
+			topArrowSkin.scaleX = topArrowSkin.scaleY = this.scale;
 			callout.topArrowSkin = topArrowSkin;
-			callout.topArrowGap = -4 * this._scale;
+			callout.topArrowGap = -4 * this.scale;
 
-			const bottomArrowSkin:Image = new Image(CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE);
-			bottomArrowSkin.scaleX = bottomArrowSkin.scaleY = this._scale;
+			const bottomArrowSkin:Image = new Image(calloutBottomArrowSkinTexture);
+			bottomArrowSkin.scaleX = bottomArrowSkin.scaleY = this.scale;
 			callout.bottomArrowSkin = bottomArrowSkin;
-			callout.bottomArrowGap = -4 * this._scale;
+			callout.bottomArrowGap = -4 * this.scale;
 
-			const leftArrowSkin:Image = new Image(CALLOUT_LEFT_ARROW_SKIN_TEXTURE);
-			leftArrowSkin.scaleX = leftArrowSkin.scaleY = this._scale;
+			const leftArrowSkin:Image = new Image(calloutLeftArrowSkinTexture);
+			leftArrowSkin.scaleX = leftArrowSkin.scaleY = this.scale;
 			callout.leftArrowSkin = leftArrowSkin;
-			callout.leftArrowGap = -4 * this._scale;
+			callout.leftArrowGap = -4 * this.scale;
 
-			const rightArrowSkin:Image = new Image(CALLOUT_RIGHT_ARROW_SKIN_TEXTURE);
-			rightArrowSkin.scaleX = rightArrowSkin.scaleY = this._scale;
+			const rightArrowSkin:Image = new Image(calloutRightArrowSkinTexture);
+			rightArrowSkin.scaleX = rightArrowSkin.scaleY = this.scale;
 			callout.rightArrowSkin = rightArrowSkin;
-			callout.rightArrowGap = -4 * this._scale;
+			callout.rightArrowGap = -4 * this.scale;
 		}
 
 		protected function root_addedToStageHandler(event:Event):void

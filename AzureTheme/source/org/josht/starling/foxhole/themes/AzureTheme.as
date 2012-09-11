@@ -52,7 +52,8 @@ package org.josht.starling.foxhole.themes
 		[Embed(source="/../assets/images/azure.xml",mimeType="application/octet-stream")]
 		protected static const ATLAS_XML:Class;
 
-		protected static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
+		[Embed(source="/../assets/fonts/lato30.fnt",mimeType="application/octet-stream")]
+		protected static const ATLAS_FONT_XML:Class;
 
 		protected static const PROGRESS_BAR_SCALE_3_FIRST_REGION:Number = 12;
 		protected static const PROGRESS_BAR_SCALE_3_SECOND_REGION:Number = 12;
@@ -68,75 +69,6 @@ package org.josht.starling.foxhole.themes
 
 		protected static const ORIGINAL_DPI_IPHONE_RETINA:int = 326;
 		protected static const ORIGINAL_DPI_IPAD_RETINA:int = 264;
-
-		protected static const BUTTON_UP_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-up-skin"), BUTTON_SCALE_9_GRID);
-		protected static const BUTTON_DOWN_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-down-skin"), BUTTON_SCALE_9_GRID);
-		protected static const BUTTON_DISABLED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("button-disabled-skin"), BUTTON_SCALE_9_GRID);
-
-		protected static const HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("hslider-minimum-track-up-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
-		protected static const HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("hslider-minimum-track-down-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
-		protected static const HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("hslider-minimum-track-disabled-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
-
-		protected static const HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("hslider-maximum-track-up-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
-		protected static const HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("hslider-maximum-track-down-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
-		protected static const HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("hslider-maximum-track-disabled-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
-
-		protected static const VSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("vslider-minimum-track-up-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
-		protected static const VSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("vslider-minimum-track-down-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
-		protected static const VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("vslider-minimum-track-disabled-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
-
-		protected static const VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("vslider-maximum-track-up-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
-		protected static const VSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("vslider-maximum-track-down-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
-		protected static const VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("vslider-maximum-track-disabled-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
-
-		protected static const SLIDER_THUMB_UP_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-up-skin");
-		protected static const SLIDER_THUMB_DOWN_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-down-skin");
-		protected static const SLIDER_THUMB_DISABLED_SKIN_TEXTURE:Texture = ATLAS.getTexture("slider-thumb-disabled-skin");
-
-		protected static const SCROLL_BAR_THUMB_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("simple-scroll-bar-thumb-skin"), SCROLL_BAR_THUMB_SCALE_9_GRID);
-
-		protected static const PROGRESS_BAR_BACKGROUND_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("progress-bar-background-skin"), PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, Scale3Textures.DIRECTION_HORIZONTAL);
-		protected static const PROGRESS_BAR_BACKGROUND_DISABLED_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("progress-bar-background-disabled-skin"), PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, Scale3Textures.DIRECTION_HORIZONTAL);
-		protected static const PROGRESS_BAR_FILL_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("progress-bar-fill-skin"), PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, Scale3Textures.DIRECTION_HORIZONTAL);
-		protected static const PROGRESS_BAR_FILL_DISABLED_SKIN_TEXTURES:Scale3Textures = new Scale3Textures(ATLAS.getTexture("progress-bar-fill-disabled-skin"), PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, Scale3Textures.DIRECTION_HORIZONTAL);
-
-		protected static const INSET_BACKGROUND_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("inset-skin"), BUTTON_SCALE_9_GRID);
-		protected static const INSET_BACKGROUND_DISABLED_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("inset-disabled-skin"), BUTTON_SCALE_9_GRID);
-
-		protected static const PICKER_ICON_TEXTURE:Texture = ATLAS.getTexture("picker-icon");
-
-		protected static const LIST_ITEM_UP_TEXTURE:Texture = ATLAS.getTexture("list-item-up-skin");
-		protected static const LIST_ITEM_DOWN_TEXTURE:Texture = ATLAS.getTexture("list-item-down-skin");
-
-		protected static const GROUPED_LIST_HEADER_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("grouped-list-header-background-skin");
-
-		protected static const TOOLBAR_BACKGROUND_SKIN_TEXTURE:Texture = ATLAS.getTexture("toolbar-background-skin");
-
-		protected static const TAB_SELECTED_SKIN_TEXTURE:Texture = ATLAS.getTexture("tab-selected-skin");
-
-		protected static const CALLOUT_BACKGROUND_SKIN_TEXTURES:Scale9Textures = new Scale9Textures(ATLAS.getTexture("callout-background-skin"), CALLOUT_SCALE_9_GRID);
-		protected static const CALLOUT_TOP_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-top-skin");
-		protected static const CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-bottom-skin");
-		protected static const CALLOUT_LEFT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-left-skin");
-		protected static const CALLOUT_RIGHT_ARROW_SKIN_TEXTURE:Texture = ATLAS.getTexture("callout-arrow-right-skin");
-
-		protected static const CHECK_UP_ICON_TEXTURE:Texture = ATLAS.getTexture("check-up-icon");
-		protected static const CHECK_DOWN_ICON_TEXTURE:Texture = ATLAS.getTexture("check-down-icon");
-		protected static const CHECK_DISABLED_ICON_TEXTURE:Texture = ATLAS.getTexture("check-disabled-icon");
-		protected static const CHECK_SELECTED_UP_ICON_TEXTURE:Texture = ATLAS.getTexture("check-selected-up-icon");
-		protected static const CHECK_SELECTED_DOWN_ICON_TEXTURE:Texture = ATLAS.getTexture("check-selected-down-icon");
-		protected static const CHECK_SELECTED_DISABLED_ICON_TEXTURE:Texture = ATLAS.getTexture("check-selected-disabled-icon");
-
-		protected static const RADIO_UP_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-up-icon");
-		protected static const RADIO_DOWN_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-down-icon");
-		protected static const RADIO_DISABLED_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-disabled-icon");
-		protected static const RADIO_SELECTED_UP_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-selected-up-icon");
-		protected static const RADIO_SELECTED_DISABLED_ICON_TEXTURE:Texture = ATLAS.getTexture("radio-selected-disabled-icon");
-
-		[Embed(source="/../assets/fonts/lato30.fnt",mimeType="application/octet-stream")]
-		protected static const ATLAS_FONT_XML:Class;
-
-		protected static const BITMAP_FONT:BitmapFont = new BitmapFont(ATLAS.getTexture("lato30_0"), XML(new ATLAS_FONT_XML()));
 
 		public function AzureTheme(root:DisplayObject, scaleToDPI:Boolean = true)
 		{
@@ -168,8 +100,76 @@ package org.josht.starling.foxhole.themes
 			return this._scaleToDPI;
 		}
 
-		protected var _scale:Number;
-		protected var _fontSize:int;
+		protected var scale:Number;
+		protected var fontSize:int;
+
+		protected var atlas:TextureAtlas;
+
+		protected var bitmapFont:BitmapFont;
+
+		protected var buttonUpSkinTextures:Scale9Textures;
+		protected var buttonDownSkinTextures:Scale9Textures;
+		protected var buttonDisabledSkinTextures:Scale9Textures;
+
+		protected var hSliderMinimumTrackUpSkinTextures:Scale3Textures;
+		protected var hSliderMinimumTrackDownSkinTextures:Scale3Textures;
+		protected var hSliderMinimumTrackDisabledSkinTextures:Scale3Textures;
+
+		protected var hSliderMaximumTrackUpSkinTextures:Scale3Textures;
+		protected var hSliderMaximumTrackDownSkinTextures:Scale3Textures;
+		protected var hSliderMaximumTrackDisabledSkinTextures:Scale3Textures;
+
+		protected var vSliderMinimumTrackUpSkinTextures:Scale3Textures;
+		protected var vSliderMinimumTrackDownSkinTextures:Scale3Textures;
+		protected var vSliderMinimumTrackDisabledSkinTextures:Scale3Textures;
+
+		protected var vSliderMaximumTrackUpSkinTextures:Scale3Textures;
+		protected var vSliderMaximumTrackDownSkinTextures:Scale3Textures;
+		protected var vSliderMaximumTrackDisabledSkinTextures:Scale3Textures;
+
+		protected var sliderThumbUpSkinTexture:Texture;
+		protected var sliderThumbDownSkinTexture:Texture;
+		protected var sliderThumbDisabledSkinTexture:Texture;
+
+		protected var scrollBarThumbSkinTextures:Scale9Textures;
+
+		protected var progressBarBackgroundSkinTextures:Scale3Textures;
+		protected var progressBarBackgroundDisabledSkinTextures:Scale3Textures;
+		protected var progressBarFillSkinTextures:Scale3Textures;
+		protected var progressBarFillDisabledSkinTextures:Scale3Textures;
+
+		protected var insetBackgroundSkinTextures:Scale9Textures;
+		protected var insetBackgroundDisabledSkinTextures:Scale9Textures;
+
+		protected var pickerIconTexture:Texture;
+
+		protected var listItemUpTexture:Texture;
+		protected var listItemDownTexture:Texture;
+
+		protected var groupedListHeaderBackgroundSkinTexture:Texture;
+
+		protected var toolBarBackgroundSkinTexture:Texture;
+
+		protected var tabSelectedSkinTexture:Texture;
+
+		protected var calloutBackgroundSkinTextures:Scale9Textures;
+		protected var calloutTopArrowSkinTexture:Texture;
+		protected var calloutBottomArrowSkinTexture:Texture;
+		protected var calloutLeftArrowSkinTexture:Texture;
+		protected var calloutRightArrowSkinTexture:Texture;
+
+		protected var checkUpIconTexture:Texture;
+		protected var checkDownIconTexture:Texture;
+		protected var checkDisabledIconTexture:Texture;
+		protected var checkSelectedUpIconTexture:Texture;
+		protected var checkSelectedDownIconTexture:Texture;
+		protected var checkSelectedDisabledIconTexture:Texture;
+
+		protected var radioUpIconTexture:Texture;
+		protected var radioDownIconTexture:Texture;
+		protected var radioDisabledIconTexture:Texture;
+		protected var radioSelectedUpIconTexture:Texture;
+		protected var radioSelectedDisabledIconTexture:Texture;
 
 		protected function initialize():void
 		{
@@ -189,12 +189,80 @@ package org.josht.starling.foxhole.themes
 			{
 				this._originalDPI = Capabilities.screenDPI;
 			}
-			this._scale = Capabilities.screenDPI / this._originalDPI;
+			this.scale = Capabilities.screenDPI / this._originalDPI;
 
-			this._fontSize = 30 * this._scale;
+			this.fontSize = 30 * this.scale;
 
 			Callout.stagePaddingTop = Callout.stagePaddingRight = Callout.stagePaddingBottom =
-				Callout.stagePaddingLeft = 16 * this._scale;
+				Callout.stagePaddingLeft = 16 * this.scale;
+
+			this.atlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
+
+			this.bitmapFont = new BitmapFont(this.atlas.getTexture("lato30_0"), XML(new ATLAS_FONT_XML()));
+
+			this.buttonUpSkinTextures = new Scale9Textures(this.atlas.getTexture("button-up-skin"), BUTTON_SCALE_9_GRID);
+			this.buttonDownSkinTextures = new Scale9Textures(this.atlas.getTexture("button-down-skin"), BUTTON_SCALE_9_GRID);
+			this.buttonDisabledSkinTextures = new Scale9Textures(this.atlas.getTexture("button-disabled-skin"), BUTTON_SCALE_9_GRID);
+
+			this.hSliderMinimumTrackUpSkinTextures = new Scale3Textures(this.atlas.getTexture("hslider-minimum-track-up-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
+			this.hSliderMinimumTrackDownSkinTextures = new Scale3Textures(this.atlas.getTexture("hslider-minimum-track-down-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
+			this.hSliderMinimumTrackDisabledSkinTextures = new Scale3Textures(this.atlas.getTexture("hslider-minimum-track-disabled-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
+
+			this.hSliderMaximumTrackUpSkinTextures = new Scale3Textures(this.atlas.getTexture("hslider-maximum-track-up-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
+			this.hSliderMaximumTrackDownSkinTextures = new Scale3Textures(this.atlas.getTexture("hslider-maximum-track-down-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
+			this.hSliderMaximumTrackDisabledSkinTextures = new Scale3Textures(this.atlas.getTexture("hslider-maximum-track-disabled-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_HORIZONTAL);
+
+			this.vSliderMinimumTrackUpSkinTextures = new Scale3Textures(this.atlas.getTexture("vslider-minimum-track-up-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
+			this.vSliderMinimumTrackDownSkinTextures = new Scale3Textures(this.atlas.getTexture("vslider-minimum-track-down-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
+			this.vSliderMinimumTrackDisabledSkinTextures = new Scale3Textures(this.atlas.getTexture("vslider-minimum-track-disabled-skin"), 0, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
+
+			this.vSliderMaximumTrackUpSkinTextures = new Scale3Textures(this.atlas.getTexture("vslider-maximum-track-up-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
+			this.vSliderMaximumTrackDownSkinTextures = new Scale3Textures(this.atlas.getTexture("vslider-maximum-track-down-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
+			this.vSliderMaximumTrackDisabledSkinTextures = new Scale3Textures(this.atlas.getTexture("vslider-maximum-track-disabled-skin"), SLIDER_FIRST, SLIDER_SECOND, Scale3Textures.DIRECTION_VERTICAL);
+
+			this.sliderThumbUpSkinTexture = this.atlas.getTexture("slider-thumb-up-skin");
+			this.sliderThumbDownSkinTexture = this.atlas.getTexture("slider-thumb-down-skin");
+			this.sliderThumbDisabledSkinTexture = this.atlas.getTexture("slider-thumb-disabled-skin");
+
+			this.scrollBarThumbSkinTextures = new Scale9Textures(this.atlas.getTexture("simple-scroll-bar-thumb-skin"), SCROLL_BAR_THUMB_SCALE_9_GRID);
+
+			this.progressBarBackgroundSkinTextures = new Scale3Textures(this.atlas.getTexture("progress-bar-background-skin"), PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, Scale3Textures.DIRECTION_HORIZONTAL);
+			this.progressBarBackgroundDisabledSkinTextures = new Scale3Textures(this.atlas.getTexture("progress-bar-background-disabled-skin"), PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, Scale3Textures.DIRECTION_HORIZONTAL);
+			this.progressBarFillSkinTextures = new Scale3Textures(this.atlas.getTexture("progress-bar-fill-skin"), PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, Scale3Textures.DIRECTION_HORIZONTAL);
+			this.progressBarFillDisabledSkinTextures = new Scale3Textures(this.atlas.getTexture("progress-bar-fill-disabled-skin"), PROGRESS_BAR_SCALE_3_FIRST_REGION, PROGRESS_BAR_SCALE_3_SECOND_REGION, Scale3Textures.DIRECTION_HORIZONTAL);
+
+			this.insetBackgroundSkinTextures = new Scale9Textures(this.atlas.getTexture("inset-skin"), BUTTON_SCALE_9_GRID);
+			this.insetBackgroundDisabledSkinTextures = new Scale9Textures(this.atlas.getTexture("inset-disabled-skin"), BUTTON_SCALE_9_GRID);
+
+			this.pickerIconTexture = this.atlas.getTexture("picker-icon");
+
+			this.listItemUpTexture = this.atlas.getTexture("list-item-up-skin");
+			this.listItemDownTexture = this.atlas.getTexture("list-item-down-skin");
+
+			this.groupedListHeaderBackgroundSkinTexture = this.atlas.getTexture("grouped-list-header-background-skin");
+
+			this.toolBarBackgroundSkinTexture = this.atlas.getTexture("toolbar-background-skin");
+
+			this.tabSelectedSkinTexture = this.atlas.getTexture("tab-selected-skin");
+
+			this.calloutBackgroundSkinTextures = new Scale9Textures(this.atlas.getTexture("callout-background-skin"), CALLOUT_SCALE_9_GRID);
+			this.calloutTopArrowSkinTexture = this.atlas.getTexture("callout-arrow-top-skin");
+			this.calloutBottomArrowSkinTexture = this.atlas.getTexture("callout-arrow-bottom-skin");
+			this.calloutLeftArrowSkinTexture = this.atlas.getTexture("callout-arrow-left-skin");
+			this.calloutRightArrowSkinTexture = this.atlas.getTexture("callout-arrow-right-skin");
+
+			this.checkUpIconTexture = this.atlas.getTexture("check-up-icon");
+			this.checkDownIconTexture = this.atlas.getTexture("check-down-icon");
+			this.checkDisabledIconTexture = this.atlas.getTexture("check-disabled-icon");
+			this.checkSelectedUpIconTexture = this.atlas.getTexture("check-selected-up-icon");
+			this.checkSelectedDownIconTexture = this.atlas.getTexture("check-selected-down-icon");
+			this.checkSelectedDisabledIconTexture = this.atlas.getTexture("check-selected-disabled-icon");
+
+			this.radioUpIconTexture = this.atlas.getTexture("radio-up-icon");
+			this.radioDownIconTexture = this.atlas.getTexture("radio-down-icon");
+			this.radioDisabledIconTexture = this.atlas.getTexture("radio-disabled-icon");
+			this.radioSelectedUpIconTexture = this.atlas.getTexture("radio-selected-up-icon");
+			this.radioSelectedDisabledIconTexture = this.atlas.getTexture("radio-selected-disabled-icon");
 
 			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
@@ -232,31 +300,31 @@ package org.josht.starling.foxhole.themes
 			{
 				return;
 			}
-			label.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			label.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 		}
 
 		protected function buttonInitializer(button:Button):void
 		{
 			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
-			skinSelector.defaultValue = BUTTON_UP_SKIN_TEXTURES;
-			skinSelector.defaultSelectedValue = BUTTON_DOWN_SKIN_TEXTURES;
-			skinSelector.setValueForState(BUTTON_DOWN_SKIN_TEXTURES, Button.STATE_DOWN, false);
-			skinSelector.setValueForState(BUTTON_DISABLED_SKIN_TEXTURES, Button.STATE_DISABLED, false);
+			skinSelector.defaultValue = buttonUpSkinTextures;
+			skinSelector.defaultSelectedValue = buttonDownSkinTextures;
+			skinSelector.setValueForState(buttonDownSkinTextures, Button.STATE_DOWN, false);
+			skinSelector.setValueForState(buttonDisabledSkinTextures, Button.STATE_DISABLED, false);
 			skinSelector.imageProperties =
 			{
-				width: 66 * this._scale,
-				height: 66 * this._scale,
-				textureScale: this._scale
+				width: 66 * this.scale,
+				height: 66 * this.scale,
+				textureScale: this.scale
 			};
 			button.stateToSkinFunction = skinSelector.updateValue;
 
-			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			button.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			button.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
 
-			button.paddingTop = button.paddingBottom = 8 * this._scale;
-			button.paddingLeft = button.paddingRight = 16 * this._scale;
-			button.gap = 12 * this._scale;
-			button.minWidth = button.minHeight = 66 * this._scale;
+			button.paddingTop = button.paddingBottom = 8 * this.scale;
+			button.paddingLeft = button.paddingRight = 16 * this.scale;
+			button.gap = 12 * this.scale;
+			button.minWidth = button.minHeight = 66 * this.scale;
 		}
 
 		protected function pickerListButtonInitializer(button:Button):void
@@ -265,8 +333,8 @@ package org.josht.starling.foxhole.themes
 			//adding a little bit extra.
 			this.buttonInitializer(button);
 
-			const pickerListButtonDefaultIcon:Image = new Image(PICKER_ICON_TEXTURE);
-			pickerListButtonDefaultIcon.scaleX = pickerListButtonDefaultIcon.scaleY = this._scale;
+			const pickerListButtonDefaultIcon:Image = new Image(pickerIconTexture);
+			pickerListButtonDefaultIcon.scaleX = pickerListButtonDefaultIcon.scaleY = this.scale;
 			button.defaultIcon = pickerListButtonDefaultIcon
 			button.gap = Number.POSITIVE_INFINITY; //fill as completely as possible
 			button.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
@@ -275,86 +343,86 @@ package org.josht.starling.foxhole.themes
 
 		protected function toggleSwitchOnTrackInitializer(track:Button):void
 		{
-			const defaultSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
-			defaultSkin.width = 148 * this._scale;
-			defaultSkin.height = 66 * this._scale;
+			const defaultSkin:Scale9Image = new Scale9Image(insetBackgroundSkinTextures, this.scale);
+			defaultSkin.width = 148 * this.scale;
+			defaultSkin.height = 66 * this.scale;
 			track.defaultSkin = defaultSkin;
-			track.minTouchWidth = track.minTouchHeight = 88 * this._scale;
+			track.minTouchWidth = track.minTouchHeight = 88 * this.scale;
 		}
 
 		protected function scrollBarThumbInitializer(thumb:Button):void
 		{
-			const scrollBarDefaultSkin:Scale9Image = new Scale9Image(SCROLL_BAR_THUMB_SKIN_TEXTURES, this._scale);
-			scrollBarDefaultSkin.width = 8 * this._scale;
-			scrollBarDefaultSkin.height = 8 * this._scale;
+			const scrollBarDefaultSkin:Scale9Image = new Scale9Image(scrollBarThumbSkinTextures, this.scale);
+			scrollBarDefaultSkin.width = 8 * this.scale;
+			scrollBarDefaultSkin.height = 8 * this.scale;
 			thumb.defaultSkin = scrollBarDefaultSkin;
-			thumb.minTouchWidth = thumb.minTouchHeight = 12 * this._scale;
+			thumb.minTouchWidth = thumb.minTouchHeight = 12 * this.scale;
 		}
 
 		protected function sliderThumbInitializer(thumb:Button):void
 		{
 			const skinSelector:ImageStateValueSelector = new ImageStateValueSelector();
-			skinSelector.defaultValue = SLIDER_THUMB_UP_SKIN_TEXTURE;
-			skinSelector.defaultSelectedValue = TAB_SELECTED_SKIN_TEXTURE;
-			skinSelector.setValueForState(SLIDER_THUMB_DOWN_SKIN_TEXTURE, Button.STATE_DOWN, false);
-			skinSelector.setValueForState(SLIDER_THUMB_DISABLED_SKIN_TEXTURE, Button.STATE_DISABLED, false);
+			skinSelector.defaultValue = sliderThumbUpSkinTexture;
+			skinSelector.defaultSelectedValue = tabSelectedSkinTexture;
+			skinSelector.setValueForState(sliderThumbDownSkinTexture, Button.STATE_DOWN, false);
+			skinSelector.setValueForState(sliderThumbDisabledSkinTexture, Button.STATE_DISABLED, false);
 			skinSelector.imageProperties =
 			{
-				width: 66 * this._scale,
-				height: 66 * this._scale
+				width: 66 * this.scale,
+				height: 66 * this.scale
 			};
 			thumb.stateToSkinFunction = skinSelector.updateValue;
 
-			thumb.minTouchWidth = thumb.minTouchHeight = 88 * this._scale;
+			thumb.minTouchWidth = thumb.minTouchHeight = 88 * this.scale;
 		}
 
 		protected function tabInitializer(tab:Button):void
 		{
 			const skinSelector:ImageStateValueSelector = new ImageStateValueSelector();
-			skinSelector.defaultValue = TOOLBAR_BACKGROUND_SKIN_TEXTURE;
-			skinSelector.defaultSelectedValue = TAB_SELECTED_SKIN_TEXTURE;
-			skinSelector.setValueForState(TAB_SELECTED_SKIN_TEXTURE, Button.STATE_DOWN, false);
+			skinSelector.defaultValue = toolBarBackgroundSkinTexture;
+			skinSelector.defaultSelectedValue = tabSelectedSkinTexture;
+			skinSelector.setValueForState(tabSelectedSkinTexture, Button.STATE_DOWN, false);
 			skinSelector.imageProperties =
 			{
-				width: 88 * this._scale,
-				height: 88 * this._scale
+				width: 88 * this.scale,
+				height: 88 * this.scale
 			};
 			tab.stateToSkinFunction = skinSelector.updateValue;
 
-			tab.minWidth = tab.minHeight = 88 * this._scale;
-			tab.minTouchWidth = tab.minTouchHeight = 88 * this._scale;
+			tab.minWidth = tab.minHeight = 88 * this.scale;
+			tab.minTouchWidth = tab.minTouchHeight = 88 * this.scale;
 			tab.paddingTop = tab.paddingRight = tab.paddingBottom =
-				tab.paddingLeft = 16 * this._scale;
-			tab.gap = 12 * this._scale;
+				tab.paddingLeft = 16 * this.scale;
+			tab.gap = 12 * this.scale;
 			tab.iconPosition = Button.ICON_POSITION_TOP;
 
-			tab.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			tab.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			tab.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			tab.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
 		}
 
 		protected function headerButtonInitializer(button:Button):void
 		{
 			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
-			skinSelector.defaultValue = BUTTON_UP_SKIN_TEXTURES;
-			skinSelector.defaultSelectedValue = BUTTON_DOWN_SKIN_TEXTURES;
-			skinSelector.setValueForState(BUTTON_DOWN_SKIN_TEXTURES, Button.STATE_DOWN, false);
-			skinSelector.setValueForState(BUTTON_DISABLED_SKIN_TEXTURES, Button.STATE_DISABLED, false);
+			skinSelector.defaultValue = buttonUpSkinTextures;
+			skinSelector.defaultSelectedValue = buttonDownSkinTextures;
+			skinSelector.setValueForState(buttonDownSkinTextures, Button.STATE_DOWN, false);
+			skinSelector.setValueForState(buttonDisabledSkinTextures, Button.STATE_DISABLED, false);
 			skinSelector.imageProperties =
 			{
-				width: 60 * this._scale,
-				height: 60 * this._scale,
-				textureScale: this._scale
+				width: 60 * this.scale,
+				height: 60 * this.scale,
+				textureScale: this.scale
 			};
 			button.stateToSkinFunction = skinSelector.updateValue;
 
-			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			button.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			button.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
 
-			button.paddingTop = button.paddingBottom = 8 * this._scale;
-			button.paddingLeft = button.paddingRight = 16 * this._scale;
-			button.gap = 12 * this._scale;
-			button.minWidth = button.minHeight = 60 * this._scale;
-			button.minTouchWidth = button.minTouchHeight = 88 * this._scale;
+			button.paddingTop = button.paddingBottom = 8 * this.scale;
+			button.paddingLeft = button.paddingRight = 16 * this.scale;
+			button.gap = 12 * this.scale;
+			button.minWidth = button.minHeight = 60 * this.scale;
+			button.minTouchWidth = button.minTouchHeight = 88 * this.scale;
 		}
 
 		protected function sliderInitializer(slider:Slider):void
@@ -362,56 +430,56 @@ package org.josht.starling.foxhole.themes
 			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_STRETCH;
 			if(slider.direction == Slider.DIRECTION_VERTICAL)
 			{
-				var sliderMinimumTrackDefaultSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURES, this._scale);
-				sliderMinimumTrackDefaultSkin.width *= this._scale;
-				sliderMinimumTrackDefaultSkin.height = 198 * this._scale;
-				var sliderMinimumTrackDownSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURES, this._scale);
-				sliderMinimumTrackDownSkin.width *= this._scale;
-				sliderMinimumTrackDownSkin.height = 198 * this._scale;
-				var sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(VSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURES, this._scale);
-				sliderMinimumTrackDisabledSkin.width *= this._scale;
-				sliderMinimumTrackDisabledSkin.height = 198 * this._scale;
+				var sliderMinimumTrackDefaultSkin:Scale3Image = new Scale3Image(vSliderMinimumTrackUpSkinTextures, this.scale);
+				sliderMinimumTrackDefaultSkin.width *= this.scale;
+				sliderMinimumTrackDefaultSkin.height = 198 * this.scale;
+				var sliderMinimumTrackDownSkin:Scale3Image = new Scale3Image(vSliderMinimumTrackDownSkinTextures, this.scale);
+				sliderMinimumTrackDownSkin.width *= this.scale;
+				sliderMinimumTrackDownSkin.height = 198 * this.scale;
+				var sliderMinimumTrackDisabledSkin:Scale3Image = new Scale3Image(vSliderMinimumTrackDisabledSkinTextures, this.scale);
+				sliderMinimumTrackDisabledSkin.width *= this.scale;
+				sliderMinimumTrackDisabledSkin.height = 198 * this.scale;
 				slider.minimumTrackProperties.defaultSkin = sliderMinimumTrackDefaultSkin;
 				slider.minimumTrackProperties.downSkin = sliderMinimumTrackDownSkin;
 				slider.minimumTrackProperties.disabledSkin = sliderMinimumTrackDisabledSkin;
 
-				var sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURES, this._scale);
-				sliderMaximumTrackDefaultSkin.width *= this._scale;
-				sliderMaximumTrackDefaultSkin.height = 198 * this._scale;
-				var sliderMaximumTrackDownSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURES, this._scale);
-				sliderMaximumTrackDownSkin.width *= this._scale;
-				sliderMaximumTrackDownSkin.height = 198 * this._scale;
-				var sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(VSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURES, this._scale);
-				sliderMaximumTrackDisabledSkin.width *= this._scale;
-				sliderMaximumTrackDisabledSkin.height = 198 * this._scale;
+				var sliderMaximumTrackDefaultSkin:Scale3Image = new Scale3Image(vSliderMaximumTrackUpSkinTextures, this.scale);
+				sliderMaximumTrackDefaultSkin.width *= this.scale;
+				sliderMaximumTrackDefaultSkin.height = 198 * this.scale;
+				var sliderMaximumTrackDownSkin:Scale3Image = new Scale3Image(vSliderMaximumTrackDownSkinTextures, this.scale);
+				sliderMaximumTrackDownSkin.width *= this.scale;
+				sliderMaximumTrackDownSkin.height = 198 * this.scale;
+				var sliderMaximumTrackDisabledSkin:Scale3Image = new Scale3Image(vSliderMaximumTrackDisabledSkinTextures, this.scale);
+				sliderMaximumTrackDisabledSkin.width *= this.scale;
+				sliderMaximumTrackDisabledSkin.height = 198 * this.scale;
 				slider.maximumTrackProperties.defaultSkin = sliderMaximumTrackDefaultSkin;
 				slider.maximumTrackProperties.downSkin = sliderMaximumTrackDownSkin;
 				slider.maximumTrackProperties.disabledSkin = sliderMaximumTrackDisabledSkin;
 			}
 			else //horizontal
 			{
-				sliderMinimumTrackDefaultSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_UP_SKIN_TEXTURES, this._scale);
-				sliderMinimumTrackDefaultSkin.width = 198 * this._scale;
-				sliderMinimumTrackDefaultSkin.height *= this._scale;
-				sliderMinimumTrackDownSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_DOWN_SKIN_TEXTURES, this._scale);
-				sliderMinimumTrackDownSkin.width = 198 * this._scale;
-				sliderMinimumTrackDownSkin.height *= this._scale;
-				sliderMinimumTrackDisabledSkin = new Scale3Image(HSLIDER_MINIMUM_TRACK_DISABLED_SKIN_TEXTURES, this._scale);
-				sliderMinimumTrackDisabledSkin.width = 198 * this._scale;
-				sliderMinimumTrackDisabledSkin.height *= this._scale;
+				sliderMinimumTrackDefaultSkin = new Scale3Image(hSliderMinimumTrackUpSkinTextures, this.scale);
+				sliderMinimumTrackDefaultSkin.width = 198 * this.scale;
+				sliderMinimumTrackDefaultSkin.height *= this.scale;
+				sliderMinimumTrackDownSkin = new Scale3Image(hSliderMinimumTrackDownSkinTextures, this.scale);
+				sliderMinimumTrackDownSkin.width = 198 * this.scale;
+				sliderMinimumTrackDownSkin.height *= this.scale;
+				sliderMinimumTrackDisabledSkin = new Scale3Image(hSliderMinimumTrackDisabledSkinTextures, this.scale);
+				sliderMinimumTrackDisabledSkin.width = 198 * this.scale;
+				sliderMinimumTrackDisabledSkin.height *= this.scale;
 				slider.minimumTrackProperties.defaultSkin = sliderMinimumTrackDefaultSkin;
 				slider.minimumTrackProperties.downSkin = sliderMinimumTrackDownSkin;
 				slider.minimumTrackProperties.disabledSkin = sliderMinimumTrackDisabledSkin;
 
-				sliderMaximumTrackDefaultSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_UP_SKIN_TEXTURES, this._scale);
-				sliderMaximumTrackDefaultSkin.width = 198 * this._scale;
-				sliderMaximumTrackDefaultSkin.height *= this._scale;
-				sliderMaximumTrackDownSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DOWN_SKIN_TEXTURES, this._scale);
-				sliderMaximumTrackDownSkin.width = 198 * this._scale;
-				sliderMaximumTrackDownSkin.height *= this._scale;
-				sliderMaximumTrackDisabledSkin = new Scale3Image(HSLIDER_MAXIMUM_TRACK_DISABLED_SKIN_TEXTURES, this._scale);
-				sliderMaximumTrackDisabledSkin.width = 198 * this._scale;
-				sliderMaximumTrackDisabledSkin.height *= this._scale;
+				sliderMaximumTrackDefaultSkin = new Scale3Image(hSliderMaximumTrackUpSkinTextures, this.scale);
+				sliderMaximumTrackDefaultSkin.width = 198 * this.scale;
+				sliderMaximumTrackDefaultSkin.height *= this.scale;
+				sliderMaximumTrackDownSkin = new Scale3Image(hSliderMaximumTrackDownSkinTextures, this.scale);
+				sliderMaximumTrackDownSkin.width = 198 * this.scale;
+				sliderMaximumTrackDownSkin.height *= this.scale;
+				sliderMaximumTrackDisabledSkin = new Scale3Image(hSliderMaximumTrackDisabledSkinTextures, this.scale);
+				sliderMaximumTrackDisabledSkin.width = 198 * this.scale;
+				sliderMaximumTrackDisabledSkin.height *= this.scale;
 				slider.maximumTrackProperties.defaultSkin = sliderMaximumTrackDefaultSkin;
 				slider.maximumTrackProperties.downSkin = sliderMaximumTrackDownSkin;
 				slider.maximumTrackProperties.disabledSkin = sliderMaximumTrackDisabledSkin;
@@ -421,29 +489,29 @@ package org.josht.starling.foxhole.themes
 		protected function scrollBarInitializer(scrollBar:SimpleScrollBar):void
 		{
 			scrollBar.paddingTop = scrollBar.paddingRight = scrollBar.paddingBottom =
-				scrollBar.paddingLeft = 2 * this._scale;
+				scrollBar.paddingLeft = 2 * this.scale;
 		}
 
 		protected function checkInitializer(check:Check):void
 		{
 			const iconSelector:ImageStateValueSelector = new ImageStateValueSelector();
-			iconSelector.defaultValue = CHECK_UP_ICON_TEXTURE;
-			iconSelector.defaultSelectedValue = CHECK_SELECTED_UP_ICON_TEXTURE;
-			iconSelector.setValueForState(CHECK_DOWN_ICON_TEXTURE, Button.STATE_DOWN, false);
-			iconSelector.setValueForState(CHECK_DISABLED_ICON_TEXTURE, Button.STATE_DISABLED, false);
-			iconSelector.setValueForState(CHECK_SELECTED_DOWN_ICON_TEXTURE, Button.STATE_DOWN, true);
-			iconSelector.setValueForState(CHECK_SELECTED_DISABLED_ICON_TEXTURE, Button.STATE_DISABLED, true);
+			iconSelector.defaultValue = checkUpIconTexture;
+			iconSelector.defaultSelectedValue = checkSelectedUpIconTexture;
+			iconSelector.setValueForState(checkDownIconTexture, Button.STATE_DOWN, false);
+			iconSelector.setValueForState(checkDisabledIconTexture, Button.STATE_DISABLED, false);
+			iconSelector.setValueForState(checkSelectedDownIconTexture, Button.STATE_DOWN, true);
+			iconSelector.setValueForState(checkSelectedDisabledIconTexture, Button.STATE_DISABLED, true);
 			iconSelector.imageProperties =
 			{
-				scaleX: this._scale,
-				scaleY: this._scale
+				scaleX: this.scale,
+				scaleY: this.scale
 			};
 			check.stateToIconFunction = iconSelector.updateValue;
 
-			check.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			check.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			check.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			check.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
 
-			check.minTouchWidth = check.minTouchHeight = 88 * this._scale;
+			check.minTouchWidth = check.minTouchHeight = 88 * this.scale;
 			check.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			check.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
 		}
@@ -451,22 +519,22 @@ package org.josht.starling.foxhole.themes
 		protected function radioInitializer(radio:Radio):void
 		{
 			const iconSelector:ImageStateValueSelector = new ImageStateValueSelector();
-			iconSelector.defaultValue = RADIO_UP_ICON_TEXTURE;
-			iconSelector.defaultSelectedValue = RADIO_SELECTED_UP_ICON_TEXTURE;
-			iconSelector.setValueForState(RADIO_DOWN_ICON_TEXTURE, Button.STATE_DOWN, false);
-			iconSelector.setValueForState(RADIO_DISABLED_ICON_TEXTURE, Button.STATE_DISABLED, false);
-			iconSelector.setValueForState(RADIO_SELECTED_DISABLED_ICON_TEXTURE, Button.STATE_DISABLED, true);
+			iconSelector.defaultValue = radioUpIconTexture;
+			iconSelector.defaultSelectedValue = radioSelectedUpIconTexture;
+			iconSelector.setValueForState(radioDownIconTexture, Button.STATE_DOWN, false);
+			iconSelector.setValueForState(radioDisabledIconTexture, Button.STATE_DISABLED, false);
+			iconSelector.setValueForState(radioSelectedDisabledIconTexture, Button.STATE_DISABLED, true);
 			iconSelector.imageProperties =
 			{
-				scaleX: this._scale,
-				scaleY: this._scale
+				scaleX: this.scale,
+				scaleY: this.scale
 			};
 			radio.stateToIconFunction = iconSelector.updateValue;
 
-			radio.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			radio.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			radio.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			radio.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
 
-			radio.minTouchWidth = radio.minTouchHeight = 88 * this._scale;
+			radio.minTouchWidth = radio.minTouchHeight = 88 * this.scale;
 			radio.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			radio.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
 		}
@@ -475,44 +543,44 @@ package org.josht.starling.foxhole.themes
 		{
 			toggleSwitch.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_SINGLE;
 
-			toggleSwitch.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
-			toggleSwitch.onLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, SELECTED_TEXT_COLOR);
+			toggleSwitch.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			toggleSwitch.onLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
 		}
 
 		protected function itemRendererInitializer(renderer:BaseDefaultItemRenderer):void
 		{
 			const skinSelector:ImageStateValueSelector = new ImageStateValueSelector();
-			skinSelector.defaultValue = LIST_ITEM_UP_TEXTURE;
-			skinSelector.defaultSelectedValue = LIST_ITEM_DOWN_TEXTURE;
-			skinSelector.setValueForState(LIST_ITEM_DOWN_TEXTURE, Button.STATE_DOWN, false);
+			skinSelector.defaultValue = listItemUpTexture;
+			skinSelector.defaultSelectedValue = listItemDownTexture;
+			skinSelector.setValueForState(listItemDownTexture, Button.STATE_DOWN, false);
 			skinSelector.imageProperties =
 			{
-				width: 88 * this._scale,
-				height: 88 * this._scale,
+				width: 88 * this.scale,
+				height: 88 * this.scale,
 				blendMode: BlendMode.NONE
 			};
 			renderer.stateToSkinFunction = skinSelector.updateValue;
 
-			renderer.paddingTop = renderer.paddingBottom = 11 * this._scale;
-			renderer.paddingLeft = renderer.paddingRight = 20 * this._scale;
-			renderer.minWidth = 88 * this._scale;
-			renderer.minHeight = 88 * this._scale;
+			renderer.paddingTop = renderer.paddingBottom = 11 * this.scale;
+			renderer.paddingLeft = renderer.paddingRight = 20 * this.scale;
+			renderer.minWidth = 88 * this.scale;
+			renderer.minHeight = 88 * this.scale;
 
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 
-			renderer.defaultLabelProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			renderer.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 		}
 
 		protected function headerOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
 		{
-			const backgroundSkin:Image = new Image(GROUPED_LIST_HEADER_BACKGROUND_SKIN_TEXTURE);
-			backgroundSkin.width = 44 * this._scale;
-			backgroundSkin.height = 44 * this._scale;
+			const backgroundSkin:Image = new Image(groupedListHeaderBackgroundSkinTexture);
+			backgroundSkin.width = 44 * this.scale;
+			backgroundSkin.height = 44 * this.scale;
 			renderer.backgroundSkin = backgroundSkin;
 
-			renderer.paddingTop = renderer.paddingBottom = 9 * this._scale;
-			renderer.paddingLeft = renderer.paddingRight = 16 * this._scale;
-			renderer.minWidth = renderer.minHeight = 44 * this._scale;
+			renderer.paddingTop = renderer.paddingBottom = 9 * this.scale;
+			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
+			renderer.minWidth = renderer.minHeight = 44 * this.scale;
 		}
 
 		protected function pickerListInitializer(list:PickerList):void
@@ -525,7 +593,7 @@ package org.josht.starling.foxhole.themes
 			{
 				const centerStage:VerticalCenteredPopUpContentManager = new VerticalCenteredPopUpContentManager();
 				centerStage.marginTop = centerStage.marginRight = centerStage.marginBottom =
-					centerStage.marginLeft = 16 * this._scale;
+					centerStage.marginLeft = 16 * this.scale;
 				list.popUpContentManager = centerStage;
 			}
 
@@ -541,106 +609,106 @@ package org.josht.starling.foxhole.themes
 
 			if(PhysicalCapabilities.isTablet(Starling.current.nativeStage))
 			{
-				list.listProperties.minWidth = 264 * this._scale;
-				list.listProperties.maxHeight = 352 * this._scale;
+				list.listProperties.minWidth = 264 * this.scale;
+				list.listProperties.maxHeight = 352 * this.scale;
 			}
 			else
 			{
-				const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
-				backgroundSkin.width = 20 * this._scale;
-				backgroundSkin.height = 20 * this._scale;
+				const backgroundSkin:Scale9Image = new Scale9Image(insetBackgroundSkinTextures, this.scale);
+				backgroundSkin.width = 20 * this.scale;
+				backgroundSkin.height = 20 * this.scale;
 				list.listProperties.backgroundSkin = backgroundSkin;
 				list.listProperties.paddingTop = list.listProperties.paddingRight =
-					list.listProperties.paddingBottom = list.listProperties.paddingLeft = 8 * this._scale;
+					list.listProperties.paddingBottom = list.listProperties.paddingLeft = 8 * this.scale;
 			}
 		}
 
 		protected function screenHeaderInitializer(header:ScreenHeader):void
 		{
-			const backgroundSkin:Image = new Image(TOOLBAR_BACKGROUND_SKIN_TEXTURE);
-			backgroundSkin.width = 88 * this._scale;
-			backgroundSkin.height = 88 * this._scale;
+			const backgroundSkin:Image = new Image(toolBarBackgroundSkinTexture);
+			backgroundSkin.width = 88 * this.scale;
+			backgroundSkin.height = 88 * this.scale;
 			backgroundSkin.blendMode = BlendMode.NONE;
 			header.backgroundSkin = backgroundSkin;
-			header.titleProperties.textFormat = new BitmapFontTextFormat(BITMAP_FONT, this._fontSize, PRIMARY_TEXT_COLOR);
+			header.titleProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 			header.paddingTop = header.paddingRight = header.paddingBottom =
-				header.paddingLeft = 14 * this._scale;
-			header.minHeight = 88 * this._scale;
+				header.paddingLeft = 14 * this.scale;
+			header.minHeight = 88 * this.scale;
 		}
 
 		protected function textInputInitializer(input:TextInput):void
 		{
-			input.minWidth = input.minHeight = 66 * this._scale;
-			input.minTouchWidth = input.minTouchHeight = 66 * this._scale;
-			input.paddingTop = input.paddingBottom = 14 * this._scale;
-			input.paddingLeft = input.paddingRight = 16 * this._scale;
+			input.minWidth = input.minHeight = 66 * this.scale;
+			input.minTouchWidth = input.minTouchHeight = 66 * this.scale;
+			input.paddingTop = input.paddingBottom = 14 * this.scale;
+			input.paddingLeft = input.paddingRight = 16 * this.scale;
 			input.stageTextProperties.fontFamily = "Helvetica";
-			input.stageTextProperties.fontSize = 30 * this._scale;
+			input.stageTextProperties.fontSize = 30 * this.scale;
 			input.stageTextProperties.color = 0xffffff;
 
-			const backgroundSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_SKIN_TEXTURES, this._scale);
-			backgroundSkin.width = 264 * this._scale;
-			backgroundSkin.height = 66 * this._scale;
+			const backgroundSkin:Scale9Image = new Scale9Image(insetBackgroundSkinTextures, this.scale);
+			backgroundSkin.width = 264 * this.scale;
+			backgroundSkin.height = 66 * this.scale;
 			input.backgroundSkin = backgroundSkin;
 
-			const backgroundDisabledSkin:Scale9Image = new Scale9Image(INSET_BACKGROUND_DISABLED_SKIN_TEXTURES, this._scale);
-			backgroundDisabledSkin.width = 264 * this._scale;
-			backgroundDisabledSkin.height = 66 * this._scale;
+			const backgroundDisabledSkin:Scale9Image = new Scale9Image(insetBackgroundDisabledSkinTextures, this.scale);
+			backgroundDisabledSkin.width = 264 * this.scale;
+			backgroundDisabledSkin.height = 66 * this.scale;
 			input.backgroundDisabledSkin = backgroundDisabledSkin;
 		}
 
 		protected function progressBarInitializer(progress:ProgressBar):void
 		{
-			const backgroundSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_BACKGROUND_SKIN_TEXTURES, this._scale);
-			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 24) * this._scale;
-			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 24 : 264) * this._scale;
+			const backgroundSkin:Scale3Image = new Scale3Image(progressBarBackgroundSkinTextures, this.scale);
+			backgroundSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 24) * this.scale;
+			backgroundSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 24 : 264) * this.scale;
 			progress.backgroundSkin = backgroundSkin;
 
-			const backgroundDisabledSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_BACKGROUND_DISABLED_SKIN_TEXTURES, this._scale);
-			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 24) * this._scale;
-			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 24 : 264) * this._scale;
+			const backgroundDisabledSkin:Scale3Image = new Scale3Image(progressBarBackgroundDisabledSkinTextures, this.scale);
+			backgroundDisabledSkin.width = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 264 : 24) * this.scale;
+			backgroundDisabledSkin.height = (progress.direction == ProgressBar.DIRECTION_HORIZONTAL ? 24 : 264) * this.scale;
 			progress.backgroundDisabledSkin = backgroundDisabledSkin;
 
-			const fillSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_FILL_SKIN_TEXTURES, this._scale);
-			fillSkin.width = 24 * this._scale;
-			fillSkin.height = 24 * this._scale;
+			const fillSkin:Scale3Image = new Scale3Image(progressBarFillSkinTextures, this.scale);
+			fillSkin.width = 24 * this.scale;
+			fillSkin.height = 24 * this.scale;
 			progress.fillSkin = fillSkin;
 
-			const fillDisabledSkin:Scale3Image = new Scale3Image(PROGRESS_BAR_FILL_DISABLED_SKIN_TEXTURES, this._scale);
-			fillDisabledSkin.width = 24 * this._scale;
-			fillDisabledSkin.height = 24 * this._scale;
+			const fillDisabledSkin:Scale3Image = new Scale3Image(progressBarFillDisabledSkinTextures, this.scale);
+			fillDisabledSkin.width = 24 * this.scale;
+			fillDisabledSkin.height = 24 * this.scale;
 			progress.fillDisabledSkin = fillDisabledSkin;
 		}
 
 		protected function calloutInitializer(callout:Callout):void
 		{
 			callout.paddingTop = callout.paddingRight = callout.paddingBottom =
-				callout.paddingLeft = 16 * this._scale;
+				callout.paddingLeft = 16 * this.scale;
 
-			const backgroundSkin:Scale9Image = new Scale9Image(CALLOUT_BACKGROUND_SKIN_TEXTURES, this._scale);
-			backgroundSkin.width = 48 * this._scale;
-			backgroundSkin.height = 48 * this._scale;
+			const backgroundSkin:Scale9Image = new Scale9Image(calloutBackgroundSkinTextures, this.scale);
+			backgroundSkin.width = 48 * this.scale;
+			backgroundSkin.height = 48 * this.scale;
 			callout.backgroundSkin = backgroundSkin;
 
-			const topArrowSkin:Image = new Image(CALLOUT_TOP_ARROW_SKIN_TEXTURE);
-			topArrowSkin.scaleX = topArrowSkin.scaleY = this._scale;
+			const topArrowSkin:Image = new Image(calloutTopArrowSkinTexture);
+			topArrowSkin.scaleX = topArrowSkin.scaleY = this.scale;
 			callout.topArrowSkin = topArrowSkin;
-			callout.topArrowGap = 0 * this._scale;
+			callout.topArrowGap = 0 * this.scale;
 
-			const bottomArrowSkin:Image = new Image(CALLOUT_BOTTOM_ARROW_SKIN_TEXTURE);
-			bottomArrowSkin.scaleX = bottomArrowSkin.scaleY = this._scale;
+			const bottomArrowSkin:Image = new Image(calloutBottomArrowSkinTexture);
+			bottomArrowSkin.scaleX = bottomArrowSkin.scaleY = this.scale;
 			callout.bottomArrowSkin = bottomArrowSkin;
-			callout.bottomArrowGap = -1 * this._scale;
+			callout.bottomArrowGap = -1 * this.scale;
 
-			const leftArrowSkin:Image = new Image(CALLOUT_LEFT_ARROW_SKIN_TEXTURE);
-			leftArrowSkin.scaleX = leftArrowSkin.scaleY = this._scale;
+			const leftArrowSkin:Image = new Image(calloutLeftArrowSkinTexture);
+			leftArrowSkin.scaleX = leftArrowSkin.scaleY = this.scale;
 			callout.leftArrowSkin = leftArrowSkin;
-			callout.leftArrowGap = 0 * this._scale;
+			callout.leftArrowGap = 0 * this.scale;
 
-			const rightArrowSkin:Image = new Image(CALLOUT_RIGHT_ARROW_SKIN_TEXTURE);
-			rightArrowSkin.scaleX = rightArrowSkin.scaleY = this._scale;
+			const rightArrowSkin:Image = new Image(calloutRightArrowSkinTexture);
+			rightArrowSkin.scaleX = rightArrowSkin.scaleY = this.scale;
 			callout.rightArrowSkin = rightArrowSkin;
-			callout.rightArrowGap = -1 * this._scale;
+			callout.rightArrowGap = -1 * this.scale;
 		}
 
 		protected function root_addedToStageHandler(event:Event):void
