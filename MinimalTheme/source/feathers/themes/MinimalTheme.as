@@ -1,7 +1,6 @@
 package feathers.themes
 {
 	import flash.geom.Rectangle;
-	import flash.system.Capabilities;
 	
 	import feathers.controls.Button;
 	import feathers.controls.Callout;
@@ -149,8 +148,7 @@ package feathers.themes
 		{
 			if(this._scaleToDPI)
 			{
-				//special case for ipad. should be same pixel size as iphone
-				if(DeviceCapabilities.dpi % (ORIGINAL_DPI_IPAD_RETINA / 2) == 0)
+				if(DeviceCapabilities.isTablet(Starling.current.nativeStage))
 				{
 					this._originalDPI = ORIGINAL_DPI_IPAD_RETINA;
 				}
