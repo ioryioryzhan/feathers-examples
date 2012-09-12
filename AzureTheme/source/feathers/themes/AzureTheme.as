@@ -177,7 +177,7 @@ package feathers.themes
 			if(this._scaleToDPI)
 			{
 				//special case for ipad. should be same pixel size as iphone
-				if(Capabilities.screenDPI % (ORIGINAL_DPI_IPAD_RETINA / 2) == 0)
+				if(DeviceCapabilities.dpi % (ORIGINAL_DPI_IPAD_RETINA / 2) == 0)
 				{
 					this._originalDPI = ORIGINAL_DPI_IPAD_RETINA;
 				}
@@ -188,9 +188,9 @@ package feathers.themes
 			}
 			else
 			{
-				this._originalDPI = Capabilities.screenDPI;
+				this._originalDPI = DeviceCapabilities.dpi;
 			}
-			this.scale = Capabilities.screenDPI / this._originalDPI;
+			this.scale = DeviceCapabilities.dpi / this._originalDPI;
 
 			this.fontSize = 30 * this.scale;
 

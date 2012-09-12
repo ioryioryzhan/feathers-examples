@@ -150,7 +150,7 @@ package feathers.themes
 			if(this._scaleToDPI)
 			{
 				//special case for ipad. should be same pixel size as iphone
-				if(Capabilities.screenDPI % (ORIGINAL_DPI_IPAD_RETINA / 2) == 0)
+				if(DeviceCapabilities.dpi % (ORIGINAL_DPI_IPAD_RETINA / 2) == 0)
 				{
 					this._originalDPI = ORIGINAL_DPI_IPAD_RETINA;
 				}
@@ -161,11 +161,11 @@ package feathers.themes
 			}
 			else
 			{
-				this._originalDPI = Capabilities.screenDPI;
+				this._originalDPI = DeviceCapabilities.dpi;
 			}
 			//our min scale is 0.25 because lines in the graphics are four
 			//pixels wide and this will keep them crisp.
-			this.scale = Math.max(0.25, Capabilities.screenDPI / this._originalDPI);
+			this.scale = Math.max(0.25, DeviceCapabilities.dpi / this._originalDPI);
 
 			//since it's a pixel font, we want a multiple of the original size,
 			//which, in this case, is 8.

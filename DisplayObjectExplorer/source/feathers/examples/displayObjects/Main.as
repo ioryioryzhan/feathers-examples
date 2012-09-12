@@ -1,10 +1,10 @@
 package feathers.examples.displayObjects
 {
 	import com.gskinner.motion.easing.Cubic;
-
+	
 	import flash.system.Capabilities;
 	import flash.ui.Mouse;
-
+	
 	import feathers.controls.Button;
 	import feathers.controls.ScreenNavigator;
 	import feathers.controls.ScreenNavigatorItem;
@@ -13,9 +13,10 @@ package feathers.examples.displayObjects
 	import feathers.examples.displayObjects.screens.Scale3ImageScreen;
 	import feathers.examples.displayObjects.screens.Scale9ImageScreen;
 	import feathers.examples.displayObjects.screens.TiledImageScreen;
-	import feathers.themes.AzureTheme;
 	import feathers.motion.transitions.TabBarSlideTransitionManager;
-
+	import feathers.system.DeviceCapabilities;
+	import feathers.themes.AzureTheme;
+	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -57,14 +58,14 @@ package feathers.examples.displayObjects
 		private function rightGripInitializer(button:Button):void
 		{
 			const rightSkin:Image = new Image(this._rightGripTexture);
-			rightSkin.scaleX = rightSkin.scaleY = Capabilities.screenDPI / this._theme.originalDPI;
+			rightSkin.scaleX = rightSkin.scaleY = DeviceCapabilities.dpi / this._theme.originalDPI;
 			button.defaultSkin = rightSkin;
 		}
 
 		private function bottomGripInitializer(button:Button):void
 		{
 			const bottomSkin:Image = new Image(this._bottomGripTexture);
-			bottomSkin.scaleX = bottomSkin.scaleY = Capabilities.screenDPI / this._theme.originalDPI;
+			bottomSkin.scaleX = bottomSkin.scaleY = DeviceCapabilities.dpi / this._theme.originalDPI;
 			button.defaultSkin = bottomSkin;
 		}
 
