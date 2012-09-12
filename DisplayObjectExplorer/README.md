@@ -1,7 +1,7 @@
-# Display Object Explorer
+# Display Object Explorer for Feathers
 
-Demonstrates the resizing behavior of `Scale9Image`, `Scale3Image`, and `TiledImage` from [Foxhole for Starling](https://github.com/joshtynjala/foxhole-starling).
+Demonstrates the resizing behavior of `Scale9Image`, `Scale3Image`, and `TiledImage` display objects from [Feathers](http://feathersui.com/).
 
 ## Web Demo
 
-View the [Display Object Explorer Example](http://flashtoolbox.com/foxhole-starling/examples/display-object-explorer/) in your browser.
+View the [Display Object Explorer](http://feathersui.com/examples/display-object-explorer/) in your browser.

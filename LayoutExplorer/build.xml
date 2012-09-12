@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="foxhole-starling-layouts" default="build" basedir=".">
+<project name="layout-explorer" default="build" basedir=".">
 	
 	<!-- build.local.properties and sdk.local.proprties are optional files that
 		can be used to override the default properties. -->
@@ -27,12 +27,12 @@
 			<arg line="+flexlib='${flexframework.root}'"/>
 			<arg line="--swf-version=${swf.version}"/>
 			<arg line="--static-link-runtime-shared-libraries=true"/>
-			<arg line="--frame two org.josht.starling.foxhole.layoutExplorer.Main"/>
+			<arg line="--frame two feathers.examples.layoutExplorer.Main"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${signals.root}'"/>
 			<arg line="--source-path+='${gtween.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
-			<arg line="--source-path+='${foxhole.root}'"/>
+			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="--source-path+='${theme.root}'"/>
 			<arg line="source/LayoutExplorerWeb.as"/>
 			<arg line="--output ${output.path}/LayoutExplorerWeb.swf"/>
@@ -48,7 +48,7 @@
 			<arg line="--source-path+='${signals.root}'"/>
 			<arg line="--source-path+='${gtween.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
-			<arg line="--source-path+='${foxhole.root}'"/>
+			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="--source-path+='${theme.root}'"/>
 			<arg line="source/LayoutExplorer.as"/>
 			<arg line="--output ${output.path}/LayoutExplorer.swf"/>

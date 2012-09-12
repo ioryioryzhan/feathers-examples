@@ -7,7 +7,7 @@ package
 	import flash.ui.ContextMenu;
 	import flash.utils.getDefinitionByName;
 
-	import org.josht.system.PhysicalCapabilities;
+	import feathers.system.DeviceCapabilities;
 
 	import starling.core.Starling;
 
@@ -26,9 +26,9 @@ package
 				this.stage.scaleMode = StageScaleMode.NO_SCALE;
 			}
 
-			PhysicalCapabilities.CUSTOM_SCREEN_WIDTH = 960;
-			PhysicalCapabilities.CUSTOM_SCREEN_HEIGHT = 640;
-			PhysicalCapabilities.CUSTOM_SCREEN_DPI = 326;
+			DeviceCapabilities.screenPixelWidth = 960;
+			DeviceCapabilities.screenPixelHeight = 640;
+			DeviceCapabilities.dpi = 326;
 			
 			this.loaderInfo.addEventListener(Event.COMPLETE, loaderInfo_completeHandler);
 		}
@@ -42,7 +42,7 @@ package
 			
 			Starling.handleLostContext = true;
 			Starling.multitouchEnabled = true;
-			const MainType:Class = getDefinitionByName("org.josht.starling.foxhole.layoutExplorer.Main") as Class;
+			const MainType:Class = getDefinitionByName("feathers.examples.layoutExplorer.Main") as Class;
 			this._starling = new Starling(MainType, this.stage);
 			this._starling.start();
 		}

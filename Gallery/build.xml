@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="foxhole-starling-gallery" default="build" basedir=".">
+<project name="gallery" default="build" basedir=".">
 	
 	<!-- build.local.properties and sdk.local.proprties are optional files that
 		can be used to override the default properties. -->
@@ -30,12 +30,12 @@
 			<arg line="--swf-version=${swf.version}"/>
 			<arg value="--define+=CONFIG::FLICKR_API_KEY,'${flickr.api.key}'"/>
 			<arg line="--static-link-runtime-shared-libraries=true"/>
-			<arg line="--frame two org.josht.starling.foxhole.gallery.Main"/>
+			<arg line="--frame two feathers.examples.gallery.Main"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${signals.root}'"/>
 			<arg line="--source-path+='${gtween.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
-			<arg line="--source-path+='${foxhole.root}'"/>
+			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="source/GalleryWeb.as"/>
 			<arg line="--output ${output.path}/GalleryWeb.swf"/>
 		</java>
@@ -51,7 +51,7 @@
 			<arg line="--source-path+='${signals.root}'"/>
 			<arg line="--source-path+='${gtween.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
-			<arg line="--source-path+='${foxhole.root}'"/>
+			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="source/Gallery.as"/>
 			<arg line="--output ${output.path}/Gallery.swf"/>
 		</java>

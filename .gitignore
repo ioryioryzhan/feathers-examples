@@ -16,5 +16,6 @@ bin-debug/
 bin-release/
 html-template/
 .metadata/
+Archive/
 *.iml
 .idea/

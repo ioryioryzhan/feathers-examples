@@ -6,7 +6,7 @@ package
 	import flash.events.Event;
 	import flash.geom.Rectangle;
 
-	import org.josht.starling.foxhole.gallery.Main;
+	import feathers.examples.gallery.Main;
 
 	import starling.core.Starling;
 

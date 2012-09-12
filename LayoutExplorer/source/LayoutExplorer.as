@@ -9,7 +9,7 @@ package
 	import flash.geom.Rectangle;
 	import flash.system.Capabilities;
 
-	import org.josht.starling.foxhole.layoutExplorer.Main;
+	import feathers.examples.layoutExplorer.Main;
 
 	import starling.core.Starling;
 

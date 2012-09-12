@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <application xmlns="http://ns.adobe.com/air/application/3.4">
-	<id>org.josht.foxhole.Gallery</id>
-	<filename>Foxhole Gallery</filename>
-	<name>Foxhole Gallery</name>
+	<id>com.feathersui.examples.Gallery</id>
+	<filename>Feathers Gallery</filename>
+	<name>Feathers Gallery</name>
 	<versionNumber>1.0.0</versionNumber>
-	<description>Gallery example application built with Foxhole for Starling</description>
+	<description>Gallery example application built with Feathers UI controls for Starling</description>
 	<copyright>2012 Josh Tynjala</copyright>
 
 	<initialWindow>

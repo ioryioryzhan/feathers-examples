@@ -10,7 +10,7 @@ package
 	import flash.geom.Rectangle;
 	import flash.system.Capabilities;
 
-	import org.josht.starling.foxhole.displayObjects.DisplayObjectExplorerRoot;
+	import feathers.examples.displayObjects.Main;
 
 	import starling.core.Starling;
 
@@ -35,7 +35,7 @@ package
 		{
 			Starling.handleLostContext = true;
 			Starling.multitouchEnabled = true;
-			this._starling = new Starling(DisplayObjectExplorerRoot, this.stage);
+			this._starling = new Starling(Main, this.stage);
 			this._starling.enableErrorChecking = false;
 			this._starling.start();
 

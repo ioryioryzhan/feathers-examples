@@ -6,7 +6,9 @@ package
 	import flash.events.Event;
 	import flash.ui.ContextMenu;
 	import flash.utils.getDefinitionByName;
-
+	
+	import feathers.system.DeviceCapabilities;
+	
 	import starling.core.Starling;
 
 	[SWF(width="960",height="640",frameRate="60",backgroundColor="#ffffff")]
@@ -25,6 +27,10 @@ package
 				this.stage.mouseChildren = false;
 			}
 			this.mouseEnabled = this.mouseChildren = false;
+			
+			DeviceCapabilities.screenPixelWidth = 960;
+			DeviceCapabilities.screenPixelHeight = 640;
+			DeviceCapabilities.dpi = 326;
 
 			this.loaderInfo.addEventListener(Event.COMPLETE, loaderInfo_completeHandler);
 		}
@@ -38,7 +44,7 @@ package
 
 			Starling.handleLostContext = true;
 			Starling.multitouchEnabled = true;
-			const MainType:Class = getDefinitionByName("org.josht.starling.foxhole.examples.tileList.Main") as Class;
+			const MainType:Class = getDefinitionByName("feathers.examples.tileList.Main") as Class;
 			this._starling = new Starling(MainType, this.stage);
 			this._starling.start();
 		}

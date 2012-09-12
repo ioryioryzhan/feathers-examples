@@ -1,6 +1,6 @@
-# Azure Theme for Foxhole
+# Azure Theme for Feathers
 
-This [Foxhole for Starling](https://github.com/joshtynjala/foxhole-starling) theme places a bold blue color over a dark background with light text.
+This [Feathers](http://feathersui.com/) theme places a bold blue color over a dark background with light text.
 
 ## Credits
 
@@ -8,4 +8,4 @@ This [Foxhole for Starling](https://github.com/joshtynjala/foxhole-starling) the
 
 ## Preview
 
-The Azure Theme is used in the [Layout Explorer](http://flashtoolbox.com/foxhole-starling/examples/layout-explorer/) example.
+The Azure Theme is used in the [Layout Explorer](http://feathersui.com/examples/layout-explorer/) example.

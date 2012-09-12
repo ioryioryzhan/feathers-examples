@@ -39,7 +39,7 @@ package
 
 			Starling.handleLostContext = true;
 			Starling.multitouchEnabled = true;
-			const MainType:Class = getDefinitionByName("org.josht.starling.foxhole.gallery.Main") as Class;
+			const MainType:Class = getDefinitionByName("feathers.examples.gallery.Main") as Class;
 			this._starling = new Starling(MainType, this.stage);
 			this._starling.start();
 

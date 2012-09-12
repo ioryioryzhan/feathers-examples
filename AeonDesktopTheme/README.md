@@ -1,6 +1,6 @@
-# Aeon Desktop Theme for Foxhole
+# Aeon Desktop Theme for Feathers
 
-This [Foxhole for Starling](https://github.com/joshtynjala/foxhole-starling) theme based on the theme used by the Flash Pro and the Flex 2-3 component sets.
+This [Feathers](http://feathersui.com/) theme based on the theme used by the Flash Pro and the Flex MX component sets.
 
 ## Credits
 

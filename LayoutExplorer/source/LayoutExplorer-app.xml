@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <application xmlns="http://ns.adobe.com/air/application/3.4">
-	<id>org.josht.foxhole.LayoutExplorer</id>
-	<filename>Foxhole Layouts</filename>
-	<name>Foxhole Layouts</name>
+	<id>com.feathersui.examples.LayoutExplorer</id>
+	<filename>Feathers Layouts</filename>
+	<name>Feathers Layouts</name>
 	<versionNumber>1.0.0</versionNumber>
-	<description>Layout Explorer example application built with Foxhole for Starling</description>
+	<description>Layout Explorer example application built with Feathers UI controls for Starling</description>
 	<copyright>2012 Josh Tynjala</copyright>
 
 	<initialWindow>
