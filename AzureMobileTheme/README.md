@@ -1,4 +1,4 @@
-# Azure Theme for Feathers
+# Azure Mobile Theme for Feathers
 
 This [Feathers](http://feathersui.com/) theme places a bold blue color over a dark background with light text.
 
@@ -8,4 +8,4 @@ This [Feathers](http://feathersui.com/) theme places a bold blue color over a da
 
 ## Preview
 
-The Azure Theme is used in the [Layout Explorer](http://feathersui.com/examples/layout-explorer/) example.
+The Azure Mobile Theme is used in the [Feathers Layout Explorer](http://feathersui.com/examples/layout-explorer/) example.
