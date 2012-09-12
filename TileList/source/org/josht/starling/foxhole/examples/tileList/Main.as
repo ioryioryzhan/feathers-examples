@@ -5,11 +5,13 @@ package org.josht.starling.foxhole.examples.tileList
 	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PageIndicator;
 	import org.josht.starling.foxhole.controls.Scroller;
+	import org.josht.starling.foxhole.controls.renderers.DefaultListItemRenderer;
+	import org.josht.starling.foxhole.controls.renderers.IListItemRenderer;
 	import org.josht.starling.foxhole.data.ListCollection;
 	import org.josht.starling.foxhole.layout.HorizontalLayout;
 	import org.josht.starling.foxhole.layout.TiledRowsLayout;
 	import org.josht.starling.foxhole.text.BitmapFontTextFormat;
-
+	
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.ResizeEvent;
@@ -110,10 +112,7 @@ package org.josht.starling.foxhole.examples.tileList
 			this._list.scrollerProperties.snapToPages = true;
 			this._list.scrollerProperties.scrollBarDisplayMode = Scroller.SCROLL_BAR_DISPLAY_MODE_NONE;
 			this._list.scrollerProperties.verticalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
-			this._list.itemRendererProperties.labelField = "label";
-			this._list.itemRendererProperties.iconTextureField = "texture";
-			this._list.itemRendererProperties.iconPosition = Button.ICON_POSITION_TOP;
-			this._list.itemRendererProperties.@defaultLabelProperties.textFormat = new BitmapFontTextFormat(this._font, NaN, 0x000000);
+			this._list.itemRendererFactory = tileListItemRendererFactory;
 			this._list.onScroll.add(list_onScroll);
 			this.addChild(this._list);
 
@@ -139,6 +138,16 @@ package org.josht.starling.foxhole.examples.tileList
 			this.addChild(this._pageIndicator);
 
 			this.layout();
+		}
+		
+		protected function tileListItemRendererFactory():IListItemRenderer
+		{
+			const renderer:DefaultListItemRenderer = new DefaultListItemRenderer();
+			renderer.labelField = "label";
+			renderer.iconTextureField = "texture";
+			renderer.iconPosition = Button.ICON_POSITION_TOP;
+			renderer.defaultLabelProperties.textFormat = new BitmapFontTextFormat(this._font, NaN, 0x000000);
+			return renderer;
 		}
 
 		protected function list_onScroll(list:List):void
