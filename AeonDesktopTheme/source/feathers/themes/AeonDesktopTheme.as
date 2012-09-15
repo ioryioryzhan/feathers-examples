@@ -1,7 +1,5 @@
 package feathers.themes
 {
-	import flash.geom.Rectangle;
-	
 	import feathers.controls.Button;
 	import feathers.controls.Callout;
 	import feathers.controls.Check;
@@ -31,9 +29,12 @@ package feathers.themes
 	import feathers.text.BitmapFontTextFormat;
 	import feathers.textures.Scale3Textures;
 	import feathers.textures.Scale9Textures;
-	
+
+	import flash.geom.Rectangle;
+
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
+	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.events.Event;
@@ -84,7 +85,7 @@ package feathers.themes
 			return scrollBar;
 		}
 
-		public function AeonDesktopTheme(root:DisplayObject)
+		public function AeonDesktopTheme(root:DisplayObjectContainer)
 		{
 			super(root);
 			Starling.current.nativeStage.color = BACKGROUND_COLOR;

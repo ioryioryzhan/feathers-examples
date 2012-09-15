@@ -1,7 +1,5 @@
 package feathers.themes
 {
-	import flash.geom.Rectangle;
-	
 	import feathers.controls.Button;
 	import feathers.controls.Callout;
 	import feathers.controls.Check;
@@ -35,16 +33,19 @@ package feathers.themes
 	import feathers.text.BitmapFontTextFormat;
 	import feathers.textures.Scale9Textures;
 	import feathers.utils.math.roundToNearest;
-	
+
+	import flash.geom.Rectangle;
+
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
+	import starling.display.DisplayObjectContainer;
 	import starling.events.Event;
 	import starling.text.BitmapFont;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 	import starling.textures.TextureSmoothing;
 
-	public class MinimalTheme extends AddedWatcher implements IFeathersTheme
+	public class MinimalMobileTheme extends AddedWatcher implements IFeathersTheme
 	{
 		[Embed(source="/../assets/images/minimal.png")]
 		protected static const ATLAS_IMAGE:Class;
@@ -68,7 +69,7 @@ package feathers.themes
 		protected static const ORIGINAL_DPI_IPHONE_RETINA:int = 326;
 		protected static const ORIGINAL_DPI_IPAD_RETINA:int = 264;
 
-		public function MinimalTheme(root:DisplayObject, scaleToDPI:Boolean = true)
+		public function MinimalMobileTheme(root:DisplayObjectContainer, scaleToDPI:Boolean = true)
 		{
 			super(root);
 			Starling.current.nativeStage.color = BACKGROUND_COLOR;

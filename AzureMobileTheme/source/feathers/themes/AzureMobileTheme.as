@@ -1,7 +1,5 @@
 package feathers.themes
 {
-	import flash.geom.Rectangle;
-	
 	import feathers.controls.Button;
 	import feathers.controls.Callout;
 	import feathers.controls.Check;
@@ -35,16 +33,19 @@ package feathers.themes
 	import feathers.text.BitmapFontTextFormat;
 	import feathers.textures.Scale3Textures;
 	import feathers.textures.Scale9Textures;
-	
+
+	import flash.geom.Rectangle;
+
 	import starling.core.Starling;
 	import starling.display.BlendMode;
 	import starling.display.DisplayObject;
+	import starling.display.DisplayObjectContainer;
 	import starling.events.Event;
 	import starling.text.BitmapFont;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 
-	public class AzureTheme extends AddedWatcher implements IFeathersTheme
+	public class AzureMobileTheme extends AddedWatcher implements IFeathersTheme
 	{
 		[Embed(source="/../assets/images/azure.png")]
 		protected static const ATLAS_IMAGE:Class;
@@ -70,7 +71,7 @@ package feathers.themes
 		protected static const ORIGINAL_DPI_IPHONE_RETINA:int = 326;
 		protected static const ORIGINAL_DPI_IPAD_RETINA:int = 264;
 
-		public function AzureTheme(root:DisplayObject, scaleToDPI:Boolean = true)
+		public function AzureMobileTheme(root:DisplayObjectContainer, scaleToDPI:Boolean = true)
 		{
 			super(root);
 			Starling.current.nativeStage.color = BACKGROUND_COLOR;
