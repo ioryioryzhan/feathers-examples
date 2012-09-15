@@ -6,6 +6,7 @@ package feathers.examples.componentsExplorer.screens
 	import feathers.controls.ScreenHeader;
 	import feathers.core.FeathersControl;
 	import feathers.core.ITextRenderer;
+
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
@@ -13,6 +14,8 @@ package feathers.examples.componentsExplorer.screens
 
 	public class CalloutScreen extends Screen
 	{
+		private static const CONTENT_TEXT:String = "Thank you for trying Feathers.\nHappy coding.";
+
 		public function CalloutScreen()
 		{
 		}
@@ -106,28 +109,28 @@ package feathers.examples.componentsExplorer.screens
 		private function rightButton_onRelease(button:Button):void
 		{
 			const content:ITextRenderer = FeathersControl.defaultTextRendererFactory();
-			content.text = "Hello, I'm a Callout";
+			content.text = CONTENT_TEXT;
 			Callout.show(DisplayObject(content), this._rightButton, Callout.DIRECTION_RIGHT);
 		}
 
 		private function downButton_onRelease(button:Button):void
 		{
 			const content:ITextRenderer = FeathersControl.defaultTextRendererFactory();
-			content.text = "Hello, I'm a Callout";
+			content.text = CONTENT_TEXT;
 			Callout.show(DisplayObject(content), this._downButton, Callout.DIRECTION_DOWN);
 		}
 
 		private function upButton_onRelease(button:Button):void
 		{
 			const content:ITextRenderer = FeathersControl.defaultTextRendererFactory();
-			content.text = "Hello, I'm a Callout";
+			content.text = CONTENT_TEXT;
 			Callout.show(DisplayObject(content), this._upButton, Callout.DIRECTION_UP);
 		}
 
 		private function leftButton_onRelease(button:Button):void
 		{
 			const content:ITextRenderer = FeathersControl.defaultTextRendererFactory();
-			content.text = "Hello, I'm a Callout";
+			content.text = CONTENT_TEXT;
 			Callout.show(DisplayObject(content), this._leftButton, Callout.DIRECTION_LEFT);
 		}
 	}

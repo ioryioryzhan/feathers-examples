@@ -2,8 +2,6 @@ package feathers.examples.componentsExplorer
 {
 	import com.gskinner.motion.easing.Cubic;
 
-	import flash.ui.Mouse;
-
 	import feathers.controls.ScreenNavigator;
 	import feathers.controls.ScreenNavigatorItem;
 	import feathers.examples.componentsExplorer.data.ButtonSettings;
@@ -23,9 +21,10 @@ package feathers.examples.componentsExplorer
 	import feathers.examples.componentsExplorer.screens.TabBarScreen;
 	import feathers.examples.componentsExplorer.screens.TextInputScreen;
 	import feathers.examples.componentsExplorer.screens.ToggleScreen;
-	import feathers.skins.IFeathersTheme;
-	import feathers.themes.MinimalTheme;
 	import feathers.motion.transitions.ScreenSlidingStackTransitionManager;
+	import feathers.themes.MetalWorksMobileTheme;
+
+	import flash.ui.Mouse;
 
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -53,19 +52,13 @@ package feathers.examples.componentsExplorer
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 		
-		private var _theme:IFeathersTheme;
+		private var _theme:MetalWorksMobileTheme;
 		private var _navigator:ScreenNavigator;
 		private var _transitionManager:ScreenSlidingStackTransitionManager;
 		
 		private function addedToStageHandler(event:Event):void
 		{
-			//this is supposed to be an example mobile app, but it is also shown
-			//as a preview in Flash Player on the web. we're making a special
-			//case to pretend that the web SWF is running in the theme's "ideal"
-			//DPI. official themes usually target an iPhone Retina display.
-			const isDesktop:Boolean = Mouse.supportsCursor;
-			this._theme = new MinimalTheme(this.stage, !isDesktop);
-			const originalThemeDPI:int = this._theme.originalDPI;
+			this._theme = new MetalWorksMobileTheme(this.stage);
 			
 			this._navigator = new ScreenNavigator();
 			this.addChild(this._navigator);
@@ -82,11 +75,6 @@ package feathers.examples.componentsExplorer
 				onTabBar: TAB_BAR,
 				onTextInput: TEXT_INPUT,
 				onToggles: TOGGLES
-			},
-			{
-				//the screens can use the theme's original DPI to scale other
-				//content by the same amount with the dpiScale property.
-				originalDPI: originalThemeDPI
 			}));
 
 			const buttonSettings:ButtonSettings = new ButtonSettings();
@@ -96,8 +84,7 @@ package feathers.examples.componentsExplorer
 				onSettings: BUTTON_SETTINGS
 			},
 			{
-				settings: buttonSettings,
-				originalDPI: originalThemeDPI
+				settings: buttonSettings
 			}));
 
 			this._navigator.addScreen(BUTTON_SETTINGS, new ScreenNavigatorItem(ButtonSettingsScreen,
@@ -105,16 +92,12 @@ package feathers.examples.componentsExplorer
 				onBack: BUTTON
 			},
 			{
-				settings: buttonSettings,
-				originalDPI: originalThemeDPI
+				settings: buttonSettings
 			}));
 
 			this._navigator.addScreen(CALLOUT, new ScreenNavigatorItem(CalloutScreen,
 			{
 				onBack: MAIN_MENU
-			},
-			{
-				originalDPI: originalThemeDPI
 			}));
 
 			const sliderSettings:SliderSettings = new SliderSettings();
@@ -124,8 +107,7 @@ package feathers.examples.componentsExplorer
 				onSettings: SLIDER_SETTINGS
 			},
 			{
-				settings: sliderSettings,
-				originalDPI: originalThemeDPI
+				settings: sliderSettings
 			}));
 
 			this._navigator.addScreen(SLIDER_SETTINGS, new ScreenNavigatorItem(SliderSettingsScreen,
@@ -133,24 +115,17 @@ package feathers.examples.componentsExplorer
 				onBack: SLIDER
 			},
 			{
-				settings: sliderSettings,
-				originalDPI: originalThemeDPI
+				settings: sliderSettings
 			}));
 			
 			this._navigator.addScreen(TOGGLES, new ScreenNavigatorItem(ToggleScreen,
 			{
 				onBack: MAIN_MENU
-			},
-			{
-				originalDPI: originalThemeDPI
 			}));
 
 			this._navigator.addScreen(GROUPED_LIST, new ScreenNavigatorItem(GroupedListScreen,
 			{
 				onBack: MAIN_MENU
-			},
-			{
-				originalDPI: originalThemeDPI
 			}));
 
 			const listSettings:ListSettings = new ListSettings();
@@ -160,8 +135,7 @@ package feathers.examples.componentsExplorer
 				onSettings: LIST_SETTINGS
 			},
 			{
-				settings: listSettings,
-				originalDPI: originalThemeDPI
+				settings: listSettings
 			}));
 
 			this._navigator.addScreen(LIST_SETTINGS, new ScreenNavigatorItem(ListSettingsScreen,
@@ -169,40 +143,27 @@ package feathers.examples.componentsExplorer
 				onBack: LIST
 			},
 			{
-				settings: listSettings,
-				originalDPI: originalThemeDPI
+				settings: listSettings
 			}));
 			
 			this._navigator.addScreen(PICKER_LIST, new ScreenNavigatorItem(PickerListScreen,
 			{
 				onBack: MAIN_MENU
-			},
-			{
-				originalDPI: originalThemeDPI
 			}));
 
 			this._navigator.addScreen(TAB_BAR, new ScreenNavigatorItem(TabBarScreen,
 			{
 				onBack: MAIN_MENU
-			},
-			{
-				originalDPI: originalThemeDPI
 			}));
 
 			this._navigator.addScreen(TEXT_INPUT, new ScreenNavigatorItem(TextInputScreen,
 			{
 				onBack: MAIN_MENU
-			},
-			{
-				originalDPI: originalThemeDPI
 			}));
 
 			this._navigator.addScreen(PROGRESS_BAR, new ScreenNavigatorItem(ProgressBarScreen,
 			{
 				onBack: MAIN_MENU
-			},
-			{
-				originalDPI: originalThemeDPI
 			}));
 			
 			this._navigator.showScreen(MAIN_MENU);

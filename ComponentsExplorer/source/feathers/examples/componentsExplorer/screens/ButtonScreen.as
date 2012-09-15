@@ -17,9 +17,6 @@ package feathers.examples.componentsExplorer.screens
 		[Embed(source="/../assets/images/skull.png")]
 		private static const SKULL_ICON:Class;
 		
-		[Embed(source="/../assets/images/skull_selected.png")]
-		private static const SKULL_SELECTED_ICON:Class;
-		
 		public function ButtonScreen()
 		{
 			super();
@@ -33,7 +30,6 @@ package feathers.examples.componentsExplorer.screens
 		private var _settingsButton:Button;
 		
 		private var _icon:Image;
-		private var _selectedIcon:Image;
 		
 		private var _onBack:Signal = new Signal(ButtonScreen);
 		
@@ -52,12 +48,7 @@ package feathers.examples.componentsExplorer.screens
 		override protected function initialize():void
 		{
 			this._icon = new Image(Texture.fromBitmap(new SKULL_ICON()));
-			this._icon.smoothing = TextureSmoothing.NONE;
 			this._icon.scaleX = this._icon.scaleY = this.dpiScale;
-			
-			this._selectedIcon = new Image(Texture.fromBitmap(new SKULL_SELECTED_ICON()));
-			this._selectedIcon.smoothing = TextureSmoothing.NONE;
-			this._selectedIcon.scaleX = this._selectedIcon.scaleY = this.dpiScale;
 			
 			this._button = new Button();
 			this._button.label = "Click Me";
@@ -65,7 +56,6 @@ package feathers.examples.componentsExplorer.screens
 			if(this.settings.hasIcon)
 			{
 				this._button.defaultIcon = this._icon;
-				this._button.defaultSelectedIcon = this._selectedIcon;
 			}
 			this._button.horizontalAlign = this.settings.horizontalAlign;
 			this._button.verticalAlign = this.settings.verticalAlign;

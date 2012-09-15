@@ -71,7 +71,7 @@ package feathers.examples.componentsExplorer.screens
 			this._backButton.onRelease.add(backButton_onRelease);
 
 			this._header = new ScreenHeader();
-			this._header.title = "Toggle Switch, Check, and Radio";
+			this._header.title = "Toggles";
 			this.addChild(this._header);
 			this._header.leftItems = new <DisplayObject>
 			[
