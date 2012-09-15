@@ -1,5 +1,7 @@
 package
 {
+	import feathers.system.DeviceCapabilities;
+
 	import flash.display.MovieClip;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -26,6 +28,11 @@ package
 				this.stage.mouseChildren = false;
 			}
 			this.mouseEnabled = this.mouseChildren = false;
+
+			//pretends to be an iPhone Retina screen
+			DeviceCapabilities.dpi = 326;
+			DeviceCapabilities.screenPixelWidth = 960;
+			DeviceCapabilities.screenPixelHeight = 640;
 
 			this.loaderInfo.addEventListener(Event.COMPLETE, loaderInfo_completeHandler);
 		}
