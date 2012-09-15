@@ -1,21 +1,15 @@
 package feathers.examples.layoutExplorer.screens
 {
-	import feathers.controls.Button;
+	import feathers.controls.List;
 	import feathers.controls.Screen;
 	import feathers.controls.ScreenHeader;
+	import feathers.data.ListCollection;
+
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
 	public class MainMenuScreen extends Screen
 	{
-		private static const LABELS:Vector.<String> = new <String>
-		[
-			"Horizontal",
-			"Vertical",
-			"Tiled Rows",
-			"Tiled Columns"
-		];
-
 		public function MainMenuScreen()
 		{
 			super();
@@ -50,25 +44,21 @@ package feathers.examples.layoutExplorer.screens
 		}
 
 		private var _header:ScreenHeader;
-		private var _buttons:Vector.<Button> = new <Button>[];
-		private var _buttonMaxWidth:Number = 0;
+		private var _list:List;
 
 		override protected function initialize():void
 		{
-			const signals:Vector.<Signal> = new <Signal>[this._onHorizontal, this._onVertical, this._onTiledRows, this._onTiledColumns];
-			const buttonCount:int = LABELS.length;
-			for(var i:int = 0; i < buttonCount; i++)
-			{
-				var label:String = LABELS[i];
-				var signal:Signal = signals[i];
-				var button:Button = new Button();
-				button.label = label;
-				this.triggerSignalOnButtonRelease(button, signal);
-				this.addChild(button);
-				this._buttons.push(button);
-				button.validate();
-				this._buttonMaxWidth = Math.max(this._buttonMaxWidth, button.width);
-			}
+			this._list = new List();
+			this._list.dataProvider = new ListCollection(
+			[
+				{ text: "Horizontal", signal: this._onHorizontal },
+				{ text: "Vertical", signal: this._onVertical },
+				{ text: "Tiled Rows", signal: this._onTiledRows },
+				{ text: "Tiled Columns", signal: this._onTiledColumns },
+			]);
+			this._list.itemRendererProperties.labelField = "text";
+			this._list.onChange.add(list_onChange);
+			this.addChild(this._list);
 
 			this._header = new ScreenHeader();
 			this._header.title = "Layouts in Feathers";
@@ -77,52 +67,18 @@ package feathers.examples.layoutExplorer.screens
 
 		override protected function draw():void
 		{
-			const margin:Number = this.originalHeight * 0.06 * this.dpiScale;
-			const spacingX:Number = this.originalHeight * 0.03 * this.dpiScale;
-			const spacingY:Number = this.originalHeight * 0.03 * this.dpiScale;
-
 			this._header.width = this.actualWidth;
 			this._header.validate();
 
-			const contentMaxWidth:Number = this.actualWidth - 2 * margin;
-			const buttonCount:int = this._buttons.length;
-			var horizontalButtonCount:int = 1;
-			var horizontalButtonCombinedWidth:Number = this._buttonMaxWidth;
-			while((horizontalButtonCombinedWidth + this._buttonMaxWidth + spacingX) <= contentMaxWidth)
-			{
-				horizontalButtonCombinedWidth += this._buttonMaxWidth + spacingX;
-				horizontalButtonCount++;
-				if(horizontalButtonCount == buttonCount)
-				{
-					break;
-				}
-			}
-
-			const startX:Number = (this.actualWidth - horizontalButtonCombinedWidth) / 2;
-			var positionX:Number = startX;
-			var positionY:Number = this._header.y + this._header.height + spacingY;
-			for(var i:int = 0; i < buttonCount; i++)
-			{
-				var button:Button = this._buttons[i];
-				button.width = this._buttonMaxWidth;
-				button.x = positionX;
-				button.y = positionY;
-				positionX += this._buttonMaxWidth + spacingX;
-				if(positionX + this._buttonMaxWidth > margin + contentMaxWidth)
-				{
-					positionX = startX;
-					positionY += button.height + spacingY;
-				}
-			}
+			this._list.y = this._header.height;
+			this._list.width = this.actualWidth;
+			this._list.height = this.actualHeight - this._list.y;
 		}
 
-		private function triggerSignalOnButtonRelease(button:Button, signal:Signal):void
+		private function list_onChange(list:List):void
 		{
-			const self:MainMenuScreen = this;
-			button.onRelease.add(function(button:Button):void
-			{
-				signal.dispatch(self);
-			});
+			const signal:Signal = this._list.selectedItem.signal;
+			signal.dispatch(this);
 		}
 	}
 }

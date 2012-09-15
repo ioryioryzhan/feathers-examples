@@ -71,7 +71,7 @@ package feathers.examples.layoutExplorer.screens
 			for(var i:int = 0; i < this.settings.itemCount; i++)
 			{
 				var size:Number = (44 + 88 * Math.random()) * this.dpiScale;
-				var quad:Quad = new Quad(size, size, 0x194966);
+				var quad:Quad = new Quad(size, size, 0xff8800);
 				this._container.addChild(quad);
 			}
 

@@ -2,8 +2,6 @@ package feathers.examples.layoutExplorer
 {
 	import com.gskinner.motion.easing.Cubic;
 
-	import flash.ui.Mouse;
-
 	import feathers.controls.ScreenNavigator;
 	import feathers.controls.ScreenNavigatorItem;
 	import feathers.examples.layoutExplorer.data.HorizontalLayoutSettings;
@@ -19,9 +17,9 @@ package feathers.examples.layoutExplorer
 	import feathers.examples.layoutExplorer.screens.TiledRowsLayoutSettingsScreen;
 	import feathers.examples.layoutExplorer.screens.VerticalLayoutScreen;
 	import feathers.examples.layoutExplorer.screens.VerticalLayoutSettingsScreen;
-	import feathers.themes.AzureTheme;
-	import feathers.skins.IFeathersTheme;
 	import feathers.motion.transitions.ScreenSlidingStackTransitionManager;
+	import feathers.skins.IFeathersTheme;
+	import feathers.themes.MetalWorksMobileTheme;
 
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -50,13 +48,7 @@ package feathers.examples.layoutExplorer
 
 		private function addedToStageHandler(event:Event):void
 		{
-			//this is supposed to be an example mobile app, but it is also shown
-			//as a preview in Flash Player on the web. we're making a special
-			//case to pretend that the web SWF is running in the theme's "ideal"
-			//DPI. official themes usually target an iPhone Retina display.
-			const isDesktop:Boolean = Mouse.supportsCursor;
-			this._theme = new AzureTheme(this.stage, !isDesktop);
-			const originalThemeDPI:int = this._theme.originalDPI;
+			this._theme = new MetalWorksMobileTheme(this.stage);
 
 			this._navigator = new ScreenNavigator();
 			this.addChild(this._navigator);
@@ -67,11 +59,6 @@ package feathers.examples.layoutExplorer
 				onVertical: VERTICAL,
 				onTiledRows: TILED_ROWS,
 				onTiledColumns: TILED_COLUMNS
-			},
-			{
-				//the screens can use the theme's original DPI to scale other
-				//content by the same amount with the dpiScale property.
-				originalDPI: originalThemeDPI
 			}));
 
 			const horizontalLayoutSettings:HorizontalLayoutSettings = new HorizontalLayoutSettings();
@@ -81,16 +68,14 @@ package feathers.examples.layoutExplorer
 				onSettings: HORIZONTAL_SETTINGS
 			},
 			{
-				settings: horizontalLayoutSettings,
-				originalDPI: originalThemeDPI
+				settings: horizontalLayoutSettings
 			}));
 			this._navigator.addScreen(HORIZONTAL_SETTINGS, new ScreenNavigatorItem(HorizontalLayoutSettingsScreen,
 			{
 				onBack: HORIZONTAL
 			},
 			{
-				settings: horizontalLayoutSettings,
-				originalDPI: originalThemeDPI
+				settings: horizontalLayoutSettings
 			}));
 
 			const verticalLayoutSettings:VerticalLayoutSettings = new VerticalLayoutSettings();
@@ -100,16 +85,14 @@ package feathers.examples.layoutExplorer
 				onSettings: VERTICAL_SETTINGS
 			},
 			{
-				settings: verticalLayoutSettings,
-				originalDPI: originalThemeDPI
+				settings: verticalLayoutSettings
 			}));
 			this._navigator.addScreen(VERTICAL_SETTINGS, new ScreenNavigatorItem(VerticalLayoutSettingsScreen,
 			{
 				onBack: VERTICAL
 			},
 			{
-				settings: verticalLayoutSettings,
-				originalDPI: originalThemeDPI
+				settings: verticalLayoutSettings
 			}));
 
 			const tiledRowsLayoutSettings:TiledRowsLayoutSettings = new TiledRowsLayoutSettings();
@@ -119,16 +102,14 @@ package feathers.examples.layoutExplorer
 				onSettings: TILED_ROWS_SETTINGS
 			},
 			{
-				settings: tiledRowsLayoutSettings,
-				originalDPI: originalThemeDPI
+				settings: tiledRowsLayoutSettings
 			}));
 			this._navigator.addScreen(TILED_ROWS_SETTINGS, new ScreenNavigatorItem(TiledRowsLayoutSettingsScreen,
 			{
 				onBack: TILED_ROWS
 			},
 			{
-				settings: tiledRowsLayoutSettings,
-				originalDPI: originalThemeDPI
+				settings: tiledRowsLayoutSettings
 			}));
 
 			const tiledColumnsLayoutSettings:TiledColumnsLayoutSettings = new TiledColumnsLayoutSettings();
@@ -138,16 +119,14 @@ package feathers.examples.layoutExplorer
 				onSettings: TILED_COLUMNS_SETTINGS
 			},
 			{
-				settings: tiledColumnsLayoutSettings,
-				originalDPI: originalThemeDPI
+				settings: tiledColumnsLayoutSettings
 			}));
 			this._navigator.addScreen(TILED_COLUMNS_SETTINGS, new ScreenNavigatorItem(TiledColumnsLayoutSettingsScreen,
 			{
 				onBack: TILED_COLUMNS
 			},
 			{
-				settings: tiledColumnsLayoutSettings,
-				originalDPI: originalThemeDPI
+				settings: tiledColumnsLayoutSettings
 			}));
 
 			this._navigator.showScreen(MAIN_MENU);
