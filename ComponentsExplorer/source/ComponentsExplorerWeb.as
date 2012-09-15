@@ -15,7 +15,7 @@ package
 	import starling.utils.HAlign;
 	import starling.utils.VAlign;
 
-	[SWF(width="960",height="640",frameRate="60",backgroundColor="#f3f3f3")]
+	[SWF(width="960",height="640",frameRate="60",backgroundColor="#2f2f2f")]
 	public class ComponentsExplorerWeb extends MovieClip
 	{
 		public function ComponentsExplorerWeb()
@@ -30,9 +30,10 @@ package
 				this.stage.scaleMode = StageScaleMode.NO_SCALE;
 			}
 
+			//pretends to be an iPhone Retina screen
+			DeviceCapabilities.dpi = 326;
 			DeviceCapabilities.screenPixelWidth = 960;
 			DeviceCapabilities.screenPixelHeight = 640;
-			DeviceCapabilities.dpi = 326;
 			
 			this.loaderInfo.addEventListener(Event.COMPLETE, loaderInfo_completeHandler);
 		}
