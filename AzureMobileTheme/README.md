@@ -8,4 +8,4 @@ This [Feathers](http://feathersui.com/) theme places a bold blue color over a da
 
 ## Preview
 
-The Azure Mobile Theme is used in the [Feathers Layout Explorer](http://feathersui.com/examples/layout-explorer/) example.
+Coming Soon.

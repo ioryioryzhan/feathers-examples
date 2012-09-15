@@ -8,4 +8,4 @@ This theme is based on the appearance of [MinimalComps](http://minimalcomps.com/
 
 ## Preview
 
-The Minimal Mobile Theme is used in the [Feathers Components Explorer](http://feathersui.com/examples/components-explorer/) example.
+Coming Soon.

@@ -8,4 +8,4 @@ The Aeon theme is originally designed by Adobe Systems Incorporated. Contains mo
 
 ## Preview
 
-Coming Soon
+Coming Soon.
