@@ -1,13 +1,13 @@
 package
 {
+	import feathers.system.DeviceCapabilities;
+
 	import flash.display.MovieClip;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.ui.ContextMenu;
 	import flash.utils.getDefinitionByName;
-
-	import org.josht.system.PhysicalCapabilities;
 
 	import starling.core.Starling;
 
@@ -26,9 +26,10 @@ package
 				this.stage.scaleMode = StageScaleMode.NO_SCALE;
 			}
 
-			PhysicalCapabilities.CUSTOM_SCREEN_WIDTH = 960;
-			PhysicalCapabilities.CUSTOM_SCREEN_HEIGHT = 640;
-			PhysicalCapabilities.CUSTOM_SCREEN_DPI = 326;
+			//pretends to be an iPhone Retina screen
+			DeviceCapabilities.dpi = 326;
+			DeviceCapabilities.screenPixelWidth = 960;
+			DeviceCapabilities.screenPixelHeight = 640;
 			
 			this.loaderInfo.addEventListener(Event.COMPLETE, loaderInfo_completeHandler);
 		}
