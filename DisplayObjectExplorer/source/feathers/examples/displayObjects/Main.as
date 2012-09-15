@@ -1,10 +1,7 @@
 package feathers.examples.displayObjects
 {
 	import com.gskinner.motion.easing.Cubic;
-	
-	import flash.system.Capabilities;
-	import flash.ui.Mouse;
-	
+
 	import feathers.controls.Button;
 	import feathers.controls.ScreenNavigator;
 	import feathers.controls.ScreenNavigatorItem;
@@ -15,8 +12,8 @@ package feathers.examples.displayObjects
 	import feathers.examples.displayObjects.screens.TiledImageScreen;
 	import feathers.motion.transitions.TabBarSlideTransitionManager;
 	import feathers.system.DeviceCapabilities;
-	import feathers.themes.AzureTheme;
-	
+	import feathers.themes.MetalWorksMobileTheme;
+
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -40,7 +37,7 @@ package feathers.examples.displayObjects
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 
-		private var _theme:AzureTheme;
+		private var _theme:MetalWorksMobileTheme;
 		private var _navigator:ScreenNavigator;
 		private var _tabBar:TabBar;
 		private var _transitionManager:TabBarSlideTransitionManager;
@@ -72,40 +69,20 @@ package feathers.examples.displayObjects
 		private function addedToStageHandler(event:Event):void
 		{
 			this.stage.addEventListener(ResizeEvent.RESIZE, stage_resizeHandler);
-			const isDesktop:Boolean = Mouse.supportsCursor;
-			this._theme = new AzureTheme(this.stage, !isDesktop);
+
+			this._theme = new MetalWorksMobileTheme(this.stage);
 			this._theme.setInitializerForClass(Button, rightGripInitializer, "right-grip");
 			this._theme.setInitializerForClass(Button, bottomGripInitializer, "bottom-grip");
-
-			//the screens can use the theme's original DPI to scale other
-			//content by the same amount with the dpiScale property.
-			const originalThemeDPI:int = this._theme.originalDPI;
 
 			this._navigator = new ScreenNavigator();
 			this._navigator.onChange.add(navigator_onChange);
 			this.addChild(this._navigator);
 
-			this._navigator.addScreen(SCALE_9_IMAGE, new ScreenNavigatorItem(Scale9ImageScreen,
-			{
-				onTest: SCALE_3_IMAGE
-			},
-			{
-				originalDPI: originalThemeDPI
-			}));
+			this._navigator.addScreen(SCALE_9_IMAGE, new ScreenNavigatorItem(Scale9ImageScreen));
 
-			this._navigator.addScreen(SCALE_3_IMAGE, new ScreenNavigatorItem(Scale3ImageScreen,
-			{
-			},
-			{
-				originalDPI: originalThemeDPI
-			}));
+			this._navigator.addScreen(SCALE_3_IMAGE, new ScreenNavigatorItem(Scale3ImageScreen));
 
-			this._navigator.addScreen(TILED_IMAGE, new ScreenNavigatorItem(TiledImageScreen,
-			{
-			},
-			{
-				originalDPI: originalThemeDPI
-			}));
+			this._navigator.addScreen(TILED_IMAGE, new ScreenNavigatorItem(TiledImageScreen));
 
 			this._tabBar = new TabBar();
 			this._tabBar.onChange.add(tabBar_onChange);

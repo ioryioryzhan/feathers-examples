@@ -43,8 +43,10 @@ package feathers.examples.displayObjects.screens
 			this.addChild(this._header);
 
 			const texture:Texture = Texture.fromBitmap(new SCALE_3_TEXTURE(), false);
-			const textures:Scale3Textures = new Scale3Textures(texture, 30, 40, Scale3Textures.DIRECTION_HORIZONTAL);
+			const textures:Scale3Textures = new Scale3Textures(texture, 60, 80, Scale3Textures.DIRECTION_HORIZONTAL);
 			this._image = new Scale3Image(textures, this.dpiScale);
+			this._image.width /= 2;
+			this._image.height /= 2;
 			this._minDisplayObjectWidth = this._image.width;
 			this._minDisplayObjectHeight = this._image.height;
 			this.addChild(this._image);

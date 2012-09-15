@@ -11,7 +11,7 @@ package
 
 	import starling.core.Starling;
 
-	[SWF(width="960",height="640",frameRate="60",backgroundColor="#1a1a1a")]
+	[SWF(width="960",height="640",frameRate="60",backgroundColor="#2f2f2f")]
 	public class DisplayObjectExplorerWeb extends MovieClip
 	{
 		public function DisplayObjectExplorerWeb()
