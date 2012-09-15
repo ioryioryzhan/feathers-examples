@@ -186,8 +186,8 @@ package feathers.themes
 			this.uiDisabledTextFormat = new TextFormat(fontNames, 24 * this.scale, DISABLED_TEXT_COLOR, true);
 			this.largeDarkTextFormat = new TextFormat(fontNames, 30 * this.scale, DARK_TEXT_COLOR);
 			this.largeLightTextFormat = new TextFormat(fontNames, 30 * this.scale, LIGHT_TEXT_COLOR);
-			this.smallDarkTextFormat = new TextFormat(fontNames, 18 * this.scale, DARK_TEXT_COLOR);
-			this.smallLightTextFormat = new TextFormat(fontNames, 18 * this.scale, LIGHT_TEXT_COLOR);
+			this.smallDarkTextFormat = new TextFormat(fontNames, 24 * this.scale, DARK_TEXT_COLOR);
+			this.smallLightTextFormat = new TextFormat(fontNames, 24 * this.scale, LIGHT_TEXT_COLOR);
 
 			PopUpManager.overlayFactory = popUpOverlayFactory;
 			Callout.stagePaddingTop = Callout.stagePaddingRight = Callout.stagePaddingBottom =
@@ -467,6 +467,7 @@ package feathers.themes
 			renderer.defaultIcon = defaultIcon;
 
 			renderer.defaultLabelProperties.textFormat = this.largeLightTextFormat;
+			renderer.downLabelProperties.textFormat = this.largeDarkTextFormat;
 
 			renderer.itemHasIcon = false;
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
