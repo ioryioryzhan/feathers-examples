@@ -42,7 +42,6 @@ package feathers.examples.displayObjects.screens
 			this.addChild(this._header);
 
 			this._image = new TiledImage(Texture.fromBitmap(new TILE_TEXTURE(), false), this.dpiScale);
-			this._image.clipContent = true;
 			this._minDisplayObjectWidth = this._image.width;
 			this._minDisplayObjectHeight = this._image.height;
 			this.addChild(this._image);
