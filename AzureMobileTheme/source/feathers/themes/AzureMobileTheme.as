@@ -605,7 +605,7 @@ package feathers.themes
 			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
 				layout.paddingLeft = 0;
 			list.listProperties.layout = layout;
-			list.listProperties.@scrollerProperties.horizontalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
+			list.listProperties.@scrollerProperties.verticalScrollPolicy = Scroller.SCROLL_POLICY_ON;
 
 			if(DeviceCapabilities.isTablet(Starling.current.nativeStage))
 			{
