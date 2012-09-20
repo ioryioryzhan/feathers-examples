@@ -120,7 +120,7 @@ package feathers.examples.gallery
 			this.list = new List();
 			this.list.layout = listLayout;
 			this.list.backgroundSkin = new Quad(100, 100, 0x222222);
-			this.list.scrollerProperties.verticalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
+			this.list.scrollerProperties.horizontalScrollPolicy = Scroller.SCROLL_POLICY_ON;
 			this.list.scrollerProperties.snapScrollPositionsToPixels = true;
 			this.list.itemRendererType = GalleryItemRenderer;
 			this.list.itemRendererProperties.labelField = "title";
