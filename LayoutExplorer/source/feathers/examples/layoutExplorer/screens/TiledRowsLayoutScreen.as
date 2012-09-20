@@ -59,14 +59,6 @@ package feathers.examples.layoutExplorer.screens
 			this._container.layout = layout;
 			this._container.scrollerProperties.snapToPages = this.settings.paging != TiledRowsLayout.PAGING_NONE;
 			this._container.scrollerProperties.snapScrollPositionsToPixels = true;
-			if(this.settings.paging == TiledRowsLayout.PAGING_HORIZONTAL)
-			{
-				this._container.scrollerProperties.verticalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
-			}
-			else
-			{
-				this._container.scrollerProperties.horizontalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
-			}
 			this.addChild(this._container);
 			for(var i:int = 0; i < this.settings.itemCount; i++)
 			{

@@ -54,7 +54,9 @@ package feathers.examples.layoutExplorer.screens
 
 			this._container = new ScrollContainer();
 			this._container.layout = layout;
-			this._container.scrollerProperties.horizontalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
+			//when the scroll policy is set to on, the "elastic" edges will be
+			//active even when the max scroll position is zero
+			this._container.scrollerProperties.verticalScrollPolicy = Scroller.SCROLL_POLICY_ON;
 			this._container.scrollerProperties.snapScrollPositionsToPixels = true;
 			this.addChild(this._container);
 			for(var i:int = 0; i < this.settings.itemCount; i++)
