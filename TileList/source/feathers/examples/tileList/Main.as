@@ -111,7 +111,7 @@ package feathers.examples.tileList
 			this._list.layout = listLayout;
 			this._list.scrollerProperties.snapToPages = true;
 			this._list.scrollerProperties.scrollBarDisplayMode = Scroller.SCROLL_BAR_DISPLAY_MODE_NONE;
-			this._list.scrollerProperties.verticalScrollPolicy = Scroller.SCROLL_POLICY_OFF;
+			this._list.scrollerProperties.horizontalScrollPolicy = Scroller.SCROLL_POLICY_ON;
 			this._list.itemRendererFactory = tileListItemRendererFactory;
 			this._list.onScroll.add(list_onScroll);
 			this.addChild(this._list);
