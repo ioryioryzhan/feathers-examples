@@ -48,6 +48,7 @@ package feathers.examples.componentsExplorer.screens
 			this._slider.maximum = 100;
 			this._slider.value = 50;
 			this._slider.step = this.settings.step;
+			this._slider.page = this.settings.page;
 			this._slider.direction = this.settings.direction;
 			this._slider.liveDragging = this.settings.liveDragging;
 			this._slider.onChange.add(slider_onChange);

@@ -28,6 +28,7 @@ package feathers.examples.componentsExplorer.screens
 		private var _directionPicker:PickerList;
 		private var _liveDraggingToggle:ToggleSwitch;
 		private var _stepSlider:Slider;
+		private var _pageSlider:Slider;
 
 		private var _onBack:Signal = new Signal(SliderSettingsScreen);
 
@@ -60,6 +61,13 @@ package feathers.examples.componentsExplorer.screens
 			this._stepSlider.value = this.settings.step;
 			this._stepSlider.onChange.add(stepSlider_onChange);
 
+			this._pageSlider = new Slider();
+			this._pageSlider.minimum = 1;
+			this._pageSlider.maximum = 20;
+			this._pageSlider.step = 1;
+			this._pageSlider.value = this.settings.page;
+			this._pageSlider.onChange.add(pageSlider_onChange);
+
 			this._list = new List();
 			this._list.isSelectable = false;
 			this._list.dataProvider = new ListCollection(
@@ -67,6 +75,7 @@ package feathers.examples.componentsExplorer.screens
 				{ label: "direction", accessory: this._directionPicker },
 				{ label: "liveDragging", accessory: this._liveDraggingToggle },
 				{ label: "step", accessory: this._stepSlider },
+				{ label: "page", accessory: this._pageSlider },
 			]);
 			this.addChild(this._list);
 
@@ -108,6 +117,11 @@ package feathers.examples.componentsExplorer.screens
 		private function stepSlider_onChange(slider:Slider):void
 		{
 			this.settings.step = this._stepSlider.value;
+		}
+
+		private function pageSlider_onChange(slider:Slider):void
+		{
+			this.settings.page = this._pageSlider.value;
 		}
 
 		private function onBackButton():void
