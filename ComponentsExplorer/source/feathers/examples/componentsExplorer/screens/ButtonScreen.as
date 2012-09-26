@@ -3,7 +3,7 @@ package feathers.examples.componentsExplorer.screens
 	import feathers.display.Image;
 	import feathers.controls.Button;
 	import feathers.controls.Screen;
-	import feathers.controls.ScreenHeader;
+	import feathers.controls.Header;
 	import feathers.examples.componentsExplorer.data.ButtonSettings;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
@@ -25,7 +25,7 @@ package feathers.examples.componentsExplorer.screens
 		public var settings:ButtonSettings;
 
 		private var _button:Button;
-		private var _header:ScreenHeader;
+		private var _header:Header;
 		private var _backButton:Button;
 		private var _settingsButton:Button;
 		
@@ -72,7 +72,7 @@ package feathers.examples.componentsExplorer.screens
 			this._settingsButton.label = "Settings";
 			this._settingsButton.onRelease.add(settingsButton_onRelease);
 
-			this._header = new ScreenHeader();
+			this._header = new Header();
 			this._header.title = "Button";
 			this.addChild(this._header);
 			this._header.leftItems = new <DisplayObject>

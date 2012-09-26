@@ -1,3 +1,27 @@
+/*
+ Copyright (c) 2012 Josh Tynjala
+
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated documentation
+ files (the "Software"), to deal in the Software without
+ restriction, including without limitation the rights to use,
+ copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following
+ conditions:
+
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.
+ */
 package feathers.themes
 {
 	import feathers.controls.Button;
@@ -8,7 +32,7 @@ package feathers.themes
 	import feathers.controls.PickerList;
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
-	import feathers.controls.ScreenHeader;
+	import feathers.controls.Header;
 	import feathers.controls.Scroller;
 	import feathers.controls.SimpleScrollBar;
 	import feathers.controls.Slider;
@@ -22,7 +46,7 @@ package feathers.themes
 	import feathers.controls.renderers.DefaultGroupedListItemRenderer;
 	import feathers.controls.renderers.DefaultListItemRenderer;
 	import feathers.controls.text.BitmapFontTextRenderer;
-	import feathers.core.AddedWatcher;
+	import feathers.core.DisplayListWatcher;
 	import feathers.display.Image;
 	import feathers.display.Scale9Image;
 	import feathers.layout.VerticalLayout;
@@ -45,7 +69,7 @@ package feathers.themes
 	import starling.textures.TextureAtlas;
 	import starling.textures.TextureSmoothing;
 
-	public class MinimalMobileTheme extends AddedWatcher implements IFeathersTheme
+	public class MinimalMobileTheme extends DisplayListWatcher implements IFeathersTheme
 	{
 		[Embed(source="/../assets/images/minimal.png")]
 		protected static const ATLAS_IMAGE:Class;
@@ -224,7 +248,7 @@ package feathers.themes
 			this.setInitializerForClass(Button, toggleSwitchOnTrackInitializer, ToggleSwitch.DEFAULT_CHILD_NAME_ON_TRACK);
 			this.setInitializerForClass(Button, toggleSwitchThumbInitializer, ToggleSwitch.DEFAULT_CHILD_NAME_THUMB);
 			this.setInitializerForClass(Button, tabInitializer, TabBar.DEFAULT_CHILD_NAME_TAB);
-			this.setInitializerForClass(Button, toolBarButtonInitializer, ScreenHeader.DEFAULT_CHILD_NAME_ITEM);
+			this.setInitializerForClass(Button, toolBarButtonInitializer, Header.DEFAULT_CHILD_NAME_ITEM);
 			this.setInitializerForClass(Button, pickerListButtonInitializer, PickerList.DEFAULT_CHILD_NAME_BUTTON);
 			this.setInitializerForClass(Slider, sliderInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
@@ -237,7 +261,7 @@ package feathers.themes
 			this.setInitializerForClass(List, nothingInitializer, PickerList.DEFAULT_CHILD_NAME_LIST);
 			this.setInitializerForClass(GroupedList, groupedListInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
-			this.setInitializerForClass(ScreenHeader, screenHeaderInitializer);
+			this.setInitializerForClass(Header, headerInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
 			this.setInitializerForClass(ProgressBar, progressBarInitializer);
 			this.setInitializerForClass(Callout, calloutInitializer);
@@ -543,7 +567,7 @@ package feathers.themes
 			button.horizontalAlign =  Button.HORIZONTAL_ALIGN_LEFT;
 		}
 
-		protected function screenHeaderInitializer(header:ScreenHeader):void
+		protected function headerInitializer(header:Header):void
 		{
 			header.minWidth = 88 * this.scale;
 			header.minHeight = 88 * this.scale;

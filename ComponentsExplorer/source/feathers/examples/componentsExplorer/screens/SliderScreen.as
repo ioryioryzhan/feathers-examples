@@ -2,7 +2,7 @@ package feathers.examples.componentsExplorer.screens
 {
 	import feathers.controls.Button;
 	import feathers.controls.Screen;
-	import feathers.controls.ScreenHeader;
+	import feathers.controls.Header;
 	import feathers.controls.Slider;
 	import feathers.core.FeathersControl;
 	import feathers.core.ITextRenderer;
@@ -22,7 +22,7 @@ package feathers.examples.componentsExplorer.screens
 		public var settings:SliderSettings;
 
 		private var _slider:Slider;
-		private var _header:ScreenHeader;
+		private var _header:Header;
 		private var _backButton:Button;
 		private var _settingsButton:Button;
 		private var _valueLabel:ITextRenderer;
@@ -66,7 +66,7 @@ package feathers.examples.componentsExplorer.screens
 			this._settingsButton.label = "Settings";
 			this._settingsButton.onRelease.add(settingsButton_onRelease);
 
-			this._header = new ScreenHeader();
+			this._header = new Header();
 			this._header.title = "Slider";
 			this.addChild(this._header);
 			this._header.leftItems = new <DisplayObject>

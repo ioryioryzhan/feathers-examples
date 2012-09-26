@@ -2,7 +2,7 @@ package feathers.examples.componentsExplorer.screens
 {
 	import feathers.controls.Button;
 	import feathers.controls.Screen;
-	import feathers.controls.ScreenHeader;
+	import feathers.controls.Header;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
@@ -97,7 +97,7 @@ package feathers.examples.componentsExplorer.screens
 			return this._onProgressBar;
 		}
 		
-		private var _header:ScreenHeader;
+		private var _header:Header;
 		private var _buttons:Vector.<Button> = new <Button>[];
 		private var _buttonMaxWidth:Number = 0;
 		
@@ -118,7 +118,7 @@ package feathers.examples.componentsExplorer.screens
 				this._buttonMaxWidth = Math.max(this._buttonMaxWidth, button.width);
 			}
 
-			this._header = new ScreenHeader();
+			this._header = new Header();
 			this._header.title = "Feathers";
 			this.addChild(this._header);
 		}

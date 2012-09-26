@@ -3,7 +3,7 @@ package feathers.examples.displayObjects.screens
 	import feathers.display.Scale3Image;
 	import feathers.controls.Button;
 	import feathers.controls.Screen;
-	import feathers.controls.ScreenHeader;
+	import feathers.controls.Header;
 	import feathers.textures.Scale3Textures;
 
 	import starling.events.Touch;
@@ -20,7 +20,7 @@ package feathers.examples.displayObjects.screens
 		{
 		}
 
-		private var _header:ScreenHeader;
+		private var _header:Header;
 		private var _image:Scale3Image;
 		private var _rightButton:Button;
 		private var _bottomButton:Button;
@@ -38,7 +38,7 @@ package feathers.examples.displayObjects.screens
 
 		override protected function initialize():void
 		{
-			this._header = new ScreenHeader();
+			this._header = new Header();
 			this._header.title = "Scale 3 Image";
 			this.addChild(this._header);
 

@@ -3,7 +3,7 @@ package feathers.examples.displayObjects.screens
 	import feathers.display.TiledImage;
 	import feathers.controls.Button;
 	import feathers.controls.Screen;
-	import feathers.controls.ScreenHeader;
+	import feathers.controls.Header;
 
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
@@ -19,7 +19,7 @@ package feathers.examples.displayObjects.screens
 		{
 		}
 
-		private var _header:ScreenHeader;
+		private var _header:Header;
 		private var _image:TiledImage;
 		private var _rightButton:Button;
 		private var _bottomButton:Button;
@@ -37,7 +37,7 @@ package feathers.examples.displayObjects.screens
 
 		override protected function initialize():void
 		{
-			this._header = new ScreenHeader();
+			this._header = new Header();
 			this._header.title = "Tiled Image";
 			this.addChild(this._header);
 

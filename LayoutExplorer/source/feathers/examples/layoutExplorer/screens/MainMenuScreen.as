@@ -2,7 +2,7 @@ package feathers.examples.layoutExplorer.screens
 {
 	import feathers.controls.List;
 	import feathers.controls.Screen;
-	import feathers.controls.ScreenHeader;
+	import feathers.controls.Header;
 	import feathers.data.ListCollection;
 
 	import org.osflash.signals.ISignal;
@@ -43,7 +43,7 @@ package feathers.examples.layoutExplorer.screens
 			return this._onTiledColumns;
 		}
 
-		private var _header:ScreenHeader;
+		private var _header:Header;
 		private var _list:List;
 
 		override protected function initialize():void
@@ -60,7 +60,7 @@ package feathers.examples.layoutExplorer.screens
 			this._list.onChange.add(list_onChange);
 			this.addChild(this._list);
 
-			this._header = new ScreenHeader();
+			this._header = new Header();
 			this._header.title = "Layouts in Feathers";
 			this.addChild(this._header);
 		}

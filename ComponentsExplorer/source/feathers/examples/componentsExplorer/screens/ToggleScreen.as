@@ -5,7 +5,7 @@ package feathers.examples.componentsExplorer.screens
 	import feathers.controls.text.BitmapFontTextRenderer;
 	import feathers.controls.Radio;
 	import feathers.controls.Screen;
-	import feathers.controls.ScreenHeader;
+	import feathers.controls.Header;
 	import feathers.controls.ToggleSwitch;
 	import feathers.core.ToggleGroup;
 	import org.osflash.signals.ISignal;
@@ -20,7 +20,7 @@ package feathers.examples.componentsExplorer.screens
 			super();
 		}
 		
-		private var _header:ScreenHeader;
+		private var _header:Header;
 		private var _toggleSwitch:ToggleSwitch;
 		private var _check1:Check;
 		private var _check2:Check;
@@ -70,7 +70,7 @@ package feathers.examples.componentsExplorer.screens
 			this._backButton.label = "Back";
 			this._backButton.onRelease.add(backButton_onRelease);
 
-			this._header = new ScreenHeader();
+			this._header = new Header();
 			this._header.title = "Toggles";
 			this.addChild(this._header);
 			this._header.leftItems = new <DisplayObject>

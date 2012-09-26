@@ -4,7 +4,7 @@ package feathers.examples.layoutExplorer.screens
 	import feathers.controls.List;
 	import feathers.controls.PickerList;
 	import feathers.controls.Screen;
-	import feathers.controls.ScreenHeader;
+	import feathers.controls.Header;
 	import feathers.controls.Slider;
 	import feathers.data.ListCollection;
 	import feathers.layout.TiledColumnsLayout;
@@ -22,7 +22,7 @@ package feathers.examples.layoutExplorer.screens
 
 		public var settings:TiledColumnsLayoutSettings;
 
-		private var _header:ScreenHeader;
+		private var _header:Header;
 		private var _list:List;
 		private var _backButton:Button;
 
@@ -174,7 +174,7 @@ package feathers.examples.layoutExplorer.screens
 			this._backButton.label = "Back";
 			this._backButton.onRelease.add(backButton_onRelease);
 
-			this._header = new ScreenHeader();
+			this._header = new Header();
 			this._header.title = "Tiled Columns Layout Settings";
 			this.addChild(this._header);
 			this._header.leftItems = new <DisplayObject>
