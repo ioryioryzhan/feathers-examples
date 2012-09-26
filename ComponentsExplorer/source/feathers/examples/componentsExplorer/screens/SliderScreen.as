@@ -1,12 +1,13 @@
 package feathers.examples.componentsExplorer.screens
 {
 	import feathers.controls.Button;
-	import feathers.controls.Screen;
 	import feathers.controls.Header;
+	import feathers.controls.Label;
+	import feathers.controls.Screen;
 	import feathers.controls.Slider;
 	import feathers.core.FeathersControl;
-	import feathers.core.ITextRenderer;
 	import feathers.examples.componentsExplorer.data.SliderSettings;
+
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
@@ -25,7 +26,7 @@ package feathers.examples.componentsExplorer.screens
 		private var _header:Header;
 		private var _backButton:Button;
 		private var _settingsButton:Button;
-		private var _valueLabel:ITextRenderer;
+		private var _valueLabel:Label;
 		
 		private var _onBack:Signal = new Signal(SliderScreen);
 		
@@ -54,7 +55,7 @@ package feathers.examples.componentsExplorer.screens
 			this._slider.onChange.add(slider_onChange);
 			this.addChild(this._slider);
 			
-			this._valueLabel = FeathersControl.defaultTextRendererFactory();
+			this._valueLabel = new Label();
 			this._valueLabel.text = this._slider.value.toString();
 			this.addChild(DisplayObject(this._valueLabel));
 

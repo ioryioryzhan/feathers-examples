@@ -28,11 +28,13 @@ package feathers.themes
 	import feathers.controls.Callout;
 	import feathers.controls.Check;
 	import feathers.controls.GroupedList;
+	import feathers.controls.Label;
 	import feathers.controls.List;
 	import feathers.controls.PickerList;
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
 	import feathers.controls.Header;
+	import feathers.controls.Screen;
 	import feathers.controls.Scroller;
 	import feathers.controls.SimpleScrollBar;
 	import feathers.controls.Slider;
@@ -47,6 +49,7 @@ package feathers.themes
 	import feathers.controls.renderers.DefaultListItemRenderer;
 	import feathers.controls.text.BitmapFontTextRenderer;
 	import feathers.core.DisplayListWatcher;
+	import feathers.core.FeathersControl;
 	import feathers.display.Image;
 	import feathers.display.Scale9Image;
 	import feathers.layout.VerticalLayout;
@@ -239,7 +242,10 @@ package feathers.themes
 			this.radioIconTexture = this.atlas.getTexture("radio-icon");
 			this.radioSelectedIconTexture = this.atlas.getTexture("radio-selected-icon");
 
-			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
+			FeathersControl.defaultTextRendererFactory = textRendererFactory;
+
+			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
+			this.setInitializerForClass(Label, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, sliderThumbInitializer, Slider.DEFAULT_CHILD_NAME_THUMB);
 			this.setInitializerForClass(Button, simpleScrollBarThumbInitializer, SimpleScrollBar.DEFAULT_CHILD_NAME_THUMB);
@@ -275,11 +281,22 @@ package feathers.themes
 			//target too.
 		}
 
-		protected function labelInitializer(label:BitmapFontTextRenderer):void
+		protected function screenInitializer(screen:Screen):void
 		{
-			label.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			screen.originalDPI = this._originalDPI;
+		}
+
+		protected function textRendererFactory():BitmapFontTextRenderer
+		{
+			const renderer:BitmapFontTextRenderer = new BitmapFontTextRenderer();
 			//since it's a pixel font, we don't want to smooth it.
-			label.smoothing = TextureSmoothing.NONE;
+			renderer.smoothing = TextureSmoothing.NONE;
+			return renderer;
+		}
+
+		protected function labelInitializer(label:Label):void
+		{
+			label.textRendererProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 		}
 
 		protected function buttonInitializer(button:Button):void

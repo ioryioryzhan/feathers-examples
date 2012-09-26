@@ -1,12 +1,13 @@
 package feathers.examples.componentsExplorer.screens
 {
 	import feathers.controls.Button;
-	import feathers.controls.Screen;
 	import feathers.controls.Header;
+	import feathers.controls.Label;
+	import feathers.controls.Screen;
 	import feathers.controls.TabBar;
 	import feathers.core.FeathersControl;
-	import feathers.core.ITextRenderer;
 	import feathers.data.ListCollection;
+
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
@@ -21,7 +22,7 @@ package feathers.examples.componentsExplorer.screens
 		private var _header:Header;
 		private var _backButton:Button;
 		private var _tabBar:TabBar;
-		private var _label:ITextRenderer;
+		private var _label:Label;
 
 		private var _onBack:Signal = new Signal(TabBarScreen);
 
@@ -42,7 +43,7 @@ package feathers.examples.componentsExplorer.screens
 			this._tabBar.onChange.add(tabBar_onChange);
 			this.addChild(this._tabBar);
 
-			this._label = FeathersControl.defaultTextRendererFactory();
+			this._label = new Label();
 			this._label.text = "selectedIndex: " + this._tabBar.selectedIndex.toString();
 			this.addChild(DisplayObject(this._label));
 

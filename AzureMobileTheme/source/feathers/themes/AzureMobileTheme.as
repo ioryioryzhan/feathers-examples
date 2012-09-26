@@ -27,10 +27,12 @@ package feathers.themes
 	import feathers.controls.Button;
 	import feathers.controls.Callout;
 	import feathers.controls.Check;
+	import feathers.controls.Label;
 	import feathers.controls.PickerList;
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
 	import feathers.controls.Header;
+	import feathers.controls.Screen;
 	import feathers.controls.Scroller;
 	import feathers.controls.SimpleScrollBar;
 	import feathers.controls.Slider;
@@ -288,7 +290,8 @@ package feathers.themes
 			this.radioSelectedUpIconTexture = this.atlas.getTexture("radio-selected-up-icon");
 			this.radioSelectedDisabledIconTexture = this.atlas.getTexture("radio-selected-disabled-icon");
 
-			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
+			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
+			this.setInitializerForClass(Label, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, tabInitializer, TabBar.DEFAULT_CHILD_NAME_TAB);
 			this.setInitializerForClass(Button, headerButtonInitializer, Header.DEFAULT_CHILD_NAME_ITEM);
@@ -318,13 +321,14 @@ package feathers.themes
 
 		}
 
-		protected function labelInitializer(label:BitmapFontTextRenderer):void
+		protected function screenInitializer(screen:Screen):void
 		{
-			if(label.name)
-			{
-				return;
-			}
-			label.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			screen.originalDPI = this._originalDPI;
+		}
+
+		protected function labelInitializer(label:Label):void
+		{
+			label.textRendererProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 		}
 
 		protected function buttonInitializer(button:Button):void

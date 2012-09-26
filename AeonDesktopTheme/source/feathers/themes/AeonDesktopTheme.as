@@ -28,11 +28,13 @@ package feathers.themes
 	import feathers.controls.Callout;
 	import feathers.controls.Check;
 	import feathers.controls.GroupedList;
+	import feathers.controls.Header;
+	import feathers.controls.Label;
 	import feathers.controls.List;
 	import feathers.controls.PickerList;
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
-	import feathers.controls.Header;
+	import feathers.controls.Screen;
 	import feathers.controls.ScrollBar;
 	import feathers.controls.Scroller;
 	import feathers.controls.SimpleScrollBar;
@@ -44,7 +46,6 @@ package feathers.themes
 	import feathers.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
 	import feathers.controls.renderers.DefaultGroupedListItemRenderer;
 	import feathers.controls.renderers.DefaultListItemRenderer;
-	import feathers.controls.text.BitmapFontTextRenderer;
 	import feathers.core.DisplayListWatcher;
 	import feathers.core.FeathersControl;
 	import feathers.display.Scale3Image;
@@ -316,7 +317,8 @@ package feathers.themes
 
 			this.progressBarFillSkinTexture = atlas.getTexture("progress-bar-fill-skin");
 
-			this.setInitializerForClass(BitmapFontTextRenderer, labelInitializer);
+			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
+			this.setInitializerForClass(Label, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, toggleSwitchOnTrackInitializer, ToggleSwitch.DEFAULT_CHILD_NAME_ON_TRACK);
 			this.setInitializerForClass(Button, toggleSwitchThumbInitializer, ToggleSwitch.DEFAULT_CHILD_NAME_THUMB);
@@ -355,9 +357,14 @@ package feathers.themes
 			//do nothing
 		}
 
-		protected function labelInitializer(label:BitmapFontTextRenderer):void
+		protected function screenInitializer(screen:Screen):void
 		{
-			label.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			screen.originalDPI = this.originalDPI;
+		}
+
+		protected function labelInitializer(label:Label):void
+		{
+			label.textRendererProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 		}
 
 		protected function buttonInitializer(button:Button):void

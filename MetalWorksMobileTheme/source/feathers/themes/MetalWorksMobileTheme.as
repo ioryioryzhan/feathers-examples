@@ -27,11 +27,12 @@ package feathers.themes
 	import feathers.controls.Button;
 	import feathers.controls.Callout;
 	import feathers.controls.Check;
+	import feathers.controls.Header;
+	import feathers.controls.Label;
 	import feathers.controls.PickerList;
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
 	import feathers.controls.Screen;
-	import feathers.controls.Header;
 	import feathers.controls.Scroller;
 	import feathers.controls.SimpleScrollBar;
 	import feathers.controls.Slider;
@@ -275,6 +276,7 @@ package feathers.themes
 			}
 
 			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
+			this.setInitializerForClass(Label, labelInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, simpleButtonInitializer, ToggleSwitch.DEFAULT_CHILD_NAME_THUMB);
 			this.setInitializerForClass(Button, simpleButtonInitializer, Slider.DEFAULT_CHILD_NAME_THUMB);
@@ -302,9 +304,7 @@ package feathers.themes
 
 		protected function textRendererFactory():TextFieldTextRenderer
 		{
-			const renderer:TextFieldTextRenderer = new TextFieldTextRenderer();
-			renderer.textFormat = this.smallLightTextFormat;
-			return renderer;
+			return new TextFieldTextRenderer();
 		}
 
 		protected function horizontalScrollBarFactory():SimpleScrollBar
@@ -352,6 +352,11 @@ package feathers.themes
 
 			button.minWidth = button.minHeight = 60 * this.scale;
 			button.minTouchWidth = button.minTouchHeight = 88 * this.scale;
+		}
+
+		protected function labelInitializer(label:Label):void
+		{
+			label.textRendererProperties.textFormat = this.smallLightTextFormat;
 		}
 
 		protected function buttonInitializer(button:Button):void
