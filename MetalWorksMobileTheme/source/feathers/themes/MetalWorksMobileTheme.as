@@ -277,6 +277,7 @@ package feathers.themes
 
 			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
 			this.setInitializerForClass(Label, labelInitializer);
+			this.setInitializerForClass(TextFieldTextRenderer, itemRendererAccessoryLabelInitializer, BaseDefaultItemRenderer.DEFAULT_CHILD_NAME_ACCESSORY_LABEL);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, simpleButtonInitializer, ToggleSwitch.DEFAULT_CHILD_NAME_THUMB);
 			this.setInitializerForClass(Button, simpleButtonInitializer, Slider.DEFAULT_CHILD_NAME_THUMB);
@@ -357,6 +358,11 @@ package feathers.themes
 		protected function labelInitializer(label:Label):void
 		{
 			label.textRendererProperties.textFormat = this.smallLightTextFormat;
+		}
+
+		protected function itemRendererAccessoryLabelInitializer(renderer:TextFieldTextRenderer):void
+		{
+			renderer.textFormat = this.smallLightTextFormat;
 		}
 
 		protected function buttonInitializer(button:Button):void

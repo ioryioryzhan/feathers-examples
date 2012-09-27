@@ -28,12 +28,12 @@ package feathers.themes
 	import feathers.controls.Callout;
 	import feathers.controls.Check;
 	import feathers.controls.GroupedList;
+	import feathers.controls.Header;
 	import feathers.controls.Label;
 	import feathers.controls.List;
 	import feathers.controls.PickerList;
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
-	import feathers.controls.Header;
 	import feathers.controls.Screen;
 	import feathers.controls.Scroller;
 	import feathers.controls.SimpleScrollBar;
@@ -246,6 +246,7 @@ package feathers.themes
 
 			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
 			this.setInitializerForClass(Label, labelInitializer);
+			this.setInitializerForClass(BitmapFontTextRenderer, itemRendererAccessoryLabelInitializer, BaseDefaultItemRenderer.DEFAULT_CHILD_NAME_ACCESSORY_LABEL);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, sliderThumbInitializer, Slider.DEFAULT_CHILD_NAME_THUMB);
 			this.setInitializerForClass(Button, simpleScrollBarThumbInitializer, SimpleScrollBar.DEFAULT_CHILD_NAME_THUMB);
@@ -297,6 +298,11 @@ package feathers.themes
 		protected function labelInitializer(label:Label):void
 		{
 			label.textRendererProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+		}
+
+		protected function itemRendererAccessoryLabelInitializer(renderer:BitmapFontTextRenderer):void
+		{
+			renderer.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 		}
 
 		protected function buttonInitializer(button:Button):void
