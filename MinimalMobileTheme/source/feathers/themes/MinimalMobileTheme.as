@@ -35,6 +35,8 @@ package feathers.themes
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
 	import feathers.controls.Screen;
+	import feathers.controls.ScrollText;
+	import feathers.controls.ScrollText;
 	import feathers.controls.Scroller;
 	import feathers.controls.SimpleScrollBar;
 	import feathers.controls.Slider;
@@ -62,6 +64,7 @@ package feathers.themes
 	import feathers.utils.math.roundToNearest;
 
 	import flash.geom.Rectangle;
+	import flash.text.TextFormat;
 
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
@@ -246,6 +249,7 @@ package feathers.themes
 
 			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
 			this.setInitializerForClass(Label, labelInitializer);
+			this.setInitializerForClass(ScrollText, scrollTextInitializer);
 			this.setInitializerForClass(BitmapFontTextRenderer, itemRendererAccessoryLabelInitializer, BaseDefaultItemRenderer.DEFAULT_CHILD_NAME_ACCESSORY_LABEL);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, sliderThumbInitializer, Slider.DEFAULT_CHILD_NAME_THUMB);
@@ -303,6 +307,13 @@ package feathers.themes
 		protected function itemRendererAccessoryLabelInitializer(renderer:BitmapFontTextRenderer):void
 		{
 			renderer.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+		}
+
+		protected function scrollTextInitializer(text:ScrollText):void
+		{
+			text.textFormat = new TextFormat("PF Ronda Seven,Roboto,Helvetica,Arial,_sans", this.fontSize, PRIMARY_TEXT_COLOR);
+			text.paddingTop = text.paddingBottom = text.paddingLeft = 32 * this.scale;
+			text.paddingRight = 36 * this.scale;
 		}
 
 		protected function buttonInitializer(button:Button):void

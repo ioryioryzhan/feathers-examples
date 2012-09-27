@@ -33,6 +33,7 @@ package feathers.themes
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
 	import feathers.controls.Screen;
+	import feathers.controls.ScrollText;
 	import feathers.controls.Scroller;
 	import feathers.controls.SimpleScrollBar;
 	import feathers.controls.Slider;
@@ -203,7 +204,7 @@ package feathers.themes
 
 			FeathersControl.defaultTextRendererFactory = textRendererFactory;
 
-			const fontNames:String = "Helvetica Neue,Helvetica,Arial,_sans";
+			const fontNames:String = "Roboto,Helvetica Neue,Helvetica,Arial,_sans";
 			this.headerTextFormat = new TextFormat(fontNames, Math.round(36 * this.scale), LIGHT_TEXT_COLOR, true);
 			this.uiDarkTextFormat = new TextFormat(fontNames, 24 * this.scale, DARK_TEXT_COLOR, true);
 			this.uiLightTextFormat = new TextFormat(fontNames, 24 * this.scale, LIGHT_TEXT_COLOR, true);
@@ -278,6 +279,7 @@ package feathers.themes
 			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
 			this.setInitializerForClass(Label, labelInitializer);
 			this.setInitializerForClass(TextFieldTextRenderer, itemRendererAccessoryLabelInitializer, BaseDefaultItemRenderer.DEFAULT_CHILD_NAME_ACCESSORY_LABEL);
+			this.setInitializerForClass(ScrollText, scrollTextInitializer);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, simpleButtonInitializer, ToggleSwitch.DEFAULT_CHILD_NAME_THUMB);
 			this.setInitializerForClass(Button, simpleButtonInitializer, Slider.DEFAULT_CHILD_NAME_THUMB);
@@ -363,6 +365,13 @@ package feathers.themes
 		protected function itemRendererAccessoryLabelInitializer(renderer:TextFieldTextRenderer):void
 		{
 			renderer.textFormat = this.smallLightTextFormat;
+		}
+
+		protected function scrollTextInitializer(text:ScrollText):void
+		{
+			text.textFormat = this.smallLightTextFormat;
+			text.paddingTop = text.paddingBottom = text.paddingLeft = 32 * this.scale;
+			text.paddingRight = 36 * this.scale;
 		}
 
 		protected function buttonInitializer(button:Button):void

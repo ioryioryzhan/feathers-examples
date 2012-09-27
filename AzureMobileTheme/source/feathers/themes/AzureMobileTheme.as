@@ -33,6 +33,7 @@ package feathers.themes
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
 	import feathers.controls.Screen;
+	import feathers.controls.ScrollText;
 	import feathers.controls.Scroller;
 	import feathers.controls.SimpleScrollBar;
 	import feathers.controls.Slider;
@@ -61,6 +62,7 @@ package feathers.themes
 	import feathers.textures.Scale9Textures;
 
 	import flash.geom.Rectangle;
+	import flash.text.TextFormat;
 
 	import starling.core.Starling;
 	import starling.display.BlendMode;
@@ -292,6 +294,7 @@ package feathers.themes
 
 			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
 			this.setInitializerForClass(Label, labelInitializer);
+			this.setInitializerForClass(ScrollText, scrollTextInitializer);
 			this.setInitializerForClass(BitmapFontTextRenderer, itemRendererAccessoryLabelInitializer, BaseDefaultItemRenderer.DEFAULT_CHILD_NAME_ACCESSORY_LABEL);
 			this.setInitializerForClass(Button, buttonInitializer);
 			this.setInitializerForClass(Button, tabInitializer, TabBar.DEFAULT_CHILD_NAME_TAB);
@@ -330,6 +333,13 @@ package feathers.themes
 		protected function labelInitializer(label:Label):void
 		{
 			label.textRendererProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+		}
+
+		protected function scrollTextInitializer(text:ScrollText):void
+		{
+			text.textFormat = new TextFormat("Lato,Roboto,Helvetica,Arial,_sans", this.fontSize, PRIMARY_TEXT_COLOR);
+			text.paddingTop = text.paddingBottom = text.paddingLeft = 32 * this.scale;
+			text.paddingRight = 36 * this.scale;
 		}
 
 		protected function itemRendererAccessoryLabelInitializer(renderer:BitmapFontTextRenderer):void
