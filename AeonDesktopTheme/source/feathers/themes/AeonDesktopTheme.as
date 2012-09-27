@@ -53,6 +53,7 @@ package feathers.themes
 	import feathers.display.Scale3Image;
 	import feathers.display.Scale9Image;
 	import feathers.skins.IFeathersTheme;
+	import feathers.system.DeviceCapabilities;
 	import feathers.text.BitmapFontTextFormat;
 	import feathers.textures.Scale3Textures;
 	import feathers.textures.Scale9Textures;
@@ -132,7 +133,7 @@ package feathers.themes
 
 		public function get originalDPI():int
 		{
-			return 72;
+			return DeviceCapabilities.dpi;
 		}
 
 		public function get scaleToDPI():Boolean
