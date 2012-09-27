@@ -85,10 +85,10 @@ package feathers.examples.componentsExplorer.screens
 		
 		override protected function draw():void
 		{
-			const spacingX:Number = this.originalHeight * 0.02 * this.dpiScale;
-
 			this._header.width = this.actualWidth;
 			this._header.validate();
+
+			const spacingX:Number = this._header.height * 0.2;
 
 			//auto-size the slider and label so that we can position them properly
 			this._slider.validate();

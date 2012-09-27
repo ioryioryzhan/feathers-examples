@@ -84,11 +84,11 @@ package feathers.examples.componentsExplorer.screens
 		
 		override protected function draw():void
 		{
-			const spacingX:Number = this.originalWidth * 0.02 * this.dpiScale;
-			const spacingY:Number = this.originalHeight * 0.06 * this.dpiScale;
-
 			this._header.width = this.actualWidth;
 			this._header.validate();
+
+			const spacingX:Number = this._header.height * 0.2;
+			const spacingY:Number = this._header.height * 0.4;
 
 			//auto-size the toggle switch and label to position them properly
 			this._toggleSwitch.validate();

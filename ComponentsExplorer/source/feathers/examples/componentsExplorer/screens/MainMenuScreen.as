@@ -135,12 +135,12 @@ package feathers.examples.componentsExplorer.screens
 		
 		override protected function draw():void
 		{
-			const margin:Number = this.originalHeight * 0.06 * this.dpiScale;
-			const spacingX:Number = this.originalHeight * 0.03 * this.dpiScale;
-			const spacingY:Number = this.originalHeight * 0.03 * this.dpiScale;
-
 			this._header.width = this.actualWidth;
 			this._header.validate();
+
+			const margin:Number = this._header.height * 0.25;
+			const spacingX:Number = this._header.height * 0.2;
+			const spacingY:Number = this._header.height * 0.2;
 
 			const contentMaxWidth:Number = this.actualWidth - 2 * margin;
 			const buttonCount:int = this._buttons.length;

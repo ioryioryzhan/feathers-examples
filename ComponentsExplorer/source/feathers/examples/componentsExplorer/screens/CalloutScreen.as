@@ -73,10 +73,10 @@ package feathers.examples.componentsExplorer.screens
 
 		override protected function draw():void
 		{
-			const margin:Number = 20 * this.dpiScale;
-
 			this._header.width = this.actualWidth;
 			this._header.validate();
+
+			const margin:Number = this._header.height * 0.25;
 
 			this._rightButton.validate();
 			this._rightButton.x = margin;
