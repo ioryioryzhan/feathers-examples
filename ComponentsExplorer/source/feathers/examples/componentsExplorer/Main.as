@@ -16,6 +16,7 @@ package feathers.examples.componentsExplorer
 	import feathers.examples.componentsExplorer.screens.MainMenuScreen;
 	import feathers.examples.componentsExplorer.screens.PickerListScreen;
 	import feathers.examples.componentsExplorer.screens.ProgressBarScreen;
+	import feathers.examples.componentsExplorer.screens.ScrollTextScreen;
 	import feathers.examples.componentsExplorer.screens.SliderScreen;
 	import feathers.examples.componentsExplorer.screens.SliderSettingsScreen;
 	import feathers.examples.componentsExplorer.screens.TabBarScreen;
@@ -38,6 +39,7 @@ package feathers.examples.componentsExplorer
 		private static const LIST_SETTINGS:String = "listSettings";
 		private static const PICKER_LIST:String = "pickerList";
 		private static const PROGRESS_BAR:String = "progressBar";
+		private static const SCROLL_TEXT:String = "scrollText";
 		private static const SLIDER:String = "slider";
 		private static const SLIDER_SETTINGS:String = "sliderSettings";
 		private static const TAB_BAR:String = "tabBar";
@@ -69,6 +71,7 @@ package feathers.examples.componentsExplorer
 				onList: LIST,
 				onPickerList: PICKER_LIST,
 				onProgressBar: PROGRESS_BAR,
+				onScrollText: SCROLL_TEXT,
 				onSlider: SLIDER,
 				onTabBar: TAB_BAR,
 				onTextInput: TEXT_INPUT,
@@ -94,6 +97,11 @@ package feathers.examples.componentsExplorer
 			}));
 
 			this._navigator.addScreen(CALLOUT, new ScreenNavigatorItem(CalloutScreen,
+			{
+				onBack: MAIN_MENU
+			}));
+
+			this._navigator.addScreen(SCROLL_TEXT, new ScreenNavigatorItem(ScrollTextScreen,
 			{
 				onBack: MAIN_MENU
 			}));

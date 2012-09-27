@@ -16,6 +16,7 @@ package feathers.examples.componentsExplorer.screens
 			"List",
 			"Picker List",
 			"Progress Bar",
+			"Scroll Text",
 			"Slider",
 			"Tab Bar",
 			"Text Input",
@@ -39,6 +40,13 @@ package feathers.examples.componentsExplorer.screens
 		public function get onCallout():ISignal
 		{
 			return this._onCallout;
+		}
+
+		private var _onScrollText:Signal = new Signal(MainMenuScreen);
+
+		public function get onScrollText():ISignal
+		{
+			return this._onScrollText;
 		}
 		
 		private var _onSlider:Signal = new Signal(MainMenuScreen);
@@ -103,7 +111,9 @@ package feathers.examples.componentsExplorer.screens
 		
 		override protected function initialize():void
 		{
-			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onCallout, this._onGroupedList, this._onList, this._onPickerList, this._onProgressBar, this._onSlider, this._onTabBar, this._onTextInput, this._onToggles];
+			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onCallout, this._onGroupedList, this._onList,
+				this._onPickerList, this._onProgressBar, this._onScrollText, this._onSlider, this._onTabBar, this._onTextInput,
+				this._onToggles];
 			const buttonCount:int = LABELS.length;
 			for(var i:int = 0; i < buttonCount; i++)
 			{
