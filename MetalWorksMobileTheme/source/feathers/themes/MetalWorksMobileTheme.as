@@ -475,7 +475,7 @@ package feathers.themes
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			renderer.paddingTop = renderer.paddingBottom = 8 * this.scale;
 			renderer.paddingLeft = renderer.paddingRight = 32 * this.scale;
-			renderer.gap = 12 * this.scale;
+			renderer.gap = 20 * this.scale;
 			renderer.minWidth = renderer.minHeight = 88 * this.scale;
 			renderer.minTouchWidth = renderer.minTouchHeight = 88 * this.scale;
 		}
