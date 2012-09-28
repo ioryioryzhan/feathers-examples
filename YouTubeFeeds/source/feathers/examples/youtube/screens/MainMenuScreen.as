@@ -4,9 +4,9 @@ package feathers.examples.youtube.screens
 	import feathers.controls.List;
 	import feathers.controls.Screen;
 	import feathers.data.ListCollection;
+	import feathers.examples.youtube.models.VideoFeed;
 
 	import org.osflash.signals.ISignal;
-
 	import org.osflash.signals.Signal;
 
 	public class MainMenuScreen extends Screen
@@ -18,7 +18,7 @@ package feathers.examples.youtube.screens
 		private var _header:Header;
 		private var _list:List;
 
-		private var _onList:Signal = new Signal(MainMenuScreen, Object);
+		private var _onList:Signal = new Signal(MainMenuScreen, VideoFeed);
 
 		public function get onList():ISignal
 		{
@@ -30,15 +30,15 @@ package feathers.examples.youtube.screens
 			this._list = new List();
 			this._list.dataProvider = new ListCollection(
 			[
-				{ name: "Top Rated", url: "https://gdata.youtube.com/feeds/api/standardfeeds/top_rated?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']" },
-				{ name: "Top Favorites", url: "https://gdata.youtube.com/feeds/api/standardfeeds/top_favorites?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']" },
-				{ name: "Most Shared", url: "https://gdata.youtube.com/feeds/api/standardfeeds/most_shared?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']" },
-				{ name: "Most Popular", url: "https://gdata.youtube.com/feeds/api/standardfeeds/most_popular?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']" },
-				{ name: "Most Recent", url: "https://gdata.youtube.com/feeds/api/standardfeeds/most_recent?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']" },
-				{ name: "Most Discussed", url: "https://gdata.youtube.com/feeds/api/standardfeeds/most_discussed?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']" },
-				{ name: "Most Responded", url: "https://gdata.youtube.com/feeds/api/standardfeeds/most_responded?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']" },
-				{ name: "Recently Featured", url: "https://gdata.youtube.com/feeds/api/standardfeeds/recently_featured?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']" },
-				{ name: "Trending Videos", url: "https://gdata.youtube.com/feeds/api/standardfeeds/on_the_web?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']" },
+				new VideoFeed("Top Rated", "http://gdata.youtube.com/feeds/api/standardfeeds/top_rated?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']"),
+				new VideoFeed("Top Favorites", "http://gdata.youtube.com/feeds/api/standardfeeds/top_favorites?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']"),
+				new VideoFeed("Most Shared", "http://gdata.youtube.com/feeds/api/standardfeeds/most_shared?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']"),
+				new VideoFeed("Most Popular", "http://gdata.youtube.com/feeds/api/standardfeeds/most_popular?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']"),
+				new VideoFeed("Most Recent", "http://gdata.youtube.com/feeds/api/standardfeeds/most_recent?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']"),
+				new VideoFeed("Most Discussed", "http://gdata.youtube.com/feeds/api/standardfeeds/most_discussed?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']"),
+				new VideoFeed("Most Responded", "http://gdata.youtube.com/feeds/api/standardfeeds/most_responded?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']"),
+				new VideoFeed("Recently Featured", "http://gdata.youtube.com/feeds/api/standardfeeds/recently_featured?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']"),
+				new VideoFeed("Trending Videos", "http://gdata.youtube.com/feeds/api/standardfeeds/on_the_web?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']"),
 			]);
 			this._list.itemRendererProperties.labelField = "name";
 			this._list.onChange.add(list_onChange);
@@ -61,7 +61,7 @@ package feathers.examples.youtube.screens
 
 		private function list_onChange(list:List):void
 		{
-			this._onList.dispatch(this, this._list.selectedItem);
+			this._onList.dispatch(this, VideoFeed(this._list.selectedItem));
 		}
 	}
 }

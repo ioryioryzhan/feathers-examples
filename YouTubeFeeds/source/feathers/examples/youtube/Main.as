@@ -4,6 +4,8 @@ package feathers.examples.youtube
 
 	import feathers.controls.ScreenNavigator;
 	import feathers.controls.ScreenNavigatorItem;
+	import feathers.examples.youtube.models.VideoDetails;
+	import feathers.examples.youtube.models.VideoFeed;
 	import feathers.examples.youtube.models.YouTubeModel;
 	import feathers.examples.youtube.screens.ListVideosScreen;
 	import feathers.examples.youtube.screens.MainMenuScreen;
@@ -68,13 +70,13 @@ package feathers.examples.youtube
 			this._transitionManager.ease = Cubic.easeOut;
 		}
 
-		private function mainMenuScreen_onList(screen:MainMenuScreen, selectedItem:Object):void
+		private function mainMenuScreen_onList(screen:MainMenuScreen, selectedItem:VideoFeed):void
 		{
 			this._model.selectedList = selectedItem;
 			this._navigator.showScreen(LIST_VIDEOS);
 		}
 
-		private function listVideos_onVideo(screen:ListVideosScreen, selectedItem:Object):void
+		private function listVideos_onVideo(screen:ListVideosScreen, selectedItem:VideoDetails):void
 		{
 			this._model.selectedVideo = selectedItem;
 			this._navigator.showScreen(VIDEO_DETAILS);

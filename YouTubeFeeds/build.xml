@@ -24,6 +24,7 @@
 	<target name="build-web" depends="prepare">
 		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
 			<arg line="+flexlib='${flexframework.root}'"/>
+			<arg line="--target-player=${target.player}"/>
 			<arg line="--swf-version=${swf.version}"/>
 			<arg line="--static-link-runtime-shared-libraries=true"/>
 			<arg line="--frame two feathers.examples.youtube.Main"/>
@@ -43,6 +44,7 @@
 		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
 			<arg line="+flexlib='${flexframework.root}'"/>
 			<arg line="+configname=air"/>
+			<arg line="--target-player=${target.player}"/>
 			<arg line="--swf-version=${swf.version}"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${signals.root}'"/>

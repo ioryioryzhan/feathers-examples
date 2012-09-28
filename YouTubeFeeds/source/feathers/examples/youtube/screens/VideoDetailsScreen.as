@@ -4,6 +4,7 @@ package feathers.examples.youtube.screens
 	import feathers.controls.Header;
 	import feathers.controls.Screen;
 	import feathers.controls.ScrollText;
+	import feathers.controls.Scroller;
 	import feathers.examples.youtube.models.YouTubeModel;
 
 	import flash.net.URLRequest;
@@ -72,6 +73,7 @@ package feathers.examples.youtube.screens
 
 			this._scrollText = new ScrollText();
 			this._scrollText.isHTML = true;
+			this._scrollText.scrollerProperties.verticalScrollPolicy = Scroller.SCROLL_POLICY_ON;
 			this.addChild(this._scrollText);
 
 			this.backButtonHandler = onBackButton;
