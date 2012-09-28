@@ -4,4 +4,4 @@ A simple application that uses the [YouTube Data API](https://developers.google.
 
 ## Web Demo
 
-This example requires Adobe AIR.
+View the [YouTube Feeds example](http://feathersui.com/examples/youtube-feeds/) in your browser.
