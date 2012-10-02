@@ -217,7 +217,7 @@ package feathers.themes
 
 			FeathersControl.defaultTextRendererFactory = textRendererFactory;
 
-			const fontNames:String = "Roboto,Helvetica Neue,Helvetica,Arial,_sans";
+			const fontNames:String = "Helvetica Neue,Helvetica,Roboto,Arial,_sans";
 			this.headerTextFormat = new TextFormat(fontNames, Math.round(36 * this.scale), LIGHT_TEXT_COLOR, true);
 			this.uiDarkTextFormat = new TextFormat(fontNames, 24 * this.scale, DARK_TEXT_COLOR, true);
 			this.uiLightTextFormat = new TextFormat(fontNames, 24 * this.scale, LIGHT_TEXT_COLOR, true);
