@@ -27,6 +27,7 @@ package feathers.themes
 	import feathers.controls.Button;
 	import feathers.controls.Callout;
 	import feathers.controls.Check;
+	import feathers.controls.GroupedList;
 	import feathers.controls.Header;
 	import feathers.controls.Label;
 	import feathers.controls.PickerList;
@@ -93,6 +94,10 @@ package feathers.themes
 		protected static const DEFAULT_SCALE9_GRID:Rectangle = new Rectangle(5, 5, 22, 22);
 		protected static const BUTTON_SCALE9_GRID:Rectangle = new Rectangle(5, 5, 50, 50);
 		protected static const ITEM_RENDERER_SCALE9_GRID:Rectangle = new Rectangle(13, 0, 3, 82);
+		protected static const INSET_ITEM_RENDERER_MIDDLE_SCALE9_GRID:Rectangle = new Rectangle(13, 0, 2, 82);
+		protected static const INSET_ITEM_RENDERER_FIRST_SCALE9_GRID:Rectangle = new Rectangle(13, 13, 3, 70);
+		protected static const INSET_ITEM_RENDERER_LAST_SCALE9_GRID:Rectangle = new Rectangle(13, 0, 3, 75);
+		protected static const INSET_ITEM_RENDERER_SINGLE_SCALE9_GRID:Rectangle = new Rectangle(13, 13, 3, 62);
 		protected static const TAB_SCALE9_GRID:Rectangle = new Rectangle(19, 19, 50, 50);
 		protected static const SCROLL_BAR_THUMB_REGION1:int = 5;
 		protected static const SCROLL_BAR_THUMB_REGION2:int = 14;
@@ -168,6 +173,14 @@ package feathers.themes
 		protected var checkSelectedDisabledIconTexture:Texture;
 		protected var itemRendererUpSkinTextures:Scale9Textures;
 		protected var itemRendererSelectedSkinTextures:Scale9Textures;
+		protected var insetItemRendererMiddleUpSkinTextures:Scale9Textures;
+		protected var insetItemRendererMiddleSelectedSkinTextures:Scale9Textures;
+		protected var insetItemRendererFirstUpSkinTextures:Scale9Textures;
+		protected var insetItemRendererFirstSelectedSkinTextures:Scale9Textures;
+		protected var insetItemRendererLastUpSkinTextures:Scale9Textures;
+		protected var insetItemRendererLastSelectedSkinTextures:Scale9Textures;
+		protected var insetItemRendererSingleUpSkinTextures:Scale9Textures;
+		protected var insetItemRendererSingleSelectedSkinTextures:Scale9Textures;
 		protected var calloutTopArrowSkinTexture:Texture;
 		protected var calloutRightArrowSkinTexture:Texture;
 		protected var calloutBottomArrowSkinTexture:Texture;
@@ -258,6 +271,14 @@ package feathers.themes
 
 			this.itemRendererUpSkinTextures = new Scale9Textures(this.atlas.getTexture("list-item-up-skin"), ITEM_RENDERER_SCALE9_GRID);
 			this.itemRendererSelectedSkinTextures = new Scale9Textures(this.atlas.getTexture("list-item-selected-skin"), ITEM_RENDERER_SCALE9_GRID);
+			this.insetItemRendererMiddleUpSkinTextures = new Scale9Textures(this.atlas.getTexture("list-inset-item-middle-up-skin"), INSET_ITEM_RENDERER_MIDDLE_SCALE9_GRID);
+			this.insetItemRendererMiddleSelectedSkinTextures = new Scale9Textures(this.atlas.getTexture("list-inset-item-middle-selected-skin"), INSET_ITEM_RENDERER_MIDDLE_SCALE9_GRID);
+			this.insetItemRendererFirstUpSkinTextures = new Scale9Textures(this.atlas.getTexture("list-inset-item-first-up-skin"), INSET_ITEM_RENDERER_FIRST_SCALE9_GRID);
+			this.insetItemRendererFirstSelectedSkinTextures = new Scale9Textures(this.atlas.getTexture("list-inset-item-first-selected-skin"), INSET_ITEM_RENDERER_FIRST_SCALE9_GRID);
+			this.insetItemRendererLastUpSkinTextures = new Scale9Textures(this.atlas.getTexture("list-inset-item-last-up-skin"), INSET_ITEM_RENDERER_LAST_SCALE9_GRID);
+			this.insetItemRendererLastSelectedSkinTextures = new Scale9Textures(this.atlas.getTexture("list-inset-item-last-selected-skin"), INSET_ITEM_RENDERER_LAST_SCALE9_GRID);
+			this.insetItemRendererSingleUpSkinTextures = new Scale9Textures(this.atlas.getTexture("list-inset-item-single-up-skin"), INSET_ITEM_RENDERER_SINGLE_SCALE9_GRID);
+			this.insetItemRendererSingleSelectedSkinTextures = new Scale9Textures(this.atlas.getTexture("list-inset-item-single-selected-skin"), INSET_ITEM_RENDERER_SINGLE_SCALE9_GRID);
 
 			this.calloutTopArrowSkinTexture = this.atlas.getTexture("callout-arrow-top-skin");
 			this.calloutRightArrowSkinTexture = this.atlas.getTexture("callout-arrow-right-skin");
@@ -292,7 +313,14 @@ package feathers.themes
 			this.setInitializerForClass(DefaultListItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(DefaultListItemRenderer, pickerListItemRendererInitializer, COMPONENT_NAME_PICKER_LIST_ITEM_RENDERER);
 			this.setInitializerForClass(DefaultGroupedListItemRenderer, itemRendererInitializer);
-			this.setInitializerForClass(DefaultGroupedListHeaderOrFooterRenderer, headerOrFooterRendererInitializer);
+			this.setInitializerForClass(DefaultGroupedListItemRenderer, insetMiddleItemRendererInitializer, GroupedList.ALTERNATE_CHILD_NAME_INSET_ITEM_RENDERER);
+			this.setInitializerForClass(DefaultGroupedListItemRenderer, insetFirstItemRendererInitializer, GroupedList.ALTERNATE_CHILD_NAME_INSET_FIRST_ITEM_RENDERER);
+			this.setInitializerForClass(DefaultGroupedListItemRenderer, insetLastItemRendererInitializer, GroupedList.ALTERNATE_CHILD_NAME_INSET_LAST_ITEM_RENDERER);
+			this.setInitializerForClass(DefaultGroupedListItemRenderer, insetSingleItemRendererInitializer, GroupedList.ALTERNATE_CHILD_NAME_INSET_SINGLE_ITEM_RENDERER);
+			this.setInitializerForClass(DefaultGroupedListHeaderOrFooterRenderer, headerRendererInitializer);
+			this.setInitializerForClass(DefaultGroupedListHeaderOrFooterRenderer, footerRendererInitializer, GroupedList.DEFAULT_CHILD_NAME_FOOTER_RENDERER);
+			this.setInitializerForClass(DefaultGroupedListHeaderOrFooterRenderer, insetHeaderRendererInitializer, GroupedList.ALTERNATE_CHILD_NAME_INSET_HEADER_RENDERER);
+			this.setInitializerForClass(DefaultGroupedListHeaderOrFooterRenderer, insetFooterRendererInitializer, GroupedList.ALTERNATE_CHILD_NAME_INSET_FOOTER_RENDERER);
 			this.setInitializerForClass(Radio, radioInitializer);
 			this.setInitializerForClass(Check, checkInitializer);
 			this.setInitializerForClass(Slider, sliderInitializer);
@@ -303,6 +331,7 @@ package feathers.themes
 			this.setInitializerForClass(Header, headerInitializer);
 			this.setInitializerForClass(Callout, calloutInitializer);
 			this.setInitializerForClass(Scroller, scrollerInitializer);
+			this.setInitializerForClass(GroupedList, groupedListInitializer, GroupedList.ALTERNATE_NAME_INSET_GROUPED_LIST);
 		}
 
 		protected function textRendererFactory():TextFieldTextRenderer
@@ -522,15 +551,103 @@ package feathers.themes
 			renderer.minTouchWidth = renderer.minTouchHeight = 88 * this.scale;
 		}
 
-		protected function headerOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
+		protected function insetItemRendererInitializer(renderer:DefaultGroupedListItemRenderer, defaultSkinTextures:Scale9Textures, selectedAndDownSkinTextures:Scale9Textures):void
+		{
+			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
+			skinSelector.defaultValue = defaultSkinTextures;
+			skinSelector.defaultSelectedValue = selectedAndDownSkinTextures;
+			skinSelector.setValueForState(selectedAndDownSkinTextures, Button.STATE_DOWN, false);
+			skinSelector.imageProperties =
+			{
+				width: 88 * this.scale,
+				height: 88 * this.scale,
+				textureScale: this.scale
+			};
+			renderer.stateToSkinFunction = skinSelector.updateValue;
+
+			renderer.defaultLabelProperties.textFormat = this.largeLightTextFormat;
+			renderer.downLabelProperties.textFormat = this.largeDarkTextFormat;
+			renderer.defaultSelectedLabelProperties.textFormat = this.largeDarkTextFormat;
+
+			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
+			renderer.paddingTop = renderer.paddingBottom = 8 * this.scale;
+			renderer.paddingLeft = renderer.paddingRight = 32 * this.scale;
+			renderer.gap = 20 * this.scale;
+			renderer.minWidth = renderer.minHeight = 88 * this.scale;
+			renderer.minTouchWidth = renderer.minTouchHeight = 88 * this.scale;
+		}
+
+		protected function insetMiddleItemRendererInitializer(renderer:DefaultGroupedListItemRenderer):void
+		{
+			this.insetItemRendererInitializer(renderer, this.insetItemRendererMiddleUpSkinTextures, this.insetItemRendererMiddleSelectedSkinTextures);
+		}
+
+		protected function insetFirstItemRendererInitializer(renderer:DefaultGroupedListItemRenderer):void
+		{
+			this.insetItemRendererInitializer(renderer, this.insetItemRendererFirstUpSkinTextures, this.insetItemRendererFirstSelectedSkinTextures);
+		}
+
+		protected function insetLastItemRendererInitializer(renderer:DefaultGroupedListItemRenderer):void
+		{
+			this.insetItemRendererInitializer(renderer, this.insetItemRendererLastUpSkinTextures, this.insetItemRendererLastSelectedSkinTextures);
+		}
+
+		protected function insetSingleItemRendererInitializer(renderer:DefaultGroupedListItemRenderer):void
+		{
+			this.insetItemRendererInitializer(renderer, this.insetItemRendererSingleUpSkinTextures, this.insetItemRendererSingleSelectedSkinTextures);
+		}
+
+		protected function headerRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
 		{
 			const defaultSkin:Quad = new Quad(44 * this.scale, 44 * this.scale, 0x242424);
 			renderer.backgroundSkin = defaultSkin;
 
+			renderer.horizontalAlign = DefaultGroupedListHeaderOrFooterRenderer.HORIZONTAL_ALIGN_LEFT;
 			renderer.contentLabelProperties.textFormat = this.uiLightTextFormat;
 			renderer.paddingTop = renderer.paddingBottom = 4 * this.scale;
 			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
 			renderer.minWidth = renderer.minHeight = 44 * this.scale;
+			renderer.minTouchWidth = renderer.minTouchHeight = 44 * this.scale;
+		}
+
+		protected function footerRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
+		{
+			const defaultSkin:Quad = new Quad(44 * this.scale, 44 * this.scale, 0x242424);
+			renderer.backgroundSkin = defaultSkin;
+
+			renderer.horizontalAlign = DefaultGroupedListHeaderOrFooterRenderer.HORIZONTAL_ALIGN_CENTER;
+			renderer.contentLabelProperties.textFormat = this.smallLightTextFormat;
+			renderer.paddingTop = renderer.paddingBottom = 4 * this.scale;
+			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
+			renderer.minWidth = renderer.minHeight = 44 * this.scale;
+			renderer.minTouchWidth = renderer.minTouchHeight = 44 * this.scale;
+		}
+
+		protected function insetHeaderRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
+		{
+			const defaultSkin:Quad = new Quad(66 * this.scale, 66 * this.scale, 0xff00ff);
+			defaultSkin.alpha = 0;
+			renderer.backgroundSkin = defaultSkin;
+
+			renderer.horizontalAlign = DefaultGroupedListHeaderOrFooterRenderer.HORIZONTAL_ALIGN_LEFT;
+			renderer.contentLabelProperties.textFormat = this.uiLightTextFormat;
+			renderer.paddingTop = renderer.paddingBottom = 4 * this.scale;
+			renderer.paddingLeft = renderer.paddingRight = 32 * this.scale;
+			renderer.minWidth = renderer.minHeight = 66 * this.scale;
+			renderer.minTouchWidth = renderer.minTouchHeight = 44 * this.scale;
+		}
+
+		protected function insetFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
+		{
+			const defaultSkin:Quad = new Quad(66 * this.scale, 66 * this.scale, 0xff00ff);
+			defaultSkin.alpha = 0;
+			renderer.backgroundSkin = defaultSkin;
+
+			renderer.horizontalAlign = DefaultGroupedListHeaderOrFooterRenderer.HORIZONTAL_ALIGN_CENTER;
+			renderer.contentLabelProperties.textFormat = this.smallLightTextFormat;
+			renderer.paddingTop = renderer.paddingBottom = 4 * this.scale;
+			renderer.paddingLeft = renderer.paddingRight = 32 * this.scale;
+			renderer.minWidth = renderer.minHeight = 66 * this.scale;
 			renderer.minTouchWidth = renderer.minTouchHeight = 44 * this.scale;
 		}
 
@@ -733,6 +850,25 @@ package feathers.themes
 		{
 			scroller.verticalScrollBarFactory = this.verticalScrollBarFactory;
 			scroller.horizontalScrollBarFactory = this.horizontalScrollBarFactory;
+		}
+
+		protected function groupedListInitializer(list:GroupedList):void
+		{
+			list.itemRendererName = GroupedList.ALTERNATE_CHILD_NAME_INSET_ITEM_RENDERER;
+			list.firstItemRendererName = GroupedList.ALTERNATE_CHILD_NAME_INSET_FIRST_ITEM_RENDERER;
+			list.lastItemRendererName = GroupedList.ALTERNATE_CHILD_NAME_INSET_LAST_ITEM_RENDERER;
+			list.singleItemRendererName = GroupedList.ALTERNATE_CHILD_NAME_INSET_SINGLE_ITEM_RENDERER;
+			list.headerRendererName = GroupedList.ALTERNATE_CHILD_NAME_INSET_HEADER_RENDERER;
+			list.footerRendererName = GroupedList.ALTERNATE_CHILD_NAME_INSET_FOOTER_RENDERER;
+
+			const layout:VerticalLayout = new VerticalLayout();
+			layout.useVirtualLayout = true;
+			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
+				layout.paddingLeft = 18 * this.scale;
+			layout.gap = 0;
+			layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
+			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_TOP;
+			list.layout = layout;
 		}
 
 		protected function stage_resizeHandler(event:ResizeEvent):void
