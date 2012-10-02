@@ -513,6 +513,9 @@ package feathers.themes
 			};
 			renderer.stateToSkinFunction = skinSelector.updateValue;
 
+			renderer.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			renderer.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
+
 			renderer.paddingTop = renderer.paddingBottom = 11 * this.scale;
 			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
@@ -526,6 +529,8 @@ package feathers.themes
 			backgroundSkin.width = 44 * this.scale;
 			backgroundSkin.height = 44 * this.scale;
 			renderer.backgroundSkin = backgroundSkin;
+
+			renderer.contentLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 
 			renderer.paddingTop = renderer.paddingBottom = 6 * this.scale;
 			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
