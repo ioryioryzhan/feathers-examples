@@ -9,9 +9,9 @@ package
 	import flash.events.Event;
 	import flash.geom.Rectangle;
 	import flash.system.Capabilities;
-	
+
 	import feathers.examples.componentsExplorer.Main;
-	
+
 	import starling.core.Starling;
 	import starling.utils.HAlign;
 	import starling.utils.VAlign;
@@ -30,9 +30,9 @@ package
 			this.mouseEnabled = this.mouseChildren = false;
 			this.loaderInfo.addEventListener(Event.COMPLETE, loaderInfo_completeHandler);
 		}
-		
+
 		private var _starling:Starling;
-		
+
 		private function loaderInfo_completeHandler(event:Event):void
 		{
 			Starling.handleLostContext = true;
@@ -42,11 +42,11 @@ package
 			this._starling.showStats = true;
 			this._starling.showStatsAt(HAlign.LEFT, VAlign.BOTTOM);
 			this._starling.start();
-			
+
 			this.stage.addEventListener(Event.RESIZE, stage_resizeHandler, false, int.MAX_VALUE, true);
 			this.stage.addEventListener(Event.DEACTIVATE, stage_deactivateHandler, false, 0, true);
 		}
-		
+
 		private function stage_resizeHandler(event:Event):void
 		{
 			this._starling.stage.stageWidth = this.stage.stageWidth;

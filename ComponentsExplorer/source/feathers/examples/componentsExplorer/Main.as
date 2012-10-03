@@ -5,12 +5,14 @@ package feathers.examples.componentsExplorer
 	import feathers.controls.ScreenNavigator;
 	import feathers.controls.ScreenNavigatorItem;
 	import feathers.examples.componentsExplorer.data.ButtonSettings;
+	import feathers.examples.componentsExplorer.data.GroupedListSettings;
 	import feathers.examples.componentsExplorer.data.ListSettings;
 	import feathers.examples.componentsExplorer.data.SliderSettings;
 	import feathers.examples.componentsExplorer.screens.ButtonScreen;
 	import feathers.examples.componentsExplorer.screens.ButtonSettingsScreen;
 	import feathers.examples.componentsExplorer.screens.CalloutScreen;
 	import feathers.examples.componentsExplorer.screens.GroupedListScreen;
+	import feathers.examples.componentsExplorer.screens.GroupedListSettingsScreen;
 	import feathers.examples.componentsExplorer.screens.ListScreen;
 	import feathers.examples.componentsExplorer.screens.ListSettingsScreen;
 	import feathers.examples.componentsExplorer.screens.MainMenuScreen;
@@ -35,6 +37,7 @@ package feathers.examples.componentsExplorer
 		private static const BUTTON_SETTINGS:String = "buttonSettings";
 		private static const CALLOUT:String = "callout";
 		private static const GROUPED_LIST:String = "groupedList";
+		private static const GROUPED_LIST_SETTINGS:String = "groupedListSettings";
 		private static const LIST:String = "list";
 		private static const LIST_SETTINGS:String = "listSettings";
 		private static const PICKER_LIST:String = "pickerList";
@@ -129,9 +132,22 @@ package feathers.examples.componentsExplorer
 				onBack: MAIN_MENU
 			}));
 
+			const groupedListSettings:GroupedListSettings = new GroupedListSettings();
 			this._navigator.addScreen(GROUPED_LIST, new ScreenNavigatorItem(GroupedListScreen,
 			{
-				onBack: MAIN_MENU
+				onBack: MAIN_MENU,
+				onSettings: GROUPED_LIST_SETTINGS
+			},
+			{
+				settings: groupedListSettings
+			}));
+
+			this._navigator.addScreen(GROUPED_LIST_SETTINGS, new ScreenNavigatorItem(GroupedListSettingsScreen,
+			{
+				onBack: GROUPED_LIST
+			},
+			{
+				settings: groupedListSettings
 			}));
 
 			const listSettings:ListSettings = new ListSettings();
