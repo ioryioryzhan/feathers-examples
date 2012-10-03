@@ -605,14 +605,14 @@ package feathers.themes
 			};
 			renderer.stateToSkinFunction = skinSelector.updateValue;
 
+			renderer.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+
 			renderer.paddingTop = renderer.paddingBottom = 11 * this.scale;
 			renderer.paddingLeft = renderer.paddingRight = 20 * this.scale;
 			renderer.minWidth = 88 * this.scale;
 			renderer.minHeight = 88 * this.scale;
 
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
-
-			renderer.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 		}
 
 		protected function headerOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
@@ -621,6 +621,8 @@ package feathers.themes
 			backgroundSkin.width = 44 * this.scale;
 			backgroundSkin.height = 44 * this.scale;
 			renderer.backgroundSkin = backgroundSkin;
+
+			renderer.contentLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 
 			renderer.paddingTop = renderer.paddingBottom = 9 * this.scale;
 			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
