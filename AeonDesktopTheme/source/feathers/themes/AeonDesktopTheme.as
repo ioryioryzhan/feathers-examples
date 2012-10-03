@@ -52,6 +52,7 @@ package feathers.themes
 	import feathers.core.FeathersControl;
 	import feathers.display.Scale3Image;
 	import feathers.display.Scale9Image;
+	import feathers.layout.VerticalLayout;
 	import feathers.skins.IFeathersTheme;
 	import feathers.system.DeviceCapabilities;
 	import feathers.text.BitmapFontTextFormat;
@@ -616,11 +617,23 @@ package feathers.themes
 
 			scroller.interactionMode = Scroller.INTERACTION_MODE_MOUSE;
 			scroller.scrollBarDisplayMode = Scroller.SCROLL_BAR_DISPLAY_MODE_FIXED;
+
+			scroller.verticalScrollPolicy = Scroller.SCROLL_POLICY_AUTO;
+			scroller.horizontalScrollPolicy = Scroller.SCROLL_POLICY_AUTO;
 		}
 
 		protected function listInitializer(list:List):void
 		{
 			list.backgroundSkin = new Scale9Image(simpleBorderBackgroundSkinTextures);
+
+			const layout:VerticalLayout = new VerticalLayout();
+			layout.useVirtualLayout = true;
+			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
+				layout.paddingLeft = 0;
+			layout.gap = 0;
+			layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
+			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_TOP;
+			list.layout = layout;
 
 			list.paddingTop = list.paddingRight = list.paddingBottom =
 				list.paddingLeft = 1;
@@ -629,6 +642,15 @@ package feathers.themes
 		protected function groupedListInitializer(list:GroupedList):void
 		{
 			list.backgroundSkin = new Scale9Image(simpleBorderBackgroundSkinTextures);
+
+			const layout:VerticalLayout = new VerticalLayout();
+			layout.useVirtualLayout = true;
+			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
+				layout.paddingLeft = 0;
+			layout.gap = 0;
+			layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
+			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_TOP;
+			list.layout = layout;
 
 			list.paddingTop = list.paddingRight = list.paddingBottom =
 				list.paddingLeft = 1;
@@ -666,6 +688,8 @@ package feathers.themes
 		{
 			renderer.backgroundSkin = new Scale9Image(groupedListHeaderBackgroundSkinTextures);
 			renderer.backgroundSkin.height = 18;
+
+			renderer.contentLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
 
 			renderer.paddingTop = renderer.paddingBottom = 2;
 			renderer.paddingRight = renderer.paddingLeft = 6;
