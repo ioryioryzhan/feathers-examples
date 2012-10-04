@@ -106,8 +106,8 @@ package feathers.examples.componentsExplorer.screens
 			}
 			this._list.dataProvider = new HierarchicalCollection(groups);
 			this._list.typicalItem = { text: "Item 1000" };
-			this._list.typicalHeader = { text: "Group 10" };
-			this._list.typicalFooter = { text: "Footer 10" };
+			this._list.typicalHeader = "Group 10";
+			this._list.typicalFooter = "Footer 10";
 			this._list.isSelectable = this.settings.isSelectable;
 			this._list.scrollerProperties.hasElasticEdges = this.settings.hasElasticEdges;
 			this._list.itemRendererProperties.labelField = "text";
