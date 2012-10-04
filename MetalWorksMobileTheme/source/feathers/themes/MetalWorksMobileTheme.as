@@ -150,6 +150,7 @@ package feathers.themes
 		protected var primaryBackgroundTexture:Texture;
 		protected var backgroundSkinTextures:Scale9Textures;
 		protected var backgroundDisabledSkinTextures:Scale9Textures;
+		protected var backgroundFocusedSkinTextures:Scale9Textures;
 		protected var buttonUpSkinTextures:Scale9Textures;
 		protected var buttonDownSkinTextures:Scale9Textures;
 		protected var buttonDisabledSkinTextures:Scale9Textures;
@@ -239,9 +240,11 @@ package feathers.themes
 			const backgroundSkinTexture:Texture = this.atlas.getTexture("background-skin");
 			const backgroundDownSkinTexture:Texture = this.atlas.getTexture("background-down-skin");
 			const backgroundDisabledSkinTexture:Texture = this.atlas.getTexture("background-disabled-skin");
+			const backgroundFocusedSkinTexture:Texture = this.atlas.getTexture("background-focused-skin");
 
 			this.backgroundSkinTextures = new Scale9Textures(backgroundSkinTexture, DEFAULT_SCALE9_GRID);
 			this.backgroundDisabledSkinTextures = new Scale9Textures(backgroundDisabledSkinTexture, DEFAULT_SCALE9_GRID);
+			this.backgroundFocusedSkinTextures = new Scale9Textures(backgroundFocusedSkinTexture, DEFAULT_SCALE9_GRID);
 
 			this.buttonUpSkinTextures = new Scale9Textures(this.atlas.getTexture("button-up-skin"), BUTTON_SCALE9_GRID);
 			this.buttonDownSkinTextures = new Scale9Textures(this.atlas.getTexture("button-down-skin"), BUTTON_SCALE9_GRID);
@@ -734,6 +737,11 @@ package feathers.themes
 			backgroundDisabledSkin.width = 264 * this.scale;
 			backgroundDisabledSkin.height = 60 * this.scale;
 			input.backgroundDisabledSkin = backgroundDisabledSkin;
+
+			const backgroundFocusedSkin:Scale9Image = new Scale9Image(this.backgroundFocusedSkinTextures, this.scale);
+			backgroundFocusedSkin.width = 264 * this.scale;
+			backgroundFocusedSkin.height = 60 * this.scale;
+			input.backgroundFocusedSkin = backgroundFocusedSkin;
 
 			input.minWidth = input.minHeight = 60 * this.scale;
 			input.minTouchWidth = input.minTouchHeight = 88 * this.scale;
