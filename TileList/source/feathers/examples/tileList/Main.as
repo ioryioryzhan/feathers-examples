@@ -42,6 +42,7 @@ package feathers.examples.tileList
 
 		protected function layout():void
 		{
+			this._pageIndicator.width = this.stage.stageWidth;
 			this._pageIndicator.validate();
 			this._pageIndicator.y = this.stage.stageHeight - this._pageIndicator.height;
 
@@ -57,9 +58,7 @@ package feathers.examples.tileList
 			this._list.height = this._pageIndicator.y;
 			this._list.validate();
 
-			this._pageIndicator.maximum = Math.ceil(this._list.maxHorizontalScrollPosition / this._list.width) + 1;
-			this._pageIndicator.validate();
-			this._pageIndicator.x = (this.stage.stageWidth - this._pageIndicator.width) / 2;
+			this._pageIndicator.maximum = Math.ceil(this._list.maxHorizontalScrollPosition / this._list.width);
 		}
 
 		protected function addedToStageHandler(event:Event):void
@@ -118,12 +117,6 @@ package feathers.examples.tileList
 
 			const normalSymbolTexture:Texture = this._iconAtlas.getTexture("normal-page-symbol");
 			const selectedSymbolTexture:Texture = this._iconAtlas.getTexture("selected-page-symbol");
-
-			const pageIndicatorLayout:HorizontalLayout = new HorizontalLayout();
-			pageIndicatorLayout.gap = 3;
-			pageIndicatorLayout.paddingTop = pageIndicatorLayout.paddingRight = pageIndicatorLayout.paddingBottom =
-				pageIndicatorLayout.paddingLeft = 6;
-
 			this._pageIndicator = new PageIndicator();
 			this._pageIndicator.normalSymbolFactory = function():Image
 			{
@@ -133,8 +126,12 @@ package feathers.examples.tileList
 			{
 				return new Image(selectedSymbolTexture);
 			}
-			this._pageIndicator.layout = pageIndicatorLayout;
+			this._pageIndicator.direction = PageIndicator.DIRECTION_HORIZONTAL;
 			this._pageIndicator.maximum = 1;
+			this._pageIndicator.gap = 3;
+			this._pageIndicator.paddingTop = this._pageIndicator.paddingRight = this._pageIndicator.paddingBottom =
+				this._pageIndicator.paddingLeft = 6;
+			this._pageIndicator.onChange.add(pageIndicator_onChange);
 			this.addChild(this._pageIndicator);
 
 			this.layout();
@@ -153,6 +150,11 @@ package feathers.examples.tileList
 		protected function list_onScroll(list:List):void
 		{
 			this._pageIndicator.selectedIndex = list.horizontalPageIndex;
+		}
+
+		protected function pageIndicator_onChange(pageIndicator:PageIndicator):void
+		{
+			this._list.scrollToPageIndex(this._pageIndicator.selectedIndex, 0, 0.25);
 		}
 
 		protected function stage_resizeHandler(event:ResizeEvent):void
