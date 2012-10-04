@@ -60,6 +60,8 @@ package feathers.examples.componentsExplorer.screens
 			this._button.horizontalAlign = this.settings.horizontalAlign;
 			this._button.verticalAlign = this.settings.verticalAlign;
 			this._button.iconPosition = this.settings.iconPosition;
+			this._button.iconOffsetX = this.settings.iconOffsetX;
+			this._button.iconOffsetY = this.settings.iconOffsetY;
 			this._button.width = 264 * this.dpiScale;
 			this._button.height = 264 * this.dpiScale;
 			this.addChild(this._button);

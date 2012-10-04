@@ -5,6 +5,7 @@ package feathers.examples.componentsExplorer.screens
 	import feathers.controls.PickerList;
 	import feathers.controls.Screen;
 	import feathers.controls.Header;
+	import feathers.controls.Slider;
 	import feathers.controls.ToggleSwitch;
 	import feathers.data.ListCollection;
 	import feathers.examples.componentsExplorer.data.ButtonSettings;
@@ -30,6 +31,8 @@ package feathers.examples.componentsExplorer.screens
 		private var _verticalAlignPicker:PickerList;
 		private var _iconToggle:ToggleSwitch;
 		private var _iconPositionPicker:PickerList;
+		private var _iconOffsetXSlider:Slider;
+		private var _iconOffsetYSlider:Slider;
 
 		private var _onBack:Signal = new Signal(ButtonSettingsScreen);
 
@@ -81,11 +84,27 @@ package feathers.examples.componentsExplorer.screens
 				Button.ICON_POSITION_RIGHT_BASELINE,
 				Button.ICON_POSITION_BOTTOM,
 				Button.ICON_POSITION_LEFT,
-				Button.ICON_POSITION_LEFT_BASELINE
+				Button.ICON_POSITION_LEFT_BASELINE,
+				Button.ICON_POSITION_MANUAL
 			]);
 			this._iconPositionPicker.listProperties.typicalItem = Button.ICON_POSITION_RIGHT_BASELINE;
 			this._iconPositionPicker.selectedItem = this.settings.iconPosition;
 			this._iconPositionPicker.onChange.add(iconPositionPicker_onChange);
+
+			this._iconOffsetXSlider = new Slider();
+			this._iconOffsetXSlider.minimum = 0;
+			//there is no actual limit. this is aribitrary.
+			this._iconOffsetXSlider.maximum = 50;
+			this._iconOffsetXSlider.step = 1;
+			this._iconOffsetXSlider.value = this.settings.iconOffsetX;
+			this._iconOffsetXSlider.onChange.add(iconOffsetXSlider_onChange);
+
+			this._iconOffsetYSlider = new Slider();
+			this._iconOffsetYSlider.minimum = 0;
+			this._iconOffsetYSlider.maximum = 50;
+			this._iconOffsetYSlider.step = 1;
+			this._iconOffsetYSlider.value = this.settings.iconOffsetY;
+			this._iconOffsetYSlider.onChange.add(iconOffsetYSlider_onChange);
 
 			this._list = new List();
 			this._list.isSelectable = false;
@@ -95,7 +114,9 @@ package feathers.examples.componentsExplorer.screens
 				{ label: "horizontalAlign", accessory: this._horizontalAlignPicker },
 				{ label: "verticalAlign", accessory: this._verticalAlignPicker },
 				{ label: "icon", accessory: this._iconToggle },
-				{ label: "iconPosition", accessory: this._iconPositionPicker }
+				{ label: "iconPosition", accessory: this._iconPositionPicker },
+				{ label: "iconOffsetX", accessory: this._iconOffsetXSlider },
+				{ label: "iconOffsetY", accessory: this._iconOffsetYSlider }
 			]);
 			this.addChild(this._list);
 
@@ -157,6 +178,16 @@ package feathers.examples.componentsExplorer.screens
 		private function iconPositionPicker_onChange(picker:PickerList):void
 		{
 			this.settings.iconPosition = this._iconPositionPicker.selectedItem as String;
+		}
+
+		private function iconOffsetXSlider_onChange(slider:Slider):void
+		{
+			this.settings.iconOffsetX = this._iconOffsetXSlider.value;
+		}
+
+		private function iconOffsetYSlider_onChange(slider:Slider):void
+		{
+			this.settings.iconOffsetY = this._iconOffsetYSlider.value;
 		}
 	}
 }

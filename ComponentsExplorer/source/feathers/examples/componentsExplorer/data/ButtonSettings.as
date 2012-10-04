@@ -13,5 +13,7 @@ package feathers.examples.componentsExplorer.data
 		public var verticalAlign:String = Button.VERTICAL_ALIGN_MIDDLE;
 		public var hasIcon:Boolean = true;
 		public var iconPosition:String = Button.ICON_POSITION_LEFT;
+		public var iconOffsetX:Number = 0;
+		public var iconOffsetY:Number = 0;
 	}
 }
