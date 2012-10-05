@@ -60,6 +60,7 @@ package feathers.themes
 	import feathers.skins.IFeathersTheme;
 	import feathers.skins.ImageStateValueSelector;
 	import feathers.skins.Scale9ImageStateValueSelector;
+	import feathers.skins.StandardIcons;
 	import feathers.system.DeviceCapabilities;
 	import feathers.textures.Scale3Textures;
 	import feathers.textures.Scale9Textures;
@@ -319,6 +320,8 @@ package feathers.themes
 			this.horizontalScrollBarThumbSkinTextures = new Scale3Textures(this.atlas.getTexture("horizontal-scroll-bar-thumb-skin"), SCROLL_BAR_THUMB_REGION1, SCROLL_BAR_THUMB_REGION2, Scale3Textures.DIRECTION_HORIZONTAL);
 			this.verticalScrollBarThumbSkinTextures = new Scale3Textures(this.atlas.getTexture("vertical-scroll-bar-thumb-skin"), SCROLL_BAR_THUMB_REGION1, SCROLL_BAR_THUMB_REGION2, Scale3Textures.DIRECTION_VERTICAL);
 
+			StandardIcons.listDrillDownAccessoryTexture = this.atlas.getTexture("list-accessory-drill-down-icon");
+
 			if(root.stage)
 			{
 				this.initializeRoot();
@@ -381,6 +384,13 @@ package feathers.themes
 		protected function textRendererFactory():TextFieldTextRenderer
 		{
 			return new TextFieldTextRenderer();
+		}
+
+		protected function imageFactory(texture:Texture):Image
+		{
+			const image:Image = new Image(texture);
+			image.scaleX = image.scaleY = this.scale;
+			return image;
 		}
 
 		protected function horizontalScrollBarFactory():SimpleScrollBar
@@ -589,10 +599,14 @@ package feathers.themes
 
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			renderer.paddingTop = renderer.paddingBottom = 8 * this.scale;
-			renderer.paddingLeft = renderer.paddingRight = 32 * this.scale;
+			renderer.paddingLeft = 32 * this.scale;
+			renderer.paddingRight = 24 * this.scale;
 			renderer.gap = 20 * this.scale;
 			renderer.minWidth = renderer.minHeight = 88 * this.scale;
 			renderer.minTouchWidth = renderer.minTouchHeight = 88 * this.scale;
+
+			renderer.accessoryImageFactory = this.imageFactory;
+			renderer.iconImageFactory = this.imageFactory;
 		}
 
 		protected function pickerListItemRendererInitializer(renderer:BaseDefaultItemRenderer):void
@@ -622,7 +636,8 @@ package feathers.themes
 			renderer.itemHasIcon = false;
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			renderer.paddingTop = renderer.paddingBottom = 8 * this.scale;
-			renderer.paddingLeft = renderer.paddingRight = 32 * this.scale;
+			renderer.paddingLeft = 32 * this.scale;
+			renderer.paddingRight = 24 * this.scale;
 			renderer.gap = 12 * this.scale;
 			renderer.minWidth = renderer.minHeight = 88 * this.scale;
 			renderer.minTouchWidth = renderer.minTouchHeight = 88 * this.scale;
@@ -648,7 +663,8 @@ package feathers.themes
 
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			renderer.paddingTop = renderer.paddingBottom = 8 * this.scale;
-			renderer.paddingLeft = renderer.paddingRight = 32 * this.scale;
+			renderer.paddingLeft = 32 * this.scale;
+			renderer.paddingRight = 24 * this.scale;
 			renderer.gap = 20 * this.scale;
 			renderer.minWidth = renderer.minHeight = 88 * this.scale;
 			renderer.minTouchWidth = renderer.minTouchHeight = 88 * this.scale;
