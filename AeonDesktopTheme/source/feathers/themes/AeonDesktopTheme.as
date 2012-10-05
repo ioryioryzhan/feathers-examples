@@ -31,6 +31,7 @@ package feathers.themes
 	import feathers.controls.Header;
 	import feathers.controls.Label;
 	import feathers.controls.List;
+	import feathers.controls.PageIndicator;
 	import feathers.controls.PickerList;
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
@@ -192,6 +193,9 @@ package feathers.themes
 		protected var radioSelectedDownIconTexture:Texture;
 		protected var radioSelectedDisabledIconTexture:Texture;
 
+		protected var pageIndicatorNormalSkinTexture:Texture;
+		protected var pageIndicatorSelectedSkinTexture:Texture;
+
 		protected var pickerListUpIconTexture:Texture;
 		protected var pickerListHoverIconTexture:Texture;
 		protected var pickerListDownIconTexture:Texture;
@@ -285,6 +289,9 @@ package feathers.themes
 			this.radioSelectedDownIconTexture = atlas.getTexture("radio-selected-down-icon");
 			this.radioSelectedDisabledIconTexture = atlas.getTexture("radio-selected-disabled-icon");
 
+			this.pageIndicatorNormalSkinTexture = this.atlas.getTexture("page-indicator-normal-skin");
+			this.pageIndicatorSelectedSkinTexture = this.atlas.getTexture("page-indicator-selected-skin");
+
 			this.pickerListUpIconTexture = atlas.getTexture("picker-list-up-icon");
 			this.pickerListHoverIconTexture = atlas.getTexture("picker-list-hover-icon");
 			this.pickerListDownIconTexture = atlas.getTexture("picker-list-down-icon");
@@ -346,6 +353,7 @@ package feathers.themes
 			this.setInitializerForClass(SimpleScrollBar, simpleScrollBarInitializer);
 			this.setInitializerForClass(ScrollBar, scrollBarInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
+			this.setInitializerForClass(PageIndicator, pageIndicatorInitializer);
 			this.setInitializerForClass(ProgressBar, progressBarInitializer);
 			this.setInitializerForClass(Scroller, scrollerInitializer);
 			this.setInitializerForClass(List, listInitializer);
@@ -357,6 +365,16 @@ package feathers.themes
 			this.setInitializerForClass(DefaultGroupedListHeaderOrFooterRenderer, defaultHeaderOrFooterRendererInitializer);
 			this.setInitializerForClass(Header, headerInitializer);
 			this.setInitializerForClass(Callout, calloutInitializer);
+		}
+
+		protected function pageIndicatorNormalSymbolFactory():Image
+		{
+			return new Image(this.pageIndicatorNormalSkinTexture);
+		}
+
+		protected function pageIndicatorSelectedSymbolFactory():Image
+		{
+			return new Image(this.pageIndicatorSelectedSkinTexture);
 		}
 
 		protected function nothingInitializer(target:FeathersControl):void
@@ -597,6 +615,16 @@ package feathers.themes
 
 			input.backgroundSkin = new Scale9Image(textInputBackgroundSkinTextures);
 			input.backgroundDisabledSkin = new Scale9Image(textInputBackgroundDisabledSkinTextures);
+		}
+
+		protected function pageIndicatorInitializer(pageIndicator:PageIndicator):void
+		{
+			pageIndicator.normalSymbolFactory = this.pageIndicatorNormalSymbolFactory;
+			pageIndicator.selectedSymbolFactory = this.pageIndicatorSelectedSymbolFactory;
+			pageIndicator.gap = 12;
+			pageIndicator.paddingTop = pageIndicator.paddingRight = pageIndicator.paddingBottom =
+				pageIndicator.paddingLeft = 12;
+			pageIndicator.minTouchWidth = pageIndicator.minTouchHeight = 12;
 		}
 
 		protected function progressBarInitializer(progress:ProgressBar):void
