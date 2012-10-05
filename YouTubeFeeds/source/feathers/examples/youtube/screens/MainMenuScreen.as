@@ -5,9 +5,12 @@ package feathers.examples.youtube.screens
 	import feathers.controls.Screen;
 	import feathers.data.ListCollection;
 	import feathers.examples.youtube.models.VideoFeed;
+	import feathers.skins.StandardIcons;
 
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
+
+	import starling.textures.Texture;
 
 	public class MainMenuScreen extends Screen
 	{
@@ -41,6 +44,7 @@ package feathers.examples.youtube.screens
 				new VideoFeed("Trending Videos", "http://gdata.youtube.com/feeds/api/standardfeeds/on_the_web?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']"),
 			]);
 			this._list.itemRendererProperties.labelField = "name";
+			this._list.itemRendererProperties.accessoryTextureFunction = accessoryTextureFunction;
 			this._list.onChange.add(list_onChange);
 			this.addChild(this._list);
 
@@ -57,6 +61,11 @@ package feathers.examples.youtube.screens
 			this._list.y = this._header.height;
 			this._list.width = this.actualWidth;
 			this._list.height = this.actualHeight - this._list.y;
+		}
+
+		private function accessoryTextureFunction(item:Object):Texture
+		{
+			return StandardIcons.listDrillDownAccessoryTexture;
 		}
 
 		private function list_onChange(list:List):void

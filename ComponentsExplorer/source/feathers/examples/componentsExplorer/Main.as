@@ -27,7 +27,10 @@ package feathers.examples.componentsExplorer
 	import feathers.examples.componentsExplorer.screens.TextInputScreen;
 	import feathers.examples.componentsExplorer.screens.ToggleScreen;
 	import feathers.motion.transitions.ScreenSlidingStackTransitionManager;
+	import feathers.themes.AeonDesktopTheme;
+	import feathers.themes.AzureMobileTheme;
 	import feathers.themes.MetalWorksMobileTheme;
+	import feathers.themes.MinimalMobileTheme;
 
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -59,13 +62,13 @@ package feathers.examples.componentsExplorer
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 		
-		private var _theme:MetalWorksMobileTheme;
+		private var _theme:AeonDesktopTheme;
 		private var _navigator:ScreenNavigator;
 		private var _transitionManager:ScreenSlidingStackTransitionManager;
 		
 		private function addedToStageHandler(event:Event):void
 		{
-			this._theme = new MetalWorksMobileTheme(this.stage);
+			this._theme = new AeonDesktopTheme(this.stage);
 			
 			this._navigator = new ScreenNavigator();
 			this.addChild(this._navigator);

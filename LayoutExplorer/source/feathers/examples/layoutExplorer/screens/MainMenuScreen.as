@@ -4,6 +4,7 @@ package feathers.examples.layoutExplorer.screens
 	import feathers.controls.Screen;
 	import feathers.controls.Header;
 	import feathers.data.ListCollection;
+	import feathers.skins.StandardIcons;
 
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
@@ -51,12 +52,13 @@ package feathers.examples.layoutExplorer.screens
 			this._list = new List();
 			this._list.dataProvider = new ListCollection(
 			[
-				{ text: "Horizontal", signal: this._onHorizontal },
-				{ text: "Vertical", signal: this._onVertical },
-				{ text: "Tiled Rows", signal: this._onTiledRows },
-				{ text: "Tiled Columns", signal: this._onTiledColumns },
+				{ text: "Horizontal", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onHorizontal },
+				{ text: "Vertical", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onVertical },
+				{ text: "Tiled Rows", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onTiledRows },
+				{ text: "Tiled Columns", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onTiledColumns },
 			]);
 			this._list.itemRendererProperties.labelField = "text";
+			this._list.itemRendererProperties.accessoryTextureField = "accessoryTexture";
 			this._list.onChange.add(list_onChange);
 			this.addChild(this._list);
 

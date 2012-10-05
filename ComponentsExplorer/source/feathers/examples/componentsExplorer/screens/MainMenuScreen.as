@@ -4,6 +4,7 @@ package feathers.examples.componentsExplorer.screens
 	import feathers.controls.List;
 	import feathers.controls.Screen;
 	import feathers.data.ListCollection;
+	import feathers.skins.StandardIcons;
 
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
@@ -118,21 +119,22 @@ package feathers.examples.componentsExplorer.screens
 			this._list = new List();
 			this._list.dataProvider = new ListCollection(
 			[
-				{ label: "Button", signal: this._onButton },
-				{ label: "Button Group", signal: this._onButtonGroup },
-				{ label: "Callout", signal: this._onCallout },
-				{ label: "Grouped List", signal: this._onGroupedList },
-				{ label: "List", signal: this._onList },
-				{ label: "Page Indicator", signal: this._onPageIndicator },
-				{ label: "Picker List", signal: this._onPickerList },
-				{ label: "Progress Bar", signal: this._onProgressBar },
-				{ label: "Scroll Text", signal: this._onScrollText },
-				{ label: "Slider", signal: this._onSlider },
-				{ label: "Tab Bar", signal: this._onTabBar },
-				{ label: "Text Input", signal: this._onTextInput },
-				{ label: "Toggles", signal: this._onToggles },
+				{ label: "Button", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onButton },
+				{ label: "Button Group", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onButtonGroup },
+				{ label: "Callout", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onCallout },
+				{ label: "Grouped List", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onGroupedList },
+				{ label: "List", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onList },
+				{ label: "Page Indicator", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onPageIndicator },
+				{ label: "Picker List", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onPickerList },
+				{ label: "Progress Bar", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onProgressBar },
+				{ label: "Scroll Text", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onScrollText },
+				{ label: "Slider", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onSlider },
+				{ label: "Tab Bar", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onTabBar },
+				{ label: "Text Input", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onTextInput },
+				{ label: "Toggles", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onToggles },
 			]);
 			this._list.itemRendererProperties.labelField = "label";
+			this._list.itemRendererProperties.accessoryTextureField = "accessoryTexture";
 			this._list.onChange.add(list_onChange);
 			this.addChild(this._list);
 		}
