@@ -1,32 +1,24 @@
 package feathers.examples.componentsExplorer.screens
 {
 	import feathers.controls.Button;
+	import feathers.controls.List;
 	import feathers.controls.Screen;
 	import feathers.controls.Header;
+	import feathers.data.ListCollection;
+
 	import org.osflash.signals.ISignal;
+	import org.osflash.signals.Signal;
 	import org.osflash.signals.Signal;
 
 	public class MainMenuScreen extends Screen
 	{
-		private static const LABELS:Vector.<String> = new <String>
-		[
-			"Button",
-			"Callout",
-			"Grouped List",
-			"List",
-			"Picker List",
-			"Progress Bar",
-			"Scroll Text",
-			"Slider",
-			"Tab Bar",
-			"Text Input",
-			"Toggles",
-		];
-		
 		public function MainMenuScreen()
 		{
 			super();
 		}
+
+		private var _header:Header;
+		private var _list:List;
 		
 		private var _onButton:Signal = new Signal(MainMenuScreen);
 		
@@ -76,6 +68,13 @@ package feathers.examples.componentsExplorer.screens
 		{
 			return this._onList;
 		}
+
+		private var _onPageIndicator:Signal = new Signal(MainMenuScreen);
+
+		public function get onPageIndicator():ISignal
+		{
+			return this._onPageIndicator;
+		}
 		
 		private var _onPickerList:Signal = new Signal(MainMenuScreen);
 		
@@ -105,32 +104,31 @@ package feathers.examples.componentsExplorer.screens
 			return this._onProgressBar;
 		}
 		
-		private var _header:Header;
-		private var _buttons:Vector.<Button> = new <Button>[];
-		private var _buttonMaxWidth:Number = 0;
-		
 		override protected function initialize():void
 		{
-			const signals:Vector.<Signal> = new <Signal>[this._onButton, this._onCallout, this._onGroupedList, this._onList,
-				this._onPickerList, this._onProgressBar, this._onScrollText, this._onSlider, this._onTabBar, this._onTextInput,
-				this._onToggles];
-			const buttonCount:int = LABELS.length;
-			for(var i:int = 0; i < buttonCount; i++)
-			{
-				var label:String = LABELS[i];
-				var signal:Signal = signals[i];
-				var button:Button = new Button();
-				button.label = label;
-				this.triggerSignalOnButtonRelease(button, signal);
-				this.addChild(button);
-				this._buttons.push(button);
-				button.validate();
-				this._buttonMaxWidth = Math.max(this._buttonMaxWidth, button.width);
-			}
-
 			this._header = new Header();
 			this._header.title = "Feathers";
 			this.addChild(this._header);
+
+			this._list = new List();
+			this._list.dataProvider = new ListCollection(
+			[
+				{ label: "Button", signal: this._onButton },
+				{ label: "Callout", signal: this._onCallout },
+				{ label: "Grouped List", signal: this._onGroupedList },
+				{ label: "List", signal: this._onList },
+				{ label: "Page Indicator", signal: this._onPageIndicator },
+				{ label: "Picker List", signal: this._onPickerList },
+				{ label: "Progress Bar", signal: this._onProgressBar },
+				{ label: "Scroll Text", signal: this._onScrollText },
+				{ label: "Slider", signal: this._onSlider },
+				{ label: "Tab Bar", signal: this._onTabBar },
+				{ label: "Text Input", signal: this._onTextInput },
+				{ label: "Toggles", signal: this._onToggles },
+			]);
+			this._list.itemRendererProperties.labelField = "label";
+			this._list.onChange.add(list_onChange);
+			this.addChild(this._list);
 		}
 		
 		override protected function draw():void
@@ -138,49 +136,15 @@ package feathers.examples.componentsExplorer.screens
 			this._header.width = this.actualWidth;
 			this._header.validate();
 
-			const margin:Number = this._header.height * 0.25;
-			const spacingX:Number = this._header.height * 0.2;
-			const spacingY:Number = this._header.height * 0.2;
-
-			const contentMaxWidth:Number = this.actualWidth - 2 * margin;
-			const buttonCount:int = this._buttons.length;
-			var horizontalButtonCount:int = 1;
-			var horizontalButtonCombinedWidth:Number = this._buttonMaxWidth;
-			while((horizontalButtonCombinedWidth + this._buttonMaxWidth + spacingX) <= contentMaxWidth)
-			{
-				horizontalButtonCombinedWidth += this._buttonMaxWidth + spacingX;
-				horizontalButtonCount++;
-				if(horizontalButtonCount == buttonCount)
-				{
-					break;
-				}
-			}
-
-			const startX:Number = (this.actualWidth - horizontalButtonCombinedWidth) / 2;
-			var positionX:Number = startX;
-			var positionY:Number = this._header.y + this._header.height + spacingY;
-			for(var i:int = 0; i < buttonCount; i++)
-			{
-				var button:Button = this._buttons[i];
-				button.width = this._buttonMaxWidth;
-				button.x = positionX;
-				button.y = positionY;
-				positionX += this._buttonMaxWidth + spacingX;
-				if(positionX + this._buttonMaxWidth > margin + contentMaxWidth)
-				{
-					positionX = startX;
-					positionY += button.height + spacingY;
-				}
-			}
+			this._list.y = this._header.height;
+			this._list.width = this.actualWidth;
+			this._list.height = this.actualHeight - this._list.y;
 		}
 		
-		private function triggerSignalOnButtonRelease(button:Button, signal:Signal):void
+		private function list_onChange(list:List):void
 		{
-			const self:MainMenuScreen = this;
-			button.onRelease.add(function(button:Button):void
-			{
-				signal.dispatch(self);
-			});
+			const signal:Signal = Signal(this._list.selectedItem.signal);
+			signal.dispatch(this);
 		}
 	}
 }

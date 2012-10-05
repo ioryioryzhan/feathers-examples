@@ -16,6 +16,7 @@ package feathers.examples.componentsExplorer
 	import feathers.examples.componentsExplorer.screens.ListScreen;
 	import feathers.examples.componentsExplorer.screens.ListSettingsScreen;
 	import feathers.examples.componentsExplorer.screens.MainMenuScreen;
+	import feathers.examples.componentsExplorer.screens.PageIndicatorScreen;
 	import feathers.examples.componentsExplorer.screens.PickerListScreen;
 	import feathers.examples.componentsExplorer.screens.ProgressBarScreen;
 	import feathers.examples.componentsExplorer.screens.ScrollTextScreen;
@@ -40,6 +41,7 @@ package feathers.examples.componentsExplorer
 		private static const GROUPED_LIST_SETTINGS:String = "groupedListSettings";
 		private static const LIST:String = "list";
 		private static const LIST_SETTINGS:String = "listSettings";
+		private static const PAGE_INDICATOR:String = "pageIndicator";
 		private static const PICKER_LIST:String = "pickerList";
 		private static const PROGRESS_BAR:String = "progressBar";
 		private static const SCROLL_TEXT:String = "scrollText";
@@ -72,6 +74,7 @@ package feathers.examples.componentsExplorer
 				onCallout: CALLOUT,
 				onGroupedList: GROUPED_LIST,
 				onList: LIST,
+				onPageIndicator: PAGE_INDICATOR,
 				onPickerList: PICKER_LIST,
 				onProgressBar: PROGRESS_BAR,
 				onScrollText: SCROLL_TEXT,
@@ -166,6 +169,11 @@ package feathers.examples.componentsExplorer
 			},
 			{
 				settings: listSettings
+			}));
+
+			this._navigator.addScreen(PAGE_INDICATOR, new ScreenNavigatorItem(PageIndicatorScreen,
+			{
+				onBack: MAIN_MENU
 			}));
 			
 			this._navigator.addScreen(PICKER_LIST, new ScreenNavigatorItem(PickerListScreen,
