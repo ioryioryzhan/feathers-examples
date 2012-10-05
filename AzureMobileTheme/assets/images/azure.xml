@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:0734ff148810a96a04ba24c43741c35f$ -->
+<!-- $TexturePacker:SmartUpdate:c3d63196a89ee087a2e67ace3461868a$ -->
 <TextureAtlas imagePath="azure.png">
     <SubTexture name="button-disabled-skin" x="217" y="325" width="32" height="66"/>
     <SubTexture name="button-down-skin" x="203" y="395" width="32" height="66"/>
@@ -28,6 +28,8 @@
     <SubTexture name="lato30_0" x="3" y="3" width="254" height="318" frameX="0" frameY="0" frameWidth="256" frameHeight="320"/>
     <SubTexture name="list-item-down-skin" x="15" y="417" width="8" height="88"/>
     <SubTexture name="list-item-up-skin" x="15" y="325" width="8" height="88"/>
+    <SubTexture name="page-indicator-normal-skin" x="54" y="395" width="11" height="11"/>
+    <SubTexture name="page-indicator-selected-skin" x="39" y="395" width="11" height="11"/>
     <SubTexture name="picker-icon" x="239" y="395" width="32" height="50"/>
     <SubTexture name="progress-bar-background-disabled-skin" x="390" y="48" width="36" height="24"/>
     <SubTexture name="progress-bar-background-skin" x="434" y="31" width="36" height="24"/>

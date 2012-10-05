@@ -29,6 +29,7 @@ package feathers.themes
 	import feathers.controls.Check;
 	import feathers.controls.Header;
 	import feathers.controls.Label;
+	import feathers.controls.PageIndicator;
 	import feathers.controls.PickerList;
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
@@ -200,6 +201,9 @@ package feathers.themes
 		protected var radioSelectedUpIconTexture:Texture;
 		protected var radioSelectedDisabledIconTexture:Texture;
 
+		protected var pageIndicatorSelectedSkinTexture:Texture;
+		protected var pageIndicatorNormalSkinTexture:Texture;
+
 		protected function initialize():void
 		{
 			if(this._scaleToDPI)
@@ -292,6 +296,9 @@ package feathers.themes
 			this.radioSelectedUpIconTexture = this.atlas.getTexture("radio-selected-up-icon");
 			this.radioSelectedDisabledIconTexture = this.atlas.getTexture("radio-selected-disabled-icon");
 
+			this.pageIndicatorNormalSkinTexture = this.atlas.getTexture("page-indicator-normal-skin");
+			this.pageIndicatorSelectedSkinTexture = this.atlas.getTexture("page-indicator-selected-skin");
+
 			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
 			this.setInitializerForClass(Label, labelInitializer);
 			this.setInitializerForClass(ScrollText, scrollTextInitializer);
@@ -316,8 +323,19 @@ package feathers.themes
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(Header, headerInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
+			this.setInitializerForClass(PageIndicator, pageIndicatorInitializer);
 			this.setInitializerForClass(ProgressBar, progressBarInitializer);
 			this.setInitializerForClass(Callout, calloutInitializer);
+		}
+
+		protected function pageIndicatorNormalSymbolFactory():Image
+		{
+			return new Image(this.pageIndicatorNormalSkinTexture);
+		}
+
+		protected function pageIndicatorSelectedSymbolFactory():Image
+		{
+			return new Image(this.pageIndicatorSelectedSkinTexture);
 		}
 
 		protected function nothingInitializer(nothing:FeathersControl):void
@@ -701,6 +719,16 @@ package feathers.themes
 			backgroundDisabledSkin.width = 264 * this.scale;
 			backgroundDisabledSkin.height = 66 * this.scale;
 			input.backgroundDisabledSkin = backgroundDisabledSkin;
+		}
+
+		protected function pageIndicatorInitializer(pageIndicator:PageIndicator):void
+		{
+			pageIndicator.normalSymbolFactory = this.pageIndicatorNormalSymbolFactory;
+			pageIndicator.selectedSymbolFactory = this.pageIndicatorSelectedSymbolFactory;
+			pageIndicator.gap = 6 * this.scale;
+			pageIndicator.paddingTop = pageIndicator.paddingRight = pageIndicator.paddingBottom =
+				pageIndicator.paddingLeft = 6 * this.scale;
+			pageIndicator.minTouchWidth = pageIndicator.minTouchHeight = 44 * this.scale;
 		}
 
 		protected function progressBarInitializer(progress:ProgressBar):void
