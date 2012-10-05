@@ -30,6 +30,7 @@ package feathers.themes
 	import feathers.controls.GroupedList;
 	import feathers.controls.Header;
 	import feathers.controls.Label;
+	import feathers.controls.PageIndicator;
 	import feathers.controls.PickerList;
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
@@ -172,6 +173,8 @@ package feathers.themes
 		protected var checkSelectedUpIconTexture:Texture;
 		protected var checkSelectedDownIconTexture:Texture;
 		protected var checkSelectedDisabledIconTexture:Texture;
+		protected var pageIndicatorNormalSkinTexture:Texture;
+		protected var pageIndicatorSelectedSkinTexture:Texture;
 		protected var itemRendererUpSkinTextures:Scale9Textures;
 		protected var itemRendererSelectedSkinTextures:Scale9Textures;
 		protected var insetItemRendererMiddleUpSkinTextures:Scale9Textures;
@@ -272,6 +275,9 @@ package feathers.themes
 			this.checkSelectedDownIconTexture = this.atlas.getTexture("check-selected-down-icon");
 			this.checkSelectedDisabledIconTexture = this.atlas.getTexture("check-selected-disabled-icon");
 
+			this.pageIndicatorSelectedSkinTexture = this.atlas.getTexture("page-indicator-selected-skin");
+			this.pageIndicatorNormalSkinTexture = this.atlas.getTexture("page-indicator-normal-skin");
+
 			this.itemRendererUpSkinTextures = new Scale9Textures(this.atlas.getTexture("list-item-up-skin"), ITEM_RENDERER_SCALE9_GRID);
 			this.itemRendererSelectedSkinTextures = new Scale9Textures(this.atlas.getTexture("list-item-selected-skin"), ITEM_RENDERER_SCALE9_GRID);
 			this.insetItemRendererMiddleUpSkinTextures = new Scale9Textures(this.atlas.getTexture("list-inset-item-middle-up-skin"), INSET_ITEM_RENDERER_MIDDLE_SCALE9_GRID);
@@ -329,12 +335,23 @@ package feathers.themes
 			this.setInitializerForClass(Slider, sliderInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
+			this.setInitializerForClass(PageIndicator, pageIndicatorInitializer);
 			this.setInitializerForClass(ProgressBar, progressBarInitializer);
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(Header, headerInitializer);
 			this.setInitializerForClass(Callout, calloutInitializer);
 			this.setInitializerForClass(Scroller, scrollerInitializer);
 			this.setInitializerForClass(GroupedList, groupedListInitializer, GroupedList.ALTERNATE_NAME_INSET_GROUPED_LIST);
+		}
+
+		protected function pageIndicatorNormalSymbolFactory():Image
+		{
+			return new Image(this.pageIndicatorNormalSkinTexture);
+		}
+
+		protected function pageIndicatorSelectedSymbolFactory():Image
+		{
+			return new Image(this.pageIndicatorSelectedSkinTexture);
 		}
 
 		protected function textRendererFactory():TextFieldTextRenderer
@@ -750,6 +767,16 @@ package feathers.themes
 			input.stageTextProperties.fontFamily = "Helvetica";
 			input.stageTextProperties.fontSize = 30 * this.scale;
 			input.stageTextProperties.color = LIGHT_TEXT_COLOR;
+		}
+
+		protected function pageIndicatorInitializer(pageIndicator:PageIndicator):void
+		{
+			pageIndicator.normalSymbolFactory = this.pageIndicatorNormalSymbolFactory;
+			pageIndicator.selectedSymbolFactory = this.pageIndicatorSelectedSymbolFactory;
+			pageIndicator.gap = 6 * this.scale;
+			pageIndicator.paddingTop = pageIndicator.paddingRight = pageIndicator.paddingBottom =
+				pageIndicator.paddingLeft = 6 * this.scale;
+			pageIndicator.minTouchWidth = pageIndicator.minTouchHeight = 88 * this.scale;
 		}
 
 		protected function progressBarInitializer(progress:ProgressBar):void

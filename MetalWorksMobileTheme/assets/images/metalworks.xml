@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:402f6d7c0fd25517335eefa7abfb5beb$ -->
+<!-- $TexturePacker:SmartUpdate:d77b283bd0b2b03883284b72b3e5bb97$ -->
 <TextureAtlas imagePath="metalworks.png">
     <SubTexture name="background-disabled-skin" x="323" y="59" width="32" height="32"/>
     <SubTexture name="background-down-skin" x="467" y="40" width="32" height="32"/>
@@ -29,6 +29,8 @@
     <SubTexture name="list-inset-item-single-up-skin" x="95" y="355" width="28" height="88"/>
     <SubTexture name="list-item-selected-skin" x="251" y="263" width="16" height="88"/>
     <SubTexture name="list-item-up-skin" x="223" y="355" width="16" height="88"/>
+    <SubTexture name="page-indicator-normal-skin" x="263" y="47" width="12" height="12"/>
+    <SubTexture name="page-indicator-selected-skin" x="263" y="31" width="12" height="12"/>
     <SubTexture name="pattern-background-tile" x="95" y="263" width="88" height="88"/>
     <SubTexture name="picker-list-icon" x="359" y="59" width="20" height="20"/>
     <SubTexture name="picker-list-item-selected-icon" x="483" y="15" width="22" height="21"/>
