@@ -30,7 +30,7 @@ package feathers.examples.componentsExplorer.screens
 		override protected function initialize():void
 		{
 			this._pageIndicator = new PageIndicator();
-			this._pageIndicator.maximum = 5;
+			this._pageIndicator.pageCount = 5;
 			this.addChild(this._pageIndicator);
 
 			this._backButton = new Button();
