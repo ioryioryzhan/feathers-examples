@@ -776,7 +776,7 @@ package feathers.themes
 			pageIndicator.gap = 6 * this.scale;
 			pageIndicator.paddingTop = pageIndicator.paddingRight = pageIndicator.paddingBottom =
 				pageIndicator.paddingLeft = 6 * this.scale;
-			pageIndicator.minTouchWidth = pageIndicator.minTouchHeight = 88 * this.scale;
+			pageIndicator.minTouchWidth = pageIndicator.minTouchHeight = 44 * this.scale;
 		}
 
 		protected function progressBarInitializer(progress:ProgressBar):void
