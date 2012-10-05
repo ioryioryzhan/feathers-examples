@@ -58,7 +58,7 @@ package feathers.examples.tileList
 			this._list.height = this._pageIndicator.y;
 			this._list.validate();
 
-			this._pageIndicator.maximum = Math.ceil(this._list.maxHorizontalScrollPosition / this._list.width);
+			this._pageIndicator.pageCount = Math.ceil(this._list.maxHorizontalScrollPosition / this._list.width) + 1;
 		}
 
 		protected function addedToStageHandler(event:Event):void
@@ -127,7 +127,7 @@ package feathers.examples.tileList
 				return new Image(selectedSymbolTexture);
 			}
 			this._pageIndicator.direction = PageIndicator.DIRECTION_HORIZONTAL;
-			this._pageIndicator.maximum = 1;
+			this._pageIndicator.pageCount = 1;
 			this._pageIndicator.gap = 3;
 			this._pageIndicator.paddingTop = this._pageIndicator.paddingRight = this._pageIndicator.paddingBottom =
 				this._pageIndicator.paddingLeft = 6;
