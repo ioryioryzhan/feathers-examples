@@ -31,6 +31,7 @@ package feathers.themes
 	import feathers.controls.Header;
 	import feathers.controls.Label;
 	import feathers.controls.List;
+	import feathers.controls.PageIndicator;
 	import feathers.controls.PickerList;
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
@@ -90,6 +91,7 @@ package feathers.themes
 		protected static const SCROLLBAR_THUMB_SCALE_9_GRID:Rectangle = new Rectangle(1, 1, 2, 2);
 		protected static const TAB_SCALE_9_GRID:Rectangle = new Rectangle(25, 25, 2, 2);
 		protected static const CHECK_SCALE_9_GRID:Rectangle = new Rectangle(13, 13, 2, 2);
+		protected static const HEADER_SCALE_9_GRID:Rectangle = new Rectangle(0, 5, 4, 6);
 
 		protected static const BACKGROUND_COLOR:uint = 0xf3f3f3;
 		protected static const PRIMARY_TEXT_COLOR:uint = 0x666666;
@@ -173,6 +175,9 @@ package feathers.themes
 		protected var radioIconTexture:Texture;
 		protected var radioSelectedIconTexture:Texture;
 
+		protected var pageIndicatorNormalSkinTexture:Texture;
+		protected var pageIndicatorSelectedSkinTexture:Texture;
+
 		protected var bitmapFont:BitmapFont;
 
 		protected function initialize():void
@@ -232,7 +237,7 @@ package feathers.themes
 			this.listItemDownTexture = this.atlas.getTexture("list-item-down");
 			this.listItemSelectedTexture = this.atlas.getTexture("list-item-selected");
 
-			this.headerSkinTextures = new Scale9Textures(this.atlas.getTexture("header-skin"), SCALE_9_GRID);
+			this.headerSkinTextures = new Scale9Textures(this.atlas.getTexture("header-skin"), HEADER_SCALE_9_GRID);
 
 			this.popUpBackgroundSkinTextures = new Scale9Textures(this.atlas.getTexture("callout-background-skin"), SCALE_9_GRID);
 			this.calloutTopArrowSkinTexture = this.atlas.getTexture("callout-arrow-top");
@@ -244,6 +249,9 @@ package feathers.themes
 
 			this.radioIconTexture = this.atlas.getTexture("radio-icon");
 			this.radioSelectedIconTexture = this.atlas.getTexture("radio-selected-icon");
+
+			this.pageIndicatorNormalSkinTexture = this.atlas.getTexture("page-indicator-normal-skin");
+			this.pageIndicatorSelectedSkinTexture = this.atlas.getTexture("page-indicator-selected-skin");
 
 			FeathersControl.defaultTextRendererFactory = textRendererFactory;
 
@@ -274,6 +282,7 @@ package feathers.themes
 			this.setInitializerForClass(PickerList, pickerListInitializer);
 			this.setInitializerForClass(Header, headerInitializer);
 			this.setInitializerForClass(TextInput, textInputInitializer);
+			this.setInitializerForClass(PageIndicator, pageIndicatorInitializer);
 			this.setInitializerForClass(ProgressBar, progressBarInitializer);
 			this.setInitializerForClass(Callout, calloutInitializer);
 		}
@@ -289,6 +298,16 @@ package feathers.themes
 		protected function screenInitializer(screen:Screen):void
 		{
 			screen.originalDPI = this._originalDPI;
+		}
+
+		protected function pageIndicatorNormalSymbolFactory():Image
+		{
+			return new Image(this.pageIndicatorNormalSkinTexture);
+		}
+
+		protected function pageIndicatorSelectedSymbolFactory():Image
+		{
+			return new Image(this.pageIndicatorSelectedSkinTexture);
 		}
 
 		protected function textRendererFactory():BitmapFontTextRenderer
@@ -638,6 +657,16 @@ package feathers.themes
 			backgroundDisabledSkin.width = 264 * this.scale;
 			backgroundDisabledSkin.height = 66 * this.scale;
 			input.backgroundDisabledSkin = backgroundDisabledSkin;
+		}
+
+		protected function pageIndicatorInitializer(pageIndicator:PageIndicator):void
+		{
+			pageIndicator.normalSymbolFactory = this.pageIndicatorNormalSymbolFactory;
+			pageIndicator.selectedSymbolFactory = this.pageIndicatorSelectedSymbolFactory;
+			pageIndicator.gap = 12 * this.scale;
+			pageIndicator.paddingTop = pageIndicator.paddingRight = pageIndicator.paddingBottom =
+				pageIndicator.paddingLeft = 12 * this.scale;
+			pageIndicator.minTouchWidth = pageIndicator.minTouchHeight = 44 * this.scale;
 		}
 
 		protected function progressBarInitializer(progress:ProgressBar):void
