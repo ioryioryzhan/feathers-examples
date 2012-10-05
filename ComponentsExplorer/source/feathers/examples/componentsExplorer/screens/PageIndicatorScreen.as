@@ -56,7 +56,7 @@ package feathers.examples.componentsExplorer.screens
 
 			this._pageIndicator.width = this.actualWidth;
 			this._pageIndicator.validate();
-			this._pageIndicator.y = (this.actualHeight - this._pageIndicator.height) / 2;
+			this._pageIndicator.y = this._header.height + (this.actualHeight - this._header.height - this._pageIndicator.height) / 2;
 		}
 
 		private function onBackButton():void

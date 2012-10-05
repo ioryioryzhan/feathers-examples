@@ -8,6 +8,7 @@ package feathers.examples.componentsExplorer
 	import feathers.examples.componentsExplorer.data.GroupedListSettings;
 	import feathers.examples.componentsExplorer.data.ListSettings;
 	import feathers.examples.componentsExplorer.data.SliderSettings;
+	import feathers.examples.componentsExplorer.screens.ButtonGroupScreen;
 	import feathers.examples.componentsExplorer.screens.ButtonScreen;
 	import feathers.examples.componentsExplorer.screens.ButtonSettingsScreen;
 	import feathers.examples.componentsExplorer.screens.CalloutScreen;
@@ -36,6 +37,7 @@ package feathers.examples.componentsExplorer
 		private static const MAIN_MENU:String = "mainMenu";
 		private static const BUTTON:String = "button";
 		private static const BUTTON_SETTINGS:String = "buttonSettings";
+		private static const BUTTON_GROUP:String = "buttonGroup";
 		private static const CALLOUT:String = "callout";
 		private static const GROUPED_LIST:String = "groupedList";
 		private static const GROUPED_LIST_SETTINGS:String = "groupedListSettings";
@@ -71,6 +73,7 @@ package feathers.examples.componentsExplorer
 			this._navigator.addScreen(MAIN_MENU, new ScreenNavigatorItem(MainMenuScreen,
 			{
 				onButton: BUTTON,
+				onButtonGroup: BUTTON_GROUP,
 				onCallout: CALLOUT,
 				onGroupedList: GROUPED_LIST,
 				onList: LIST,
@@ -100,6 +103,11 @@ package feathers.examples.componentsExplorer
 			},
 			{
 				settings: buttonSettings
+			}));
+
+			this._navigator.addScreen(BUTTON_GROUP, new ScreenNavigatorItem(ButtonGroupScreen,
+			{
+				onBack: MAIN_MENU
 			}));
 
 			this._navigator.addScreen(CALLOUT, new ScreenNavigatorItem(CalloutScreen,

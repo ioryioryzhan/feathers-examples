@@ -98,7 +98,7 @@ package feathers.examples.componentsExplorer.screens
 
 			const contentWidth:Number = this._slider.width + spacingX + displayValueLabel.width;
 			this._slider.x = (this.actualWidth - contentWidth) / 2;
-			this._slider.y = (this.actualHeight - this._slider.height) / 2;
+			this._slider.y = this._header.height + (this.actualHeight - this._header.height - this._slider.height) / 2;
 			displayValueLabel.x = this._slider.x + this._slider.width + spacingX;
 			displayValueLabel.y = this._slider.y + (this._slider.height - displayValueLabel.height) / 2;
 		}

@@ -68,7 +68,7 @@ package feathers.examples.componentsExplorer.screens
 
 			this._progress.validate();
 			this._progress.x = (this.actualWidth - this._progress.width) / 2;
-			this._progress.y = (this.actualHeight - this._progress.height) / 2;
+			this._progress.y = this._header.height + (this.actualHeight - this._header.height - this._progress.height) / 2;
 		}
 
 		private function onBackButton():void

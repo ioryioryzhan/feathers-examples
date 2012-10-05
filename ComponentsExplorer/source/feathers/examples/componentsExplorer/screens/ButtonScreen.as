@@ -97,7 +97,7 @@ package feathers.examples.componentsExplorer.screens
 
 			this._button.validate();
 			this._button.x = (this.actualWidth - this._button.width) / 2;
-			this._button.y = (this.actualHeight - this._button.height) / 2;
+			this._button.y = this._header.height + (this.actualHeight - this._header.height - this._button.height) / 2;
 		}
 		
 		private function onBackButton():void

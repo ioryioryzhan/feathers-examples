@@ -80,7 +80,7 @@ package feathers.examples.componentsExplorer.screens
 			
 			this._list.validate();
 			this._list.x = (this.actualWidth - this._list.width) / 2;
-			this._list.y = (this.actualHeight - this._list.height) / 2;
+			this._list.y = this._header.height + (this.actualHeight - this._header.height - this._list.height) / 2;
 		}
 		
 		private function onBackButton():void

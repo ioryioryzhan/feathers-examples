@@ -1,13 +1,11 @@
 package feathers.examples.componentsExplorer.screens
 {
-	import feathers.controls.Button;
+	import feathers.controls.Header;
 	import feathers.controls.List;
 	import feathers.controls.Screen;
-	import feathers.controls.Header;
 	import feathers.data.ListCollection;
 
 	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
 	import org.osflash.signals.Signal;
 
 	public class MainMenuScreen extends Screen
@@ -25,6 +23,13 @@ package feathers.examples.componentsExplorer.screens
 		public function get onButton():ISignal
 		{
 			return this._onButton;
+		}
+
+		private var _onButtonGroup:Signal = new Signal(MainMenuScreen);
+
+		public function get onButtonGroup():ISignal
+		{
+			return this._onButtonGroup;
 		}
 
 		private var _onCallout:Signal = new Signal(MainMenuScreen);
@@ -114,6 +119,7 @@ package feathers.examples.componentsExplorer.screens
 			this._list.dataProvider = new ListCollection(
 			[
 				{ label: "Button", signal: this._onButton },
+				{ label: "Button Group", signal: this._onButtonGroup },
 				{ label: "Callout", signal: this._onCallout },
 				{ label: "Grouped List", signal: this._onGroupedList },
 				{ label: "List", signal: this._onList },
