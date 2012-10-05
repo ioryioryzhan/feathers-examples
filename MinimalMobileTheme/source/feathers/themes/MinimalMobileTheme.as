@@ -25,6 +25,7 @@
 package feathers.themes
 {
 	import feathers.controls.Button;
+	import feathers.controls.ButtonGroup;
 	import feathers.controls.Callout;
 	import feathers.controls.Check;
 	import feathers.controls.GroupedList;
@@ -36,7 +37,6 @@ package feathers.themes
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Radio;
 	import feathers.controls.Screen;
-	import feathers.controls.ScrollText;
 	import feathers.controls.ScrollText;
 	import feathers.controls.Scroller;
 	import feathers.controls.SimpleScrollBar;
@@ -59,6 +59,7 @@ package feathers.themes
 	import feathers.skins.IFeathersTheme;
 	import feathers.skins.ImageStateValueSelector;
 	import feathers.skins.Scale9ImageStateValueSelector;
+	import feathers.skins.StandardIcons;
 	import feathers.system.DeviceCapabilities;
 	import feathers.text.BitmapFontTextFormat;
 	import feathers.textures.Scale9Textures;
@@ -70,6 +71,7 @@ package feathers.themes
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.DisplayObjectContainer;
+	import starling.display.Quad;
 	import starling.events.Event;
 	import starling.text.BitmapFont;
 	import starling.textures.Texture;
@@ -92,8 +94,11 @@ package feathers.themes
 		protected static const TAB_SCALE_9_GRID:Rectangle = new Rectangle(25, 25, 2, 2);
 		protected static const CHECK_SCALE_9_GRID:Rectangle = new Rectangle(13, 13, 2, 2);
 		protected static const HEADER_SCALE_9_GRID:Rectangle = new Rectangle(0, 5, 4, 6);
+		protected static const LIST_ITEM_SCALE_9_GRID:Rectangle = new Rectangle(0, 5, 4, 1);
 
 		protected static const BACKGROUND_COLOR:uint = 0xf3f3f3;
+		protected static const LIST_BACKGROUND_COLOR:uint = 0xf8f8f8;
+		protected static const LIST_HEADER_BACKGROUND_COLOR:uint = 0xeeeeee;
 		protected static const PRIMARY_TEXT_COLOR:uint = 0x666666;
 		protected static const SELECTED_TEXT_COLOR:uint = 0x333333;
 		protected static const INSET_TEXT_COLOR:uint = 0x333333;
@@ -158,9 +163,9 @@ package feathers.themes
 
 		protected var dropDownArrowTexture:Texture;
 
-		protected var listItemUpTexture:Texture;
-		protected var listItemDownTexture:Texture;
-		protected var listItemSelectedTexture:Texture;
+		protected var listItemUpTextures:Scale9Textures;
+		protected var listItemDownTextures:Scale9Textures;
+		protected var listItemSelectedTextures:Scale9Textures;
 
 		protected var headerSkinTextures:Scale9Textures;
 
@@ -233,9 +238,9 @@ package feathers.themes
 
 			this.dropDownArrowTexture = this.atlas.getTexture("drop-down-arrow");
 
-			this.listItemUpTexture = this.atlas.getTexture("list-item-up");
-			this.listItemDownTexture = this.atlas.getTexture("list-item-down");
-			this.listItemSelectedTexture = this.atlas.getTexture("list-item-selected");
+			this.listItemUpTextures = new Scale9Textures(this.atlas.getTexture("list-item-up"), LIST_ITEM_SCALE_9_GRID);
+			this.listItemDownTextures = new Scale9Textures(this.atlas.getTexture("list-item-down"), LIST_ITEM_SCALE_9_GRID);
+			this.listItemSelectedTextures = new Scale9Textures(this.atlas.getTexture("list-item-selected"), LIST_ITEM_SCALE_9_GRID);
 
 			this.headerSkinTextures = new Scale9Textures(this.atlas.getTexture("header-skin"), HEADER_SCALE_9_GRID);
 
@@ -253,6 +258,8 @@ package feathers.themes
 			this.pageIndicatorNormalSkinTexture = this.atlas.getTexture("page-indicator-normal-skin");
 			this.pageIndicatorSelectedSkinTexture = this.atlas.getTexture("page-indicator-selected-skin");
 
+			StandardIcons.listDrillDownAccessoryTexture = this.atlas.getTexture("list-accessory-drill-down-icon");
+
 			FeathersControl.defaultTextRendererFactory = textRendererFactory;
 
 			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
@@ -260,6 +267,7 @@ package feathers.themes
 			this.setInitializerForClass(ScrollText, scrollTextInitializer);
 			this.setInitializerForClass(BitmapFontTextRenderer, itemRendererAccessoryLabelInitializer, BaseDefaultItemRenderer.DEFAULT_CHILD_NAME_ACCESSORY_LABEL);
 			this.setInitializerForClass(Button, buttonInitializer);
+			this.setInitializerForClass(Button, buttonGroupButtonInitializer);
 			this.setInitializerForClass(Button, sliderThumbInitializer, Slider.DEFAULT_CHILD_NAME_THUMB);
 			this.setInitializerForClass(Button, simpleScrollBarThumbInitializer, SimpleScrollBar.DEFAULT_CHILD_NAME_THUMB);
 			this.setInitializerForClass(Button, nothingInitializer, Slider.DEFAULT_CHILD_NAME_MINIMUM_TRACK);
@@ -269,6 +277,7 @@ package feathers.themes
 			this.setInitializerForClass(Button, tabInitializer, TabBar.DEFAULT_CHILD_NAME_TAB);
 			this.setInitializerForClass(Button, toolBarButtonInitializer, Header.DEFAULT_CHILD_NAME_ITEM);
 			this.setInitializerForClass(Button, pickerListButtonInitializer, PickerList.DEFAULT_CHILD_NAME_BUTTON);
+			this.setInitializerForClass(ButtonGroup, buttonGroupInitializer);
 			this.setInitializerForClass(Slider, sliderInitializer);
 			this.setInitializerForClass(ToggleSwitch, toggleSwitchInitializer);
 			this.setInitializerForClass(Check, checkInitializer);
@@ -287,19 +296,6 @@ package feathers.themes
 			this.setInitializerForClass(Callout, calloutInitializer);
 		}
 
-		protected function nothingInitializer(target:DisplayObject):void
-		{
-			//if this is assigned as an initializer, chances are the target will
-			//be a subcomponent of something. the initializer for this
-			//component's parent is probably handing the initializing for the
-			//target too.
-		}
-
-		protected function screenInitializer(screen:Screen):void
-		{
-			screen.originalDPI = this._originalDPI;
-		}
-
 		protected function pageIndicatorNormalSymbolFactory():Image
 		{
 			return new Image(this.pageIndicatorNormalSkinTexture);
@@ -316,6 +312,28 @@ package feathers.themes
 			//since it's a pixel font, we don't want to smooth it.
 			renderer.smoothing = TextureSmoothing.NONE;
 			return renderer;
+		}
+
+		protected function imageFactory(texture:Texture):Image
+		{
+			const image:Image = new Image(texture);
+			image.smoothing = TextureSmoothing.NONE;
+			image.scaleX = image.scaleY = this.scale;
+			image.snapToPixels = true;
+			return image;
+		}
+
+		protected function nothingInitializer(target:DisplayObject):void
+		{
+			//if this is assigned as an initializer, chances are the target will
+			//be a subcomponent of something. the initializer for this
+			//component's parent is probably handing the initializing for the
+			//target too.
+		}
+
+		protected function screenInitializer(screen:Screen):void
+		{
+			screen.originalDPI = this._originalDPI;
 		}
 
 		protected function labelInitializer(label:Label):void
@@ -361,6 +379,34 @@ package feathers.themes
 			button.minHeight = 66 * this.scale;
 			button.minTouchWidth = button.minTouchHeight = 88 * this.scale;
 		}
+
+		protected function buttonGroupButtonInitializer(button:Button):void
+		{
+			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
+			skinSelector.defaultValue = buttonUpSkinTextures;
+			skinSelector.defaultSelectedValue = buttonSelectedSkinTextures;
+			skinSelector.setValueForState(buttonDownSkinTextures, Button.STATE_DOWN, false);
+			skinSelector.setValueForState(buttonDisabledSkinTextures, Button.STATE_DISABLED, false);
+			skinSelector.setValueForState(buttonDownSkinTextures, Button.STATE_DOWN, true);
+			skinSelector.imageProperties =
+			{
+				width: 88 * this.scale,
+				height: 88 * this.scale,
+				textureScale: this.scale
+			};
+			button.stateToSkinFunction = skinSelector.updateValue;
+
+			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			button.defaultSelectedLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, SELECTED_TEXT_COLOR);
+
+			button.paddingTop = button.paddingBottom = 8 * this.scale;
+			button.paddingLeft = button.paddingRight = 16 * this.scale;
+			button.gap = 12 * this.scale;
+			button.minWidth = 88 * this.scale;
+			button.minHeight = 88 * this.scale;
+			button.minTouchWidth = button.minTouchHeight = 88 * this.scale;
+		}
+
 
 		protected function toolBarButtonInitializer(button:Button):void
 		{
@@ -420,6 +466,12 @@ package feathers.themes
 			thumb.defaultSkin = defaultSkin;
 
 			thumb.minTouchWidth = thumb.minTouchHeight = 12 * this.scale;
+		}
+
+		protected function buttonGroupInitializer(group:ButtonGroup):void
+		{
+			group.minWidth = 560 * this.scale;
+			group.gap = 16 * this.scale;
 		}
 
 		protected function sliderInitializer(slider:Slider):void
@@ -505,8 +557,7 @@ package feathers.themes
 			iconSelector.imageProperties =
 			{
 				scaleX: this.scale,
-				scaleY: this.scale,
-				textureScale: this.scale
+				scaleY: this.scale
 			};
 			radio.stateToIconFunction = iconSelector.updateValue;
 
@@ -520,15 +571,15 @@ package feathers.themes
 
 		protected function itemRendererInitializer(renderer:BaseDefaultItemRenderer):void
 		{
-			const skinSelector:ImageStateValueSelector = new ImageStateValueSelector();
-			skinSelector.defaultValue = listItemUpTexture;
-			skinSelector.defaultSelectedValue = listItemSelectedTexture;
-			skinSelector.setValueForState(listItemDownTexture, Button.STATE_DOWN, false);
+			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
+			skinSelector.defaultValue = this.listItemUpTextures;
+			skinSelector.defaultSelectedValue = this.listItemSelectedTextures;
+			skinSelector.setValueForState(this.listItemDownTextures, Button.STATE_DOWN, false);
 			skinSelector.imageProperties =
 			{
 				width: 88 * this.scale,
 				height: 88 * this.scale,
-				smoothing: TextureSmoothing.NONE
+				textureScale: this.scale
 			};
 			renderer.stateToSkinFunction = skinSelector.updateValue;
 
@@ -539,14 +590,14 @@ package feathers.themes
 			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			renderer.minWidth = renderer.minHeight = 88 * this.scale;
+
+			renderer.accessoryImageFactory = this.imageFactory;
+			renderer.iconImageFactory = this.imageFactory;
 		}
 
 		protected function headerOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
 		{
-			const backgroundSkin:Image = new Image(listItemDownTexture);
-			backgroundSkin.smoothing = TextureSmoothing.NONE;
-			backgroundSkin.width = 44 * this.scale;
-			backgroundSkin.height = 44 * this.scale;
+			const backgroundSkin:Quad = new Quad(44 * this.scale, 44 * this.scale, LIST_HEADER_BACKGROUND_COLOR);
 			renderer.backgroundSkin = backgroundSkin;
 
 			renderer.contentLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
@@ -558,17 +609,13 @@ package feathers.themes
 
 		protected function listInitializer(list:List):void
 		{
-			const backgroundSkin:Image = new Image(listItemUpTexture);
-			backgroundSkin.scaleX = backgroundSkin.scaleY = this.scale;
-			backgroundSkin.smoothing = TextureSmoothing.NONE;
+			const backgroundSkin:Quad = new Quad(88 * this.scale, 88 * this.scale, LIST_BACKGROUND_COLOR);
 			list.backgroundSkin = backgroundSkin;
 		}
 
 		protected function groupedListInitializer(list:GroupedList):void
 		{
-			const backgroundSkin:Image = new Image(listItemUpTexture);
-			backgroundSkin.scaleX = backgroundSkin.scaleY = this.scale;
-			backgroundSkin.smoothing = TextureSmoothing.NONE;
+			const backgroundSkin:Quad = new Quad(88 * this.scale, 88 * this.scale, LIST_BACKGROUND_COLOR);
 			list.backgroundSkin = backgroundSkin;
 		}
 
@@ -598,8 +645,8 @@ package feathers.themes
 
 			if(DeviceCapabilities.isTablet(Starling.current.nativeStage))
 			{
-				list.listProperties.minWidth = 10 * this.scale;
-				list.listProperties.maxHeight = 352 * this.scale;
+				list.listProperties.minWidth = 560 * this.scale;
+				list.listProperties.maxHeight = 528 * this.scale;
 			}
 			else
 			{
