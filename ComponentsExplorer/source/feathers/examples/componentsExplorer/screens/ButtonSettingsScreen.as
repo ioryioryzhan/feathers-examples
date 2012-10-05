@@ -92,15 +92,15 @@ package feathers.examples.componentsExplorer.screens
 			this._iconPositionPicker.onChange.add(iconPositionPicker_onChange);
 
 			this._iconOffsetXSlider = new Slider();
-			this._iconOffsetXSlider.minimum = 0;
-			//there is no actual limit. this is aribitrary.
+			//there is no actual limit. these are aribitrary.
+			this._iconOffsetXSlider.minimum = -50;
 			this._iconOffsetXSlider.maximum = 50;
 			this._iconOffsetXSlider.step = 1;
 			this._iconOffsetXSlider.value = this.settings.iconOffsetX;
 			this._iconOffsetXSlider.onChange.add(iconOffsetXSlider_onChange);
 
 			this._iconOffsetYSlider = new Slider();
-			this._iconOffsetYSlider.minimum = 0;
+			this._iconOffsetYSlider.minimum = -50;
 			this._iconOffsetYSlider.maximum = 50;
 			this._iconOffsetYSlider.step = 1;
 			this._iconOffsetYSlider.value = this.settings.iconOffsetY;
