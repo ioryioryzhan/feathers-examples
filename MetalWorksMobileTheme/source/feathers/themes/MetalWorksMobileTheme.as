@@ -31,6 +31,7 @@ package feathers.themes
 	import feathers.controls.GroupedList;
 	import feathers.controls.Header;
 	import feathers.controls.Label;
+	import feathers.controls.List;
 	import feathers.controls.PageIndicator;
 	import feathers.controls.PickerList;
 	import feathers.controls.ProgressBar;
@@ -368,7 +369,8 @@ package feathers.themes
 			this.setInitializerForClass(Header, headerInitializer);
 			this.setInitializerForClass(Callout, calloutInitializer);
 			this.setInitializerForClass(Scroller, scrollerInitializer);
-			this.setInitializerForClass(GroupedList, groupedListInitializer, GroupedList.ALTERNATE_NAME_INSET_GROUPED_LIST);
+			this.setInitializerForClass(List, nothingInitializer, PickerList.DEFAULT_CHILD_NAME_LIST);
+			this.setInitializerForClass(GroupedList, insetGroupedListInitializer, GroupedList.ALTERNATE_NAME_INSET_GROUPED_LIST);
 		}
 
 		protected function pageIndicatorNormalSymbolFactory():Image
@@ -494,8 +496,8 @@ package feathers.themes
 			skinSelector.setValueForState(this.buttonSelectedDisabledSkinTextures, Button.STATE_DISABLED, true);
 			skinSelector.imageProperties =
 			{
-				width: 88 * this.scale,
-				height: 88 * this.scale,
+				width: 76 * this.scale,
+				height: 76 * this.scale,
 				textureScale: this.scale
 			};
 			button.stateToSkinFunction = skinSelector.updateValue;
@@ -507,7 +509,7 @@ package feathers.themes
 			button.paddingTop = button.paddingBottom = 8 * this.scale;
 			button.paddingLeft = button.paddingRight = 16 * this.scale;
 			button.gap = 12 * this.scale;
-			button.minWidth = button.minHeight = 88 * this.scale;
+			button.minWidth = button.minHeight = 76 * this.scale;
 			button.minTouchWidth = button.minTouchHeight = 88 * this.scale;
 		}
 
@@ -846,7 +848,7 @@ package feathers.themes
 		{
 			pageIndicator.normalSymbolFactory = this.pageIndicatorNormalSymbolFactory;
 			pageIndicator.selectedSymbolFactory = this.pageIndicatorSelectedSymbolFactory;
-			pageIndicator.gap = 6 * this.scale;
+			pageIndicator.gap = 10 * this.scale;
 			pageIndicator.paddingTop = pageIndicator.paddingRight = pageIndicator.paddingBottom =
 				pageIndicator.paddingLeft = 6 * this.scale;
 			pageIndicator.minTouchWidth = pageIndicator.minTouchHeight = 44 * this.scale;
@@ -913,8 +915,8 @@ package feathers.themes
 
 			if(DeviceCapabilities.isTablet(Starling.current.nativeStage))
 			{
-				list.listProperties.minWidth = 10 * this.scale;
-				list.listProperties.maxHeight = 352 * this.scale;
+				list.listProperties.minWidth = 560 * this.scale;
+				list.listProperties.maxHeight = 528 * this.scale;
 			}
 			else
 			{
@@ -960,7 +962,7 @@ package feathers.themes
 			scroller.horizontalScrollBarFactory = this.horizontalScrollBarFactory;
 		}
 
-		protected function groupedListInitializer(list:GroupedList):void
+		protected function insetGroupedListInitializer(list:GroupedList):void
 		{
 			list.itemRendererName = GroupedList.ALTERNATE_CHILD_NAME_INSET_ITEM_RENDERER;
 			list.firstItemRendererName = GroupedList.ALTERNATE_CHILD_NAME_INSET_FIRST_ITEM_RENDERER;
