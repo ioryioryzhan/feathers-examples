@@ -31,6 +31,7 @@ package feathers.examples.componentsExplorer.screens
 		{
 			this._pageIndicator = new PageIndicator();
 			this._pageIndicator.pageCount = 5;
+			this._pageIndicator.onChange.add(pageIndicator_onChange);
 			this.addChild(this._pageIndicator);
 
 			this._backButton = new Button();
@@ -62,6 +63,11 @@ package feathers.examples.componentsExplorer.screens
 		private function onBackButton():void
 		{
 			this._onBack.dispatch(this);
+		}
+
+		private function pageIndicator_onChange(indicator:PageIndicator):void
+		{
+			trace("page indicator change:", this._pageIndicator.selectedIndex);
 		}
 
 		private function backButton_onRelease(button:Button):void
