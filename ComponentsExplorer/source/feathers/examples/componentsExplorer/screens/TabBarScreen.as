@@ -72,10 +72,9 @@ package feathers.examples.componentsExplorer.screens
 			this._tabBar.validate();
 			this._tabBar.y = this.actualHeight - this._tabBar.height;
 
-			const displayLabel:FeathersControl = FeathersControl(this._label);
-			displayLabel.validate();
-			displayLabel.x = (this.actualWidth - displayLabel.width) / 2;
-			displayLabel.y = this._header.height + (this.actualHeight - this._header.height - this._tabBar.height - displayLabel.height) / 2;
+			this._label.validate();
+			this._label.x = (this.actualWidth - this._label.width) / 2;
+			this._label.y = this._header.height + (this.actualHeight - this._header.height - this._tabBar.height - this._label.height) / 2;
 		}
 
 		private function onBackButton():void

@@ -5,7 +5,7 @@ package feathers.examples.componentsExplorer.screens
 	import feathers.controls.Label;
 	import feathers.controls.Screen;
 	import feathers.controls.Slider;
-	import feathers.core.FeathersControl;
+	import feathers.core.IFeathersControl;
 	import feathers.examples.componentsExplorer.data.SliderSettings;
 
 	import org.osflash.signals.ISignal;
@@ -93,14 +93,13 @@ package feathers.examples.componentsExplorer.screens
 			//auto-size the slider and label so that we can position them properly
 			this._slider.validate();
 
-			const displayValueLabel:FeathersControl = FeathersControl(this._valueLabel);
-			displayValueLabel.validate();
+			this._valueLabel.validate();
 
-			const contentWidth:Number = this._slider.width + spacingX + displayValueLabel.width;
+			const contentWidth:Number = this._slider.width + spacingX + this._valueLabel.width;
 			this._slider.x = (this.actualWidth - contentWidth) / 2;
 			this._slider.y = this._header.height + (this.actualHeight - this._header.height - this._slider.height) / 2;
-			displayValueLabel.x = this._slider.x + this._slider.width + spacingX;
-			displayValueLabel.y = this._slider.y + (this._slider.height - displayValueLabel.height) / 2;
+			this._valueLabel.x = this._slider.x + this._slider.width + spacingX;
+			this._valueLabel.y = this._slider.y + (this._slider.height - this._valueLabel.height) / 2;
 		}
 		
 		private function onBackButton():void
