@@ -30,7 +30,6 @@
 			<arg line="--frame two feathers.examples.layoutExplorer.Main"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${signals.root}'"/>
-			<arg line="--source-path+='${gtween.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="--source-path+='${theme.root}'"/>
@@ -46,7 +45,6 @@
 			<arg line="--swf-version=${swf.version}"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${signals.root}'"/>
-			<arg line="--source-path+='${gtween.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="--source-path+='${theme.root}'"/>

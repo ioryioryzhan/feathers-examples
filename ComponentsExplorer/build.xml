@@ -30,13 +30,14 @@
 			<arg line="--frame two feathers.examples.componentsExplorer.Main"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${signals.root}'"/>
-			<arg line="--source-path+='${gtween.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="--source-path+='${theme.root}'"/>
 			<arg line="source/ComponentsExplorerWeb.as"/>
 			<arg line="--output ${output.path}/ComponentsExplorerWeb.swf"/>
 		</java>
+		<!--<exec executable="${mxmlc}" dir="${basedir}" failonerror="true">-->
+		<!--</exec>-->
 	</target>
 	<target name="build-air-swf" depends="prepare">
 		<echo message="Building ComponentsExplorer.swf"/>
@@ -46,7 +47,6 @@
 			<arg line="--swf-version=${swf.version}"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${signals.root}'"/>
-			<arg line="--source-path+='${gtween.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="--source-path+='${theme.root}'"/>

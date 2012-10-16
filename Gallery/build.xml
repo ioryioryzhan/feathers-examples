@@ -33,7 +33,6 @@
 			<arg line="--frame two feathers.examples.gallery.Main"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${signals.root}'"/>
-			<arg line="--source-path+='${gtween.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="source/GalleryWeb.as"/>
@@ -49,7 +48,6 @@
 			<arg value="--define+=CONFIG::FLICKR_API_KEY,'${flickr.api.key}'"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${signals.root}'"/>
-			<arg line="--source-path+='${gtween.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="source/Gallery.as"/>
