@@ -1,7 +1,5 @@
 package feathers.examples.componentsExplorer
 {
-	import com.gskinner.motion.easing.Cubic;
-
 	import feathers.controls.ScreenNavigator;
 	import feathers.controls.ScreenNavigatorItem;
 	import feathers.examples.componentsExplorer.data.ButtonSettings;
@@ -208,7 +206,6 @@ package feathers.examples.componentsExplorer
 			
 			this._transitionManager = new ScreenSlidingStackTransitionManager(this._navigator);
 			this._transitionManager.duration = 0.4;
-			this._transitionManager.ease = Cubic.easeOut;
 		}
 	}
 }

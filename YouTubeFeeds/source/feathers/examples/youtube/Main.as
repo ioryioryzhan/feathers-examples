@@ -1,7 +1,5 @@
 package feathers.examples.youtube
 {
-	import com.gskinner.motion.easing.Cubic;
-
 	import feathers.controls.ScreenNavigator;
 	import feathers.controls.ScreenNavigatorItem;
 	import feathers.examples.youtube.models.VideoDetails;
@@ -67,7 +65,6 @@ package feathers.examples.youtube
 
 			this._transitionManager = new ScreenSlidingStackTransitionManager(this._navigator);
 			this._transitionManager.duration = 0.4;
-			this._transitionManager.ease = Cubic.easeOut;
 		}
 
 		private function mainMenuScreen_onList(screen:MainMenuScreen, selectedItem:VideoFeed):void

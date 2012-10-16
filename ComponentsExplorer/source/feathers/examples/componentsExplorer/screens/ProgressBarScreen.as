@@ -1,13 +1,15 @@
 package feathers.examples.componentsExplorer.screens
 {
 	import feathers.controls.Button;
+	import feathers.controls.Header;
 	import feathers.controls.ProgressBar;
 	import feathers.controls.Screen;
-	import feathers.controls.Header;
-	import feathers.motion.GTween;
+
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
+	import starling.animation.Tween;
+	import starling.core.Starling;
 	import starling.display.DisplayObject;
 
 	public class ProgressBarScreen extends Screen
@@ -20,7 +22,7 @@ package feathers.examples.componentsExplorer.screens
 		private var _backButton:Button;
 		private var _progress:ProgressBar;
 
-		private var _progressTween:GTween;
+		private var _progressTween:Tween;
 
 		private var _onBack:Signal = new Signal(ProgressBarScreen);
 
@@ -52,13 +54,10 @@ package feathers.examples.componentsExplorer.screens
 			// handles the back hardware key on android
 			this.backButtonHandler = this.onBackButton;
 
-			this._progressTween = new GTween(this._progress, 5,
-			{
-				value: 1
-			},
-			{
-				repeatCount: int.MAX_VALUE
-			});
+			this._progressTween = new Tween(this._progress, 5);
+			this._progressTween.animate("value", 1);
+			this._progressTween.repeatCount = int.MAX_VALUE;
+			Starling.juggler.add(this._progressTween);
 		}
 
 		override protected function draw():void
@@ -73,8 +72,11 @@ package feathers.examples.componentsExplorer.screens
 
 		private function onBackButton():void
 		{
-			this._progressTween.paused = true;
-			this._progressTween = null;
+			if(this._progressTween)
+			{
+				Starling.juggler.remove(this._progressTween);
+				this._progressTween = null;
+			}
 			this._onBack.dispatch(this);
 		}
 

@@ -1,6 +1,9 @@
 package feathers.examples.gallery
 {
-	import com.gskinner.motion.easing.Sine;
+	import feathers.controls.List;
+	import feathers.controls.renderers.IListItemRenderer;
+	import feathers.core.FeathersControl;
+	import feathers.display.ScrollRectManager;
 
 	import flash.display.Bitmap;
 	import flash.display.Loader;
@@ -12,14 +15,12 @@ package feathers.examples.gallery
 	import flash.net.URLRequest;
 	import flash.system.LoaderContext;
 
-	import feathers.display.ScrollRectManager;
-	import feathers.controls.List;
-	import feathers.controls.renderers.IListItemRenderer;
-	import feathers.core.FeathersControl;
-	import feathers.motion.GTween;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 
+	import starling.animation.Transitions;
+	import starling.animation.Tween;
+	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
@@ -71,7 +72,7 @@ package feathers.examples.gallery
 		/**
 		 * @private
 		 */
-		protected var fadeTween:GTween;
+		protected var fadeTween:Tween;
 
 		/**
 		 * @private
@@ -229,7 +230,7 @@ package feathers.examples.gallery
 
 						if(this.fadeTween)
 						{
-							this.fadeTween.paused = true;
+							Starling.juggler.remove(this.fadeTween);
 							this.fadeTween = null;
 						}
 
@@ -370,7 +371,7 @@ package feathers.examples.gallery
 		/**
 		 * @private
 		 */
-		protected function loader_completeHandler(event:flash.events.Event):void
+		protected function loader_completeHandler(event:Event):void
 		{
 			const bitmap:Bitmap = Bitmap(this.loader.content);
 			this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loader_completeHandler);
@@ -392,13 +393,9 @@ package feathers.examples.gallery
 			}
 			this.image.alpha = 0;
 			this.image.visible = true;
-			this.fadeTween = new GTween(this.image, 0.25,
-			{
-				alpha: 1
-			},
-			{
-				ease: Sine.easeOut
-			});
+			this.fadeTween = new Tween(this.image, 0.25, Transitions.EASE_OUT);
+			this.fadeTween.fadeTo(1);
+			Starling.juggler.add(this.fadeTween);
 			this.invalidate(INVALIDATION_FLAG_SIZE);
 		}
 

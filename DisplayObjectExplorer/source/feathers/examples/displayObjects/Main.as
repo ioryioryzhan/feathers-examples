@@ -1,7 +1,5 @@
 package feathers.examples.displayObjects
 {
-	import com.gskinner.motion.easing.Cubic;
-
 	import feathers.controls.Button;
 	import feathers.controls.ScreenNavigator;
 	import feathers.controls.ScreenNavigatorItem;
@@ -100,7 +98,6 @@ package feathers.examples.displayObjects
 
 			this._transitionManager = new TabBarSlideTransitionManager(this._navigator, this._tabBar);
 			this._transitionManager.duration = 0.4;
-			this._transitionManager.ease = Cubic.easeOut;
 		}
 
 		private function navigator_onChange(navigator:ScreenNavigator):void

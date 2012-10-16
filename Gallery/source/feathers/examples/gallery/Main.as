@@ -1,6 +1,10 @@
 package feathers.examples.gallery
 {
-	import com.gskinner.motion.easing.Sine;
+	import feathers.controls.List;
+	import feathers.controls.Scroller;
+	import feathers.controls.text.TextFieldTextRenderer;
+	import feathers.data.ListCollection;
+	import feathers.layout.HorizontalLayout;
 
 	import flash.display.Bitmap;
 	import flash.display.Loader;
@@ -12,14 +16,9 @@ package feathers.examples.gallery
 	import flash.system.LoaderContext;
 	import flash.text.TextFormat;
 
-	import feathers.controls.List;
-	import feathers.controls.Scroller;
-	import feathers.controls.text.TextFieldTextRenderer;
-	import feathers.core.FeathersControl;
-	import feathers.data.ListCollection;
-	import feathers.layout.HorizontalLayout;
-	import feathers.motion.GTween;
-
+	import starling.animation.Transitions;
+	import starling.animation.Tween;
+	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
@@ -43,7 +42,7 @@ package feathers.examples.gallery
 		protected var message:TextFieldTextRenderer;
 		protected var apiLoader:URLLoader;
 		protected var loader:Loader;
-		protected var fadeTween:GTween;
+		protected var fadeTween:Tween;
 		protected var originalImageWidth:Number;
 		protected var originalImageHeight:Number;
 
@@ -98,7 +97,7 @@ package feathers.examples.gallery
 			}
 			if(this.fadeTween)
 			{
-				this.fadeTween.paused = true;
+				Starling.juggler.remove(this.fadeTween);
 				this.fadeTween = null;
 			}
 			this.message.text = "Loading...";
@@ -191,13 +190,9 @@ package feathers.examples.gallery
 			this.selectedImage.alpha = 0;
 			this.selectedImage.visible = true;
 
-			this.fadeTween = new GTween(this.selectedImage, 0.5,
-			{
-				alpha: 1
-			},
-			{
-				ease: Sine.easeOut
-			});
+			this.fadeTween = new Tween(this.selectedImage, 0.5, Transitions.EASE_OUT);
+			this.fadeTween.fadeTo(1);
+			Starling.juggler.add(this.fadeTween);
 
 			this.message.text = "";
 
