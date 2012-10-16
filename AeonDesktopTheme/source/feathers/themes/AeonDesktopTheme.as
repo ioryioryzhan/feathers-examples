@@ -51,7 +51,7 @@ package feathers.themes
 	import feathers.controls.renderers.DefaultListItemRenderer;
 	import feathers.controls.text.BitmapFontTextRenderer;
 	import feathers.core.DisplayListWatcher;
-	import feathers.core.FeathersControl;
+	import feathers.core.IFeathersControl;
 	import feathers.display.Scale3Image;
 	import feathers.display.Scale9Image;
 	import feathers.layout.VerticalLayout;
@@ -382,7 +382,7 @@ package feathers.themes
 			return new Image(this.pageIndicatorSelectedSkinTexture);
 		}
 
-		protected function nothingInitializer(target:FeathersControl):void
+		protected function nothingInitializer(target:IFeathersControl):void
 		{
 			//do nothing
 		}

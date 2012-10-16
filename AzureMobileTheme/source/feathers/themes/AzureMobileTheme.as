@@ -50,7 +50,7 @@ package feathers.themes
 	import feathers.controls.renderers.DefaultListItemRenderer;
 	import feathers.controls.text.BitmapFontTextRenderer;
 	import feathers.core.DisplayListWatcher;
-	import feathers.core.FeathersControl;
+	import feathers.core.IFeathersControl;
 	import feathers.display.Image;
 	import feathers.display.Scale3Image;
 	import feathers.display.Scale9Image;
@@ -351,7 +351,7 @@ package feathers.themes
 			return image;
 		}
 
-		protected function nothingInitializer(nothing:FeathersControl):void
+		protected function nothingInitializer(nothing:IFeathersControl):void
 		{
 
 		}
