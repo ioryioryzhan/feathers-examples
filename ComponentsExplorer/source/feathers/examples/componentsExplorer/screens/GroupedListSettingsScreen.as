@@ -47,7 +47,7 @@ package feathers.examples.componentsExplorer.screens
 			]);
 			this._stylePicker.typicalItem = GroupedListSettings.STYLE_NORMAL;
 			this._stylePicker.listProperties.typicalItem = GroupedListSettings.STYLE_NORMAL;
-			this._stylePicker.selectedItem = GroupedListSettings.STYLE_NORMAL;
+			this._stylePicker.selectedItem = this.settings.style;
 			this._stylePicker.onChange.add(stylePicker_onChange);
 
 			this._isSelectableToggle = new ToggleSwitch();
