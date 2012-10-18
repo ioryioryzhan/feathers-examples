@@ -68,9 +68,9 @@ package feathers.examples.gallery
 			this.message.y = (availableHeight - this.message.height) / 2;
 		}
 
-		protected function list_onChange(list:List):void
+		protected function list_changeHandler(event:starling.events.Event):void
 		{
-			const item:GalleryItem = GalleryItem(list.selectedItem);
+			const item:GalleryItem = GalleryItem(this.list.selectedItem);
 			if(!item)
 			{
 				if(this.selectedImage)
@@ -123,7 +123,7 @@ package feathers.examples.gallery
 			this.list.scrollerProperties.snapScrollPositionsToPixels = true;
 			this.list.itemRendererType = GalleryItemRenderer;
 			this.list.itemRendererProperties.labelField = "title";
-			this.list.onChange.add(list_onChange);
+			this.list.addEventListener(starling.events.Event.CHANGE, list_changeHandler);
 			this.addChild(this.list);
 
 			this.message = new TextFieldTextRenderer();

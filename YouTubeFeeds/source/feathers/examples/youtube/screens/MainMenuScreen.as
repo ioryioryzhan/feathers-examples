@@ -7,26 +7,21 @@ package feathers.examples.youtube.screens
 	import feathers.examples.youtube.models.VideoFeed;
 	import feathers.skins.StandardIcons;
 
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
-
+	import starling.events.Event;
 	import starling.textures.Texture;
+
+	[Event(name="listVideos",type="starling.events.Event")]
 
 	public class MainMenuScreen extends Screen
 	{
+		public static const LIST_VIDEOS:String = "listVideos";
+
 		public function MainMenuScreen()
 		{
 		}
 
 		private var _header:Header;
 		private var _list:List;
-
-		private var _onList:Signal = new Signal(MainMenuScreen, VideoFeed);
-
-		public function get onList():ISignal
-		{
-			return this._onList;
-		}
 
 		override protected function initialize():void
 		{
@@ -45,7 +40,7 @@ package feathers.examples.youtube.screens
 			]);
 			this._list.itemRendererProperties.labelField = "name";
 			this._list.itemRendererProperties.accessoryTextureFunction = accessoryTextureFunction;
-			this._list.onChange.add(list_onChange);
+			this._list.addEventListener(Event.CHANGE, list_changeHandler);
 			this.addChild(this._list);
 
 			this._header = new Header();
@@ -68,9 +63,9 @@ package feathers.examples.youtube.screens
 			return StandardIcons.listDrillDownAccessoryTexture;
 		}
 
-		private function list_onChange(list:List):void
+		private function list_changeHandler(event:Event):void
 		{
-			this._onList.dispatch(this, VideoFeed(this._list.selectedItem));
+			this.dispatchEventWith(LIST_VIDEOS, false, VideoFeed(this._list.selectedItem));
 		}
 	}
 }

@@ -1,6 +1,5 @@
 package feathers.examples.tileList
 {
-	import feathers.display.Image;
 	import feathers.controls.Button;
 	import feathers.controls.List;
 	import feathers.controls.PageIndicator;
@@ -8,10 +7,10 @@ package feathers.examples.tileList
 	import feathers.controls.renderers.DefaultListItemRenderer;
 	import feathers.controls.renderers.IListItemRenderer;
 	import feathers.data.ListCollection;
-	import feathers.layout.HorizontalLayout;
+	import feathers.display.Image;
 	import feathers.layout.TiledRowsLayout;
 	import feathers.text.BitmapFontTextFormat;
-	
+
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.ResizeEvent;
@@ -112,7 +111,7 @@ package feathers.examples.tileList
 			this._list.scrollerProperties.scrollBarDisplayMode = Scroller.SCROLL_BAR_DISPLAY_MODE_NONE;
 			this._list.scrollerProperties.horizontalScrollPolicy = Scroller.SCROLL_POLICY_ON;
 			this._list.itemRendererFactory = tileListItemRendererFactory;
-			this._list.onScroll.add(list_onScroll);
+			this._list.addEventListener(Event.SCROLL, list_scrollHandler);
 			this.addChild(this._list);
 
 			const normalSymbolTexture:Texture = this._iconAtlas.getTexture("normal-page-symbol");
@@ -131,7 +130,7 @@ package feathers.examples.tileList
 			this._pageIndicator.gap = 3;
 			this._pageIndicator.paddingTop = this._pageIndicator.paddingRight = this._pageIndicator.paddingBottom =
 				this._pageIndicator.paddingLeft = 6;
-			this._pageIndicator.onChange.add(pageIndicator_onChange);
+			this._pageIndicator.addEventListener(Event.CHANGE, pageIndicator_changeHandler);
 			this.addChild(this._pageIndicator);
 
 			this.layout();
@@ -147,12 +146,12 @@ package feathers.examples.tileList
 			return renderer;
 		}
 
-		protected function list_onScroll(list:List):void
+		protected function list_scrollHandler(event:Event):void
 		{
-			this._pageIndicator.selectedIndex = list.horizontalPageIndex;
+			this._pageIndicator.selectedIndex = this._list.horizontalPageIndex;
 		}
 
-		protected function pageIndicator_onChange(pageIndicator:PageIndicator):void
+		protected function pageIndicator_changeHandler(event:Event):void
 		{
 			this._list.scrollToPageIndex(this._pageIndicator.selectedIndex, 0, 0.25);
 		}

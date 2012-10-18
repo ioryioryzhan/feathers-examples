@@ -18,14 +18,17 @@ package feathers.examples.youtube.screens
 	import flash.net.URLRequest;
 	import flash.utils.Timer;
 
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
-
 	import starling.display.DisplayObject;
 	import starling.events.Event;
 
+	[Event(name="complete",type="starling.events.Event")]
+
+	[Event(name="showVideoDetails",type="starling.events.Event")]
+
 	public class ListVideosScreen extends Screen
 	{
+		public static const SHOW_VIDEO_DETAILS:String = "showVideoDetails";
+
 		public function ListVideosScreen()
 		{
 			this.addEventListener(starling.events.Event.REMOVED_FROM_STAGE, removedFromStageHandler);
@@ -57,25 +60,11 @@ package feathers.examples.youtube.screens
 		private var _transitionTimer:Timer;
 		private var _savedLoaderData:*;
 
-		private var _onComplete:Signal = new Signal(ListVideosScreen);
-
-		public function get onComplete():ISignal
-		{
-			return this._onComplete;
-		}
-
-		private var _onVideo:Signal = new Signal(ListVideosScreen, VideoDetails);
-
-		public function get onVideo():ISignal
-		{
-			return this._onVideo;
-		}
-
 		override protected function initialize():void
 		{
 			this._backButton = new Button();
 			this._backButton.label = "Back";
-			this._backButton.onRelease.add(onBackButton);
+			this._backButton.addEventListener(starling.events.Event.TRIGGERED, onBackButton);
 
 			this._header = new Header();
 			this.addChild(this._header);
@@ -87,7 +76,7 @@ package feathers.examples.youtube.screens
 			this._list = new List();
 			this._list.itemRendererProperties.labelField = "title";
 			this._list.itemRendererProperties.accessoryLabelField = "author";
-			this._list.onChange.add(list_onChange);
+			this._list.addEventListener(starling.events.Event.CHANGE, list_changeHandler);
 			this.addChild(this._list);
 
 			this._message = new Label();
@@ -181,18 +170,18 @@ package feathers.examples.youtube.screens
 			this._list.dataProvider = collection;
 		}
 
-		private function onBackButton(button:Button = null):void
+		private function onBackButton(event:starling.events.Event = null):void
 		{
-			this._onComplete.dispatch(this);
+			this.dispatchEventWith(starling.events.Event.COMPLETE);
 		}
 
-		private function list_onChange(list:List):void
+		private function list_changeHandler(event:starling.events.Event):void
 		{
 			if(this._list.selectedIndex < 0)
 			{
 				return;
 			}
-			this._onVideo.dispatch(this, VideoDetails(this._list.selectedItem));
+			this.dispatchEventWith(SHOW_VIDEO_DETAILS, false, VideoDetails(this._list.selectedItem));
 		}
 
 		private function removedFromStageHandler(event:starling.events.Event):void

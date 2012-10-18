@@ -15,9 +15,6 @@ package feathers.examples.gallery
 	import flash.net.URLRequest;
 	import flash.system.LoaderContext;
 
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
-
 	import starling.animation.Transitions;
 	import starling.animation.Tween;
 	import starling.core.Starling;
@@ -176,20 +173,7 @@ package feathers.examples.gallery
 				return;
 			}
 			this._isSelected = value;
-			this._onChange.dispatch(this);
-		}
-
-		/**
-		 * @private
-		 */
-		protected var _onChange:Signal = new Signal(GalleryItemRenderer);
-
-		/**
-		 * @inheritDoc
-		 */
-		public function get onChange():ISignal
-		{
-			return this._onChange;
+			this.dispatchEventWith(starling.events.Event.CHANGE);
 		}
 
 		/**

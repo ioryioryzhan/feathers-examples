@@ -41,13 +41,13 @@ package feathers.examples.youtube
 
 			this._navigator.addScreen(MAIN_MENU, new ScreenNavigatorItem(MainMenuScreen,
 			{
-				onList: mainMenuScreen_onList
+				listVideos: mainMenuScreen_listVideosHandler
 			}));
 
 			this._navigator.addScreen(LIST_VIDEOS, new ScreenNavigatorItem(ListVideosScreen,
 			{
-				onComplete: MAIN_MENU,
-				onVideo: listVideos_onVideo
+				complete: MAIN_MENU,
+				showVideoDetails: listVideos_showVideoDetails
 			},
 			{
 				model: this._model
@@ -55,7 +55,7 @@ package feathers.examples.youtube
 
 			this._navigator.addScreen(VIDEO_DETAILS, new ScreenNavigatorItem(VideoDetailsScreen,
 			{
-				onComplete: LIST_VIDEOS
+				complete: LIST_VIDEOS
 			},
 			{
 				model: this._model
@@ -67,13 +67,13 @@ package feathers.examples.youtube
 			this._transitionManager.duration = 0.4;
 		}
 
-		private function mainMenuScreen_onList(screen:MainMenuScreen, selectedItem:VideoFeed):void
+		private function mainMenuScreen_listVideosHandler(event:Event, selectedItem:VideoFeed):void
 		{
 			this._model.selectedList = selectedItem;
 			this._navigator.showScreen(LIST_VIDEOS);
 		}
 
-		private function listVideos_onVideo(screen:ListVideosScreen, selectedItem:VideoDetails):void
+		private function listVideos_showVideoDetails(event:Event, selectedItem:VideoDetails):void
 		{
 			this._model.selectedVideo = selectedItem;
 			this._navigator.showScreen(VIDEO_DETAILS);

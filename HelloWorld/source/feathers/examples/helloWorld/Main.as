@@ -104,10 +104,10 @@ package feathers.examples.helloWorld
 			//a BitmapFontTextFormat object.
 			this.button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(this.font, 30, 0x000000);
 
-			//onRelease is an as3-signal that tells us when the user has tapped
-			//the button
-			this.button.onRelease.add(button_onRelease);
+			//an event that tells us when the user has tapped/clicked the button
+			this.button.addEventListener(Event.TRIGGERED, button_triggeredHandler);
 
+			//add it to the display list just like any other display object
 			this.addChild(this.button);
 
 			//the button will validate on its own before the next render, but
@@ -118,9 +118,9 @@ package feathers.examples.helloWorld
 		}
 
 		/**
-		 * Listener for the Button's onRelease signal.
+		 * Listener for the Button's Event.TRIGGERED event.
 		 */
-		protected function button_onRelease(button:Button):void
+		protected function button_triggeredHandler(event:Event):void
 		{
 			//the button's label is rotated among the values defined above
 			this.button.label = LABELS[this.labelIndex];

@@ -10,10 +10,10 @@ package feathers.examples.youtube.screens
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
-
 	import starling.display.DisplayObject;
+	import starling.events.Event;
+
+	[Event(name="complete",type="starling.events.Event")]
 
 	public class VideoDetailsScreen extends Screen
 	{
@@ -43,22 +43,15 @@ package feathers.examples.youtube.screens
 			this.invalidate(INVALIDATION_FLAG_DATA);
 		}
 
-		private var _onComplete:Signal = new Signal(VideoDetailsScreen);
-
-		public function get onComplete():ISignal
-		{
-			return this._onComplete;
-		}
-
 		override protected function initialize():void
 		{
 			this._backButton = new Button();
 			this._backButton.label = "Back";
-			this._backButton.onRelease.add(onBackButton);
+			this._backButton.addEventListener(Event.TRIGGERED, onBackButton);
 
 			this._watchButton = new Button();
 			this._watchButton.label = "Watch";
-			this._watchButton.onRelease.add(watchButton_onRelease);
+			this._watchButton.addEventListener(Event.TRIGGERED, watchButton_triggeredHandler);
 
 			this._header = new Header();
 			this.addChild(this._header);
@@ -108,12 +101,12 @@ package feathers.examples.youtube.screens
 			this._scrollText.height = this.actualHeight - this._scrollText.y;
 		}
 
-		private function onBackButton(button:Button = null):void
+		private function onBackButton(event:Event = null):void
 		{
-			this._onComplete.dispatch(this);
+			this.dispatchEventWith(Event.COMPLETE);
 		}
 
-		private function watchButton_onRelease(button:Button):void
+		private function watchButton_triggeredHandler(event:Event):void
 		{
 			navigateToURL(new URLRequest(this._model.selectedVideo.url), "_blank");
 		}
