@@ -53,24 +53,24 @@ package feathers.examples.layoutExplorer
 
 			this._navigator.addScreen(MAIN_MENU, new ScreenNavigatorItem(MainMenuScreen,
 			{
-				onHorizontal: HORIZONTAL,
-				onVertical: VERTICAL,
-				onTiledRows: TILED_ROWS,
-				onTiledColumns: TILED_COLUMNS
+				showHorizontal: HORIZONTAL,
+				showVertical: VERTICAL,
+				showTiledRows: TILED_ROWS,
+				showTiledColumns: TILED_COLUMNS
 			}));
 
 			const horizontalLayoutSettings:HorizontalLayoutSettings = new HorizontalLayoutSettings();
 			this._navigator.addScreen(HORIZONTAL, new ScreenNavigatorItem(HorizontalLayoutScreen,
 			{
-				onBack: MAIN_MENU,
-				onSettings: HORIZONTAL_SETTINGS
+				complete: MAIN_MENU,
+				showSettings: HORIZONTAL_SETTINGS
 			},
 			{
 				settings: horizontalLayoutSettings
 			}));
 			this._navigator.addScreen(HORIZONTAL_SETTINGS, new ScreenNavigatorItem(HorizontalLayoutSettingsScreen,
 			{
-				onBack: HORIZONTAL
+				complete: HORIZONTAL
 			},
 			{
 				settings: horizontalLayoutSettings
@@ -79,15 +79,15 @@ package feathers.examples.layoutExplorer
 			const verticalLayoutSettings:VerticalLayoutSettings = new VerticalLayoutSettings();
 			this._navigator.addScreen(VERTICAL, new ScreenNavigatorItem(VerticalLayoutScreen,
 			{
-				onBack: MAIN_MENU,
-				onSettings: VERTICAL_SETTINGS
+				complete: MAIN_MENU,
+				showSettings: VERTICAL_SETTINGS
 			},
 			{
 				settings: verticalLayoutSettings
 			}));
 			this._navigator.addScreen(VERTICAL_SETTINGS, new ScreenNavigatorItem(VerticalLayoutSettingsScreen,
 			{
-				onBack: VERTICAL
+				complete: VERTICAL
 			},
 			{
 				settings: verticalLayoutSettings
@@ -96,15 +96,15 @@ package feathers.examples.layoutExplorer
 			const tiledRowsLayoutSettings:TiledRowsLayoutSettings = new TiledRowsLayoutSettings();
 			this._navigator.addScreen(TILED_ROWS, new ScreenNavigatorItem(TiledRowsLayoutScreen,
 			{
-				onBack: MAIN_MENU,
-				onSettings: TILED_ROWS_SETTINGS
+				complete: MAIN_MENU,
+				showSettings: TILED_ROWS_SETTINGS
 			},
 			{
 				settings: tiledRowsLayoutSettings
 			}));
 			this._navigator.addScreen(TILED_ROWS_SETTINGS, new ScreenNavigatorItem(TiledRowsLayoutSettingsScreen,
 			{
-				onBack: TILED_ROWS
+				complete: TILED_ROWS
 			},
 			{
 				settings: tiledRowsLayoutSettings
@@ -113,15 +113,15 @@ package feathers.examples.layoutExplorer
 			const tiledColumnsLayoutSettings:TiledColumnsLayoutSettings = new TiledColumnsLayoutSettings();
 			this._navigator.addScreen(TILED_COLUMNS, new ScreenNavigatorItem(TiledColumnsLayoutScreen,
 			{
-				onBack: MAIN_MENU,
-				onSettings: TILED_COLUMNS_SETTINGS
+				complete: MAIN_MENU,
+				showSettings: TILED_COLUMNS_SETTINGS
 			},
 			{
 				settings: tiledColumnsLayoutSettings
 			}));
 			this._navigator.addScreen(TILED_COLUMNS_SETTINGS, new ScreenNavigatorItem(TiledColumnsLayoutSettingsScreen,
 			{
-				onBack: TILED_COLUMNS
+				complete: TILED_COLUMNS
 			},
 			{
 				settings: tiledColumnsLayoutSettings

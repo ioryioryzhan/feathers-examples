@@ -1,18 +1,19 @@
 package feathers.examples.layoutExplorer.screens
 {
 	import feathers.controls.Button;
+	import feathers.controls.Header;
 	import feathers.controls.List;
 	import feathers.controls.PickerList;
 	import feathers.controls.Screen;
-	import feathers.controls.Header;
 	import feathers.controls.Slider;
 	import feathers.data.ListCollection;
-	import feathers.layout.TiledRowsLayout;
 	import feathers.examples.layoutExplorer.data.TiledRowsLayoutSettings;
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
+	import feathers.layout.TiledRowsLayout;
 
 	import starling.display.DisplayObject;
+	import starling.events.Event;
+
+	[Event(name="complete",type="starling.events.Event")]
 
 	public class TiledRowsLayoutSettingsScreen extends Screen
 	{
@@ -38,13 +39,6 @@ package feathers.examples.layoutExplorer.screens
 		private var _tileHorizontalAlignPicker:PickerList;
 		private var _tileVerticalAlignPicker:PickerList;
 
-		private var _onBack:Signal = new Signal(TiledRowsLayoutSettingsScreen);
-
-		public function get onBack():ISignal
-		{
-			return this._onBack;
-		}
-
 		override protected function initialize():void
 		{
 			this._itemCountSlider = new Slider();
@@ -53,7 +47,7 @@ package feathers.examples.layoutExplorer.screens
 			this._itemCountSlider.maximum = 100;
 			this._itemCountSlider.step = 1;
 			this._itemCountSlider.value = this.settings.itemCount;
-			this._itemCountSlider.onChange.add(itemCountSlider_onChange);
+			this._itemCountSlider.addEventListener(Event.CHANGE, itemCountSlider_changeHandler);
 
 			this._pagingPicker = new PickerList();
 			this._pagingPicker.typicalItem = TiledRowsLayout.PAGING_HORIZONTAL;
@@ -64,7 +58,7 @@ package feathers.examples.layoutExplorer.screens
 				TiledRowsLayout.PAGING_VERTICAL
 			]);
 			this._pagingPicker.selectedItem = this.settings.paging;
-			this._pagingPicker.onChange.add(pagingPicker_onChange);
+			this._pagingPicker.addEventListener(Event.CHANGE, pagingPicker_changeHandler);
 
 			this._horizontalAlignPicker = new PickerList();
 			this._horizontalAlignPicker.typicalItem = TiledRowsLayout.HORIZONTAL_ALIGN_CENTER;
@@ -75,7 +69,7 @@ package feathers.examples.layoutExplorer.screens
 				TiledRowsLayout.HORIZONTAL_ALIGN_RIGHT
 			]);
 			this._horizontalAlignPicker.selectedItem = this.settings.horizontalAlign;
-			this._horizontalAlignPicker.onChange.add(horizontalAlignPicker_onChange);
+			this._horizontalAlignPicker.addEventListener(Event.CHANGE, horizontalAlignPicker_changeHandler);
 
 			this._verticalAlignPicker = new PickerList();
 			this._verticalAlignPicker.typicalItem = TiledRowsLayout.VERTICAL_ALIGN_BOTTOM;
@@ -86,7 +80,7 @@ package feathers.examples.layoutExplorer.screens
 				TiledRowsLayout.VERTICAL_ALIGN_BOTTOM
 			]);
 			this._verticalAlignPicker.selectedItem = this.settings.verticalAlign;
-			this._verticalAlignPicker.onChange.add(verticalAlignPicker_onChange);
+			this._verticalAlignPicker.addEventListener(Event.CHANGE, verticalAlignPicker_changeHandler);
 
 			this._tileHorizontalAlignPicker = new PickerList();
 			this._tileHorizontalAlignPicker.typicalItem = TiledRowsLayout.TILE_HORIZONTAL_ALIGN_CENTER;
@@ -98,7 +92,7 @@ package feathers.examples.layoutExplorer.screens
 				TiledRowsLayout.TILE_HORIZONTAL_ALIGN_JUSTIFY
 			]);
 			this._tileHorizontalAlignPicker.selectedItem = this.settings.tileHorizontalAlign;
-			this._tileHorizontalAlignPicker.onChange.add(tileHorizontalAlignPicker_onChange);
+			this._tileHorizontalAlignPicker.addEventListener(Event.CHANGE, tileHorizontalAlignPicker_changeHandler);
 
 			this._tileVerticalAlignPicker = new PickerList();
 			this._tileVerticalAlignPicker.typicalItem = TiledRowsLayout.TILE_VERTICAL_ALIGN_BOTTOM;
@@ -110,7 +104,7 @@ package feathers.examples.layoutExplorer.screens
 				TiledRowsLayout.TILE_VERTICAL_ALIGN_JUSTIFY
 			]);
 			this._tileVerticalAlignPicker.selectedItem = this.settings.tileVerticalAlign;
-			this._tileVerticalAlignPicker.onChange.add(tileVerticalAlignPicker_onChange);
+			this._tileVerticalAlignPicker.addEventListener(Event.CHANGE, tileVerticalAlignPicker_changeHandler);
 
 			this._gapSlider = new Slider();
 			this._gapSlider.direction = Slider.DIRECTION_HORIZONTAL;
@@ -118,7 +112,7 @@ package feathers.examples.layoutExplorer.screens
 			this._gapSlider.maximum = 100;
 			this._gapSlider.step = 1;
 			this._gapSlider.value = this.settings.gap;
-			this._gapSlider.onChange.add(gapSlider_onChange);
+			this._gapSlider.addEventListener(Event.CHANGE, gapSlider_changeHandler);
 
 			this._paddingTopSlider = new Slider();
 			this._paddingTopSlider.direction = Slider.DIRECTION_HORIZONTAL;
@@ -126,7 +120,7 @@ package feathers.examples.layoutExplorer.screens
 			this._paddingTopSlider.maximum = 100;
 			this._paddingTopSlider.step = 1;
 			this._paddingTopSlider.value = this.settings.paddingTop;
-			this._paddingTopSlider.onChange.add(paddingTopSlider_onChange);
+			this._paddingTopSlider.addEventListener(Event.CHANGE, paddingTopSlider_changeHandler);
 
 			this._paddingRightSlider = new Slider();
 			this._paddingRightSlider.direction = Slider.DIRECTION_HORIZONTAL;
@@ -134,7 +128,7 @@ package feathers.examples.layoutExplorer.screens
 			this._paddingRightSlider.maximum = 100;
 			this._paddingRightSlider.step = 1;
 			this._paddingRightSlider.value = this.settings.paddingRight;
-			this._paddingRightSlider.onChange.add(paddingRightSlider_onChange);
+			this._paddingRightSlider.addEventListener(Event.CHANGE, paddingRightSlider_changeHandler);
 
 			this._paddingBottomSlider = new Slider();
 			this._paddingBottomSlider.direction = Slider.DIRECTION_HORIZONTAL;
@@ -142,7 +136,7 @@ package feathers.examples.layoutExplorer.screens
 			this._paddingBottomSlider.maximum = 100;
 			this._paddingBottomSlider.step = 1;
 			this._paddingBottomSlider.value = this.settings.paddingBottom;
-			this._paddingBottomSlider.onChange.add(paddingBottomSlider_onChange);
+			this._paddingBottomSlider.addEventListener(Event.CHANGE, paddingBottomSlider_changeHandler);
 
 			this._paddingLeftSlider = new Slider();
 			this._paddingLeftSlider.direction = Slider.DIRECTION_HORIZONTAL;
@@ -150,7 +144,7 @@ package feathers.examples.layoutExplorer.screens
 			this._paddingLeftSlider.maximum = 100;
 			this._paddingLeftSlider.step = 1;
 			this._paddingLeftSlider.value = this.settings.paddingLeft;
-			this._paddingLeftSlider.onChange.add(paddingLeftSlider_onChange);
+			this._paddingLeftSlider.addEventListener(Event.CHANGE, paddingLeftSlider_changeHandler);
 
 			this._list = new List();
 			this._list.isSelectable = false;
@@ -172,7 +166,7 @@ package feathers.examples.layoutExplorer.screens
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
-			this._backButton.onRelease.add(backButton_onRelease);
+			this._backButton.addEventListener(Event.TRIGGERED, backButton_triggeredHandler);
 
 			this._header = new Header();
 			this._header.title = "Tiled Rows Layout Settings";
@@ -197,65 +191,65 @@ package feathers.examples.layoutExplorer.screens
 
 		private function onBackButton():void
 		{
-			this._onBack.dispatch(this);
+			this.dispatchEventWith(Event.COMPLETE);
 		}
 
-		private function backButton_onRelease(button:Button):void
+		private function backButton_triggeredHandler(event:Event):void
 		{
 			this.onBackButton();
 		}
 
-		private function itemCountSlider_onChange(slider:Slider):void
+		private function itemCountSlider_changeHandler(event:Event):void
 		{
-			this.settings.itemCount = slider.value;
+			this.settings.itemCount = this._itemCountSlider.value;
 		}
 
-		private function pagingPicker_onChange(picker:PickerList):void
+		private function pagingPicker_changeHandler(event:Event):void
 		{
-			this.settings.paging = picker.selectedItem as String;
+			this.settings.paging = this._pagingPicker.selectedItem as String;
 		}
 
-		private function horizontalAlignPicker_onChange(picker:PickerList):void
+		private function horizontalAlignPicker_changeHandler(event:Event):void
 		{
 			this.settings.horizontalAlign = this._horizontalAlignPicker.selectedItem as String;
 		}
 
-		private function verticalAlignPicker_onChange(picker:PickerList):void
+		private function verticalAlignPicker_changeHandler(event:Event):void
 		{
 			this.settings.verticalAlign = this._verticalAlignPicker.selectedItem as String;
 		}
 
-		private function tileHorizontalAlignPicker_onChange(picker:PickerList):void
+		private function tileHorizontalAlignPicker_changeHandler(event:Event):void
 		{
 			this.settings.tileHorizontalAlign = this._tileHorizontalAlignPicker.selectedItem as String;
 		}
 
-		private function tileVerticalAlignPicker_onChange(picker:PickerList):void
+		private function tileVerticalAlignPicker_changeHandler(event:Event):void
 		{
 			this.settings.tileVerticalAlign = this._tileVerticalAlignPicker.selectedItem as String;
 		}
 
-		private function gapSlider_onChange(slider:Slider):void
+		private function gapSlider_changeHandler(event:Event):void
 		{
 			this.settings.gap = this._gapSlider.value;
 		}
 
-		private function paddingTopSlider_onChange(slider:Slider):void
+		private function paddingTopSlider_changeHandler(event:Event):void
 		{
 			this.settings.paddingTop = this._paddingTopSlider.value;
 		}
 
-		private function paddingRightSlider_onChange(slider:Slider):void
+		private function paddingRightSlider_changeHandler(event:Event):void
 		{
 			this.settings.paddingRight = this._paddingRightSlider.value;
 		}
 
-		private function paddingBottomSlider_onChange(slider:Slider):void
+		private function paddingBottomSlider_changeHandler(event:Event):void
 		{
 			this.settings.paddingBottom = this._paddingBottomSlider.value;
 		}
 
-		private function paddingLeftSlider_onChange(slider:Slider):void
+		private function paddingLeftSlider_changeHandler(event:Event):void
 		{
 			this.settings.paddingLeft = this._paddingLeftSlider.value;
 		}

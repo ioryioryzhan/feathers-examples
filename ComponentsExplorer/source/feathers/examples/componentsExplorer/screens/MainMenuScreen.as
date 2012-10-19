@@ -6,11 +6,39 @@ package feathers.examples.componentsExplorer.screens
 	import feathers.data.ListCollection;
 	import feathers.skins.StandardIcons;
 
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
+	import starling.events.Event;
+
+	[Event(name="complete",type="starling.events.Event")]
+	[Event(name="showButton",type="starling.events.Event")]
+	[Event(name="showButtonGroup",type="starling.events.Event")]
+	[Event(name="showCallout",type="starling.events.Event")]
+	[Event(name="showGroupedList",type="starling.events.Event")]
+	[Event(name="showList",type="starling.events.Event")]
+	[Event(name="showPageIndicator",type="starling.events.Event")]
+	[Event(name="showPickerList",type="starling.events.Event")]
+	[Event(name="showProgressBar",type="starling.events.Event")]
+	[Event(name="showScrollText",type="starling.events.Event")]
+	[Event(name="showSlider",type="starling.events.Event")]
+	[Event(name="showTabBar",type="starling.events.Event")]
+	[Event(name="showTextInput",type="starling.events.Event")]
+	[Event(name="showToggles",type="starling.events.Event")]
 
 	public class MainMenuScreen extends Screen
 	{
+		public static const SHOW_BUTTON:String = "showButton";
+		public static const SHOW_BUTTON_GROUP:String = "showButtonGroup";
+		public static const SHOW_CALLOUT:String = "showCallout";
+		public static const SHOW_GROUPED_LIST:String = "showGroupedList";
+		public static const SHOW_LIST:String = "showList";
+		public static const SHOW_PAGE_INDICATOR:String = "showPageIndicator";
+		public static const SHOW_PICKER_LIST:String = "showPickerList";
+		public static const SHOW_PROGRESS_BAR:String = "showProgressBar";
+		public static const SHOW_SCROLL_TEXT:String = "showScrollText";
+		public static const SHOW_SLIDER:String = "showSlider";
+		public static const SHOW_TAB_BAR:String = "showTabBar";
+		public static const SHOW_TEXT_INPUT:String = "showTextInput";
+		public static const SHOW_TOGGLES:String = "showToggles";
+		
 		public function MainMenuScreen()
 		{
 			super();
@@ -18,97 +46,6 @@ package feathers.examples.componentsExplorer.screens
 
 		private var _header:Header;
 		private var _list:List;
-		
-		private var _onButton:Signal = new Signal(MainMenuScreen);
-		
-		public function get onButton():ISignal
-		{
-			return this._onButton;
-		}
-
-		private var _onButtonGroup:Signal = new Signal(MainMenuScreen);
-
-		public function get onButtonGroup():ISignal
-		{
-			return this._onButtonGroup;
-		}
-
-		private var _onCallout:Signal = new Signal(MainMenuScreen);
-
-		public function get onCallout():ISignal
-		{
-			return this._onCallout;
-		}
-
-		private var _onScrollText:Signal = new Signal(MainMenuScreen);
-
-		public function get onScrollText():ISignal
-		{
-			return this._onScrollText;
-		}
-		
-		private var _onSlider:Signal = new Signal(MainMenuScreen);
-		
-		public function get onSlider():ISignal
-		{
-			return this._onSlider;
-		}
-		
-		private var _onToggles:Signal = new Signal(MainMenuScreen);
-		
-		public function get onToggles():ISignal
-		{
-			return this._onToggles;
-		}
-
-		private var _onGroupedList:Signal = new Signal(MainMenuScreen);
-
-		public function get onGroupedList():ISignal
-		{
-			return this._onGroupedList;
-		}
-		
-		private var _onList:Signal = new Signal(MainMenuScreen);
-		
-		public function get onList():ISignal
-		{
-			return this._onList;
-		}
-
-		private var _onPageIndicator:Signal = new Signal(MainMenuScreen);
-
-		public function get onPageIndicator():ISignal
-		{
-			return this._onPageIndicator;
-		}
-		
-		private var _onPickerList:Signal = new Signal(MainMenuScreen);
-		
-		public function get onPickerList():ISignal
-		{
-			return this._onPickerList;
-		}
-
-		private var _onTabBar:Signal = new Signal(MainMenuScreen);
-
-		public function get onTabBar():ISignal
-		{
-			return this._onTabBar;
-		}
-
-		private var _onTextInput:Signal = new Signal(MainMenuScreen);
-
-		public function get onTextInput():ISignal
-		{
-			return this._onTextInput;
-		}
-
-		private var _onProgressBar:Signal = new Signal(MainMenuScreen);
-
-		public function get onProgressBar():ISignal
-		{
-			return this._onProgressBar;
-		}
 		
 		override protected function initialize():void
 		{
@@ -119,23 +56,23 @@ package feathers.examples.componentsExplorer.screens
 			this._list = new List();
 			this._list.dataProvider = new ListCollection(
 			[
-				{ label: "Button", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onButton },
-				{ label: "Button Group", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onButtonGroup },
-				{ label: "Callout", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onCallout },
-				{ label: "Grouped List", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onGroupedList },
-				{ label: "List", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onList },
-				{ label: "Page Indicator", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onPageIndicator },
-				{ label: "Picker List", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onPickerList },
-				{ label: "Progress Bar", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onProgressBar },
-				{ label: "Scroll Text", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onScrollText },
-				{ label: "Slider", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onSlider },
-				{ label: "Tab Bar", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onTabBar },
-				{ label: "Text Input", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onTextInput },
-				{ label: "Toggles", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onToggles },
+				{ label: "Button", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_BUTTON },
+				{ label: "Button Group", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_BUTTON_GROUP },
+				{ label: "Callout", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_CALLOUT },
+				{ label: "Grouped List", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_GROUPED_LIST },
+				{ label: "List", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_LIST },
+				{ label: "Page Indicator", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_PAGE_INDICATOR },
+				{ label: "Picker List", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_PICKER_LIST },
+				{ label: "Progress Bar", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_PROGRESS_BAR },
+				{ label: "Scroll Text", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_SCROLL_TEXT },
+				{ label: "Slider", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_SLIDER},
+				{ label: "Tab Bar", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_TAB_BAR },
+				{ label: "Text Input", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_TEXT_INPUT },
+				{ label: "Toggles", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_TOGGLES },
 			]);
 			this._list.itemRendererProperties.labelField = "label";
 			this._list.itemRendererProperties.accessoryTextureField = "accessoryTexture";
-			this._list.onChange.add(list_onChange);
+			this._list.addEventListener(Event.CHANGE, list_changeHandler);
 			this.addChild(this._list);
 		}
 		
@@ -149,10 +86,10 @@ package feathers.examples.componentsExplorer.screens
 			this._list.height = this.actualHeight - this._list.y;
 		}
 		
-		private function list_onChange(list:List):void
+		private function list_changeHandler(event:Event):void
 		{
-			const signal:Signal = Signal(this._list.selectedItem.signal);
-			signal.dispatch(this);
+			const eventType:String = this._list.selectedItem.event as String;
+			this.dispatchEventWith(eventType);
 		}
 	}
 }

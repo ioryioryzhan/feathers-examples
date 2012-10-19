@@ -73,7 +73,7 @@ package feathers.examples.displayObjects
 			this._theme.setInitializerForClass(Button, bottomGripInitializer, "bottom-grip");
 
 			this._navigator = new ScreenNavigator();
-			this._navigator.onChange.add(navigator_onChange);
+			this._navigator.addEventListener(Event.CHANGE, navigator_changeHandler);
 			this.addChild(this._navigator);
 
 			this._navigator.addScreen(SCALE_9_IMAGE, new ScreenNavigatorItem(Scale9ImageScreen));
@@ -83,7 +83,7 @@ package feathers.examples.displayObjects
 			this._navigator.addScreen(TILED_IMAGE, new ScreenNavigatorItem(TiledImageScreen));
 
 			this._tabBar = new TabBar();
-			this._tabBar.onChange.add(tabBar_onChange);
+			this._tabBar.addEventListener(Event.CHANGE, tabBar_changeHandler);
 			this.addChild(this._tabBar);
 			this._tabBar.dataProvider = new ListCollection(
 			[
@@ -100,14 +100,14 @@ package feathers.examples.displayObjects
 			this._transitionManager.duration = 0.4;
 		}
 
-		private function navigator_onChange(navigator:ScreenNavigator):void
+		private function navigator_changeHandler(event:Event):void
 		{
 			const dataProvider:ListCollection = this._tabBar.dataProvider;
 			const itemCount:int = dataProvider.length;
 			for(var i:int = 0; i < itemCount; i++)
 			{
 				var item:Object = dataProvider.getItemAt(i);
-				if(navigator.activeScreenID == item.action)
+				if(this._navigator.activeScreenID == item.action)
 				{
 					this._tabBar.selectedIndex = i;
 					break;
@@ -115,9 +115,9 @@ package feathers.examples.displayObjects
 			}
 		}
 
-		private function tabBar_onChange(tabBar:TabBar):void
+		private function tabBar_changeHandler(event:Event):void
 		{
-			this._navigator.showScreen(tabBar.selectedItem.action);
+			this._navigator.showScreen(this._tabBar.selectedItem.action);
 		}
 
 		private function stage_resizeHandler(event:ResizeEvent):void

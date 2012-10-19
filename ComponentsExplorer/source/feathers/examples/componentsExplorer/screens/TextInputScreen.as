@@ -1,13 +1,14 @@
 package feathers.examples.componentsExplorer.screens
 {
 	import feathers.controls.Button;
-	import feathers.controls.Screen;
 	import feathers.controls.Header;
+	import feathers.controls.Screen;
 	import feathers.controls.TextInput;
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
 
 	import starling.display.DisplayObject;
+	import starling.events.Event;
+
+	[Event(name="complete",type="starling.events.Event")]
 
 	public class TextInputScreen extends Screen
 	{
@@ -19,13 +20,6 @@ package feathers.examples.componentsExplorer.screens
 		private var _backButton:Button;
 		private var _input:TextInput;
 
-		private var _onBack:Signal = new Signal(TextInputScreen);
-
-		public function get onBack():ISignal
-		{
-			return this._onBack;
-		}
-
 		override protected function initialize():void
 		{
 			this._input = new TextInput();
@@ -33,7 +27,7 @@ package feathers.examples.componentsExplorer.screens
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
-			this._backButton.onRelease.add(backButton_onRelease);
+			this._backButton.addEventListener(Event.TRIGGERED, backButton_triggeredHandler);
 
 			this._header = new Header();
 			this._header.title = "Text Input";
@@ -59,10 +53,10 @@ package feathers.examples.componentsExplorer.screens
 
 		private function onBackButton():void
 		{
-			this._onBack.dispatch(this);
+			this.dispatchEventWith(Event.COMPLETE);
 		}
 
-		private function backButton_onRelease(button:Button):void
+		private function backButton_triggeredHandler(event:Event):void
 		{
 			this.onBackButton();
 		}

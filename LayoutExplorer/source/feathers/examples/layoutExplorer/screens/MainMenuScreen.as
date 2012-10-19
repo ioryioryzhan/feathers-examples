@@ -1,47 +1,31 @@
 package feathers.examples.layoutExplorer.screens
 {
+	import feathers.controls.Header;
 	import feathers.controls.List;
 	import feathers.controls.Screen;
-	import feathers.controls.Header;
 	import feathers.data.ListCollection;
 	import feathers.skins.StandardIcons;
 
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
+	import starling.events.Event;
+
+	[Event(name="showHorizontal",type="starling.events.Event")]
+
+	[Event(name="showVertical",type="starling.events.Event")]
+
+	[Event(name="showTiledRows",type="starling.events.Event")]
+
+	[Event(name="showTiledColumns",type="starling.events.Event")]
 
 	public class MainMenuScreen extends Screen
 	{
+		public static const SHOW_HORIZONTAL:String = "showHorizontal";
+		public static const SHOW_VERTICAL:String = "showVertical";
+		public static const SHOW_TILED_ROWS:String = "showTiledRows";
+		public static const SHOW_TILED_COLUMNS:String = "showTiledColumns";
+
 		public function MainMenuScreen()
 		{
 			super();
-		}
-
-		private var _onHorizontal:Signal = new Signal(MainMenuScreen);
-
-		public function get onHorizontal():ISignal
-		{
-			return this._onHorizontal;
-		}
-
-		private var _onVertical:Signal = new Signal(MainMenuScreen);
-
-		public function get onVertical():ISignal
-		{
-			return this._onVertical;
-		}
-
-		private var _onTiledRows:Signal = new Signal(MainMenuScreen);
-
-		public function get onTiledRows():ISignal
-		{
-			return this._onTiledRows;
-		}
-
-		private var _onTiledColumns:Signal = new Signal(MainMenuScreen);
-
-		public function get onTiledColumns():ISignal
-		{
-			return this._onTiledColumns;
 		}
 
 		private var _header:Header;
@@ -52,14 +36,14 @@ package feathers.examples.layoutExplorer.screens
 			this._list = new List();
 			this._list.dataProvider = new ListCollection(
 			[
-				{ text: "Horizontal", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onHorizontal },
-				{ text: "Vertical", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onVertical },
-				{ text: "Tiled Rows", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onTiledRows },
-				{ text: "Tiled Columns", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, signal: this._onTiledColumns },
+				{ text: "Horizontal", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_HORIZONTAL },
+				{ text: "Vertical", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_VERTICAL },
+				{ text: "Tiled Rows", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_TILED_ROWS },
+				{ text: "Tiled Columns", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_TILED_COLUMNS },
 			]);
 			this._list.itemRendererProperties.labelField = "text";
 			this._list.itemRendererProperties.accessoryTextureField = "accessoryTexture";
-			this._list.onChange.add(list_onChange);
+			this._list.addEventListener(Event.CHANGE, list_changeHandler);
 			this.addChild(this._list);
 
 			this._header = new Header();
@@ -77,10 +61,10 @@ package feathers.examples.layoutExplorer.screens
 			this._list.height = this.actualHeight - this._list.y;
 		}
 
-		private function list_onChange(list:List):void
+		private function list_changeHandler(event:Event):void
 		{
-			const signal:Signal = this._list.selectedItem.signal;
-			signal.dispatch(this);
+			const eventType:String = this._list.selectedItem.event as String;
+			this.dispatchEventWith(eventType);
 		}
 	}
 }

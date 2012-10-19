@@ -9,10 +9,10 @@ package feathers.examples.componentsExplorer.screens
 	import feathers.data.ListCollection;
 	import feathers.examples.componentsExplorer.data.GroupedListSettings;
 
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
-
 	import starling.display.DisplayObject;
+	import starling.events.Event;
+
+	[Event(name="complete",type="starling.events.Event")]
 
 	public class GroupedListSettingsScreen extends Screen
 	{
@@ -30,13 +30,6 @@ package feathers.examples.componentsExplorer.screens
 		private var _isSelectableToggle:ToggleSwitch;
 		private var _hasElasticEdgesToggle:ToggleSwitch;
 
-		private var _onBack:Signal = new Signal(GroupedListSettingsScreen);
-
-		public function get onBack():ISignal
-		{
-			return this._onBack;
-		}
-
 		override protected function initialize():void
 		{
 			this._stylePicker = new PickerList();
@@ -48,15 +41,15 @@ package feathers.examples.componentsExplorer.screens
 			this._stylePicker.typicalItem = GroupedListSettings.STYLE_NORMAL;
 			this._stylePicker.listProperties.typicalItem = GroupedListSettings.STYLE_NORMAL;
 			this._stylePicker.selectedItem = this.settings.style;
-			this._stylePicker.onChange.add(stylePicker_onChange);
+			this._stylePicker.addEventListener(Event.CHANGE, stylePicker_changeHandler);
 
 			this._isSelectableToggle = new ToggleSwitch();
 			this._isSelectableToggle.isSelected = this.settings.isSelectable;
-			this._isSelectableToggle.onChange.add(isSelectableToggle_onChange);
+			this._isSelectableToggle.addEventListener(Event.CHANGE, isSelectableToggle_changeHandler);
 
 			this._hasElasticEdgesToggle = new ToggleSwitch();
 			this._hasElasticEdgesToggle.isSelected = this.settings.hasElasticEdges;
-			this._hasElasticEdgesToggle.onChange.add(hasElasticEdgesToggle_onChange);
+			this._hasElasticEdgesToggle.addEventListener(Event.CHANGE, hasElasticEdgesToggle_changeHandler);
 
 			this._list = new List();
 			this._list.isSelectable = false;
@@ -70,7 +63,7 @@ package feathers.examples.componentsExplorer.screens
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
-			this._backButton.onRelease.add(backButton_onRelease);
+			this._backButton.addEventListener(Event.TRIGGERED, backButton_triggeredHandler);
 
 			this._header = new Header();
 			this._header.title = "List Settings";
@@ -95,25 +88,25 @@ package feathers.examples.componentsExplorer.screens
 
 		private function onBackButton():void
 		{
-			this._onBack.dispatch(this);
+			this.dispatchEventWith(Event.COMPLETE);
 		}
 
-		private function backButton_onRelease(button:Button):void
+		private function backButton_triggeredHandler(event:Event):void
 		{
 			this.onBackButton();
 		}
 
-		private function stylePicker_onChange(picker:PickerList):void
+		private function stylePicker_changeHandler(event:Event):void
 		{
 			this.settings.style = this._stylePicker.selectedItem as String;
 		}
 
-		private function isSelectableToggle_onChange(toggle:ToggleSwitch):void
+		private function isSelectableToggle_changeHandler(event:Event):void
 		{
 			this.settings.isSelectable = this._isSelectableToggle.isSelected;
 		}
 
-		private function hasElasticEdgesToggle_onChange(toggle:ToggleSwitch):void
+		private function hasElasticEdgesToggle_changeHandler(event:Event):void
 		{
 			this.settings.hasElasticEdges = this._hasElasticEdgesToggle.isSelected;
 		}

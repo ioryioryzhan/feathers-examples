@@ -5,16 +5,18 @@ package feathers.examples.componentsExplorer.screens
 	import feathers.controls.Label;
 	import feathers.controls.Screen;
 	import feathers.controls.Slider;
-	import feathers.core.IFeathersControl;
 	import feathers.examples.componentsExplorer.data.SliderSettings;
 
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
-
 	import starling.display.DisplayObject;
+	import starling.events.Event;
+
+	[Event(name="complete",type="starling.events.Event")]
+	[Event(name="showSettings",type="starling.events.Event")]
 
 	public class SliderScreen extends Screen
 	{
+		public static const SHOW_SETTINGS:String = "showSettings";
+
 		public function SliderScreen()
 		{
 			super();
@@ -28,20 +30,6 @@ package feathers.examples.componentsExplorer.screens
 		private var _settingsButton:Button;
 		private var _valueLabel:Label;
 		
-		private var _onBack:Signal = new Signal(SliderScreen);
-		
-		public function get onBack():ISignal
-		{
-			return this._onBack;
-		}
-
-		private var _onSettings:Signal = new Signal(SliderScreen);
-
-		public function get onSettings():ISignal
-		{
-			return this._onSettings;
-		}
-		
 		override protected function initialize():void
 		{
 			this._slider = new Slider();
@@ -52,7 +40,7 @@ package feathers.examples.componentsExplorer.screens
 			this._slider.page = this.settings.page;
 			this._slider.direction = this.settings.direction;
 			this._slider.liveDragging = this.settings.liveDragging;
-			this._slider.onChange.add(slider_onChange);
+			this._slider.addEventListener(Event.CHANGE, slider_changeHandler);
 			this.addChild(this._slider);
 			
 			this._valueLabel = new Label();
@@ -61,11 +49,11 @@ package feathers.examples.componentsExplorer.screens
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
-			this._backButton.onRelease.add(backButton_onRelease);
+			this._backButton.addEventListener(Event.TRIGGERED, backButton_triggeredHandler);
 
 			this._settingsButton = new Button();
 			this._settingsButton.label = "Settings";
-			this._settingsButton.onRelease.add(settingsButton_onRelease);
+			this._settingsButton.addEventListener(Event.TRIGGERED, settingsButton_triggeredHandler);
 
 			this._header = new Header();
 			this._header.title = "Slider";
@@ -104,22 +92,22 @@ package feathers.examples.componentsExplorer.screens
 		
 		private function onBackButton():void
 		{
-			this._onBack.dispatch(this);
+			this.dispatchEventWith(Event.COMPLETE);
 		}
 		
-		private function slider_onChange(slider:Slider):void
+		private function slider_changeHandler(event:Event):void
 		{
 			this._valueLabel.text = this._slider.value.toString();
 		}
 		
-		private function backButton_onRelease(button:Button):void
+		private function backButton_triggeredHandler(event:Event):void
 		{
 			this.onBackButton();
 		}
 
-		private function settingsButton_onRelease(button:Button):void
+		private function settingsButton_triggeredHandler(event:Event):void
 		{
-			this._onSettings.dispatch(this);
+			this.dispatchEventWith(SHOW_SETTINGS);
 		}
 	}
 }

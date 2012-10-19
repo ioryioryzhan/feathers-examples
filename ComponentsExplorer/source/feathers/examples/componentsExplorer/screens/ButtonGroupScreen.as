@@ -6,10 +6,10 @@ package feathers.examples.componentsExplorer.screens
 	import feathers.controls.Screen;
 	import feathers.data.ListCollection;
 
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
-
 	import starling.display.DisplayObject;
+	import starling.events.Event;
+
+	[Event(name="complete",type="starling.events.Event")]
 
 	public class ButtonGroupScreen extends Screen
 	{
@@ -21,28 +21,21 @@ package feathers.examples.componentsExplorer.screens
 		private var _backButton:Button;
 		private var _buttonGroup:ButtonGroup;
 
-		private var _onBack:Signal = new Signal(ButtonGroupScreen);
-
-		public function get onBack():ISignal
-		{
-			return this._onBack;
-		}
-
 		override protected function initialize():void
 		{
 			this._buttonGroup = new ButtonGroup();
 			this._buttonGroup.dataProvider = new ListCollection(
 			[
-				{ label: "One", onRelease: button_onRelease },
-				{ label: "Two", onRelease: button_onRelease },
-				{ label: "Three", onRelease: button_onRelease },
-				{ label: "Four", onRelease: button_onRelease },
+				{ label: "One", triggered: button_triggeredHandler },
+				{ label: "Two", triggered: button_triggeredHandler },
+				{ label: "Three", triggered: button_triggeredHandler },
+				{ label: "Four", triggered: button_triggeredHandler },
 			]);
 			this.addChild(this._buttonGroup);
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
-			this._backButton.onRelease.add(backButton_onRelease);
+			this._backButton.addEventListener(Event.TRIGGERED, backButton_triggeredHandler);
 
 			this._header = new Header();
 			this._header.title = "Button Group";
@@ -68,17 +61,18 @@ package feathers.examples.componentsExplorer.screens
 
 		private function onBackButton():void
 		{
-			this._onBack.dispatch(this);
+			this.dispatchEventWith(Event.COMPLETE);
 		}
 
-		private function backButton_onRelease(button:Button):void
+		private function backButton_triggeredHandler(event:Event):void
 		{
 			this.onBackButton();
 		}
 
-		private function button_onRelease(button:Button):void
+		private function button_triggeredHandler(event:Event):void
 		{
-			trace(button.label + " tapped.");
+			const button:Button = Button(event.currentTarget);
+			trace(button.label + " triggered.");
 		}
 	}
 }

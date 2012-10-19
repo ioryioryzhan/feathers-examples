@@ -1,21 +1,24 @@
 package feathers.examples.componentsExplorer.screens
 {
-	import feathers.display.Image;
 	import feathers.controls.Button;
-	import feathers.controls.Screen;
 	import feathers.controls.Header;
+	import feathers.controls.Screen;
+	import feathers.display.Image;
 	import feathers.examples.componentsExplorer.data.ButtonSettings;
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
 
 	import starling.display.DisplayObject;
+	import starling.events.Event;
 	import starling.textures.Texture;
-	import starling.textures.TextureSmoothing;
+
+	[Event(name="complete",type="starling.events.Event")]
+	[Event(name="showSettings",type="starling.events.Event")]
 
 	public class ButtonScreen extends Screen
 	{
 		[Embed(source="/../assets/images/skull.png")]
 		private static const SKULL_ICON:Class;
+
+		public static const SHOW_SETTINGS:String = "showSettings";
 		
 		public function ButtonScreen()
 		{
@@ -30,20 +33,6 @@ package feathers.examples.componentsExplorer.screens
 		private var _settingsButton:Button;
 		
 		private var _icon:Image;
-		
-		private var _onBack:Signal = new Signal(ButtonScreen);
-		
-		public function get onBack():ISignal
-		{
-			return this._onBack;
-		}
-
-		private var _onSettings:Signal = new Signal(ButtonScreen);
-
-		public function get onSettings():ISignal
-		{
-			return this._onSettings;
-		}
 		
 		override protected function initialize():void
 		{
@@ -64,15 +53,16 @@ package feathers.examples.componentsExplorer.screens
 			this._button.iconOffsetY = this.settings.iconOffsetY;
 			this._button.width = 264 * this.dpiScale;
 			this._button.height = 264 * this.dpiScale;
+			this._button.addEventListener(Event.TRIGGERED, button_triggeredHandler);
 			this.addChild(this._button);
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
-			this._backButton.onRelease.add(backButton_onRelease);
+			this._backButton.addEventListener(Event.TRIGGERED, backButton_triggeredHandler);
 
 			this._settingsButton = new Button();
 			this._settingsButton.label = "Settings";
-			this._settingsButton.onRelease.add(settingsButton_onRelease);
+			this._settingsButton.addEventListener(Event.TRIGGERED, settingsButton_triggeredHandler);
 
 			this._header = new Header();
 			this._header.title = "Button";
@@ -102,17 +92,22 @@ package feathers.examples.componentsExplorer.screens
 		
 		private function onBackButton():void
 		{
-			this._onBack.dispatch(this);
+			this.dispatchEventWith(Event.COMPLETE);
+		}
+
+		private function button_triggeredHandler(event:Event):void
+		{
+			trace("button triggered.")
 		}
 		
-		private function backButton_onRelease(button:Button):void
+		private function backButton_triggeredHandler(event:Event):void
 		{
 			this.onBackButton();
 		}
 
-		private function settingsButton_onRelease(button:Button):void
+		private function settingsButton_triggeredHandler(event:Event):void
 		{
-			this._onSettings.dispatch(this);
+			this.dispatchEventWith(SHOW_SETTINGS);
 		}
 	}
 }

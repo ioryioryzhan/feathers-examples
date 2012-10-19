@@ -70,26 +70,26 @@ package feathers.examples.componentsExplorer
 			
 			this._navigator.addScreen(MAIN_MENU, new ScreenNavigatorItem(MainMenuScreen,
 			{
-				onButton: BUTTON,
-				onButtonGroup: BUTTON_GROUP,
-				onCallout: CALLOUT,
-				onGroupedList: GROUPED_LIST,
-				onList: LIST,
-				onPageIndicator: PAGE_INDICATOR,
-				onPickerList: PICKER_LIST,
-				onProgressBar: PROGRESS_BAR,
-				onScrollText: SCROLL_TEXT,
-				onSlider: SLIDER,
-				onTabBar: TAB_BAR,
-				onTextInput: TEXT_INPUT,
-				onToggles: TOGGLES
+				showButton: BUTTON,
+				showButtonGroup: BUTTON_GROUP,
+				showCallout: CALLOUT,
+				showGroupedList: GROUPED_LIST,
+				showList: LIST,
+				showPageIndicator: PAGE_INDICATOR,
+				showPickerList: PICKER_LIST,
+				showProgressBar: PROGRESS_BAR,
+				showScrollText: SCROLL_TEXT,
+				showSlider: SLIDER,
+				showTabBar: TAB_BAR,
+				showTextInput: TEXT_INPUT,
+				showToggles: TOGGLES
 			}));
 
 			const buttonSettings:ButtonSettings = new ButtonSettings();
 			this._navigator.addScreen(BUTTON, new ScreenNavigatorItem(ButtonScreen,
 			{
-				onBack: MAIN_MENU,
-				onSettings: BUTTON_SETTINGS
+				complete: MAIN_MENU,
+				showSettings: BUTTON_SETTINGS
 			},
 			{
 				settings: buttonSettings
@@ -97,7 +97,7 @@ package feathers.examples.componentsExplorer
 
 			this._navigator.addScreen(BUTTON_SETTINGS, new ScreenNavigatorItem(ButtonSettingsScreen,
 			{
-				onBack: BUTTON
+				complete: BUTTON
 			},
 			{
 				settings: buttonSettings
@@ -105,24 +105,24 @@ package feathers.examples.componentsExplorer
 
 			this._navigator.addScreen(BUTTON_GROUP, new ScreenNavigatorItem(ButtonGroupScreen,
 			{
-				onBack: MAIN_MENU
+				complete: MAIN_MENU
 			}));
 
 			this._navigator.addScreen(CALLOUT, new ScreenNavigatorItem(CalloutScreen,
 			{
-				onBack: MAIN_MENU
+				complete: MAIN_MENU
 			}));
 
 			this._navigator.addScreen(SCROLL_TEXT, new ScreenNavigatorItem(ScrollTextScreen,
 			{
-				onBack: MAIN_MENU
+				complete: MAIN_MENU
 			}));
 
 			const sliderSettings:SliderSettings = new SliderSettings();
 			this._navigator.addScreen(SLIDER, new ScreenNavigatorItem(SliderScreen,
 			{
-				onBack: MAIN_MENU,
-				onSettings: SLIDER_SETTINGS
+				complete: MAIN_MENU,
+				showSettings: SLIDER_SETTINGS
 			},
 			{
 				settings: sliderSettings
@@ -130,7 +130,7 @@ package feathers.examples.componentsExplorer
 
 			this._navigator.addScreen(SLIDER_SETTINGS, new ScreenNavigatorItem(SliderSettingsScreen,
 			{
-				onBack: SLIDER
+				complete: SLIDER
 			},
 			{
 				settings: sliderSettings
@@ -138,14 +138,14 @@ package feathers.examples.componentsExplorer
 			
 			this._navigator.addScreen(TOGGLES, new ScreenNavigatorItem(ToggleScreen,
 			{
-				onBack: MAIN_MENU
+				complete: MAIN_MENU
 			}));
 
 			const groupedListSettings:GroupedListSettings = new GroupedListSettings();
 			this._navigator.addScreen(GROUPED_LIST, new ScreenNavigatorItem(GroupedListScreen,
 			{
-				onBack: MAIN_MENU,
-				onSettings: GROUPED_LIST_SETTINGS
+				complete: MAIN_MENU,
+				showSettings: GROUPED_LIST_SETTINGS
 			},
 			{
 				settings: groupedListSettings
@@ -153,7 +153,7 @@ package feathers.examples.componentsExplorer
 
 			this._navigator.addScreen(GROUPED_LIST_SETTINGS, new ScreenNavigatorItem(GroupedListSettingsScreen,
 			{
-				onBack: GROUPED_LIST
+				complete: GROUPED_LIST
 			},
 			{
 				settings: groupedListSettings
@@ -162,8 +162,8 @@ package feathers.examples.componentsExplorer
 			const listSettings:ListSettings = new ListSettings();
 			this._navigator.addScreen(LIST, new ScreenNavigatorItem(ListScreen,
 			{
-				onBack: MAIN_MENU,
-				onSettings: LIST_SETTINGS
+				complete: MAIN_MENU,
+				showSettings: LIST_SETTINGS
 			},
 			{
 				settings: listSettings
@@ -171,7 +171,7 @@ package feathers.examples.componentsExplorer
 
 			this._navigator.addScreen(LIST_SETTINGS, new ScreenNavigatorItem(ListSettingsScreen,
 			{
-				onBack: LIST
+				complete: LIST
 			},
 			{
 				settings: listSettings
@@ -179,27 +179,27 @@ package feathers.examples.componentsExplorer
 
 			this._navigator.addScreen(PAGE_INDICATOR, new ScreenNavigatorItem(PageIndicatorScreen,
 			{
-				onBack: MAIN_MENU
+				complete: MAIN_MENU
 			}));
 			
 			this._navigator.addScreen(PICKER_LIST, new ScreenNavigatorItem(PickerListScreen,
 			{
-				onBack: MAIN_MENU
+				complete: MAIN_MENU
 			}));
 
 			this._navigator.addScreen(TAB_BAR, new ScreenNavigatorItem(TabBarScreen,
 			{
-				onBack: MAIN_MENU
+				complete: MAIN_MENU
 			}));
 
 			this._navigator.addScreen(TEXT_INPUT, new ScreenNavigatorItem(TextInputScreen,
 			{
-				onBack: MAIN_MENU
+				complete: MAIN_MENU
 			}));
 
 			this._navigator.addScreen(PROGRESS_BAR, new ScreenNavigatorItem(ProgressBarScreen,
 			{
-				onBack: MAIN_MENU
+				complete: MAIN_MENU
 			}));
 			
 			this._navigator.showScreen(MAIN_MENU);

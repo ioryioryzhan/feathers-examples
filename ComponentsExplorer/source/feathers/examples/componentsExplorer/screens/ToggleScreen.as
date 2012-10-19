@@ -2,16 +2,16 @@ package feathers.examples.componentsExplorer.screens
 {
 	import feathers.controls.Button;
 	import feathers.controls.Check;
-	import feathers.controls.text.BitmapFontTextRenderer;
+	import feathers.controls.Header;
 	import feathers.controls.Radio;
 	import feathers.controls.Screen;
-	import feathers.controls.Header;
 	import feathers.controls.ToggleSwitch;
 	import feathers.core.ToggleGroup;
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
 
 	import starling.display.DisplayObject;
+	import starling.events.Event;
+
+	[Event(name="complete",type="starling.events.Event")]
 
 	public class ToggleScreen extends Screen
 	{
@@ -31,18 +31,11 @@ package feathers.examples.componentsExplorer.screens
 		private var _radioGroup:ToggleGroup;
 		private var _backButton:Button;
 		
-		private var _onBack:Signal = new Signal(ToggleScreen);
-		
-		public function get onBack():ISignal
-		{
-			return this._onBack;
-		}
-		
 		override protected function initialize():void
 		{
 			this._toggleSwitch = new ToggleSwitch();
 			this._toggleSwitch.isSelected = false;
-			this._toggleSwitch.onChange.add(toggleSwitch_onChange);
+			this._toggleSwitch.addEventListener(Event.CHANGE, toggleSwitch_changeHandler);
 			this.addChild(this._toggleSwitch);
 
 			this._check1 = new Check();
@@ -61,7 +54,7 @@ package feathers.examples.componentsExplorer.screens
 			this.addChild(this._check3);
 
 			this._radioGroup = new ToggleGroup();
-			this._radioGroup.onChange.add(radioGroup_onChange);
+			this._radioGroup.addEventListener(Event.CHANGE, radioGroup_changeHandler);
 
 			this._radio1 = new Radio();
 			this._radio1.label = "Radio 1";
@@ -83,7 +76,7 @@ package feathers.examples.componentsExplorer.screens
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
-			this._backButton.onRelease.add(backButton_onRelease);
+			this._backButton.addEventListener(Event.TRIGGERED, backButton_triggeredHandler);
 
 			this._header = new Header();
 			this._header.title = "Toggles";
@@ -134,23 +127,23 @@ package feathers.examples.componentsExplorer.screens
 			this._radio3.x = this._radio2.x + this._radio2.width + spacingX;
 			this._radio3.y = this._radio1.y;
 		}
+
+		private function onBackButton():void
+		{
+			this.dispatchEventWith(Event.COMPLETE);
+		}
 		
-		private function toggleSwitch_onChange(toggleSwitch:ToggleSwitch):void
+		private function toggleSwitch_changeHandler(event:Event):void
 		{
 			trace("toggle switch isSelected:", this._toggleSwitch.isSelected);
 		}
 
-		private function radioGroup_onChange(group:ToggleGroup):void
+		private function radioGroup_changeHandler(event:Event):void
 		{
 			trace("radio group change:", this._radioGroup.selectedIndex);
 		}
 		
-		private function onBackButton():void
-		{
-			this._onBack.dispatch(this);
-		}
-		
-		private function backButton_onRelease(button:Button):void
+		private function backButton_triggeredHandler(event:Event):void
 		{
 			this.onBackButton();
 		}

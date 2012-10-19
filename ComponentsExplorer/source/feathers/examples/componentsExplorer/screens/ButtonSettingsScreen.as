@@ -1,18 +1,19 @@
 package feathers.examples.componentsExplorer.screens
 {
 	import feathers.controls.Button;
+	import feathers.controls.Header;
 	import feathers.controls.List;
 	import feathers.controls.PickerList;
 	import feathers.controls.Screen;
-	import feathers.controls.Header;
 	import feathers.controls.Slider;
 	import feathers.controls.ToggleSwitch;
 	import feathers.data.ListCollection;
 	import feathers.examples.componentsExplorer.data.ButtonSettings;
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
 
 	import starling.display.DisplayObject;
+	import starling.events.Event;
+
+	[Event(name="complete",type="starling.events.Event")]
 
 	public class ButtonSettingsScreen extends Screen
 	{
@@ -34,18 +35,11 @@ package feathers.examples.componentsExplorer.screens
 		private var _iconOffsetXSlider:Slider;
 		private var _iconOffsetYSlider:Slider;
 
-		private var _onBack:Signal = new Signal(ButtonSettingsScreen);
-
-		public function get onBack():ISignal
-		{
-			return this._onBack;
-		}
-
 		override protected function initialize():void
 		{
 			this._isToggleToggle = new ToggleSwitch();
 			this._isToggleToggle.isSelected = this.settings.isToggle;
-			this._isToggleToggle.onChange.add(isToggleToggle_onChange);
+			this._isToggleToggle.addEventListener(Event.CHANGE, isToggleToggle_changeHandler);
 
 			this._horizontalAlignPicker = new PickerList();
 			this._horizontalAlignPicker.typicalItem = Button.HORIZONTAL_ALIGN_CENTER;
@@ -57,7 +51,7 @@ package feathers.examples.componentsExplorer.screens
 			]);
 			this._horizontalAlignPicker.listProperties.typicalItem = Button.HORIZONTAL_ALIGN_CENTER;
 			this._horizontalAlignPicker.selectedItem = this.settings.horizontalAlign;
-			this._horizontalAlignPicker.onChange.add(horizontalAlignPicker_onChange);
+			this._horizontalAlignPicker.addEventListener(Event.CHANGE, horizontalAlignPicker_changeHandler);
 
 			this._verticalAlignPicker = new PickerList();
 			this._verticalAlignPicker.typicalItem = Button.VERTICAL_ALIGN_BOTTOM;
@@ -69,11 +63,11 @@ package feathers.examples.componentsExplorer.screens
 			]);
 			this._verticalAlignPicker.listProperties.typicalItem = Button.VERTICAL_ALIGN_BOTTOM;
 			this._verticalAlignPicker.selectedItem = this.settings.verticalAlign;
-			this._verticalAlignPicker.onChange.add(verticalAlignPicker_onChange);
+			this._verticalAlignPicker.addEventListener(Event.CHANGE, verticalAlignPicker_changeHandler);
 
 			this._iconToggle = new ToggleSwitch();
 			this._iconToggle.isSelected = true;
-			this._iconToggle.onChange.add(iconToggle_onChange);
+			this._iconToggle.addEventListener(Event.CHANGE, iconToggle_changeHandler);
 
 			this._iconPositionPicker = new PickerList();
 			this._iconPositionPicker.typicalItem = Button.ICON_POSITION_RIGHT_BASELINE;
@@ -89,7 +83,7 @@ package feathers.examples.componentsExplorer.screens
 			]);
 			this._iconPositionPicker.listProperties.typicalItem = Button.ICON_POSITION_RIGHT_BASELINE;
 			this._iconPositionPicker.selectedItem = this.settings.iconPosition;
-			this._iconPositionPicker.onChange.add(iconPositionPicker_onChange);
+			this._iconPositionPicker.addEventListener(Event.CHANGE, iconPositionPicker_changeHandler);
 
 			this._iconOffsetXSlider = new Slider();
 			//there is no actual limit. these are aribitrary.
@@ -97,14 +91,14 @@ package feathers.examples.componentsExplorer.screens
 			this._iconOffsetXSlider.maximum = 50;
 			this._iconOffsetXSlider.step = 1;
 			this._iconOffsetXSlider.value = this.settings.iconOffsetX;
-			this._iconOffsetXSlider.onChange.add(iconOffsetXSlider_onChange);
+			this._iconOffsetXSlider.addEventListener(Event.CHANGE, iconOffsetXSlider_changeHandler);
 
 			this._iconOffsetYSlider = new Slider();
 			this._iconOffsetYSlider.minimum = -50;
 			this._iconOffsetYSlider.maximum = 50;
 			this._iconOffsetYSlider.step = 1;
 			this._iconOffsetYSlider.value = this.settings.iconOffsetY;
-			this._iconOffsetYSlider.onChange.add(iconOffsetYSlider_onChange);
+			this._iconOffsetYSlider.addEventListener(Event.CHANGE, iconOffsetYSlider_changeHandler);
 
 			this._list = new List();
 			this._list.isSelectable = false;
@@ -122,7 +116,7 @@ package feathers.examples.componentsExplorer.screens
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
-			this._backButton.onRelease.add(backButton_onRelease);
+			this._backButton.addEventListener(Event.TRIGGERED, backButton_triggeredHandler);
 
 			this._header = new Header();
 			this._header.title = "Button Settings";
@@ -147,45 +141,45 @@ package feathers.examples.componentsExplorer.screens
 
 		private function onBackButton():void
 		{
-			this._onBack.dispatch(this);
+			this.dispatchEventWith(Event.COMPLETE);
 		}
 
-		private function backButton_onRelease(button:Button):void
+		private function backButton_triggeredHandler(event:Event):void
 		{
 			this.onBackButton();
 		}
 
-		private function isToggleToggle_onChange(toggle:ToggleSwitch):void
+		private function isToggleToggle_changeHandler(event:Event):void
 		{
 			this.settings.isToggle = this._isToggleToggle.isSelected;
 		}
 
-		private function horizontalAlignPicker_onChange(picker:PickerList):void
+		private function horizontalAlignPicker_changeHandler(event:Event):void
 		{
 			this.settings.horizontalAlign = this._horizontalAlignPicker.selectedItem as String;
 		}
 
-		private function verticalAlignPicker_onChange(picker:PickerList):void
+		private function verticalAlignPicker_changeHandler(event:Event):void
 		{
 			this.settings.verticalAlign = this._verticalAlignPicker.selectedItem as String;
 		}
 
-		private function iconToggle_onChange(toggle:ToggleSwitch):void
+		private function iconToggle_changeHandler(event:Event):void
 		{
 			this.settings.hasIcon = this._iconToggle.isSelected;
 		}
 
-		private function iconPositionPicker_onChange(picker:PickerList):void
+		private function iconPositionPicker_changeHandler(event:Event):void
 		{
 			this.settings.iconPosition = this._iconPositionPicker.selectedItem as String;
 		}
 
-		private function iconOffsetXSlider_onChange(slider:Slider):void
+		private function iconOffsetXSlider_changeHandler(event:Event):void
 		{
 			this.settings.iconOffsetX = this._iconOffsetXSlider.value;
 		}
 
-		private function iconOffsetYSlider_onChange(slider:Slider):void
+		private function iconOffsetYSlider_changeHandler(event:Event):void
 		{
 			this.settings.iconOffsetY = this._iconOffsetYSlider.value;
 		}

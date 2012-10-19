@@ -1,20 +1,24 @@
 package feathers.examples.layoutExplorer.screens
 {
 	import feathers.controls.Button;
-	import feathers.controls.Screen;
 	import feathers.controls.Header;
+	import feathers.controls.Screen;
 	import feathers.controls.ScrollContainer;
-	import feathers.controls.Scroller;
-	import feathers.layout.TiledColumnsLayout;
 	import feathers.examples.layoutExplorer.data.TiledColumnsLayoutSettings;
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
+	import feathers.layout.TiledColumnsLayout;
 
 	import starling.display.DisplayObject;
 	import starling.display.Quad;
+	import starling.events.Event;
+
+	[Event(name="complete",type="starling.events.Event")]
+
+	[Event(name="showSettings",type="starling.events.Event")]
 
 	public class TiledColumnsLayoutScreen extends Screen
 	{
+		public static const SHOW_SETTINGS:String = "showSettings";
+
 		public function TiledColumnsLayoutScreen()
 		{
 			super();
@@ -26,20 +30,6 @@ package feathers.examples.layoutExplorer.screens
 		private var _header:Header;
 		private var _backButton:Button;
 		private var _settingsButton:Button;
-
-		private var _onBack:Signal = new Signal(TiledColumnsLayoutScreen);
-
-		public function get onBack():ISignal
-		{
-			return this._onBack;
-		}
-
-		private var _onSettings:Signal = new Signal(TiledColumnsLayoutScreen);
-
-		public function get onSettings():ISignal
-		{
-			return this._onSettings;
-		}
 
 		override protected function initialize():void
 		{
@@ -69,11 +59,11 @@ package feathers.examples.layoutExplorer.screens
 
 			this._backButton = new Button();
 			this._backButton.label = "Back";
-			this._backButton.onRelease.add(backButton_onRelease);
+			this._backButton.addEventListener(Event.TRIGGERED, backButton_triggeredHandler);
 
 			this._settingsButton = new Button();
 			this._settingsButton.label = "Settings";
-			this._settingsButton.onRelease.add(settingsButton_onRelease);
+			this._settingsButton.addEventListener(Event.TRIGGERED, settingsButton_triggeredHandler);
 
 			this._header = new Header();
 			this._header.title = "Tiled Columns Layout";
@@ -103,17 +93,17 @@ package feathers.examples.layoutExplorer.screens
 
 		private function onBackButton():void
 		{
-			this._onBack.dispatch(this);
+			this.dispatchEventWith(Event.COMPLETE);
 		}
 
-		private function backButton_onRelease(button:Button):void
+		private function backButton_triggeredHandler(event:Event):void
 		{
 			this.onBackButton();
 		}
 
-		private function settingsButton_onRelease(button:Button):void
+		private function settingsButton_triggeredHandler(event:Event):void
 		{
-			this._onSettings.dispatch(this);
+			this.dispatchEventWith(SHOW_SETTINGS);
 		}
 	}
 }
