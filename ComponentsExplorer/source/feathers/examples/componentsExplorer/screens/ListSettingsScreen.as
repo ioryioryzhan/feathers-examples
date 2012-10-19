@@ -74,7 +74,7 @@ package feathers.examples.componentsExplorer.screens
 
 		private function onBackButton():void
 		{
-			this.dispatchEventWith(Event.CHANGE);
+			this.dispatchEventWith(Event.COMPLETE);
 		}
 
 		private function backButton_triggeredHandler(event:Event):void
