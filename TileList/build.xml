@@ -29,7 +29,6 @@
 			<arg line="--static-link-runtime-shared-libraries=true"/>
 			<arg line="--frame two feathers.examples.tileList.Main"/>
 			<arg line="--source-path+='source'"/>
-			<arg line="--source-path+='${signals.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="source/TileList.as"/>
@@ -43,7 +42,6 @@
 			<arg line="+configname=air"/>
 			<arg line="--swf-version=${swf.version}"/>
 			<arg line="--source-path+='source'"/>
-			<arg line="--source-path+='${signals.root}'"/>
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="source/TileList.as"/>
