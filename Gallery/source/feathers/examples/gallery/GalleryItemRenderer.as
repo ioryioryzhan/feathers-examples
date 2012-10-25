@@ -119,7 +119,15 @@ package feathers.examples.gallery
 			{
 				return;
 			}
+			if(this._owner)
+			{
+				this._owner.removeEventListener(starling.events.Event.SCROLL, owner_scrollHandler);
+			}
 			this._owner = value;
+			if(this._owner)
+			{
+				this._owner.addEventListener(starling.events.Event.SCROLL, owner_scrollHandler);
+			}
 			this.invalidate(INVALIDATION_FLAG_DATA);
 		}
 
@@ -350,6 +358,14 @@ package feathers.examples.gallery
 					}
 				}
 			}
+		}
+
+		/**
+		 * @private
+		 */
+		protected function owner_scrollHandler(event:starling.events.Event):void
+		{
+			this.touchPointID = -1;
 		}
 
 		/**
