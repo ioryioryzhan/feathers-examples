@@ -23,9 +23,10 @@
 
 	<target name="build-web" depends="prepare">
 		<echo message="Building ComponentsExplorerWeb.swf"/>
-		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
-			<arg line="+flexlib='${flexframework.root}'"/>
+		<exec executable="${mxmlc}" dir="${basedir}" failonerror="true">
+			<arg line="--target-player=${player.version}"/>
 			<arg line="--swf-version=${swf.version}"/>
+			<arg line="--advanced-telemetry=true"/>
 			<arg line="--static-link-runtime-shared-libraries=true"/>
 			<arg line="--frame two feathers.examples.componentsExplorer.Main"/>
 			<arg line="--source-path+='source'"/>
@@ -34,28 +35,26 @@
 			<arg line="--source-path+='${theme.root}'"/>
 			<arg line="source/ComponentsExplorerWeb.as"/>
 			<arg line="--output ${output.path}/ComponentsExplorerWeb.swf"/>
-		</java>
-		<!--<exec executable="${mxmlc}" dir="${basedir}" failonerror="true">-->
-		<!--</exec>-->
+		</exec>
 	</target>
 	<target name="build-air-swf" depends="prepare">
 		<echo message="Building ComponentsExplorer.swf"/>
-		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
-			<arg line="+flexlib='${flexframework.root}'"/>
+		<exec executable="${mxmlc}" dir="${basedir}" failonerror="true">
 			<arg line="+configname=air"/>
+			<arg line="--target-player=${player.version}"/>
 			<arg line="--swf-version=${swf.version}"/>
+			<arg line="--compress=false"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${feathers.root}'"/>
 			<arg line="--source-path+='${theme.root}'"/>
 			<arg line="source/ComponentsExplorer.as"/>
 			<arg line="--output ${output.path}/ComponentsExplorer.swf"/>
-		</java>
+		</exec>
 	</target>
 	<target name="build-ios" depends="build-air-swf">
 		<echo message="Packaging ComponentsExplorer.ipa"/>
-		<java jar="${adt}" dir="${basedir}" fork="true" 
-			failonerror="true" maxmemory="512m">
+		<exec executable="${adt}" dir="${basedir}" failonerror="true">
 			<arg line="-package"/>
 			<arg line="-target ipa-app-store"/>
 			<arg line="-provisioning-profile ${ios.provision.path}"/>
@@ -67,12 +66,11 @@
 			<!--<arg line="icon48.png icon72.png icon128.png icon512.png"/>-->
 			<arg line="-C ${output.path}"/>
 			<arg line="ComponentsExplorer.swf"/>
-		</java>
+		</exec>
 	</target>
 	<target name="build-android" depends="build-air-swf">
 		<echo message="Packaging ComponentsExplorer.apk"/>
-		<java jar="${adt}" dir="${basedir}" fork="true" 
-			failonerror="true" maxmemory="512m">
+		<exec executable="${adt}" dir="${basedir}" failonerror="true">
 			<arg line="-package"/>
 			<arg line="-target apk-captive-runtime"/>
 			<arg line="-storetype pkcs12"/>
@@ -83,6 +81,6 @@
 			<!--<arg line="icon48.png icon72.png icon128.png icon512.png"/>-->
 			<arg line="-C ${output.path}"/>
 			<arg line="ComponentsExplorer.swf"/>
-		</java>
+		</exec>
 	</target>
 </project>
