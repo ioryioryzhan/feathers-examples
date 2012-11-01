@@ -62,6 +62,8 @@ package feathers.themes
 	import feathers.textures.Scale3Textures;
 	import feathers.textures.Scale9Textures;
 
+	import flash.display.BitmapData;
+
 	import flash.geom.Rectangle;
 	import flash.text.TextFormat;
 
@@ -146,6 +148,7 @@ package feathers.themes
 		}
 
 		protected var atlas:TextureAtlas;
+		protected var atlasBitmapData:BitmapData;
 
 		protected var bitmapFont:BitmapFont;
 
@@ -235,12 +238,40 @@ package feathers.themes
 
 		protected var progressBarFillSkinTexture:Texture;
 
+		override public function dispose():void
+		{
+			if(this.root)
+			{
+				this.root.removeEventListener(Event.ADDED_TO_STAGE, root_addedToStageHandler);
+			}
+			if(this.atlas)
+			{
+				this.atlas.dispose();
+				this.atlas = null;
+			}
+			if(this.atlasBitmapData)
+			{
+				this.atlasBitmapData.dispose();
+				this.atlasBitmapData = null;
+			}
+			super.dispose();
+		}
+
 		protected function initialize():void
 		{
 			Callout.stagePaddingTop = Callout.stagePaddingRight = Callout.stagePaddingBottom =
 				Callout.stagePaddingLeft = 16;
 
-			this.atlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
+			const atlasBitmapData:BitmapData = (new ATLAS_IMAGE()).bitmapData;
+			this.atlas = new TextureAtlas(Texture.fromBitmapData(atlasBitmapData, false), XML(new ATLAS_XML()));
+			if(Starling.handleLostContext)
+			{
+				this.atlasBitmapData = atlasBitmapData;
+			}
+			else
+			{
+				atlasBitmapData.dispose();
+			}
 
 			this.bitmapFont = new BitmapFont(this.atlas.getTexture("arial_0"), XML(new FONT_XML()));
 			this.fontSize = this.bitmapFont.size;

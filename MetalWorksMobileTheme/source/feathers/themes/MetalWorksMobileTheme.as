@@ -66,6 +66,8 @@ package feathers.themes
 	import feathers.textures.Scale3Textures;
 	import feathers.textures.Scale9Textures;
 
+	import flash.display.BitmapData;
+
 	import flash.geom.Rectangle;
 	import flash.text.TextFormat;
 
@@ -161,6 +163,7 @@ package feathers.themes
 		protected var smallDisabledTextFormat:TextFormat;
 
 		protected var atlas:TextureAtlas;
+		protected var atlasBitmapData:BitmapData;
 		protected var primaryBackgroundTexture:Texture;
 		protected var backgroundSkinTextures:Scale9Textures;
 		protected var backgroundDisabledSkinTextures:Scale9Textures;
@@ -205,14 +208,40 @@ package feathers.themes
 		protected var verticalScrollBarThumbSkinTextures:Scale3Textures;
 		protected var horizontalScrollBarThumbSkinTextures:Scale3Textures;
 
+		override public function dispose():void
+		{
+			if(this.root)
+			{
+				this.root.removeEventListener(Event.ADDED_TO_STAGE, root_addedToStageHandler);
+				if(this.primaryBackground)
+				{
+					this.root.stage.removeEventListener(ResizeEvent.RESIZE, stage_resizeHandler);
+					this.root.removeEventListener(Event.REMOVED_FROM_STAGE, root_removedFromStageHandler);
+					this.root.removeChild(this.primaryBackground, true);
+					this.primaryBackground = null;
+				}
+			}
+			if(this.atlas)
+			{
+				this.atlas.dispose();
+				this.atlas = null;
+			}
+			if(this.atlasBitmapData)
+			{
+				this.atlasBitmapData.dispose();
+				this.atlasBitmapData = null;
+			}
+			super.dispose();
+		}
+
 		protected function initializeRoot():void
 		{
 			this.primaryBackground = new TiledImage(this.primaryBackgroundTexture);
 			this.primaryBackground.width = root.stage.stageWidth;
 			this.primaryBackground.height = root.stage.stageHeight;
 			this.root.addChildAt(this.primaryBackground, 0);
-			root.stage.addEventListener(ResizeEvent.RESIZE, stage_resizeHandler);
-			root.addEventListener(Event.REMOVED_FROM_STAGE, root_removedFromStageHandler);
+			this.root.stage.addEventListener(ResizeEvent.RESIZE, stage_resizeHandler);
+			this.root.addEventListener(Event.REMOVED_FROM_STAGE, root_removedFromStageHandler);
 		}
 
 		protected function initialize():void
@@ -260,7 +289,16 @@ package feathers.themes
 			Callout.stagePaddingTop = Callout.stagePaddingRight = Callout.stagePaddingBottom =
 				Callout.stagePaddingLeft = 16 * this.scale;
 
-			this.atlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
+			const atlasBitmapData:BitmapData = (new ATLAS_IMAGE()).bitmapData;
+			this.atlas = new TextureAtlas(Texture.fromBitmapData(atlasBitmapData, false), XML(new ATLAS_XML()));
+			if(Starling.handleLostContext)
+			{
+				this.atlasBitmapData = atlasBitmapData;
+			}
+			else
+			{
+				atlasBitmapData.dispose();
+			}
 
 			this.primaryBackgroundTexture = this.atlas.getTexture("primary-background");
 
@@ -323,13 +361,13 @@ package feathers.themes
 
 			StandardIcons.listDrillDownAccessoryTexture = this.atlas.getTexture("list-accessory-drill-down-icon");
 
-			if(root.stage)
+			if(this.root.stage)
 			{
 				this.initializeRoot();
 			}
 			else
 			{
-				root.addEventListener(Event.ADDED_TO_STAGE, root_addedToStageHandler);
+				this.root.addEventListener(Event.ADDED_TO_STAGE, root_addedToStageHandler);
 			}
 
 			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
@@ -989,14 +1027,14 @@ package feathers.themes
 
 		protected function root_addedToStageHandler(event:Event):void
 		{
-			root.removeEventListener(Event.ADDED_TO_STAGE, root_addedToStageHandler);
+			this.root.removeEventListener(Event.ADDED_TO_STAGE, root_addedToStageHandler);
 			this.initializeRoot();
 		}
 
 		protected function root_removedFromStageHandler(event:Event):void
 		{
-			root.removeEventListener(Event.REMOVED_FROM_STAGE, root_removedFromStageHandler);
-			root.stage.removeEventListener(ResizeEvent.RESIZE, stage_resizeHandler);
+			this.root.removeEventListener(Event.REMOVED_FROM_STAGE, root_removedFromStageHandler);
+			this.root.stage.removeEventListener(ResizeEvent.RESIZE, stage_resizeHandler);
 			this.root.removeChild(this.primaryBackground, true);
 			this.primaryBackground = null;
 		}

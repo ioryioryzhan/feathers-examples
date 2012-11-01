@@ -64,6 +64,8 @@ package feathers.themes
 	import feathers.textures.Scale3Textures;
 	import feathers.textures.Scale9Textures;
 
+	import flash.display.BitmapData;
+
 	import flash.geom.Rectangle;
 	import flash.text.TextFormat;
 
@@ -136,6 +138,7 @@ package feathers.themes
 		protected var fontSize:int;
 
 		protected var atlas:TextureAtlas;
+		protected var atlasBitmapData:BitmapData;
 
 		protected var bitmapFont:BitmapFont;
 
@@ -206,6 +209,25 @@ package feathers.themes
 		protected var pageIndicatorSelectedSkinTexture:Texture;
 		protected var pageIndicatorNormalSkinTexture:Texture;
 
+		override public function dispose():void
+		{
+			if(this.root)
+			{
+				this.root.removeEventListener(Event.ADDED_TO_STAGE, root_addedToStageHandler);
+			}
+			if(this.atlas)
+			{
+				this.atlas.dispose();
+				this.atlas = null;
+			}
+			if(this.atlasBitmapData)
+			{
+				this.atlasBitmapData.dispose();
+				this.atlasBitmapData = null;
+			}
+			super.dispose();
+		}
+
 		protected function initialize():void
 		{
 			if(this._scaleToDPI)
@@ -230,7 +252,16 @@ package feathers.themes
 			Callout.stagePaddingTop = Callout.stagePaddingRight = Callout.stagePaddingBottom =
 				Callout.stagePaddingLeft = 16 * this.scale;
 
-			this.atlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
+			const atlasBitmapData:BitmapData = (new ATLAS_IMAGE()).bitmapData;
+			this.atlas = new TextureAtlas(Texture.fromBitmapData(atlasBitmapData, false), XML(new ATLAS_XML()));
+			if(Starling.handleLostContext)
+			{
+				this.atlasBitmapData = atlasBitmapData;
+			}
+			else
+			{
+				atlasBitmapData.dispose();
+			}
 
 			this.bitmapFont = new BitmapFont(this.atlas.getTexture("lato30_0"), XML(new ATLAS_FONT_XML()));
 
@@ -308,7 +339,7 @@ package feathers.themes
 			this.setInitializerForClass(ScrollText, scrollTextInitializer);
 			this.setInitializerForClass(BitmapFontTextRenderer, itemRendererAccessoryLabelInitializer, BaseDefaultItemRenderer.DEFAULT_CHILD_NAME_ACCESSORY_LABEL);
 			this.setInitializerForClass(Button, buttonInitializer);
-			this.setInitializerForClass(Button, buttonGroupButtonInitializer);
+			this.setInitializerForClass(Button, buttonGroupButtonInitializer, ButtonGroup.DEFAULT_CHILD_NAME_BUTTON);
 			this.setInitializerForClass(Button, tabInitializer, TabBar.DEFAULT_CHILD_NAME_TAB);
 			this.setInitializerForClass(Button, headerButtonInitializer, Header.DEFAULT_CHILD_NAME_ITEM);
 			this.setInitializerForClass(Button, scrollBarThumbInitializer, SimpleScrollBar.DEFAULT_CHILD_NAME_THUMB);
