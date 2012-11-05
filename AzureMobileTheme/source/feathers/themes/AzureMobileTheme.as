@@ -228,6 +228,7 @@ package feathers.themes
 
 		protected function initialize():void
 		{
+			const scaledDPI:int = DeviceCapabilities.dpi / Starling.contentScaleFactor;
 			if(this._scaleToDPI)
 			{
 				if(DeviceCapabilities.isTablet(Starling.current.nativeStage))
@@ -241,9 +242,9 @@ package feathers.themes
 			}
 			else
 			{
-				this._originalDPI = DeviceCapabilities.dpi;
+				this._originalDPI = scaledDPI;
 			}
-			this.scale = DeviceCapabilities.dpi / this._originalDPI;
+			this.scale = scaledDPI / this._originalDPI;
 
 			this.fontSize = 30 * this.scale;
 

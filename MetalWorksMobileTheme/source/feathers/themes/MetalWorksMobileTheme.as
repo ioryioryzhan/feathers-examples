@@ -244,7 +244,8 @@ package feathers.themes
 
 		protected function initialize():void
 		{
-			this._originalDPI = DeviceCapabilities.dpi;
+			const scaledDPI:int = DeviceCapabilities.dpi / Starling.contentScaleFactor;
+			this._originalDPI = scaledDPI;
 			if(this._scaleToDPI)
 			{
 				if(DeviceCapabilities.isTablet(Starling.current.nativeStage))
@@ -257,7 +258,7 @@ package feathers.themes
 				}
 			}
 
-			this.scale = DeviceCapabilities.dpi / this._originalDPI;
+			this.scale = scaledDPI / this._originalDPI;
 
 			FeathersControl.defaultTextRendererFactory = textRendererFactory;
 

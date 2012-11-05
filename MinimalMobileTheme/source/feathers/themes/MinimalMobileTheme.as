@@ -207,6 +207,7 @@ package feathers.themes
 
 		protected function initialize():void
 		{
+			const scaledDPI:int = DeviceCapabilities.dpi / Starling.contentScaleFactor;
 			if(this._scaleToDPI)
 			{
 				if(DeviceCapabilities.isTablet(Starling.current.nativeStage))
@@ -220,11 +221,11 @@ package feathers.themes
 			}
 			else
 			{
-				this._originalDPI = DeviceCapabilities.dpi;
+				this._originalDPI = scaledDPI;
 			}
 			//our min scale is 0.25 because lines in the graphics are four
 			//pixels wide and this will keep them crisp.
-			this.scale = Math.max(0.25, DeviceCapabilities.dpi / this._originalDPI);
+			this.scale = Math.max(0.25, scaledDPI / this._originalDPI);
 
 			//since it's a pixel font, we want a multiple of the original size,
 			//which, in this case, is 8.
