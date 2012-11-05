@@ -56,7 +56,6 @@ package feathers.themes
 	import feathers.display.Image;
 	import feathers.display.Scale9Image;
 	import feathers.layout.VerticalLayout;
-	import feathers.skins.IFeathersTheme;
 	import feathers.skins.ImageStateValueSelector;
 	import feathers.skins.Scale9ImageStateValueSelector;
 	import feathers.skins.StandardIcons;
@@ -66,7 +65,6 @@ package feathers.themes
 	import feathers.utils.math.roundToNearest;
 
 	import flash.display.BitmapData;
-
 	import flash.geom.Rectangle;
 	import flash.text.TextFormat;
 
@@ -80,7 +78,7 @@ package feathers.themes
 	import starling.textures.TextureAtlas;
 	import starling.textures.TextureSmoothing;
 
-	public class MinimalMobileTheme extends DisplayListWatcher implements IFeathersTheme
+	public class MinimalMobileTheme extends DisplayListWatcher
 	{
 		[Embed(source="/../assets/images/minimal.png")]
 		protected static const ATLAS_IMAGE:Class;

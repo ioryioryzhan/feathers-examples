@@ -55,7 +55,6 @@ package feathers.themes
 	import feathers.display.Scale3Image;
 	import feathers.display.Scale9Image;
 	import feathers.layout.VerticalLayout;
-	import feathers.skins.IFeathersTheme;
 	import feathers.skins.ImageStateValueSelector;
 	import feathers.skins.Scale9ImageStateValueSelector;
 	import feathers.skins.StandardIcons;
@@ -65,7 +64,6 @@ package feathers.themes
 	import feathers.textures.Scale9Textures;
 
 	import flash.display.BitmapData;
-
 	import flash.geom.Rectangle;
 	import flash.text.TextFormat;
 
@@ -78,7 +76,7 @@ package feathers.themes
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 
-	public class AzureMobileTheme extends DisplayListWatcher implements IFeathersTheme
+	public class AzureMobileTheme extends DisplayListWatcher
 	{
 		[Embed(source="/../assets/images/azure.png")]
 		protected static const ATLAS_IMAGE:Class;

@@ -58,7 +58,6 @@ package feathers.themes
 	import feathers.display.Scale9Image;
 	import feathers.display.TiledImage;
 	import feathers.layout.VerticalLayout;
-	import feathers.skins.IFeathersTheme;
 	import feathers.skins.ImageStateValueSelector;
 	import feathers.skins.Scale9ImageStateValueSelector;
 	import feathers.skins.StandardIcons;
@@ -67,7 +66,6 @@ package feathers.themes
 	import feathers.textures.Scale9Textures;
 
 	import flash.display.BitmapData;
-
 	import flash.geom.Rectangle;
 	import flash.text.TextFormat;
 
@@ -81,7 +79,7 @@ package feathers.themes
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 
-	public class MetalWorksMobileTheme extends DisplayListWatcher implements IFeathersTheme
+	public class MetalWorksMobileTheme extends DisplayListWatcher
 	{
 		[Embed(source="/../assets/images/metalworks.png")]
 		protected static const ATLAS_IMAGE:Class;
