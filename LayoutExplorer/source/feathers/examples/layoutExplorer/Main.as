@@ -16,7 +16,6 @@ package feathers.examples.layoutExplorer
 	import feathers.examples.layoutExplorer.screens.VerticalLayoutScreen;
 	import feathers.examples.layoutExplorer.screens.VerticalLayoutSettingsScreen;
 	import feathers.motion.transitions.ScreenSlidingStackTransitionManager;
-	import feathers.skins.IFeathersTheme;
 	import feathers.themes.MetalWorksMobileTheme;
 
 	import starling.display.Sprite;
@@ -40,7 +39,7 @@ package feathers.examples.layoutExplorer
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 
-		private var _theme:IFeathersTheme;
+		private var _theme:MetalWorksMobileTheme;
 		private var _navigator:ScreenNavigator;
 		private var _transitionManager:ScreenSlidingStackTransitionManager;
 
