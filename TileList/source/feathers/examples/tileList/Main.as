@@ -101,7 +101,7 @@ package feathers.examples.tileList
 			const listLayout:TiledRowsLayout = new TiledRowsLayout();
 			listLayout.paging = TiledRowsLayout.PAGING_HORIZONTAL;
 			listLayout.useSquareTiles = false;
-			listLayout.tileHorizontalAlign = TiledRowsLayout.HORIZONTAL_ALIGN_CENTER;
+			listLayout.tileHorizontalAlign = TiledRowsLayout.TILE_HORIZONTAL_ALIGN_CENTER;
 			listLayout.horizontalAlign = TiledRowsLayout.HORIZONTAL_ALIGN_CENTER;
 
 			this._list = new List();
