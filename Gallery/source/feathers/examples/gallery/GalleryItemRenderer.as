@@ -187,6 +187,18 @@ package feathers.examples.gallery
 		/**
 		 * @private
 		 */
+		override public function dispose():void
+		{
+			if(this.image)
+			{
+				this.clearImage();
+			}
+			super.dispose();
+		}
+
+		/**
+		 * @private
+		 */
 		override protected function draw():void
 		{
 			const dataInvalid:Boolean = this.isInvalid(INVALIDATION_FLAG_DATA);
@@ -243,9 +255,7 @@ package feathers.examples.gallery
 					}
 					if(this.image)
 					{
-						this.image.texture.dispose();
-						this.removeChild(this.image, true);
-						this.image = null;
+						this.clearImage();
 					}
 					this.currentImageURL = null;
 				}
@@ -299,6 +309,16 @@ package feathers.examples.gallery
 				}
 			}
 			return this.setSizeInternal(newWidth, newHeight, false);
+		}
+
+		/**
+		 * @private
+		 */
+		protected function clearImage():void
+		{
+			this.image.texture.dispose();
+			this.removeChild(this.image, true);
+			this.image = null;
 		}
 
 		/**
