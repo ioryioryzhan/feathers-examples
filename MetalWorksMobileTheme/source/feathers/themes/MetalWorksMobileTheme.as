@@ -50,9 +50,11 @@ package feathers.themes
 	import feathers.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
 	import feathers.controls.renderers.DefaultGroupedListItemRenderer;
 	import feathers.controls.renderers.DefaultListItemRenderer;
+	import feathers.controls.text.TextFieldTextEditor;
 	import feathers.controls.text.TextFieldTextRenderer;
 	import feathers.core.DisplayListWatcher;
 	import feathers.core.FeathersControl;
+	import feathers.core.ITextEditor;
 	import feathers.core.PopUpManager;
 	import feathers.display.Scale3Image;
 	import feathers.display.Scale9Image;
@@ -876,9 +878,9 @@ package feathers.themes
 			input.minTouchWidth = input.minTouchHeight = 88 * this.scale;
 			input.paddingTop = input.paddingBottom = 12 * this.scale;
 			input.paddingLeft = input.paddingRight = 16 * this.scale;
-			input.stageTextProperties.fontFamily = "Helvetica";
-			input.stageTextProperties.fontSize = 30 * this.scale;
-			input.stageTextProperties.color = LIGHT_TEXT_COLOR;
+			input.textEditorProperties.fontFamily = "Helvetica";
+			input.textEditorProperties.fontSize = 30 * this.scale;
+			input.textEditorProperties.color = LIGHT_TEXT_COLOR;
 		}
 
 		protected function pageIndicatorInitializer(pageIndicator:PageIndicator):void

@@ -783,9 +783,9 @@ package feathers.themes
 			input.minTouchWidth = input.minTouchHeight = 66 * this.scale;
 			input.paddingTop = input.paddingBottom = 14 * this.scale;
 			input.paddingLeft = input.paddingRight = 16 * this.scale;
-			input.stageTextProperties.fontFamily = "Helvetica";
-			input.stageTextProperties.fontSize = 30 * this.scale;
-			input.stageTextProperties.color = 0xffffff;
+			input.textEditorProperties.fontFamily = "Helvetica";
+			input.textEditorProperties.fontSize = 30 * this.scale;
+			input.textEditorProperties.color = 0xffffff;
 
 			const backgroundSkin:Scale9Image = new Scale9Image(insetBackgroundSkinTextures, this.scale);
 			backgroundSkin.width = 264 * this.scale;
