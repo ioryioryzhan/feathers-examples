@@ -50,20 +50,25 @@ package feathers.themes
 	import feathers.controls.renderers.DefaultGroupedListItemRenderer;
 	import feathers.controls.renderers.DefaultListItemRenderer;
 	import feathers.controls.text.BitmapFontTextRenderer;
+	import feathers.controls.text.TextFieldTextEditor;
+	import feathers.controls.text.TextFieldTextRenderer;
 	import feathers.core.DisplayListWatcher;
+	import feathers.core.FeathersControl;
 	import feathers.core.IFeathersControl;
+	import feathers.core.ITextEditor;
+	import feathers.core.ITextRenderer;
 	import feathers.display.Scale3Image;
 	import feathers.display.Scale9Image;
 	import feathers.layout.VerticalLayout;
 	import feathers.skins.StandardIcons;
 	import feathers.system.DeviceCapabilities;
-	import feathers.text.BitmapFontTextFormat;
 	import feathers.textures.Scale3Textures;
 	import feathers.textures.Scale9Textures;
 
 	import flash.display.BitmapData;
 	import flash.geom.Rectangle;
 	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
 
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
@@ -71,7 +76,6 @@ package feathers.themes
 	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.events.Event;
-	import starling.text.BitmapFont;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 
@@ -82,9 +86,6 @@ package feathers.themes
 
 		[Embed(source="/../assets/images/aeon.xml",mimeType="application/octet-stream")]
 		protected static const ATLAS_XML:Class;
-
-		[Embed(source="/../assets/images/aeon/arial.fnt",mimeType="application/octet-stream")]
-		protected static const FONT_XML:Class;
 
 		protected static const BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(6, 6, 70, 10);
 		protected static const SELECTED_BUTTON_SCALE_9_GRID:Rectangle = new Rectangle(6, 6, 52, 10);
@@ -103,6 +104,7 @@ package feathers.themes
 
 		protected static const BACKGROUND_COLOR:uint = 0x869CA7;
 		protected static const PRIMARY_TEXT_COLOR:uint = 0x0B333C;
+		protected static const DISABLED_TEXT_COLOR:uint = 0xAAB3B3;
 
 		protected static function verticalScrollBarFactory():ScrollBar
 		{
@@ -116,6 +118,16 @@ package feathers.themes
 			const scrollBar:ScrollBar = new ScrollBar();
 			scrollBar.direction = ScrollBar.DIRECTION_HORIZONTAL;
 			return scrollBar;
+		}
+
+		protected static function textRendererFactory():ITextRenderer
+		{
+			return new TextFieldTextRenderer();
+		}
+
+		protected static function textEditorFactory():ITextEditor
+		{
+			return new TextFieldTextEditor();
 		}
 
 		public function AeonDesktopTheme(root:DisplayObjectContainer)
@@ -148,7 +160,8 @@ package feathers.themes
 		protected var atlas:TextureAtlas;
 		protected var atlasBitmapData:BitmapData;
 
-		protected var bitmapFont:BitmapFont;
+		protected var defaultTextFormat:TextFormat;
+		protected var disabledTextFormat:TextFormat;
 
 		protected var buttonUpSkinTextures:Scale9Textures;
 		protected var buttonHoverSkinTextures:Scale9Textures;
@@ -257,6 +270,9 @@ package feathers.themes
 
 		protected function initialize():void
 		{
+			FeathersControl.defaultTextRendererFactory = textRendererFactory;
+			FeathersControl.defaultTextEditorFactory = textEditorFactory;
+
 			Callout.stagePaddingTop = Callout.stagePaddingRight = Callout.stagePaddingBottom =
 				Callout.stagePaddingLeft = 16;
 
@@ -271,8 +287,8 @@ package feathers.themes
 				atlasBitmapData.dispose();
 			}
 
-			this.bitmapFont = new BitmapFont(this.atlas.getTexture("arial_0"), XML(new FONT_XML()));
-			this.fontSize = this.bitmapFont.size;
+			this.defaultTextFormat = new TextFormat("_sans", 11, PRIMARY_TEXT_COLOR, false, false, false, "", "", TextFormatAlign.LEFT, 0, 0, 0, 0);
+			this.disabledTextFormat = new TextFormat("_sans", 11, DISABLED_TEXT_COLOR, false, false, false, "", "", TextFormatAlign.LEFT, 0, 0, 0, 0);
 
 			this.buttonUpSkinTextures = new Scale9Textures(this.atlas.getTexture("button-up-skin"), BUTTON_SCALE_9_GRID);
 			this.buttonHoverSkinTextures = new Scale9Textures(this.atlas.getTexture("button-hover-skin"), BUTTON_SCALE_9_GRID);
@@ -423,7 +439,7 @@ package feathers.themes
 
 		protected function labelInitializer(label:Label):void
 		{
-			label.textRendererProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			label.textRendererProperties.textFormat = this.defaultTextFormat;
 		}
 
 		protected function scrollTextInitializer(text:ScrollText):void
@@ -432,9 +448,9 @@ package feathers.themes
 			text.paddingTop = text.paddingRight = text.paddingBottom = text.paddingLeft = 8;
 		}
 
-		protected function itemRendererAccessoryLabelInitializer(renderer:BitmapFontTextRenderer):void
+		protected function itemRendererAccessoryLabelInitializer(renderer:TextFieldTextRenderer):void
 		{
-			renderer.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			renderer.textFormat = this.defaultTextFormat;
 		}
 
 		protected function buttonInitializer(button:Button):void
@@ -448,7 +464,8 @@ package feathers.themes
 			button.selectedDownSkin = new Scale9Image(buttonSelectedDownSkinTextures);
 			button.selectedDisabledSkin = new Scale9Image(buttonSelectedDisabledSkinTextures);
 
-			button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			button.defaultLabelProperties.textFormat = this.defaultTextFormat;
+			button.disabledLabelProperties.textFormat = this.disabledTextFormat;
 
 			button.paddingTop = button.paddingBottom = 2;
 			button.paddingLeft = button.paddingRight = 10;
@@ -492,10 +509,13 @@ package feathers.themes
 			check.selectedDownIcon = new Image(checkSelectedDownIconTexture);
 			check.selectedDisabledIcon = new Image(checkSelectedDisabledIconTexture);
 
-			check.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			check.defaultLabelProperties.textFormat = this.defaultTextFormat;
+			check.disabledLabelProperties.textFormat = this.disabledTextFormat;
 
 			check.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			check.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
+
+			check.gap = 4;
 		}
 
 		protected function radioInitializer(radio:Radio):void
@@ -509,16 +529,21 @@ package feathers.themes
 			radio.selectedDownIcon = new Image(radioSelectedDownIconTexture);
 			radio.selectedDisabledIcon = new Image(radioSelectedDisabledIconTexture);
 
-			radio.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			radio.defaultLabelProperties.textFormat = this.defaultTextFormat;
+			radio.disabledLabelProperties.textFormat = this.disabledTextFormat;
 
 			radio.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 			radio.verticalAlign = Button.VERTICAL_ALIGN_MIDDLE;
+
+			radio.gap = 4;
 		}
 
 		protected function toggleSwitchInitializer(toggle:ToggleSwitch):void
 		{
 			toggle.trackLayoutMode = ToggleSwitch.TRACK_LAYOUT_MODE_SINGLE;
-			toggle.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			toggle.labelAlign = ToggleSwitch.LABEL_ALIGN_MIDDLE;
+			toggle.defaultLabelProperties.textFormat = this.defaultTextFormat;
+			toggle.disabledLabelProperties.textFormat = this.disabledTextFormat;
 		}
 
 		protected function buttonGroupInitializer(group:ButtonGroup):void
@@ -648,9 +673,7 @@ package feathers.themes
 			input.minWidth = input.minHeight = 22;
 			input.paddingTop = input.paddingBottom = 2;
  			input.paddingRight = input.paddingLeft = 4;
-			input.textEditorProperties.fontFamily = "Arial";
-			input.textEditorProperties.fontSize = 11;
-			input.textEditorProperties.color = PRIMARY_TEXT_COLOR;
+			input.textEditorProperties.textFormat = this.defaultTextFormat;
 
 			input.backgroundSkin = new Scale9Image(textInputBackgroundSkinTextures);
 			input.backgroundDisabledSkin = new Scale9Image(textInputBackgroundDisabledSkinTextures);
@@ -741,7 +764,8 @@ package feathers.themes
 			renderer.downSkin = new Image(itemRendererSelectedUpSkinTexture);
 			renderer.defaultSelectedSkin = new Image(itemRendererSelectedUpSkinTexture);
 
-			renderer.defaultLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			renderer.defaultLabelProperties.textFormat = this.defaultTextFormat;
+			renderer.disabledLabelProperties.textFormat = this.disabledTextFormat;
 
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 
@@ -756,7 +780,7 @@ package feathers.themes
 			renderer.backgroundSkin = new Scale9Image(groupedListHeaderBackgroundSkinTextures);
 			renderer.backgroundSkin.height = 18;
 
-			renderer.contentLabelProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			renderer.contentLabelProperties.textFormat = this.defaultTextFormat;
 
 			renderer.paddingTop = renderer.paddingBottom = 2;
 			renderer.paddingRight = renderer.paddingLeft = 6;
@@ -779,7 +803,7 @@ package feathers.themes
 		{
 			header.backgroundSkin = new Scale9Image(headerBackgroundSkinTextures);
 
-			header.titleProperties.textFormat = new BitmapFontTextFormat(bitmapFont, this.fontSize, PRIMARY_TEXT_COLOR);
+			header.titleProperties.textFormat = this.defaultTextFormat;
 
 			header.paddingTop = header.paddingBottom = 2;
 			header.paddingRight = header.paddingLeft = 6;
