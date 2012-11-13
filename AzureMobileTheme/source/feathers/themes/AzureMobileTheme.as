@@ -49,7 +49,9 @@ package feathers.themes
 	import feathers.controls.renderers.DefaultGroupedListItemRenderer;
 	import feathers.controls.renderers.DefaultListItemRenderer;
 	import feathers.controls.text.BitmapFontTextRenderer;
+	import feathers.controls.text.StageTextTextEditor;
 	import feathers.core.DisplayListWatcher;
+	import feathers.core.FeathersControl;
 	import feathers.core.IFeathersControl;
 	import feathers.display.Image;
 	import feathers.display.Scale3Image;
@@ -101,6 +103,16 @@ package feathers.themes
 
 		protected static const ORIGINAL_DPI_IPHONE_RETINA:int = 326;
 		protected static const ORIGINAL_DPI_IPAD_RETINA:int = 264;
+
+		protected static function textRendererFactory():BitmapFontTextRenderer
+		{
+			return new BitmapFontTextRenderer();
+		}
+
+		protected static function textEditorFactory():StageTextTextEditor
+		{
+			return new StageTextTextEditor();
+		}
 
 		public function AzureMobileTheme(root:DisplayObjectContainer, scaleToDPI:Boolean = true)
 		{
@@ -330,6 +342,9 @@ package feathers.themes
 
 			this.pageIndicatorNormalSkinTexture = this.atlas.getTexture("page-indicator-normal-skin");
 			this.pageIndicatorSelectedSkinTexture = this.atlas.getTexture("page-indicator-selected-skin");
+
+			FeathersControl.defaultTextRendererFactory = textRendererFactory;
+			FeathersControl.defaultTextEditorFactory = textEditorFactory;
 
 			StandardIcons.listDrillDownAccessoryTexture = this.atlas.getTexture("list-accessory-drill-down-icon");
 

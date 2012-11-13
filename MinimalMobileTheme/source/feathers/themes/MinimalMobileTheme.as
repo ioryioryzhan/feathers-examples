@@ -51,6 +51,7 @@ package feathers.themes
 	import feathers.controls.renderers.DefaultGroupedListItemRenderer;
 	import feathers.controls.renderers.DefaultListItemRenderer;
 	import feathers.controls.text.BitmapFontTextRenderer;
+	import feathers.controls.text.StageTextTextEditor;
 	import feathers.core.DisplayListWatcher;
 	import feathers.core.FeathersControl;
 	import feathers.display.Image;
@@ -105,6 +106,19 @@ package feathers.themes
 
 		protected static const ORIGINAL_DPI_IPHONE_RETINA:int = 326;
 		protected static const ORIGINAL_DPI_IPAD_RETINA:int = 264;
+
+		protected static function textRendererFactory():BitmapFontTextRenderer
+		{
+			const renderer:BitmapFontTextRenderer = new BitmapFontTextRenderer();
+			//since it's a pixel font, we don't want to smooth it.
+			renderer.smoothing = TextureSmoothing.NONE;
+			return renderer;
+		}
+
+		protected static function textEditorFactory():StageTextTextEditor
+		{
+			return new StageTextTextEditor();
+		}
 
 		public function MinimalMobileTheme(root:DisplayObjectContainer, scaleToDPI:Boolean = true)
 		{
@@ -292,6 +306,7 @@ package feathers.themes
 			StandardIcons.listDrillDownAccessoryTexture = this.atlas.getTexture("list-accessory-drill-down-icon");
 
 			FeathersControl.defaultTextRendererFactory = textRendererFactory;
+			FeathersControl.defaultTextEditorFactory = textEditorFactory;
 
 			this.setInitializerForClassAndSubclasses(Screen, screenInitializer);
 			this.setInitializerForClass(Label, labelInitializer);
@@ -335,14 +350,6 @@ package feathers.themes
 		protected function pageIndicatorSelectedSymbolFactory():Image
 		{
 			return new Image(this.pageIndicatorSelectedSkinTexture);
-		}
-
-		protected function textRendererFactory():BitmapFontTextRenderer
-		{
-			const renderer:BitmapFontTextRenderer = new BitmapFontTextRenderer();
-			//since it's a pixel font, we don't want to smooth it.
-			renderer.smoothing = TextureSmoothing.NONE;
-			return renderer;
 		}
 
 		protected function imageFactory(texture:Texture):Image

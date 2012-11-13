@@ -50,11 +50,10 @@ package feathers.themes
 	import feathers.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
 	import feathers.controls.renderers.DefaultGroupedListItemRenderer;
 	import feathers.controls.renderers.DefaultListItemRenderer;
-	import feathers.controls.text.TextFieldTextEditor;
+	import feathers.controls.text.StageTextTextEditor;
 	import feathers.controls.text.TextFieldTextRenderer;
 	import feathers.core.DisplayListWatcher;
 	import feathers.core.FeathersControl;
-	import feathers.core.ITextEditor;
 	import feathers.core.PopUpManager;
 	import feathers.display.Scale3Image;
 	import feathers.display.Scale9Image;
@@ -109,6 +108,16 @@ package feathers.themes
 		protected static const SCROLL_BAR_THUMB_REGION2:int = 14;
 
 		public static const COMPONENT_NAME_PICKER_LIST_ITEM_RENDERER:String = "feathers-mobile-picker-list-item-renderer";
+
+		protected static function textRendererFactory():TextFieldTextRenderer
+		{
+			return new TextFieldTextRenderer();
+		}
+
+		protected static function textEditorFactory():StageTextTextEditor
+		{
+			return new StageTextTextEditor();
+		}
 
 		protected static function popUpOverlayFactory():DisplayObject
 		{
@@ -263,6 +272,7 @@ package feathers.themes
 			this.scale = scaledDPI / this._originalDPI;
 
 			FeathersControl.defaultTextRendererFactory = textRendererFactory;
+			FeathersControl.defaultTextEditorFactory = textEditorFactory;
 
 			const fontNames:String = "Helvetica Neue,Helvetica,Roboto,Arial,_sans";
 
@@ -420,11 +430,6 @@ package feathers.themes
 		protected function pageIndicatorSelectedSymbolFactory():Image
 		{
 			return new Image(this.pageIndicatorSelectedSkinTexture);
-		}
-
-		protected function textRendererFactory():TextFieldTextRenderer
-		{
-			return new TextFieldTextRenderer();
 		}
 
 		protected function imageFactory(texture:Texture):Image
