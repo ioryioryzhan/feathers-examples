@@ -145,8 +145,6 @@ package feathers.themes
 			this.initialize();
 		}
 
-		protected var fontSize:Number;
-
 		public function get originalDPI():int
 		{
 			return DeviceCapabilities.dpi;
@@ -444,7 +442,7 @@ package feathers.themes
 
 		protected function scrollTextInitializer(text:ScrollText):void
 		{
-			text.textFormat = new TextFormat("_sans", this.fontSize, PRIMARY_TEXT_COLOR);
+			text.textFormat = this.defaultTextFormat;
 			text.paddingTop = text.paddingRight = text.paddingBottom = text.paddingLeft = 8;
 		}
 
