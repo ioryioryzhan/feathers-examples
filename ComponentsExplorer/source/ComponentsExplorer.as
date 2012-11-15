@@ -25,7 +25,6 @@ package
 			{
 				this.stage.scaleMode = StageScaleMode.NO_SCALE;
 				this.stage.align = StageAlign.TOP_LEFT;
-				this.stage.mouseChildren = false;
 			}
 			this.mouseEnabled = this.mouseChildren = false;
 			this.loaderInfo.addEventListener(Event.COMPLETE, loaderInfo_completeHandler);

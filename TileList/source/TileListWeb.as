@@ -24,7 +24,6 @@ package
 			{
 				this.stage.align = StageAlign.TOP_LEFT;
 				this.stage.scaleMode = StageScaleMode.NO_SCALE;
-				this.stage.mouseChildren = false;
 			}
 			this.mouseEnabled = this.mouseChildren = false;
 
