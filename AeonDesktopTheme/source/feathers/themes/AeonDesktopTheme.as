@@ -767,9 +767,13 @@ package feathers.themes
 
 			renderer.horizontalAlign = Button.HORIZONTAL_ALIGN_LEFT;
 
+			renderer.iconPosition = Button.ICON_POSITION_LEFT;
+			renderer.accessoryPosition = BaseDefaultItemRenderer.ACCESSORY_POSITION_RIGHT;
+
 			renderer.paddingTop = renderer.paddingBottom = 2;
 			renderer.paddingRight = renderer.paddingLeft = 6;
 			renderer.gap = 2;
+			renderer.accessoryGap = Number.POSITIVE_INFINITY;
 			renderer.minWidth = renderer.minHeight = 22;
 		}
 
