@@ -13,6 +13,7 @@ package feathers.examples.gallery
 	import flash.events.SecurityErrorEvent;
 	import flash.geom.Point;
 	import flash.net.URLRequest;
+	import flash.system.ImageDecodingPolicy;
 	import flash.system.LoaderContext;
 
 	import starling.animation.Transitions;
@@ -30,11 +31,17 @@ package feathers.examples.gallery
 		 * @private
 		 */
 		private static const LOADER_CONTEXT:LoaderContext = new LoaderContext(true);
+		LOADER_CONTEXT.imageDecodingPolicy = ImageDecodingPolicy.ON_LOAD;
 
 		/**
 		 * @private
 		 */
 		private static const HELPER_POINT:Point = new Point();
+
+		/**
+		 * @private
+		 */
+		private static const HELPER_TOUCHES_VECTOR:Vector.<Touch> = new <Touch>[];
 
 		/**
 		 * Constructor.
@@ -334,7 +341,7 @@ package feathers.examples.gallery
 		 */
 		protected function touchHandler(event:TouchEvent):void
 		{
-			const touches:Vector.<Touch> = event.getTouches(this);
+			const touches:Vector.<Touch> = event.getTouches(this, null, HELPER_TOUCHES_VECTOR);
 			if(touches.length == 0)
 			{
 				return;
@@ -352,6 +359,7 @@ package feathers.examples.gallery
 				}
 				if(!touch)
 				{
+					HELPER_TOUCHES_VECTOR.length = 0;
 					return;
 				}
 				if(touch.phase == TouchPhase.ENDED)
@@ -364,7 +372,6 @@ package feathers.examples.gallery
 					{
 						this.isSelected = true;
 					}
-					return;
 				}
 			}
 			else
@@ -374,10 +381,11 @@ package feathers.examples.gallery
 					if(touch.phase == TouchPhase.BEGAN)
 					{
 						this.touchPointID = touch.id;
-						return;
+						break;
 					}
 				}
 			}
+			HELPER_TOUCHES_VECTOR.length = 0;
 		}
 
 		/**
