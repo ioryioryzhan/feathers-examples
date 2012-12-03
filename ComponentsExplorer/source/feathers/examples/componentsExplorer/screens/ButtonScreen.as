@@ -3,10 +3,10 @@ package feathers.examples.componentsExplorer.screens
 	import feathers.controls.Button;
 	import feathers.controls.Header;
 	import feathers.controls.Screen;
-	import feathers.display.Image;
 	import feathers.examples.componentsExplorer.data.ButtonSettings;
 
 	import starling.display.DisplayObject;
+	import starling.display.Image;
 	import starling.events.Event;
 	import starling.textures.Texture;
 
