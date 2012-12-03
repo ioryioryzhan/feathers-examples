@@ -39,7 +39,7 @@ package feathers.examples.youtube.screens
 				new VideoFeed("Trending Videos", "http://gdata.youtube.com/feeds/api/standardfeeds/on_the_web?fields=entry[link/@rel='http://gdata.youtube.com/schemas/2007%23mobile']"),
 			]);
 			this._list.itemRendererProperties.labelField = "name";
-			this._list.itemRendererProperties.accessoryTextureFunction = accessoryTextureFunction;
+			this._list.itemRendererProperties.accessorySourceFunction = accessorySourceFunction;
 			this._list.addEventListener(Event.CHANGE, list_changeHandler);
 			this.addChild(this._list);
 
@@ -58,7 +58,7 @@ package feathers.examples.youtube.screens
 			this._list.height = this.actualHeight - this._list.y;
 		}
 
-		private function accessoryTextureFunction(item:Object):Texture
+		private function accessorySourceFunction(item:Object):Texture
 		{
 			return StandardIcons.listDrillDownAccessoryTexture;
 		}

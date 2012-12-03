@@ -7,10 +7,10 @@ package feathers.examples.tileList
 	import feathers.controls.renderers.DefaultListItemRenderer;
 	import feathers.controls.renderers.IListItemRenderer;
 	import feathers.data.ListCollection;
-	import feathers.display.Image;
 	import feathers.layout.TiledRowsLayout;
 	import feathers.text.BitmapFontTextFormat;
 
+	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.ResizeEvent;
@@ -140,7 +140,7 @@ package feathers.examples.tileList
 		{
 			const renderer:DefaultListItemRenderer = new DefaultListItemRenderer();
 			renderer.labelField = "label";
-			renderer.iconTextureField = "texture";
+			renderer.iconSourceField = "texture";
 			renderer.iconPosition = Button.ICON_POSITION_TOP;
 			renderer.defaultLabelProperties.textFormat = new BitmapFontTextFormat(this._font, NaN, 0x000000);
 			return renderer;
