@@ -1,38 +1,23 @@
 package feathers.examples.gallery
 {
+	import feathers.controls.ImageLoader;
 	import feathers.controls.List;
 	import feathers.controls.renderers.IListItemRenderer;
 	import feathers.core.FeathersControl;
-	import feathers.display.ScrollRectManager;
+	import feathers.events.FeathersEventType;
 
-	import flash.display.Bitmap;
-	import flash.display.Loader;
-	import flash.events.ErrorEvent;
-	import flash.events.Event;
-	import flash.events.IOErrorEvent;
-	import flash.events.SecurityErrorEvent;
 	import flash.geom.Point;
-	import flash.net.URLRequest;
-	import flash.system.ImageDecodingPolicy;
-	import flash.system.LoaderContext;
 
 	import starling.animation.Transitions;
 	import starling.animation.Tween;
 	import starling.core.Starling;
-	import starling.display.Image;
+	import starling.events.Event;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-	import starling.textures.Texture;
 
 	public class GalleryItemRenderer extends FeathersControl implements IListItemRenderer
 	{
-		/**
-		 * @private
-		 */
-		private static const LOADER_CONTEXT:LoaderContext = new LoaderContext(true);
-		LOADER_CONTEXT.imageDecodingPolicy = ImageDecodingPolicy.ON_LOAD;
-
 		/**
 		 * @private
 		 */
@@ -50,23 +35,13 @@ package feathers.examples.gallery
 		{
 			this.isQuickHitAreaEnabled = true;
 			this.addEventListener(TouchEvent.TOUCH, touchHandler);
-			this.addEventListener(starling.events.Event.REMOVED_FROM_STAGE, removedFromStageHandler)
+			this.addEventListener(Event.REMOVED_FROM_STAGE, removedFromStageHandler)
 		}
 
 		/**
 		 * @private
 		 */
-		protected var image:Image;
-
-		/**
-		 * @private
-		 */
-		protected var currentImageURL:String;
-
-		/**
-		 * @private
-		 */
-		protected var loader:Loader;
+		protected var image:ImageLoader;
 
 		/**
 		 * @private
@@ -128,12 +103,12 @@ package feathers.examples.gallery
 			}
 			if(this._owner)
 			{
-				this._owner.removeEventListener(starling.events.Event.SCROLL, owner_scrollHandler);
+				this._owner.removeEventListener(Event.SCROLL, owner_scrollHandler);
 			}
 			this._owner = value;
 			if(this._owner)
 			{
-				this._owner.addEventListener(starling.events.Event.SCROLL, owner_scrollHandler);
+				this._owner.addEventListener(Event.SCROLL, owner_scrollHandler);
 			}
 			this.invalidate(INVALIDATION_FLAG_DATA);
 		}
@@ -188,19 +163,18 @@ package feathers.examples.gallery
 				return;
 			}
 			this._isSelected = value;
-			this.dispatchEventWith(starling.events.Event.CHANGE);
+			this.dispatchEventWith(Event.CHANGE);
 		}
 
 		/**
 		 * @private
 		 */
-		override public function dispose():void
+		override protected function initialize():void
 		{
-			if(this.image)
-			{
-				this.clearImage();
-			}
-			super.dispose();
+			this.image = new ImageLoader();
+			this.image.addEventListener(Event.COMPLETE, image_completeHandler);
+			this.image.addEventListener(FeathersEventType.ERROR, image_errorHandler);
+			this.addChild(this.image);
 		}
 
 		/**
@@ -214,57 +188,18 @@ package feathers.examples.gallery
 
 			if(dataInvalid)
 			{
+				if(this.fadeTween)
+				{
+					this.fadeTween.advanceTime(Number.MAX_VALUE);
+				}
 				if(this._data)
 				{
-					if(this.currentImageURL != this._data.thumbURL)
-					{
-						if(this.loader)
-						{
-							this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loader_completeHandler);
-							this.loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
-							this.loader.contentLoaderInfo.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_errorHandler);
-							try
-							{
-								this.loader.close();
-							}
-							catch(error:Error)
-							{
-								//no need to do anything in response
-							}
-							this.loader = null;
-						}
-
-						if(this.image)
-						{
-							this.image.visible = false;
-						}
-
-						if(this.fadeTween)
-						{
-							Starling.juggler.remove(this.fadeTween);
-							this.fadeTween = null;
-						}
-
-						this.currentImageURL = this._data.thumbURL;
-						this.loader = new Loader();
-						this.loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loader_completeHandler);
-						this.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
-						this.loader.contentLoaderInfo.addEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_errorHandler);
-						this.loader.load(new URLRequest(this._data.thumbURL), LOADER_CONTEXT);
-					}
+					this.image.visible = false;
+					this.image.source = this._data.thumbURL;
 				}
 				else
 				{
-					if(this.loader)
-					{
-						this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loader_completeHandler);
-						this.loader = null;
-					}
-					if(this.image)
-					{
-						this.clearImage();
-					}
-					this.currentImageURL = null;
+					this.image.source = null;
 				}
 			}
 
@@ -272,11 +207,8 @@ package feathers.examples.gallery
 
 			if(sizeInvalid)
 			{
-				if(this.image)
-				{
-					this.image.x = (this.actualWidth - this.image.width) / 2;
-					this.image.y = (this.actualHeight - this.image.height) / 2;
-				}
+				this.image.width = this.actualWidth;
+				this.image.height = this.actualHeight;
 			}
 		}
 
@@ -291,10 +223,13 @@ package feathers.examples.gallery
 			{
 				return false;
 			}
+
+			this.image.width = this.image.height = NaN;
+			this.image.validate();
 			var newWidth:Number = this.explicitWidth;
 			if(needsWidth)
 			{
-				if(this.image)
+				if(this.image.isLoaded)
 				{
 					newWidth = this.image.width;
 				}
@@ -306,7 +241,7 @@ package feathers.examples.gallery
 			var newHeight:Number = this.explicitHeight;
 			if(needsHeight)
 			{
-				if(this.image)
+				if(this.image.isLoaded)
 				{
 					newHeight = this.image.height;
 				}
@@ -321,17 +256,15 @@ package feathers.examples.gallery
 		/**
 		 * @private
 		 */
-		protected function clearImage():void
+		protected function fadeTween_onComplete():void
 		{
-			this.image.texture.dispose();
-			this.removeChild(this.image, true);
-			this.image = null;
+			this.fadeTween = null;
 		}
 
 		/**
 		 * @private
 		 */
-		protected function removedFromStageHandler(event:starling.events.Event):void
+		protected function removedFromStageHandler(event:Event):void
 		{
 			this.touchPointID = -1;
 		}
@@ -367,7 +300,6 @@ package feathers.examples.gallery
 					this.touchPointID = -1;
 
 					touch.getLocation(this, HELPER_POINT);
-					ScrollRectManager.adjustTouchLocation(HELPER_POINT, this);
 					if(this.hitTest(HELPER_POINT, true) != null && !this._isSelected)
 					{
 						this.isSelected = true;
@@ -391,7 +323,7 @@ package feathers.examples.gallery
 		/**
 		 * @private
 		 */
-		protected function owner_scrollHandler(event:starling.events.Event):void
+		protected function owner_scrollHandler(event:Event):void
 		{
 			this.touchPointID = -1;
 		}
@@ -399,46 +331,20 @@ package feathers.examples.gallery
 		/**
 		 * @private
 		 */
-		protected function loader_completeHandler(event:Event):void
+		protected function image_completeHandler(event:Event):void
 		{
-			const bitmap:Bitmap = Bitmap(this.loader.content);
-			this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loader_completeHandler);
-			this.loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
-			this.loader.contentLoaderInfo.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_errorHandler);
-			this.loader = null;
-
-			const texture:Texture = Texture.fromBitmap(bitmap);
-			if(this.image)
-			{
-				this.image.texture.dispose();
-				this.image.texture = texture;
-				this.image.readjustSize();
-			}
-			else
-			{
-				this.image = new Image(texture);
-				this.addChild(this.image);
-			}
 			this.image.alpha = 0;
 			this.image.visible = true;
 			this.fadeTween = new Tween(this.image, 0.25, Transitions.EASE_OUT);
 			this.fadeTween.fadeTo(1);
+			this.fadeTween.onComplete = fadeTween_onComplete;
 			Starling.juggler.add(this.fadeTween);
 			this.invalidate(INVALIDATION_FLAG_SIZE);
 		}
 
-		/**
-		 * @private
-		 */
-		protected function loader_errorHandler(event:ErrorEvent):void
+		protected function image_errorHandler(event:Event):void
 		{
-			this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loader_completeHandler);
-			this.loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
-			this.loader.contentLoaderInfo.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_errorHandler);
-			this.loader = null;
-
-			//can't load the image at this time
-			//TODO: maybe show a placeholder?
+			this.invalidate(INVALIDATION_FLAG_SIZE);
 		}
 
 	}
