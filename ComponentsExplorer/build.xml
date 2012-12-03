@@ -43,6 +43,7 @@
 			<arg line="+configname=air"/>
 			<arg line="--target-player=${player.version}"/>
 			<arg line="--swf-version=${swf.version}"/>
+			<arg line="--advanced-telemetry=true"/>
 			<arg line="--compress=false"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${starling.root}'"/>
