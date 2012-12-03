@@ -122,7 +122,6 @@ package feathers.examples.gallery
 			this.list.scrollerProperties.horizontalScrollPolicy = Scroller.SCROLL_POLICY_ON;
 			this.list.scrollerProperties.snapScrollPositionsToPixels = true;
 			this.list.itemRendererType = GalleryItemRenderer;
-			this.list.itemRendererProperties.labelField = "title";
 			this.list.addEventListener(starling.events.Event.CHANGE, list_changeHandler);
 			this.addChild(this.list);
 
