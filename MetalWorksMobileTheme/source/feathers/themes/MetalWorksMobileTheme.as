@@ -30,6 +30,7 @@ package feathers.themes
 	import feathers.controls.Check;
 	import feathers.controls.GroupedList;
 	import feathers.controls.Header;
+	import feathers.controls.ImageLoader;
 	import feathers.controls.Label;
 	import feathers.controls.List;
 	import feathers.controls.PageIndicator;
@@ -432,10 +433,10 @@ package feathers.themes
 			return new Image(this.pageIndicatorSelectedSkinTexture);
 		}
 
-		protected function imageFactory(texture:Texture):Image
+		protected function imageLoaderFactory():ImageLoader
 		{
-			const image:Image = new Image(texture);
-			image.scaleX = image.scaleY = this.scale;
+			const image:ImageLoader = new ImageLoader();
+			image.textureScale = this.scale;
 			return image;
 		}
 
@@ -654,8 +655,8 @@ package feathers.themes
 			renderer.minWidth = renderer.minHeight = 88 * this.scale;
 			renderer.minTouchWidth = renderer.minTouchHeight = 88 * this.scale;
 
-			renderer.accessoryImageFactory = this.imageFactory;
-			renderer.iconImageFactory = this.imageFactory;
+			renderer.accessoryLoaderFactory = this.imageLoaderFactory;
+			renderer.iconLoaderFactory = this.imageLoaderFactory;
 		}
 
 		protected function pickerListItemRendererInitializer(renderer:BaseDefaultItemRenderer):void
@@ -756,6 +757,8 @@ package feathers.themes
 			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
 			renderer.minWidth = renderer.minHeight = 44 * this.scale;
 			renderer.minTouchWidth = renderer.minTouchHeight = 44 * this.scale;
+
+			renderer.contentLoaderFactory = this.imageLoaderFactory;
 		}
 
 		protected function footerRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
@@ -769,6 +772,8 @@ package feathers.themes
 			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
 			renderer.minWidth = renderer.minHeight = 44 * this.scale;
 			renderer.minTouchWidth = renderer.minTouchHeight = 44 * this.scale;
+
+			renderer.contentLoaderFactory = this.imageLoaderFactory;
 		}
 
 		protected function insetHeaderRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
@@ -783,6 +788,8 @@ package feathers.themes
 			renderer.paddingLeft = renderer.paddingRight = 32 * this.scale;
 			renderer.minWidth = renderer.minHeight = 66 * this.scale;
 			renderer.minTouchWidth = renderer.minTouchHeight = 44 * this.scale;
+
+			renderer.contentLoaderFactory = this.imageLoaderFactory;
 		}
 
 		protected function insetFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
@@ -797,6 +804,8 @@ package feathers.themes
 			renderer.paddingLeft = renderer.paddingRight = 32 * this.scale;
 			renderer.minWidth = renderer.minHeight = 66 * this.scale;
 			renderer.minTouchWidth = renderer.minTouchHeight = 44 * this.scale;
+
+			renderer.contentLoaderFactory = this.imageLoaderFactory;
 		}
 
 		protected function radioInitializer(radio:Radio):void

@@ -29,6 +29,7 @@ package feathers.themes
 	import feathers.controls.Callout;
 	import feathers.controls.Check;
 	import feathers.controls.Header;
+	import feathers.controls.ImageLoader;
 	import feathers.controls.Label;
 	import feathers.controls.PageIndicator;
 	import feathers.controls.PickerList;
@@ -53,7 +54,6 @@ package feathers.themes
 	import feathers.core.DisplayListWatcher;
 	import feathers.core.FeathersControl;
 	import feathers.core.IFeathersControl;
-	import feathers.display.Image;
 	import feathers.display.Scale3Image;
 	import feathers.display.Scale9Image;
 	import feathers.layout.VerticalLayout;
@@ -73,6 +73,7 @@ package feathers.themes
 	import starling.display.BlendMode;
 	import starling.display.DisplayObject;
 	import starling.display.DisplayObjectContainer;
+	import starling.display.Image;
 	import starling.events.Event;
 	import starling.text.BitmapFont;
 	import starling.textures.Texture;
@@ -389,10 +390,10 @@ package feathers.themes
 			return new Image(this.pageIndicatorSelectedSkinTexture);
 		}
 
-		protected function imageFactory(texture:Texture):Image
+		protected function imageLoaderFactory():ImageLoader
 		{
-			const image:Image = new Image(texture);
-			image.scaleX = image.scaleY = this.scale;
+			const image:ImageLoader = new ImageLoader();
+			image.textureScale = this.scale;
 			return image;
 		}
 
@@ -726,8 +727,8 @@ package feathers.themes
 			renderer.accessoryGap = Number.POSITIVE_INFINITY;
 			renderer.accessoryPosition = BaseDefaultItemRenderer.ACCESSORY_POSITION_RIGHT;
 
-			renderer.accessoryImageFactory = this.imageFactory;
-			renderer.iconImageFactory = this.imageFactory;
+			renderer.accessoryLoaderFactory = this.imageLoaderFactory;
+			renderer.iconLoaderFactory = this.imageLoaderFactory;
 		}
 
 		protected function headerOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
@@ -742,6 +743,8 @@ package feathers.themes
 			renderer.paddingTop = renderer.paddingBottom = 9 * this.scale;
 			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
 			renderer.minWidth = renderer.minHeight = 44 * this.scale;
+
+			renderer.contentLoaderFactory = this.imageLoaderFactory;
 		}
 
 		protected function pickerListInitializer(list:PickerList):void

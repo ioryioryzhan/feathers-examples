@@ -30,6 +30,7 @@ package feathers.themes
 	import feathers.controls.Check;
 	import feathers.controls.GroupedList;
 	import feathers.controls.Header;
+	import feathers.controls.ImageLoader;
 	import feathers.controls.Label;
 	import feathers.controls.List;
 	import feathers.controls.PageIndicator;
@@ -54,7 +55,6 @@ package feathers.themes
 	import feathers.controls.text.StageTextTextEditor;
 	import feathers.core.DisplayListWatcher;
 	import feathers.core.FeathersControl;
-	import feathers.display.Image;
 	import feathers.display.Scale9Image;
 	import feathers.layout.VerticalLayout;
 	import feathers.skins.ImageStateValueSelector;
@@ -72,6 +72,7 @@ package feathers.themes
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.DisplayObjectContainer;
+	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.events.Event;
 	import starling.text.BitmapFont;
@@ -352,12 +353,11 @@ package feathers.themes
 			return new Image(this.pageIndicatorSelectedSkinTexture);
 		}
 
-		protected function imageFactory(texture:Texture):Image
+		protected function imageLoaderFactory():ImageLoader
 		{
-			const image:Image = new Image(texture);
+			const image:ImageLoader = new ImageLoader();
 			image.smoothing = TextureSmoothing.NONE;
-			image.scaleX = image.scaleY = this.scale;
-			image.snapToPixels = true;
+			image.textureScale = this.scale;
 			return image;
 		}
 
@@ -634,8 +634,8 @@ package feathers.themes
 			renderer.accessoryGap = Number.POSITIVE_INFINITY;
 			renderer.accessoryPosition = BaseDefaultItemRenderer.ACCESSORY_POSITION_RIGHT;
 
-			renderer.accessoryImageFactory = this.imageFactory;
-			renderer.iconImageFactory = this.imageFactory;
+			renderer.accessoryLoaderFactory = this.imageLoaderFactory;
+			renderer.iconLoaderFactory = this.imageLoaderFactory;
 		}
 
 		protected function headerOrFooterRendererInitializer(renderer:DefaultGroupedListHeaderOrFooterRenderer):void
@@ -648,6 +648,8 @@ package feathers.themes
 			renderer.paddingTop = renderer.paddingBottom = 6 * this.scale;
 			renderer.paddingLeft = renderer.paddingRight = 16 * this.scale;
 			renderer.minWidth = renderer.minHeight = 44 * this.scale;
+
+			renderer.contentLoaderFactory = this.imageLoaderFactory;
 		}
 
 		protected function listInitializer(list:List):void
