@@ -7,6 +7,7 @@ package feathers.examples.layoutExplorer.screens
 	import feathers.skins.StandardIcons;
 
 	import starling.events.Event;
+	import starling.textures.Texture;
 
 	[Event(name="showHorizontal",type="starling.events.Event")]
 
@@ -36,13 +37,13 @@ package feathers.examples.layoutExplorer.screens
 			this._list = new List();
 			this._list.dataProvider = new ListCollection(
 			[
-				{ text: "Horizontal", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_HORIZONTAL },
-				{ text: "Vertical", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_VERTICAL },
-				{ text: "Tiled Rows", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_TILED_ROWS },
-				{ text: "Tiled Columns", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_TILED_COLUMNS },
+				{ text: "Horizontal", event: SHOW_HORIZONTAL },
+				{ text: "Vertical", event: SHOW_VERTICAL },
+				{ text: "Tiled Rows", event: SHOW_TILED_ROWS },
+				{ text: "Tiled Columns", event: SHOW_TILED_COLUMNS },
 			]);
 			this._list.itemRendererProperties.labelField = "text";
-			this._list.itemRendererProperties.accessoryTextureField = "accessoryTexture";
+			this._list.itemRendererProperties.accessorySourceFunction = accessorySourceFunction;
 			this._list.addEventListener(Event.CHANGE, list_changeHandler);
 			this.addChild(this._list);
 
@@ -59,6 +60,11 @@ package feathers.examples.layoutExplorer.screens
 			this._list.y = this._header.height;
 			this._list.width = this.actualWidth;
 			this._list.height = this.actualHeight - this._list.y;
+		}
+
+		private function accessorySourceFunction(item:Object):Texture
+		{
+			return StandardIcons.listDrillDownAccessoryTexture;
 		}
 
 		private function list_changeHandler(event:Event):void

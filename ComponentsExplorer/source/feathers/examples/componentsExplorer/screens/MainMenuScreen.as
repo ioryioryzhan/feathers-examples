@@ -7,6 +7,7 @@ package feathers.examples.componentsExplorer.screens
 	import feathers.skins.StandardIcons;
 
 	import starling.events.Event;
+	import starling.textures.Texture;
 
 	[Event(name="complete",type="starling.events.Event")]
 	[Event(name="showButton",type="starling.events.Event")]
@@ -56,22 +57,22 @@ package feathers.examples.componentsExplorer.screens
 			this._list = new List();
 			this._list.dataProvider = new ListCollection(
 			[
-				{ label: "Button", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_BUTTON },
-				{ label: "Button Group", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_BUTTON_GROUP },
-				{ label: "Callout", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_CALLOUT },
-				{ label: "Grouped List", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_GROUPED_LIST },
-				{ label: "List", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_LIST },
-				{ label: "Page Indicator", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_PAGE_INDICATOR },
-				{ label: "Picker List", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_PICKER_LIST },
-				{ label: "Progress Bar", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_PROGRESS_BAR },
-				{ label: "Scroll Text", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_SCROLL_TEXT },
-				{ label: "Slider", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_SLIDER},
-				{ label: "Tab Bar", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_TAB_BAR },
-				{ label: "Text Input", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_TEXT_INPUT },
-				{ label: "Toggles", accessoryTexture: StandardIcons.listDrillDownAccessoryTexture, event: SHOW_TOGGLES },
+				{ label: "Button", event: SHOW_BUTTON },
+				{ label: "Button Group", event: SHOW_BUTTON_GROUP },
+				{ label: "Callout", event: SHOW_CALLOUT },
+				{ label: "Grouped List", event: SHOW_GROUPED_LIST },
+				{ label: "List", event: SHOW_LIST },
+				{ label: "Page Indicator", event: SHOW_PAGE_INDICATOR },
+				{ label: "Picker List", event: SHOW_PICKER_LIST },
+				{ label: "Progress Bar", event: SHOW_PROGRESS_BAR },
+				{ label: "Scroll Text", event: SHOW_SCROLL_TEXT },
+				{ label: "Slider", event: SHOW_SLIDER},
+				{ label: "Tab Bar", event: SHOW_TAB_BAR },
+				{ label: "Text Input", event: SHOW_TEXT_INPUT },
+				{ label: "Toggles", event: SHOW_TOGGLES },
 			]);
 			this._list.itemRendererProperties.labelField = "label";
-			this._list.itemRendererProperties.accessoryTextureField = "accessoryTexture";
+			this._list.itemRendererProperties.accessorySourceFunction = accessorySourceFunction;
 			this._list.addEventListener(Event.CHANGE, list_changeHandler);
 			this.addChild(this._list);
 		}
@@ -84,6 +85,11 @@ package feathers.examples.componentsExplorer.screens
 			this._list.y = this._header.height;
 			this._list.width = this.actualWidth;
 			this._list.height = this.actualHeight - this._list.y;
+		}
+
+		private function accessorySourceFunction(item:Object):Texture
+		{
+			return StandardIcons.listDrillDownAccessoryTexture;
 		}
 		
 		private function list_changeHandler(event:Event):void
