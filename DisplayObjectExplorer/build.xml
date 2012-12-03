@@ -26,6 +26,7 @@
 		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
 			<arg line="+flexlib='${flexframework.root}'"/>
 			<arg line="--swf-version=${swf.version}"/>
+			<arg line="--target-player=${target.player}"/>
 			<arg line="--static-link-runtime-shared-libraries=true"/>
 			<arg line="--frame two feathers.examples.displayObjects.Main"/>
 			<arg line="--source-path+='source'"/>
@@ -42,6 +43,7 @@
 			<arg line="+flexlib='${flexframework.root}'"/>
 			<arg line="+configname=air"/>
 			<arg line="--swf-version=${swf.version}"/>
+			<arg line="--target-player=${target.player}"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${feathers.root}'"/>

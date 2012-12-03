@@ -28,6 +28,7 @@
 		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
 			<arg line="+flexlib='${flexframework.root}'"/>
 			<arg line="--swf-version=${swf.version}"/>
+			<arg line="--target-player=${target.player}"/>
 			<arg value="--define+=CONFIG::FLICKR_API_KEY,'${flickr.api.key}'"/>
 			<arg line="--static-link-runtime-shared-libraries=true"/>
 			<arg line="--frame two feathers.examples.gallery.Main"/>
@@ -44,6 +45,7 @@
 			<arg line="+flexlib='${flexframework.root}'"/>
 			<arg line="+configname=air"/>
 			<arg line="--swf-version=${swf.version}"/>
+			<arg line="--target-player=${target.player}"/>
 			<arg value="--define+=CONFIG::FLICKR_API_KEY,'${flickr.api.key}'"/>
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${starling.root}'"/>
