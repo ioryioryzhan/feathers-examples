@@ -392,8 +392,8 @@ package feathers.themes
 			this.setInitializerForClass(Button, simpleButtonInitializer, Slider.DEFAULT_CHILD_NAME_THUMB);
 			this.setInitializerForClass(Button, pickerListButtonInitializer, PickerList.DEFAULT_CHILD_NAME_BUTTON);
 			this.setInitializerForClass(Button, tabInitializer, TabBar.DEFAULT_CHILD_NAME_TAB);
-			this.setInitializerForClass(Button, sliderTrackInitializer, Slider.DEFAULT_CHILD_NAME_MINIMUM_TRACK);
-			this.setInitializerForClass(Button, sliderTrackInitializer, Slider.DEFAULT_CHILD_NAME_MAXIMUM_TRACK);
+			this.setInitializerForClass(Button, nothingInitializer, Slider.DEFAULT_CHILD_NAME_MINIMUM_TRACK);
+			this.setInitializerForClass(Button, nothingInitializer, Slider.DEFAULT_CHILD_NAME_MAXIMUM_TRACK);
 			this.setInitializerForClass(Button, toggleSwitchTrackInitializer, ToggleSwitch.DEFAULT_CHILD_NAME_ON_TRACK);
 			this.setInitializerForClass(Button, nothingInitializer, SimpleScrollBar.DEFAULT_CHILD_NAME_THUMB);
 			this.setInitializerForClass(ButtonGroup, buttonGroupInitializer);
@@ -579,19 +579,6 @@ package feathers.themes
 			{
 				width: 150 * this.scale,
 				height: 60 * this.scale,
-				textureScale: this.scale
-			};
-			track.stateToSkinFunction = skinSelector.updateValue;
-		}
-
-		protected function sliderTrackInitializer(track:Button):void
-		{
-			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
-			skinSelector.defaultValue = this.backgroundSkinTextures;
-			skinSelector.setValueForState(this.buttonDownSkinTextures, Button.STATE_DOWN, false);
-			skinSelector.setValueForState(this.backgroundDisabledSkinTextures, Button.STATE_DISABLED, false);
-			skinSelector.imageProperties =
-			{
 				textureScale: this.scale
 			};
 			track.stateToSkinFunction = skinSelector.updateValue;
@@ -860,16 +847,26 @@ package feathers.themes
 		{
 			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_STRETCH;
 
+			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
+			skinSelector.defaultValue = this.backgroundSkinTextures;
+			skinSelector.setValueForState(this.buttonDownSkinTextures, Button.STATE_DOWN, false);
+			skinSelector.setValueForState(this.backgroundDisabledSkinTextures, Button.STATE_DISABLED, false);
+			skinSelector.imageProperties =
+			{
+				textureScale: this.scale
+			};
 			if(slider.direction == Slider.DIRECTION_VERTICAL)
 			{
-				slider.width = 60 * this.scale;
-				slider.height = 210 * this.scale;
+				skinSelector.imageProperties.width = 60 * this.scale;
+				skinSelector.imageProperties.height = 210 * this.scale;
 			}
 			else
 			{
-				slider.width = 210 * this.scale;
-				slider.height = 60 * this.scale;
+				skinSelector.imageProperties.width = 210 * this.scale;
+				skinSelector.imageProperties.height = 60 * this.scale;
 			}
+			slider.minimumTrackProperties.stateToSkinFunction = skinSelector.updateValue;
+			slider.maximumTrackProperties.stateToSkinFunction = skinSelector.updateValue;
 		}
 
 		protected function toggleSwitchInitializer(toggle:ToggleSwitch):void
