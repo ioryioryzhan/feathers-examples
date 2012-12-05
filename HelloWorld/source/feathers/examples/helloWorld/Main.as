@@ -1,48 +1,24 @@
 package feathers.examples.helloWorld
 {
 	import feathers.controls.Button;
-	import feathers.text.BitmapFontTextFormat;
+	import feathers.controls.Callout;
+	import feathers.controls.Label;
+	import feathers.themes.MetalWorksMobileTheme;
 
-	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.text.BitmapFont;
-	import starling.textures.Texture;
-	import starling.textures.TextureAtlas;
 
 	/**
-	 * A very basic example to create a Button with Feathers.
+	 * An example to help you get started with Feathers. Creates a "theme" and
+	 * displays a Button component that you can trigger.
+	 *
+	 * <p>Note: This example requires the MetalWorksMobileTheme, which is one of
+	 * the themes included with Feathers.</p>
+	 *
+	 * @see http://wiki.starling-framework.org/feathers/getting-started
 	 */
 	public class Main extends Sprite
 	{
-		/**
-		 * This is the XML created by Texture Packer.
-		 */
-		[Embed(source="/../assets/images/atlas.xml",mimeType="application/octet-stream")]
-		public static const ATLAS_XML:Class;
-
-		/**
-		 * This is the PNG image created by Texture Packer. It includes the
-		 * button skins and the font bitmap created by BMFont.
-		 */
-		[Embed(source="/../assets/images/atlas.png")]
-		public static const ATLAS_IMAGE:Class;
-
-		/**
-		 * This is the XML created by BMFont.
-		 */
-		[Embed(source="/../assets/images/tahoma30.fnt",mimeType="application/octet-stream")]
-		public static const FONT_XML:Class;
-
-		/**
-		 * When the button is clicked, it's label changes.
-		 */
-		protected static const LABELS:Vector.<String> = new <String>
-		[
-			"Hi. I'm Feathers!",
-			"Have a nice day."
-		];
-
 		/**
 		 * Constructor.
 		 */
@@ -53,66 +29,52 @@ package feathers.examples.helloWorld
 		}
 
 		/**
+		 * A Feathers theme will automatically pass skins to any components that
+		 * are added to the stage. Components do not have default skins, so you
+		 * must always use a theme or skin the components manually.
+		 *
+		 * @see http://wiki.starling-framework.org/feathers/themes
+		 */
+		protected var theme:MetalWorksMobileTheme;
+
+		/**
 		 * The Feathers Button control that we'll be creating.
 		 */
 		protected var button:Button;
 
 		/**
-		 * The texture atlas that contains the button's skins.
-		 */
-		protected var atlas:TextureAtlas;
-
-		/**
-		 * The bitmap font used to display the button's text.
-		 */
-		protected var font:BitmapFont;
-
-		/**
-		 * The index used to pick a label from the LABELS defined above.
-		 */
-		protected var labelIndex:int = 0;
-
-		/**
-		 * Where the magic happens.
+		 * Where the magic happens. Start after the main class has been added
+		 * to the stage so that we can access the stage property.
 		 */
 		protected function addedToStageHandler(event:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 
-			//first create the atlas and the font from the assets embedded above
-			this.atlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
+			//create the theme. this class will automatically pass skins to any
+			//Feathers component that is added to the stage. you should always
+			//create a theme immediately when your app starts up to ensure that
+			//all components are properly skinned.
+			this.theme = new MetalWorksMobileTheme(this.stage);
 
-			//notice that the font's texture comes from the atlas
-			this.font = new BitmapFont(this.atlas.getTexture("tahoma30_0"), XML(new FONT_XML()));
-
-			//finally, the Button control is created!
+			//create a button and give it some text to display.
 			this.button = new Button();
 			this.button.label = "Click Me";
 
-			//if no skin is defined for a specific state, the button will use
-			//the default skin. it's usually smart to use the up skin as the
-			//default. can be any Starling display object.
-			this.button.defaultSkin = new Image(this.atlas.getTexture("button-up-skin"));
-
-			//here's a specific skin for the down state
-			this.button.downSkin = new Image(this.atlas.getTexture("button-down-skin"));
-
-			//the button's defaultLabelProperties works similarly to the
-			//defaultSkin. Any of the text renderer's properties may be set,
-			//but we'll only set the textFormat.
-			//The default text renderer is BitmapFontTextRenderer, so we pass in
-			//a BitmapFontTextFormat object.
-			this.button.defaultLabelProperties.textFormat = new BitmapFontTextFormat(this.font, 30, 0x000000);
-
-			//an event that tells us when the user has tapped/clicked the button
+			//an event that tells us when the user has tapped the button.
 			this.button.addEventListener(Event.TRIGGERED, button_triggeredHandler);
 
-			//add it to the display list just like any other display object
+			//add the button to the display list, just like you would with any
+			//other Starling display object. this is where the theme give some
+			//skins to the button.
 			this.addChild(this.button);
 
-			//the button will validate on its own before the next render, but
-			//we want to position it immediately. tell it to validate now.
+			//the button won't have a width and height until it "validates". it
+			//will validate on its own before the next frame is rendered by
+			//Starling, but we want to access the dimension immediately, so tell
+			//it to validate right now.
 			this.button.validate();
+
+			//center the button
 			this.button.x = (this.stage.stageWidth - this.button.width) / 2;
 			this.button.y = (this.stage.stageHeight - this.button.height) / 2;
 		}
@@ -122,13 +84,9 @@ package feathers.examples.helloWorld
 		 */
 		protected function button_triggeredHandler(event:Event):void
 		{
-			//the button's label is rotated among the values defined above
-			this.button.label = LABELS[this.labelIndex];
-			this.labelIndex++;
-			if(this.labelIndex >= LABELS.length)
-			{
-				this.labelIndex = 0;
-			}
+			const label:Label = new Label();
+			label.text = "Hi, I'm Feathers!\nHave a nice day.";
+			Callout.show(label, this.button);
 		}
 	}
 }

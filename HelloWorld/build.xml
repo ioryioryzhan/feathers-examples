@@ -32,6 +32,7 @@
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${feathers.root}'"/>
+			<arg line="--source-path+='${theme.root}'"/>
 			<arg line="source/HelloWorldWeb.as"/>
 			<arg line="--output ${output.path}/HelloWorldWeb.swf"/>
 		</java>
@@ -46,6 +47,7 @@
 			<arg line="--source-path+='source'"/>
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${feathers.root}'"/>
+			<arg line="--source-path+='${theme.root}'"/>
 			<arg line="source/HelloWorld.as"/>
 			<arg line="--output ${output.path}/HelloWorld.swf"/>
 		</java>
