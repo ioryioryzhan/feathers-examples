@@ -845,7 +845,7 @@ package feathers.themes
 
 		protected function sliderInitializer(slider:Slider):void
 		{
-			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_STRETCH;
+			slider.trackLayoutMode = Slider.TRACK_LAYOUT_MODE_MIN_MAX;
 
 			const skinSelector:Scale9ImageStateValueSelector = new Scale9ImageStateValueSelector();
 			skinSelector.defaultValue = this.backgroundSkinTextures;
