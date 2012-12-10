@@ -7,6 +7,7 @@ package feathers.examples.gallery
 	import feathers.events.FeathersEventType;
 
 	import flash.geom.Point;
+	import flash.utils.Dictionary;
 
 	import starling.animation.Transitions;
 	import starling.animation.Tween;
@@ -27,6 +28,13 @@ package feathers.examples.gallery
 		 * @private
 		 */
 		private static const HELPER_TOUCHES_VECTOR:Vector.<Touch> = new <Touch>[];
+
+		/**
+		 * @private
+		 * This will only work in a single list. If this item renderer needs to
+		 * be used by multiple lists, this data should be stored differently.
+		 */
+		private static const CACHED_BOUNDS:Dictionary = new Dictionary(false);
 
 		/**
 		 * Constructor.
@@ -231,11 +239,33 @@ package feathers.examples.gallery
 			{
 				if(this.image.isLoaded)
 				{
-					newWidth = this.image.width;
+					if(!CACHED_BOUNDS.hasOwnProperty(this._index))
+					{
+						CACHED_BOUNDS[this._index] = new Point();
+					}
+					var boundsFromCache:Point = Point(CACHED_BOUNDS[this._index]);
+					//also save it to a cache so that we can reuse the width and
+					//height values later if the same image needs to be loaded
+					//again.
+					newWidth = boundsFromCache.x = this.image.width;
 				}
 				else
 				{
-					newWidth = 100;
+					if(CACHED_BOUNDS.hasOwnProperty(this._index))
+					{
+						//if the image isn't loaded yet, but we've loaded it at
+						//least once before, we can use a cached value to avoid
+						//jittering when the image resizes
+						boundsFromCache = Point(CACHED_BOUNDS[this._index]);
+						newWidth = boundsFromCache.x;
+					}
+					else
+					{
+						//default to 100 if we've never displayed an image for
+						//this index yet.
+						newWidth = 100;
+					}
+
 				}
 			}
 			var newHeight:Number = this.explicitHeight;
@@ -243,11 +273,24 @@ package feathers.examples.gallery
 			{
 				if(this.image.isLoaded)
 				{
-					newHeight = this.image.height;
+					if(!CACHED_BOUNDS.hasOwnProperty(this._index))
+					{
+						CACHED_BOUNDS[this._index] = new Point();
+					}
+					boundsFromCache = Point(CACHED_BOUNDS[this._index]);
+					newHeight = boundsFromCache.y = this.image.height;
 				}
 				else
 				{
-					newHeight = 100;
+					if(CACHED_BOUNDS.hasOwnProperty(this._index))
+					{
+						boundsFromCache = Point(CACHED_BOUNDS[this._index]);
+						newHeight = boundsFromCache.y;
+					}
+					else
+					{
+						newHeight = 100;
+					}
 				}
 			}
 			return this.setSizeInternal(newWidth, newHeight, false);
