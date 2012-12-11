@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="feathers-examples" default="web" basedir=".">
 
-	<target name="web" depends="-prepare" description="Builds web SWFs of all examples.">
+	<target name="web" description="Builds web SWFs of all examples.">
 		<ant dir="${basedir}/ComponentsExplorer" target="build-web" inheritAll="false" useNativeBasedir="true"/>
 		<ant dir="${basedir}/DisplayObjectExplorer" target="build-web" inheritAll="false" useNativeBasedir="true"/>
 		<ant dir="${basedir}/Gallery" target="build-web" inheritAll="false" useNativeBasedir="true"/>
