@@ -714,15 +714,6 @@ package feathers.themes
 		{
 			list.backgroundSkin = new Scale9Image(simpleBorderBackgroundSkinTextures);
 
-			const layout:VerticalLayout = new VerticalLayout();
-			layout.useVirtualLayout = true;
-			layout.paddingTop = layout.paddingRight = layout.paddingBottom =
-				layout.paddingLeft = 0;
-			layout.gap = 0;
-			layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
-			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_TOP;
-			list.layout = layout;
-
 			list.paddingTop = list.paddingRight = list.paddingBottom =
 				list.paddingLeft = 1;
 		}
